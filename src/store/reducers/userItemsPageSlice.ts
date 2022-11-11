@@ -1,13 +1,16 @@
 import {ItemModel} from "../../types/ItemModel";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {getIdFromPath, ROUTES} from "../../router/routes";
 
 
 interface ItemsState {
+    userPageId: string,
     items: ItemModel[]
 }
 
 
 const initialState: ItemsState = {
+    userPageId: "1",
     items: []
 };
 
@@ -17,6 +20,12 @@ export const userItemPageSlice = createSlice({
     name: 'userItemPage',
     initialState,
     reducers: {
+        updateUserPageId: (state, action: PayloadAction<string>) => {
+            if (!action.payload.includes(ROUTES.pages.account))
+                state.userPageId = "";
+            else
+                state.userPageId = getIdFromPath(action.payload);
+        },
         setComment: (state, action: PayloadAction<{id: string, comment: string}>) => {
             let newItems = [...state.items];
             const idx = state.items.findIndex((item) => item.id === action.payload.id);
@@ -58,5 +67,5 @@ export const userItemPageSlice = createSlice({
     }
 });
 
-export const {setComment, setRating, deleteComment, deleteItem, addItem} = userItemPageSlice.actions;
+export const {setComment, setRating, deleteComment, deleteItem, addItem, updateUserPageId} = userItemPageSlice.actions;
 export default userItemPageSlice.reducer;

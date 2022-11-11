@@ -1,31 +1,38 @@
 import React, {FC, useState} from 'react';
-import {Box, List, ListItem, Typography} from "@mui/material";
+import {Box, Button, List, ListItem, Typography} from "@mui/material";
 import UserHeader from "./UserHeader";
 import {UserModel, UserPersonalInfoModel} from "../../types/UserModels";
 import {userpersonalinfo_number_set} from "../../test/userpersonalinfo";
 import {getDrawerOptions} from "./tabs/drawerOptions";
 import {INavButton} from "../../types/INavButton";
-import {useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {getIdFromPath} from "../../router/routes";
+import {useAppSelector} from "../../hooks/redux";
 
 interface ProfileDrawerProps {
     isUserProfile: boolean
 };
 
+/*
+<Button onClick={(event) => handleClickOnOption(idx)}> {option.textBotton} </Button>
+ */
+
 const ProfileDrawer: FC = () => {
 
-    const {userId} = useParams();
+
+    const userId = useAppSelector((state) => state.userItemPageReducer.userPageId);
+    console.log("id: " + userId);
     const isUserProfile = true;
-    const options: INavButton[] = getDrawerOptions(isUserProfile);
+    const options: INavButton[] = getDrawerOptions(isUserProfile, userId!);
 
     // TODO: redux
     // TODO: type = UserModel!
     const [user, setUser] = useState<UserPersonalInfoModel>(userpersonalinfo_number_set[0]);
 
+    const navigate = useNavigate();
 
     const handleClickOnOption = (idx: number) => {
-        /*
-        navigate(option)
-        * */
+        navigate(options[idx].url_to);
     }
 
     //<UserHeader user={} />
@@ -37,8 +44,8 @@ const ProfileDrawer: FC = () => {
                     <UserHeader user={user} />
                 </ListItem>
                 {options.map((option, idx) =>
-                    <ListItem onClick={(event) => handleClickOnOption(idx)}>
-                        <Typography> {option.textBotton} </Typography>
+                    <ListItem>
+
                     </ListItem>
                 )}
             </List>

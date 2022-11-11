@@ -1,5 +1,5 @@
-import React from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import AppLayout from "./components/appLayout";
 import {Box} from "@mui/material";
 import DrawerContentLayout from "./components/drawerContentLayout";
@@ -12,8 +12,18 @@ import UserPageProfileContent from "./components/userPfofilePage/UserPageProfile
 import {ROUTES} from "./router/routes";
 import PersonList, {PersonListType} from "./components/userPfofilePage/lists/PersonList";
 import ItemList from "./components/userPfofilePage/lists/ItemList";
+import {updateUserPageId} from "./store/reducers/userItemsPageSlice";
+import {useAppDispatch} from "./hooks/redux";
 
 function App() {
+
+  const location = useLocation();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(updateUserPageId(location.pathname));
+  }, [location]);
+
   return (
       <Routes>
         <Route path={ROUTES.base_url} element={<AppLayout/>}>

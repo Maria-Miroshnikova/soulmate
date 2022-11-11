@@ -4,6 +4,9 @@ import {Categories} from "../../types/Categories";
 import {getCategoryTabs, getFriendsTabs} from "./tabs/tabs";
 import SearchBar from "../UI/searchbar/SearchBar";
 import {Outlet} from "react-router";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {getIdFromPath} from "../../router/routes";
+import {useAppSelector} from "../../hooks/redux";
 
 interface UserPageContentProps {
     isFriendsContent: boolean,
@@ -12,22 +15,22 @@ interface UserPageContentProps {
 
 const UserPageSearchContent: FC<UserPageContentProps> = ({isFriendsContent, category}) => {
 
-    console.log(isFriendsContent)
-    const tabs = (isFriendsContent) ? getFriendsTabs() : getCategoryTabs(category!);
-    console.log(tabs);
+    const userId = useAppSelector((state) => state.userItemPageReducer.userPageId);
+    console.log("id: " + userId);
+    const isUserProfile = true;
+    const tabs = (isFriendsContent) ? getFriendsTabs(userId!) : getCategoryTabs(category!, userId!);
+
+    const navigate = useNavigate();
 
     const handleClickOnTab = (idx: number) => {
-        /*
-
-        navigate(tabs[idx])
-         */
+        navigate(tabs[idx].url_to);
     }
 
     return (
         <Box display="flex" flexDirection="column" width="100%" height="min-content">
             <Box  sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs>
-                    {tabs.map((tab) => <Tab label={tab.textBotton} />)}
+                    {tabs.map((tab, idx) => <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>)}
                 </Tabs>
             </Box>
             {
