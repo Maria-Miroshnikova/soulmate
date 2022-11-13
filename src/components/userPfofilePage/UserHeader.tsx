@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Avatar, Box, Typography} from "@mui/material";
-import {IUserCardInfo} from "../../types/UserCardInfo";
+import {UserCardInfo} from "../../types/UserCardInfo";
 import {UserPersonalInfoModel} from "../../types/UserModels";
 
 interface UserHeaderProps {

@@ -2,48 +2,48 @@ import React, {FC, useState} from 'react';
 import {
     Accordion,
     AccordionDetails,
-    AccordionSummary, Box,
+    AccordionSummary, Box, Button, Card, CardContent, Collapse,
     IconButton,
     Rating,
     TextField,
     Typography
 } from "@mui/material";
 import CommentIcon from '@mui/icons-material/Comment';
-import {ItemCardProps} from "./ItemCard";
+import {ItemCardBasicProps} from "./ItemCardBasic";
+import CreateIcon from "@mui/icons-material/Create";
+import ClearIcon from "@mui/icons-material/Clear";
 
-const ItemCardFriend: FC<ItemCardProps> = ({item}) => {
+const ItemCardFriend: FC<ItemCardBasicProps> = ({item}) => {
 
     const textCommentLabel = "Комментарий пользователя";
 
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [expanded, setExpanded] = useState<boolean>(false);
 
-    const onClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        event.preventDefault();
-        if (item.comment !== undefined)
-            setIsExpanded(!isExpanded);
+    const handleExpand = () => {
+        setExpanded(!expanded);
     }
 
     return (
-        <Accordion sx={{ paddingBottom: 1, minWidth: "max-content"}} expanded={isExpanded} onClick={(event) => onClick(event)}>
-            <AccordionSummary>
+        <Card>
+            <CardContent>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
-                    <Typography> {item.title} </Typography>
+                    <Typography width="100%"> {item.title} </Typography>
                     <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" alignItems="center" gap={1}>
                         {
                             (item.comment === undefined) ?
                                 null
                                 :
-                                <IconButton> <CommentIcon/> </IconButton>
+                                <IconButton onClick={handleExpand}> <CommentIcon/> </IconButton>
                         }
                         <Rating value={item.rating} readOnly/>
                     </Box>
                 </Box>
-            </AccordionSummary>
-            {
-                (item.comment === undefined) ?
-                    null
-                    :
-                    <AccordionDetails>
+            </CardContent>
+            {(item.comment === undefined) ?
+                null
+                :
+                <Collapse in={expanded}>
+                    <CardContent>
                         <Box display="flex" flexDirection="column" width="100%" gap={2}>
                             <TextField
                                 InputProps={{
@@ -56,9 +56,10 @@ const ItemCardFriend: FC<ItemCardProps> = ({item}) => {
                             >
                             </TextField>
                         </Box>
-                    </AccordionDetails>
+                    </CardContent>
+                </Collapse>
             }
-        </Accordion>
+        </Card>
     );
 };
 

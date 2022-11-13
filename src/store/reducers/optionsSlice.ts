@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {number_options, options_} from "../../test/options";
 import {OptionsModel} from "../../types/OptionModels";
 
@@ -15,7 +15,7 @@ export const optionsSlice = createSlice({
     name: 'options',
     initialState,
     reducers: {
-        setOptions: (state, action) => {
+        setOptions: (state, action: PayloadAction<OptionsModel>) => {
             state.categories = action.payload;
         }
     }

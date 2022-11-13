@@ -26,6 +26,7 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
 
     const options_ontology = useAppSelector((state) => state.optionsReducer.categories);
     const options = extractOptionFromOptions(options_ontology!, category);
+    //console.log("options: ", options);
 
     const [selectedOptionsMain, setSelectedOptionsMain] = React.useState<any | null>([]);
     const [selectedOptionsSub, setSelectedOptionsSub] = React.useState<any | null>([]);
@@ -34,6 +35,9 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
 
     const submitStatus = useAppSelector((state) => state.filterPageFilterReducer.status);
     const dispatch = useAppDispatch();
+
+    // TODO: сделать чекбоксы только для авторизованных пользователей!!
+    const isAuth = false;
 
     useEffect(() => {
         if (submitStatus === FilterStatus.IS_SUBMITTING) {
@@ -61,8 +65,10 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
                     <Typography variant="h6" marginBottom={2}> {filterText.category} </Typography>
                     <Autocomplete
                         multiple
-                        options={options.main_category.keys()}
-                        getOptionLabel={(option) => options.main_category.getValue(option)!}
+                        //options={options.main_category.keys()}
+                        options={options.main_category.map((option) => option.id)}
+                        //getOptionLabel={(option) => options.main_category.getValue(option)!}
+                        getOptionLabel={(id) => options.main_category.find((option) => {return option.id === id})!.title}
                         filterSelectedOptions={true}
                         renderInput={(params) => <TextField {...params} label={filterText.labelFirstTextField} />}
                         value={selectedOptionsMain}
@@ -70,15 +76,19 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
                             setSelectedOptionsMain(newValue.map((option: { value: any; }) => option.value || option));
                         }}
                         renderTags={(tagValue, getTagProps) => {
-                            return tagValue.map((option, index) => (
-                                <Chip {...getTagProps({ index })} label={options.main_category.getValue(option)} color="primary" sx={{minWidth: "72px"}} />
+                            return tagValue.map((id, index) => (
+                            //return tagValue.map((option, index) => (
+                                //<Chip {...getTagProps({ index })} label={options.main_category.getValue(option)} color="primary" sx={{minWidth: "72px"}} />
+                                <Chip {...getTagProps({ index })} label={options.main_category.find((option) => {return option.id === id})!.title} color="primary" sx={{minWidth: "72px"}} />
                             ));}}
                         sx={{ marginBottom: 2 }}
                     />
                     <Autocomplete
                         multiple
-                        options={options.sub_category.keys()}
-                        getOptionLabel={(option) => options.sub_category.getValue(option)!}
+                        //options={options.sub_category.keys()}
+                        options={options.sub_category.map((option) => option.id)}
+                        //getOptionLabel={(option) => options.sub_category.getValue(option)!}
+                        getOptionLabel={(id) => options.sub_category.find((option) => {return option.id === id})!.title}
                         filterSelectedOptions={true}
                         renderInput={(params) => <TextField {...params} label={filterText.labelLastTextField} />}
                         value={selectedOptionsSub}
@@ -86,13 +96,19 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
                             setSelectedOptionsSub(newValue.map((option: { value: any; }) => option.value || option));
                         }}
                         renderTags={(tagValue, getTagProps) => {
-                            return tagValue.map((option, index) => (
-                                <Chip {...getTagProps({ index })} label={options.sub_category.getValue(option)} color="primary" sx={{minWidth: "72px"}} />
+                            return tagValue.map((id, index) => (
+                            //return tagValue.map((option, index) => (
+                            //    <Chip {...getTagProps({ index })} label={options.sub_category.getValue(option)} color="primary" sx={{minWidth: "72px"}} />
+                                <Chip {...getTagProps({ index })} label={options.sub_category.find((option) => {return option.id === id})!.title} color="primary" sx={{minWidth: "72px"}} />
                             ));}}
                         sx={{ marginBottom: 1}}
                     />
-                    <FormControlLabel control={<Checkbox checked={isCheckedMain} onChange={handleCheckMain} />} label={filterText.labelFirstCheckBox} />
-                    <FormControlLabel control={<Checkbox checked={isCheckedSub} onChange={handleCheckSub}/>} label={filterText.labelLastCheckBox} />
+                    {(!isAuth) ?
+                        null
+                        :
+                        <><FormControlLabel control={<Checkbox checked={isCheckedMain} onChange={handleCheckMain} />} label={filterText.labelFirstCheckBox} />
+                        <FormControlLabel control={<Checkbox checked={isCheckedSub} onChange={handleCheckSub}/>} label={filterText.labelLastCheckBox} /></>
+                    }
                 </Box>
             </CardContent>
         </Card>

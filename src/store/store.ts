@@ -5,22 +5,29 @@ import filterPageFoundUsersReducer from "./reducers/filterPageFoundUsersSlice";
 import filterPageFilterReducer from "./reducers/filterPageFilterSlice";
 import priorityReducer from "./reducers/prioritySlice";
 import userItemPageReducer from "./reducers/userItemsPageSlice";
+import {filterAPI} from "../services/filterUsercardsService";
+import {setupListeners} from "@reduxjs/toolkit/query";
 
 const rootReducer = combineReducers({
     optionsReducer,
     filterPageFoundUsersReducer,
     filterPageFilterReducer,
     priorityReducer,
-    userItemPageReducer
+    userItemPageReducer,
+    [filterAPI.reducerPath]: filterAPI.reducer
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
-        middleware: [...getDefaultMiddleware(), thunk]
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware().concat(filterAPI.middleware).concat(thunk)
     });
 };
 
-export type RootState = ReturnType<typeof rootReducer>;
+export const STORE = setupStore();
+setupListeners(STORE.dispatch);
+
+export type RootState = ReturnType<typeof STORE.getState>;
 export type AppStore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppStore['dispatch'];
+export type AppDispatch = typeof STORE.dispatch;

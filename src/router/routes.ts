@@ -48,7 +48,7 @@ export const ROUTES = {
             books_sub: "book_authors"
         },
         music: {
-            music_main: "music",
+            music_main: "songs",
             music_sub: "music_authors"
         },
         games: {

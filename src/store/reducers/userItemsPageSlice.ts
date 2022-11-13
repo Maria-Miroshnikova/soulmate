@@ -5,12 +5,14 @@ import {getIdFromPath, ROUTES} from "../../router/routes";
 
 interface ItemsState {
     userPageId: string,
+    isUserId: boolean,
     items: ItemModel[]
 }
 
 
 const initialState: ItemsState = {
     userPageId: "1",
+    isUserId: true,
     items: []
 };
 
@@ -21,10 +23,15 @@ export const userItemPageSlice = createSlice({
     initialState,
     reducers: {
         updateUserPageId: (state, action: PayloadAction<string>) => {
-            if (!action.payload.includes(ROUTES.pages.account))
+            if (!action.payload.includes(ROUTES.pages.account)) {
                 state.userPageId = "";
-            else
+                state.isUserId = false;
+            }
+            else {
                 state.userPageId = getIdFromPath(action.payload);
+                // TODO real check
+                state.isUserId = true;
+            }
         },
         setComment: (state, action: PayloadAction<{id: string, comment: string}>) => {
             let newItems = [...state.items];

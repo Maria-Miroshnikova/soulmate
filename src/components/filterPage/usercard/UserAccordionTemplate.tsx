@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Categories, CategoryModel, extractCategoryFromCategories} from "../../../types/Categories";
 import {Accordion, AccordionDetails, AccordionSummary, Box, Divider, Typography} from "@mui/material";
-import {UserCardInfo} from "../../../types/UserCardInfo";
+import {getUserCardInfoCategory, UserCardInfo} from "../../../types/UserCardInfo";
 import {IUserAccordion} from "../../../text/UserAccordionText";
 import {UserAccordionText} from "../../../text/UserAccordionText";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -21,7 +21,8 @@ const UserAccordionTemplate: FC<UserAccordionTemplateProps> = ({category, user})
     const filterCategory = extractCategoryFromCategories(filter.filter_categories, category);
 
     const accordionText: IUserAccordion = UserAccordionText(category);
-    const data = user.getData(category);
+    const data = getUserCardInfoCategory(user, category);
+    //console.log("user data: ", data);
     if (data.main_category.length + data.sub_category.length === 0)
         return null;
 

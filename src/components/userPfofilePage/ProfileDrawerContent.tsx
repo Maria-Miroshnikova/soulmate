@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import {Box, Button, List, ListItem, Typography} from "@mui/material";
+import {Box, Button, List, ListItem, ListItemButton, Typography} from "@mui/material";
 import UserHeader from "./UserHeader";
 import {UserModel, UserPersonalInfoModel} from "../../types/UserModels";
 import {userpersonalinfo_number_set} from "../../test/userpersonalinfo";
@@ -17,7 +17,7 @@ interface ProfileDrawerProps {
 <Button onClick={(event) => handleClickOnOption(idx)}> {option.textBotton} </Button>
  */
 
-const ProfileDrawer: FC = () => {
+const ProfileDrawerContent: FC = () => {
 
 
     const userId = useAppSelector((state) => state.userItemPageReducer.userPageId);
@@ -44,13 +44,13 @@ const ProfileDrawer: FC = () => {
                     <UserHeader user={user} />
                 </ListItem>
                 {options.map((option, idx) =>
-                    <ListItem>
-
-                    </ListItem>
+                    <ListItemButton onClick={() => handleClickOnOption(idx)}>
+                        <Typography> {option.textBotton} </Typography>
+                    </ListItemButton>
                 )}
             </List>
         </Box>
     );
 };
 
-export default ProfileDrawer;
+export default ProfileDrawerContent;

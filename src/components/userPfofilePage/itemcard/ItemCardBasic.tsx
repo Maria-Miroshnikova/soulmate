@@ -1,25 +1,17 @@
 import React, {FC, useState} from 'react';
-import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary, Box, Button,
-    IconButton,
-    Rating,
-    TextField,
-    Typography
-} from "@mui/material";
 import {ItemModel} from "../../../types/ItemModel";
-import CommentIcon from '@mui/icons-material/Comment';
-import CreateIcon from '@mui/icons-material/Create';
-import ClearIcon from '@mui/icons-material/Clear';
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import {Box, Button, Card, CardContent, Collapse, IconButton, Rating, TextField, Typography} from "@mui/material";
+import CreateIcon from "@mui/icons-material/Create";
+import CommentIcon from "@mui/icons-material/Comment";
+import ClearIcon from "@mui/icons-material/Clear";
+import {useAppDispatch} from "../../../hooks/redux";
 import {deleteComment, deleteItem, setComment, setRating} from "../../../store/reducers/userItemsPageSlice";
 
-export interface ItemCardProps {
+export interface ItemCardBasicProps {
     item: ItemModel
 }
 
-const ItemCard: FC<ItemCardProps> = ({item}) => {
+const ItemCardBasic: FC<ItemCardBasicProps> = ({item}) => {
 
     const textCommentLabel = "Ваш комментарий";
     const textBtnSave = "Сохранить";
@@ -27,6 +19,8 @@ const ItemCard: FC<ItemCardProps> = ({item}) => {
 
     const [commentValue, setCommentValue] = useState<string>(item.comment!);
     const [ratingValue, setRatingValue] = useState<number>(item.rating);
+
+    const [expanded, setExpanded] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
 
@@ -57,41 +51,47 @@ const ItemCard: FC<ItemCardProps> = ({item}) => {
         dispatch(deleteItem(item.id));
     }
 
+    const handleExpand = () => {
+        setExpanded(!expanded);
+    }
+
     return (
-        <Accordion sx={{ paddingBottom: 1, minWidth: "max-content"}} >
-            <AccordionSummary>
+        <Card>
+            <CardContent>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
-                    <Typography> {item.title} </Typography>
+                    <Typography width="100%"> {item.title} </Typography>
                     <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" alignItems="center" gap={1}>
                         {
                             (item.comment === undefined) ?
-                                <IconButton> <CreateIcon /> </IconButton>
+                                <IconButton onClick={handleExpand}> <CreateIcon /> </IconButton>
                                 :
-                                <IconButton> <CommentIcon/> </IconButton>
+                                <IconButton  onClick={handleExpand}> <CommentIcon/> </IconButton>
                         }
                         <Rating value={ratingValue} onChange={(event, newValue) => handleChangeRating(newValue)}/>
                         <IconButton onClick={handleDeleteItem} sx={{ marginLeft: 2}}> <ClearIcon/> </IconButton>
                     </Box>
                 </Box>
-            </AccordionSummary>
-            <AccordionDetails>
-                <Box display="flex" flexDirection="column" width="100%" gap={2}>
-                    <TextField
-                        fullWidth
-                        multiline
-                        label={textCommentLabel}
-                        value={commentValue}
-                        onChange={(event) => handleChangeComment(event)}
-                    >
-                    </TextField>
-                    <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" gap={1}>
-                        <Button variant="contained" onClick={handleDeleteComment}> {textBtnDeleteComment} </Button>
-                        <Button variant="contained" onClick={handleEditComment}> {textBtnSave} </Button>
+            </CardContent>
+            <Collapse in={expanded}>
+                <CardContent>
+                    <Box display="flex" flexDirection="column" width="100%" gap={2}>
+                        <TextField
+                            fullWidth
+                            multiline
+                            label={textCommentLabel}
+                            value={commentValue}
+                            onChange={(event) => handleChangeComment(event)}
+                        >
+                        </TextField>
+                        <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" gap={1}>
+                            <Button variant="contained" onClick={handleDeleteComment}> {textBtnDeleteComment} </Button>
+                            <Button variant="contained" onClick={handleEditComment}> {textBtnSave} </Button>
+                        </Box>
                     </Box>
-                </Box>
-            </AccordionDetails>
-        </Accordion>
+                </CardContent>
+            </Collapse>
+        </Card>
     );
 };
 
-export default ItemCard;
+export default ItemCardBasic;

@@ -26,6 +26,7 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({isFriendsContent, cate
         navigate(tabs[idx].url_to);
     }
 
+    // TODO сделать красивые tabs
     return (
         <Box display="flex" flexDirection="column" width="100%" height="min-content">
             <Box  sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -33,13 +34,15 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({isFriendsContent, cate
                     {tabs.map((tab, idx) => <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>)}
                 </Tabs>
             </Box>
-            {
-                (isFriendsContent) ?
-                    <SearchBar countFound={0} isFriends={isFriendsContent}/>
-                    :
-                    <SearchBar countFound={0} isFriends={isFriendsContent} category={category}/>
-            }
-            <Box display="flex" flexDirection="column">
+            <Box marginTop={0}>
+                {
+                    (isFriendsContent) ?
+                        <SearchBar countFound={0} isFriends={isFriendsContent}/>
+                        :
+                        <SearchBar countFound={0} isFriends={isFriendsContent} category={category}/>
+                }
+            </Box>
+            <Box display="flex" flexDirection="column" paddingLeft={2} paddingTop={2}>
                 <Outlet />
             </Box>
         </Box>

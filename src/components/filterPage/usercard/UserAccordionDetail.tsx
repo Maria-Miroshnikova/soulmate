@@ -26,6 +26,16 @@ const UserAccordionDetail: FC<UserAccordionDetailProps> = ({dataYou, dataFilter,
     const options_ontology = useAppSelector((state) => state.optionsReducer.categories);
     const options_both = extractOptionFromOptions(options_ontology, category);
     const options = (isMain) ? options_both.main_category : options_both.sub_category;
+    /*console.log("opt: ", options);
+    console.log("you: ", dataYou);
+    console.log("find", dataYou.map((id) => {
+        console.log("id =", id);
+        console.log("id type ", typeof(id));
+        options.find((option) => {
+            console.log("option id =", option.id);
+            console.log("option id type ", typeof(option.id));
+            return option.id === id.toString()});
+    }))*/
 
     return (dataYou.length + dataFilter.length === 0) ?
             null
@@ -41,8 +51,8 @@ const UserAccordionDetail: FC<UserAccordionDetailProps> = ({dataYou, dataFilter,
                     flexWrap="wrap"
                     marginTop={1}
                 >
-                    {dataYou.map((item) => <Chip key={item} label={options.getValue(item)} color="primary" sx={{minWidth: "72px"}}/>)}
-                    {dataFilter.map((item) => <Chip key={item} label={options.getValue(item)} color="secondary" sx={{minWidth: "72px"}}/>)}
+                    {dataYou.map((id) => <Chip key={id} label={options.find((option) => {return option.id === id})!.title} color="primary" sx={{minWidth: "72px"}}/>)}
+                    {dataFilter.map((id) => <Chip key={id} label={options.find((option) => {return option.id === id})!.title} color="secondary" sx={{minWidth: "72px"}}/>)}
                 </Box>
             </Box>
         );

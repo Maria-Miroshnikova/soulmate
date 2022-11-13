@@ -1,6 +1,6 @@
 import {UserCardInfo} from "../../types/UserCardInfo";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {FilterCheckboxesModel, FilterCheckboxModel, FilterModel} from "../../types/FilterModel";
+import {defaultFilter, FilterCheckboxesModel, FilterCheckboxModel, FilterModel} from "../../types/FilterModel";
 import {Dictionary} from "typescript-collections";
 import {Categories, CategoryModel} from "../../types/Categories";
 import {useAppDispatch} from "../../hooks/redux";
@@ -26,45 +26,8 @@ interface FilterState {
 
 
 const initialState: FilterState = {
-    filter: {
-        filter_categories: {
-            book: {
-                main_category: [],
-                sub_category: []
-            },
-            film: {
-                main_category: [],
-                sub_category: []
-            },
-            music: {
-                main_category: [],
-                sub_category: []
-            },
-            game: {
-                main_category: [],
-                sub_category: []
-            }
-        },
-        checkboxes: {
-            book: {
-                main_category: true,
-                sub_category: true
-            },
-            film: {
-                main_category: true,
-                sub_category: true
-            },
-            music: {
-                main_category: true,
-                sub_category: true
-            },
-            game: {
-                main_category: true,
-                sub_category: true
-            }
-        },
-    },
-    status: FilterStatus.UNDEFINED,
+    filter: defaultFilter,
+    status: FilterStatus.SUBMITTED,
     filtes_categories_status: {
         book: false,
         music: false,

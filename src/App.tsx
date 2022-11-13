@@ -5,7 +5,7 @@ import {Box} from "@mui/material";
 import DrawerContentLayout from "./components/drawerContentLayout";
 import FilterDrawerContent from "./components/filterPage/filter/FilterDrawerContent";
 import FilterPageContent from "./components/filterPage/FilterPageContent";
-import ProfileDrawer from "./components/userPfofilePage/ProfileDrawer";
+import ProfileDrawerContent from "./components/userPfofilePage/ProfileDrawerContent";
 import UserPageSearchContent from "./components/userPfofilePage/UserPageSearchContent";
 import {Categories} from "./types/Categories";
 import UserPageProfileContent from "./components/userPfofilePage/UserPageProfileContent";
@@ -14,11 +14,80 @@ import PersonList, {PersonListType} from "./components/userPfofilePage/lists/Per
 import ItemList from "./components/userPfofilePage/lists/ItemList";
 import {updateUserPageId} from "./store/reducers/userItemsPageSlice";
 import {useAppDispatch} from "./hooks/redux";
+import {filterAPI} from "./services/filterUsercardsService";
+import {setOptions} from "./store/reducers/optionsSlice";
+import {OptionsModel} from "./types/OptionModels";
 
 function App() {
 
-  const location = useLocation();
   const dispatch = useAppDispatch();
+
+  const {data: film_main} = filterAPI.useFetchOptionsFilmMainQuery();
+  const {data: film_sub} = filterAPI.useFetchOptionsFilmSubQuery();
+  const {data: music_main} = filterAPI.useFetchOptionsMusicMainQuery();
+  const {data: music_sub} = filterAPI.useFetchOptionsMusicSubQuery();
+  const {data: book_main} = filterAPI.useFetchOptionsBookMainQuery();
+  const {data: book_sub} = filterAPI.useFetchOptionsBookSubQuery();
+  const {data: game_main} = filterAPI.useFetchOptionsGameMainQuery();
+  const {data: game_sub} = filterAPI.useFetchOptionsGameSubQuery();
+
+  if ((film_main === undefined) || (film_sub === undefined) ||
+      (book_main === undefined) || (book_sub === undefined) ||
+      (music_sub === undefined) || ( music_main=== undefined) ||
+      (game_main=== undefined) || (game_sub === undefined)) {
+
+  }
+  else {
+    dispatch(setOptions({
+      film: {
+        main_category: film_main!,
+        sub_category: film_sub!
+      },
+      book: {
+        main_category: book_main!,
+        sub_category: book_sub!
+      },
+      music: {
+        main_category: music_main!,
+        sub_category: music_sub!
+      },
+      game: {
+        main_category: game_main!,
+        sub_category: game_sub!
+      }
+    }))
+  }
+  /* Подгрузка онтологии */
+  /*(useEffect(() => {
+    if ((film_main === undefined) || (film_sub === undefined) ||
+        (book_main === undefined) || (book_sub === undefined) ||
+        (music_sub === undefined) || ( music_main=== undefined) ||
+        (game_main=== undefined) || (game_sub === undefined)) {
+
+    }
+    else {
+    dispatch(setOptions({
+      film: {
+        main_category: film_main!,
+        sub_category: film_sub!
+      },
+      book: {
+        main_category: book_main!,
+        sub_category: book_sub!
+      },
+      music: {
+        main_category: music_main!,
+        sub_category: music_sub!
+      },
+      game: {
+        main_category: game_main!,
+        sub_category: game_sub!
+      }
+    }))
+    }
+  }, [])*/
+
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(updateUserPageId(location.pathname));
@@ -32,7 +101,7 @@ function App() {
             <Route index element={<FilterPageContent/>}/>
           </Route>
           <Route path={ROUTES.pages.account}>
-            <Route path=":id" element={<DrawerContentLayout drawerContent={<ProfileDrawer/>}/>}>
+            <Route path=":id" element={<DrawerContentLayout drawerContent={<ProfileDrawerContent/>}/>}>
               <Route index element={<Navigate to={ROUTES.content_tabs.profile} replace/>}/>
               <Route path={ROUTES.content_tabs.profile} element={<UserPageProfileContent/>}/>
               <Route path={ROUTES.content_tabs.friends.friends_main} element={<UserPageSearchContent isFriendsContent={true}/>}>

@@ -1,4 +1,4 @@
-import {Categories, CategoriesModel} from "./Categories";
+import {Categories, CategoriesModel, defaultCaterogriesModel} from "./Categories";
 import {DefaultDictionary, Dictionary} from "typescript-collections";
 
 
@@ -15,9 +15,26 @@ export interface FilterCheckboxModel {
     sub_category: boolean
 }
 
+const defaultFilterCheckboxModel = {
+    main_category: true,
+    sub_category: true
+}
+
 export interface FilterCheckboxesModel {
     book: FilterCheckboxModel,
     film: FilterCheckboxModel,
     music: FilterCheckboxModel,
     game: FilterCheckboxModel
+}
+
+export const defaultFilterCheckboxesModel = {
+    book: defaultFilterCheckboxModel,
+    film: defaultFilterCheckboxModel,
+    music: defaultFilterCheckboxModel,
+    game: defaultFilterCheckboxModel
+}
+
+export const defaultFilter: FilterModel = {
+    filter_categories: defaultCaterogriesModel,
+    checkboxes: defaultFilterCheckboxesModel
 }

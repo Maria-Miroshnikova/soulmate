@@ -13,11 +13,23 @@ export interface CategoryModel {
     sub_category: string[]
 }
 
+const defaultCategoryModel = {
+    main_category: [],
+    sub_category: []
+}
+
 export interface CategoriesModel {
     book: CategoryModel,
     game: CategoryModel,
     film: CategoryModel,
     music: CategoryModel
+}
+
+export const defaultCaterogriesModel: CategoriesModel = {
+    book: defaultCategoryModel,
+    game: defaultCategoryModel,
+    film: defaultCategoryModel,
+    music: defaultCategoryModel
 }
 
 export const extractCategoryFromCategories = (categories: CategoriesModel, category: Categories) => {

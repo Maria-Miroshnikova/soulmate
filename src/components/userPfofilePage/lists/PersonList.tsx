@@ -10,7 +10,9 @@ interface PersonListProps {
     type: PersonListType
 }
 
+// TODO: еще не готовы карточки!
 const PersonList: FC<PersonListProps> = ({type}) => {
+
     return (
         <div>
             {type}

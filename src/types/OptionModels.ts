@@ -1,10 +1,20 @@
 import {Dictionary} from "typescript-collections";
 import {Categories, CategoriesModel, CategoryModel} from "./Categories";
 
+export interface OptionItemModel {
+    id: string,
+    title: string
+}
+
 export interface OptionModel {
+    main_category: OptionItemModel[],
+    sub_category: OptionItemModel[]
+}
+
+/*export interface OptionModel {
     main_category: Dictionary<string, string>,
     sub_category: Dictionary<string, string>
-}
+}*/
 
 export interface OptionsModel {
     book: OptionModel,
@@ -21,6 +31,7 @@ export const extractOptionFromOptions = (options:OptionsModel, category: Categor
         case Categories.MUSIC: return options.music;
     }
 }
+
 
 /*export const extractOptionsIdByTitle = (titlesMain: string[], titlesSub: string[], options: OptionModel): CategoryModel => {
     // как искать по словарю?
