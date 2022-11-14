@@ -10,6 +10,7 @@ const AuthPage = () => {
     const textPasswordTextField = "Password";
     const textButton = "sing in";
     const textLinkRegistr = "Don`t have an account? Sign up!"
+    const errorText = "Неверный email или пароль.";
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -27,10 +28,19 @@ const AuthPage = () => {
         // TODO
     }
 
+    // TODO добавить ошибку error полям
     return (
         <Box display="flex" alignItems="center" justifyContent="center" width="100%" height="100%" position="fixed" top="0" left="0" >
             <Box width={width} display="flex" flexDirection="column" component="form" onSubmit={handleSubmit} gap={2}>
-                <Typography align="center" marginBottom={2} variant="h5"> {textSignIn} </Typography>
+                <Box display="flex" flexDirection="column" justifyContent="center" gap={2} sx={{ marginBottom: 1}}>
+                    <Typography align="center" variant="h5"> {textSignIn} </Typography>
+                    {
+                        (!true) ?
+                            null
+                            :
+                            <Typography align="center" variant="subtitle1" color="red"> {errorText} </Typography>
+                    }
+                </Box>
                 <TextField
                     fullWidth
                     name="email"
