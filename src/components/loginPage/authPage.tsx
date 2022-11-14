@@ -1,16 +1,20 @@
 import React from 'react';
 import {Box, Button, Link, TextField, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import {ROUTES} from "../../router/routes";
 
 const AuthPage = () => {
 
     const width = "512px";
 
-    const textSignIn = "Sing in";
+    const textSignIn = "Sign in";
     const textEmailTextField = "Email";
     const textPasswordTextField = "Password";
-    const textButton = "sing in";
+    const textButton = "sign in";
     const textLinkRegistr = "Don`t have an account? Sign up!"
     const errorText = "Неверный email или пароль.";
+
+    const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -25,7 +29,7 @@ const AuthPage = () => {
     }
 
     const handleLinkToRegistrationPage = () => {
-        // TODO
+        navigate(ROUTES.base_url + ROUTES.pages.registr);
     }
 
     // TODO добавить ошибку error полям

@@ -1,5 +1,8 @@
 import React from 'react';
 import {Box, Button, Link, TextField, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import {ROUTES} from "../../router/routes";
+import {BASE_URL} from "../../services/filterUsercardsService";
 
 const RegistrPage = () => {
 
@@ -11,6 +14,8 @@ const RegistrPage = () => {
     const textButton = "Sign up";
     const textLinkAuth = "Already have an account? Sign in!";
     const errorText = "Пользователь с таким email уже существует.";
+
+    const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -25,7 +30,7 @@ const RegistrPage = () => {
     }
 
     const handleLinkToAuthPage = () => {
-        // TODO
+        navigate(ROUTES.base_url + ROUTES.pages.login);
     }
 
     // TODO добавить ошибку error полям

@@ -7,6 +7,7 @@ import priorityReducer from "./reducers/prioritySlice";
 import userItemPageReducer from "./reducers/userItemsPageSlice";
 import {filterAPI} from "../services/filterUsercardsService";
 import {setupListeners} from "@reduxjs/toolkit/query";
+import authReducer from "./reducers/authSlice";
 
 const rootReducer = combineReducers({
     optionsReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     filterPageFilterReducer,
     priorityReducer,
     userItemPageReducer,
+    authReducer,
     [filterAPI.reducerPath]: filterAPI.reducer
 });
 

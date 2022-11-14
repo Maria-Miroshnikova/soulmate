@@ -72,24 +72,6 @@ export const filterAPI = createApi({
             query: () => ({
                 url: '/options_game_sub',
             })
-        })/*,
-        fetchOptions: build.query<OptionItemModel[], { category: Categories, isMain: boolean}>({
-            query: (arg) => {
-                switch(arg.category) {
-                    case Categories.FILM: {
-                        (arg.isMain) ?
-                    }
-                    case Categories.BOOK: {
-
-                    }
-                    case Categories.MUSIC: {
-
-                    }
-                    case Categories.GAME: {
-
-                    }
-                }
-            }
-        })*/
+        })
     })
 });
