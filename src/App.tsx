@@ -17,6 +17,8 @@ import {useAppDispatch} from "./hooks/redux";
 import {filterAPI} from "./services/filterUsercardsService";
 import {setOptions} from "./store/reducers/optionsSlice";
 import {OptionsModel} from "./types/OptionModels";
+import AuthPage from "./components/loginPage/authPage";
+import RegistrPage from "./components/loginPage/registrPage";
 
 function App() {
 
@@ -95,6 +97,8 @@ function App() {
 
   return (
       <Routes>
+        <Route path={ROUTES.base_url + ROUTES.pages.login} element={<AuthPage />}/>
+        <Route path={ROUTES.base_url + ROUTES.pages.registr} element={<RegistrPage />}/>
         <Route path={ROUTES.base_url} element={<AppLayout/>}>
           <Route index element={<Box> MAIN </Box>} />
           <Route path={ROUTES.pages.filter} element={<DrawerContentLayout drawerContent={<FilterDrawerContent/>}/>}>

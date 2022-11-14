@@ -36,6 +36,8 @@ export const ROUTES = {
     pages: {
         filter: "filter",
         account: "account",
+        login: "login",
+        registr: "registration"
     },
     content_tabs: {
         profile: "profile",

@@ -19,7 +19,7 @@ root.render(
         <ThemeProvider theme={themeMain}>
             <BrowserRouter>
                 <React.StrictMode>
-                    <RegistrPage />
+                    <App/>
                 </React.StrictMode>
             </BrowserRouter>
         </ThemeProvider>
