@@ -5,7 +5,7 @@ import UserCard from "./usercard/UserCard";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {getSortedByPriority} from "../../utils/filterPage/getSortedByPriority";
 import {FilterStatus, submitFilterEnd} from "../../store/reducers/filterPageFilterSlice";
-import {fetchUserCardsAll} from "../../store/reducers/action_creators/filter_fetch_usercards";
+//import {fetchUserCardsAll} from "../../store/reducers/action_creators/filter_fetch_usercards";
 import {AppDispatch} from "../../store/store";
 import {filterAPI} from "../../services/filterUsercardsService";
 import {UserCardInfo} from "../../types/UserCardInfo";

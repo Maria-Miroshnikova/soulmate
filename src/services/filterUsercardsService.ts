@@ -5,16 +5,13 @@ import {Categories} from "../types/Categories";
 import {makeRequestString} from "../utils/api_convertations";
 import {makeParamsFromFilter} from "../types/api/ParamsFilter";
 import {OptionItemModel} from "../types/OptionModels";
-import {fetchUserCardsAll} from "../store/reducers/action_creators/filter_fetch_usercards";
-
-export const BASE_URL = "http://localhost:3001";
+import {baseQueryWithReauth} from "./baseQueryFunctions";
+//import {fetchUserCardsAll} from "../store/reducers/action_creators/filter_fetch_usercards";
 
 // TODO: params!
 export const filterAPI = createApi({
     reducerPath: 'filterAPI',
-    baseQuery: fetchBaseQuery({
-        baseUrl: BASE_URL
-    }),
+    baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
         // ТЕСТОВЫЙ
         fetchUserCardsAll: build.query<UserCardInfo[], void>({

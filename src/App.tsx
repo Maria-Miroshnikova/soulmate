@@ -19,10 +19,30 @@ import {setOptions} from "./store/reducers/optionsSlice";
 import {OptionsModel} from "./types/OptionModels";
 import AuthPage from "./components/loginPage/authPage";
 import RegistrPage from "./components/loginPage/registrPage";
+import {loginAPI} from "./services/loginService";
+import {login_success} from "./store/reducers/authSlice";
 
 function App() {
 
+  const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useLazyRefreshQuery();
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+
+      trigger.call({}, {accessToken: token});
+      // TODO: зацикливается, делая retry!
+    }
+  }, [])
+
   const dispatch = useAppDispatch();
+
+  // TODO: перенести это в unwrap к call у триггера?
+  useEffect(() => {
+    if (isSuccess && !isLoading) {
+      dispatch(login_success(loginResponse!));
+    }
+  }, [isSuccess, isLoading])
 
   const {data: film_main} = filterAPI.useFetchOptionsFilmMainQuery();
   const {data: film_sub} = filterAPI.useFetchOptionsFilmSubQuery();

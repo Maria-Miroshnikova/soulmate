@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, Button, Link, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {ROUTES} from "../../router/routes";
+import {loginAPI, LoginRequest} from "../../services/loginService";
+import {useAppDispatch} from "../../hooks/redux";
+import {login_success} from "../../store/reducers/authSlice";
 
 const AuthPage = () => {
 
@@ -14,19 +17,35 @@ const AuthPage = () => {
     const textLinkRegistr = "Don`t have an account? Sign up!"
     const errorText = "Неверный email или пароль.";
 
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useLazyLoginQuery();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const result = {
-            email: data.get("email"),
-            password: data.get("password")
+        const loginRequest: LoginRequest = {
+            email: data.get("email")!.toString(),
+            password: data.get("password")!.toString()
         }
 
         // TODO
         /* отправка */
+        trigger.call({}, loginRequest);
     }
+
+    useEffect(() => {
+        console.log("useeffect!")
+        if (isSuccess) {
+            dispatch(login_success(loginResponse!));
+            // TODO
+            // navigate()
+        }
+        else {
+            // TODO: обработка ошибки типа уже есть такой юзер
+        }
+    }, [isSuccess])
 
     const handleLinkToRegistrationPage = () => {
         navigate(ROUTES.base_url + ROUTES.pages.registr);

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, Button, Link, TextField, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {ROUTES} from "../../router/routes";
-import {BASE_URL} from "../../services/filterUsercardsService";
+import {loginAPI, LoginRequest} from "../../services/loginService";
+import {useAppDispatch} from "../../hooks/redux";
+import {login_success} from "../../store/reducers/authSlice";
 
 const RegistrPage = () => {
 
@@ -16,18 +18,30 @@ const RegistrPage = () => {
     const errorText = "Пользователь с таким email уже существует.";
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const [trigger, { data: loginResponse, error, isSuccess }] = loginAPI.useRegistrationMutation();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const result = {
-            email: data.get("email"),
-            password: data.get("password")
+        const loginRequest: LoginRequest = {
+            email: data.get("email")!.toString(),
+            password: data.get("password")!.toString()
         }
 
         // TODO
         /* отправка */
+        trigger.call({}, loginRequest);
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            dispatch(login_success(loginResponse!));
+            // TODO
+            // navigate
+        }
+    }, [isSuccess]);
 
     const handleLinkToAuthPage = () => {
         navigate(ROUTES.base_url + ROUTES.pages.login);

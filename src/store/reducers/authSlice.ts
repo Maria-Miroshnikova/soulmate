@@ -1,13 +1,15 @@
 import {UserModel} from "../../types/UserModels";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {filterAPI} from "../../services/filterUsercardsService";
+import {LoginResponse} from "../../services/loginService";
 
-
+// Этот слой отвечает только за AccessToken и за UserId!
+// UserModel подгружать отдельно!
 interface AuthState {
     isAuth: boolean,
     isLoading: boolean,
     error: string,
-    user?: UserModel
+    userId?: string
 }
 
 const initialState: AuthState = {
@@ -21,15 +23,18 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<UserModel>) => {
+        login_success: (state, action: PayloadAction<LoginResponse>) => {
             state.isAuth = true;
             state.isLoading = false;
-            state.user = action.payload;
+            state.userId = action.payload.userId;
+            localStorage.setItem('accessToken', action.payload.accessToken);
+            console.log('token = ', action.payload.accessToken);
         },
         logout: state => {
             state.isAuth = false;
-            state.user = undefined;
+            state.userId = undefined;
             state.isLoading = false;
+            localStorage.removeItem('accessToken');
         },
         login_failed: (state, action) => {
             state.isAuth = false;
@@ -43,5 +48,5 @@ export const authSlice = createSlice({
     }
 })
 
-export const {login, login_loading, login_failed, logout} = authSlice.actions;
+export const {login_success, login_loading, login_failed, logout} = authSlice.actions;
 export default authSlice.reducer;

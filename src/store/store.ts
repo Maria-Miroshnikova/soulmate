@@ -8,6 +8,7 @@ import userItemPageReducer from "./reducers/userItemsPageSlice";
 import {filterAPI} from "../services/filterUsercardsService";
 import {setupListeners} from "@reduxjs/toolkit/query";
 import authReducer from "./reducers/authSlice";
+import {loginAPI} from "../services/loginService";
 
 const rootReducer = combineReducers({
     optionsReducer,
@@ -16,14 +17,15 @@ const rootReducer = combineReducers({
     priorityReducer,
     userItemPageReducer,
     authReducer,
-    [filterAPI.reducerPath]: filterAPI.reducer
+    [filterAPI.reducerPath]: filterAPI.reducer,
+    [loginAPI.reducerPath]: loginAPI.reducer
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(filterAPI.middleware).concat(thunk)
+            getDefaultMiddleware().concat(filterAPI.middleware).concat(thunk).concat(loginAPI.middleware)
     });
 };
 

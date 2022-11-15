@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import UserCard from "../../../components/filterPage/usercard/UserCard";
+/*import UserCard from "../../../components/filterPage/usercard/UserCard";
 import {UserCardInfo} from "../../../types/UserCardInfo";
 import axios from "axios";
 import {usercard_number_set} from "../../../test/usercards";
@@ -28,4 +28,4 @@ export const fetchUserCardsByFiler = createAsyncThunk(
 
         return response.data;
     }
-)
+)*/

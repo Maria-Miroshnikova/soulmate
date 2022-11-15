@@ -1,4 +1,16 @@
 {
+  "refresh": {
+    "userId": "123",
+    "accessToken": "refr"
+  },
+  "login": {
+    "userId": "123",
+    "accessToken": "coming"
+  },
+  "registration": {
+    "userId": "456",
+    "accessToken": "registered"
+  },
   "userfilter": [
     {
       "personal_data": {
