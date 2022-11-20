@@ -53,35 +53,35 @@ export const getDrawerOptions = (isUserProfile: boolean, id: string): INavButton
                 textBotton: 'Aккаунт',
                 isProfile: true,
                 isFiends: false,
-                url_to: ""
+                url_to: getFullProfilePath(id)
             },
             {
                 textBotton: 'Кино',
                 isProfile: false,
                 isFiends: false,
                 category: Categories.FILM,
-                url_to: ""
+                url_to: getFullCategoryPath(Categories.FILM, true, id)
             },
             {
                 textBotton: 'Книги',
                 isProfile: false,
                 isFiends: false,
                 category: Categories.BOOK,
-                url_to: ""
+                url_to: getFullCategoryPath(Categories.BOOK, true, id)
             },
             {
                 textBotton: 'Музыка',
                 isProfile: false,
                 isFiends: false,
                 category: Categories.MUSIC,
-                url_to: ""
+                url_to: getFullCategoryPath(Categories.MUSIC, true, id)
             },
             {
                 textBotton: 'Игры',
                 isProfile: false,
                 isFiends: false,
                 category: Categories.GAME,
-                url_to: ""
+                url_to: getFullCategoryPath(Categories.GAME, true, id)
             }
         ]
 }

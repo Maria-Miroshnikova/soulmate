@@ -1,6 +1,6 @@
 import {UserModel} from "../../types/UserModels";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {filterAPI} from "../../services/filterUsercardsService";
+import {filterAPI} from "../../services/filterService";
 import {LoginResponse} from "../../services/loginService";
 
 // Этот слой отвечает только за AccessToken и за UserId!
@@ -12,10 +12,13 @@ interface AuthState {
     userId?: string
 }
 
+// TODO сделать false
 const initialState: AuthState = {
-    isAuth: false,
+    isAuth: true,
     isLoading: false,
-    error: ''
+    error: '',
+    // TODO: убрать
+    userId: 'lel_kek'
 }
 
 // для регистрации как - отдельный? но они ведь пересекаются...
@@ -28,7 +31,7 @@ export const authSlice = createSlice({
             state.isLoading = false;
             state.userId = action.payload.userId;
             localStorage.setItem('accessToken', action.payload.accessToken);
-            console.log('token = ', action.payload.accessToken);
+            //console.log('token = ', action.payload.accessToken);
         },
         logout: state => {
             state.isAuth = false;

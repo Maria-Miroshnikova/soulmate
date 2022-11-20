@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box} from "@mui/material";
-import CustomAppBar from "./UI/CustomAppBar";
+import CustomAppBar from "./UI/appbar/CustomAppBar";
 import FilterPageContent from "./filterPage/FilterPageContent";
 import MyDrawer from "./UI/drawer/MyDrawer";
 import {Outlet} from "@mui/icons-material";

@@ -36,9 +36,6 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
     const submitStatus = useAppSelector((state) => state.filterPageFilterReducer.status);
     const dispatch = useAppDispatch();
 
-    // TODO: сделать чекбоксы только для авторизованных пользователей!!
-    const isAuth = false;
-
     useEffect(() => {
         if (submitStatus === FilterStatus.IS_SUBMITTING) {
             dispatch(setFilterCategory({
@@ -103,13 +100,9 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
                             ));}}
                         sx={{ marginBottom: 1}}
                     />
-                    {(!isAuth) ?
-                        null
-                        :
-                        <><FormControlLabel control={<Checkbox checked={isCheckedMain} onChange={handleCheckMain} />} label={filterText.labelFirstCheckBox} />
-                        <FormControlLabel control={<Checkbox checked={isCheckedSub} onChange={handleCheckSub}/>} label={filterText.labelLastCheckBox} /></>
-                    }
-                </Box>
+                    <FormControlLabel control={<Checkbox checked={isCheckedMain} onChange={handleCheckMain} />} label={filterText.labelFirstCheckBox} />
+                    <FormControlLabel control={<Checkbox checked={isCheckedSub} onChange={handleCheckSub}/>} label={filterText.labelLastCheckBox} />
+            </Box>
             </CardContent>
         </Card>
     );

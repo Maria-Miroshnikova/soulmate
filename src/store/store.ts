@@ -4,28 +4,30 @@ import optionsReducer from "./reducers/optionsSlice";
 import filterPageFoundUsersReducer from "./reducers/filterPageFoundUsersSlice";
 import filterPageFilterReducer from "./reducers/filterPageFilterSlice";
 import priorityReducer from "./reducers/prioritySlice";
-import userItemPageReducer from "./reducers/userItemsPageSlice";
-import {filterAPI} from "../services/filterUsercardsService";
+import searchConentReducer from "./reducers/searchContentSlice";
+import {filterAPI} from "../services/filterService";
 import {setupListeners} from "@reduxjs/toolkit/query";
 import authReducer from "./reducers/authSlice";
 import {loginAPI} from "../services/loginService";
+import {userdataAPI} from "../services/userdataService";
 
 const rootReducer = combineReducers({
     optionsReducer,
     filterPageFoundUsersReducer,
     filterPageFilterReducer,
     priorityReducer,
-    userItemPageReducer,
+    searchConentReducer,
     authReducer,
     [filterAPI.reducerPath]: filterAPI.reducer,
-    [loginAPI.reducerPath]: loginAPI.reducer
+    [loginAPI.reducerPath]: loginAPI.reducer,
+    [userdataAPI.reducerPath]: userdataAPI.reducer
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(filterAPI.middleware).concat(thunk).concat(loginAPI.middleware)
+            getDefaultMiddleware().concat(filterAPI.middleware, thunk, loginAPI.middleware, userdataAPI.middleware)
     });
 };
 

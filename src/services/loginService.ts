@@ -4,7 +4,13 @@ import {UserModel} from "../types/UserModels";
 import {BASE_URL} from "./baseQueryFunctions";
 
 export interface LoginRequest {
-    email: string,
+    nickname: string,
+    password: string
+}
+
+// TODO: сделать более подробную регистрацию? в любом случае надо будет дозаполнять после регистрации поля...
+export interface RegistrationRequest {
+    nickname: string,
     password: string
 }
 
@@ -23,17 +29,21 @@ export const loginAPI = createApi({
         baseUrl: BASE_URL
     }),
     endpoints: (build) => ({
-        login: build.query<LoginResponse, LoginRequest>({
+        login: build.mutation<LoginResponse, LoginRequest>({
             query: (loginData) => ({
-                url: '/login'
+                url: '/login',
+                body: loginData,
+                method: 'POST'
             }),
             extraOptions: {
                 maxRetries: 2
             }
         }),
-        refresh: build.query<LoginResponse, LoginRefresh>({
-            query: (loginData) => ({
-                url: '/refresh'
+        refresh: build.mutation<LoginResponse, LoginRefresh>({
+            query: (loginRefresh) => ({
+                url: '/refresh',
+                body: loginRefresh,
+                method: 'POST'
             }),
             extraOptions: {
                 maxRetries: 2
@@ -41,7 +51,9 @@ export const loginAPI = createApi({
         }),
         registration: build.mutation<LoginResponse, LoginRequest>({
             query: (loginData) => ({
-                url: '/registration'
+                url: '/registration',
+                body: loginData,
+                method: 'POST'
             }),
             extraOptions: {
                 maxRetries: 2

@@ -11,22 +11,22 @@ const AuthPage = () => {
     const width = "512px";
 
     const textSignIn = "Sign in";
-    const textEmailTextField = "Email";
+    const textNicknameTextField = "Nickname";
     const textPasswordTextField = "Password";
     const textButton = "sign in";
     const textLinkRegistr = "Don`t have an account? Sign up!"
-    const errorText = "Неверный email или пароль.";
+    const errorText = "Неверное имя или пароль.";
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useLazyLoginQuery();
+    const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useLoginMutation();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const loginRequest: LoginRequest = {
-            email: data.get("email")!.toString(),
+            nickname: data.get("nickname")!.toString(),
             password: data.get("password")!.toString()
         }
 
@@ -35,8 +35,8 @@ const AuthPage = () => {
         trigger.call({}, loginRequest);
     }
 
+    // TODO: перенести в unwrap? то же для registrPage?
     useEffect(() => {
-        console.log("useeffect!")
         if (isSuccess) {
             dispatch(login_success(loginResponse!));
             // TODO
@@ -66,9 +66,9 @@ const AuthPage = () => {
                 </Box>
                 <TextField
                     fullWidth
-                    name="email"
+                    name="nickname"
                     required
-                    label={textEmailTextField} />
+                    label={textNicknameTextField} />
                 <TextField
                     fullWidth
                     name="password"

@@ -11,6 +11,7 @@ const baseQueryWithAuthToken = fetchBaseQuery({
             headers.set('authorization', `Bearer ${current_token}`)
         }
         // TODO: а если нету токена?
+        return headers;
     }
 })
 

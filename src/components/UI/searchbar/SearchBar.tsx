@@ -1,7 +1,10 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Card, CardContent, FormControl, IconButton, Input, InputAdornment, InputLabel, Typography} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {Categories} from "../../../types/Categories";
+import {useAppDispatch} from "../../../hooks/redux";
+import {setTitleToSearch} from "../../../store/reducers/searchContentSlice";
+import {useLocation} from "react-router-dom";
 
 interface SearchBarProps {
     countFound: number
@@ -15,9 +18,24 @@ const SearchBar: FC<SearchBarProps> = ({countFound, category, isFriends}) => {
     const notFoundText = "Не найдено совпадений по запросу.";
     const searchNameText = "Искать в названии ...";
 
-    // управляет списком. самое важное: как именно!
-    const handleClickSearch = () => {
+    const dispatch = useAppDispatch();
+    const [title, setTitle] = useState<string>("");
 
+    const location = useLocation();
+
+    // обнуляем тайтл при первом заходе на страницу
+    useEffect(() => {
+        setTitle("");
+        dispatch(setTitleToSearch(""));
+    }, [location.pathname])
+
+    const handleClickSearch = () => {
+        dispatch(setTitleToSearch(title));
+    }
+
+    const handleChange = (event:  React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setTitle(event.target.value);
+        dispatch(setTitleToSearch(event.target.value));
     }
 
     // TODO: это полностью SearchNameBar из Filter, только поведение немного другое
@@ -34,6 +52,8 @@ const SearchBar: FC<SearchBarProps> = ({countFound, category, isFriends}) => {
                 <FormControl fullWidth>
                     <InputLabel> {searchNameText} </InputLabel>
                     <Input
+                        value={title}
+                        onChange={(event) => handleChange(event)}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton

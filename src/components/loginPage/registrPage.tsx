@@ -11,11 +11,11 @@ const RegistrPage = () => {
     const width = "512px";
 
     const textSignUp = "Sign up";
-    const textEmailTextField = "Email";
+    const textNicknameTextField = "Nickname";
     const textPasswordTextField = "Password";
     const textButton = "Sign up";
     const textLinkAuth = "Already have an account? Sign in!";
-    const errorText = "Пользователь с таким email уже существует.";
+    const errorText = "Пользователь с таким именем уже существует.";
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const RegistrPage = () => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const loginRequest: LoginRequest = {
-            email: data.get("email")!.toString(),
+            nickname: data.get("nickname")!.toString(),
             password: data.get("password")!.toString()
         }
 
@@ -62,9 +62,9 @@ const RegistrPage = () => {
                 </Box>
                 <TextField
                     fullWidth
-                    name="email"
+                    name="nickname"
                     required
-                    label={textEmailTextField} />
+                    label={textNicknameTextField} />
                 <TextField
                     fullWidth
                     name="password"

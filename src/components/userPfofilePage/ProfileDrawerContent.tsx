@@ -19,11 +19,11 @@ interface ProfileDrawerProps {
 
 const ProfileDrawerContent: FC = () => {
 
-
-    const userId = useAppSelector((state) => state.userItemPageReducer.userPageId);
-    console.log("id: " + userId);
-    const isUserProfile = true;
-    const options: INavButton[] = getDrawerOptions(isUserProfile, userId!);
+    const userId = useAppSelector(state => state.authReducer.userId);
+    const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
+    console.log("user id: " + userId + " pageid: " + pageId);
+    const isUserProfile = pageId === userId!;
+    const options: INavButton[] = getDrawerOptions(isUserProfile, pageId!);
 
     // TODO: redux
     // TODO: type = UserModel!

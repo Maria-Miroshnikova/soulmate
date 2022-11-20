@@ -7,16 +7,12 @@ import {getSortedByPriority} from "../../utils/filterPage/getSortedByPriority";
 import {FilterStatus, submitFilterEnd} from "../../store/reducers/filterPageFilterSlice";
 //import {fetchUserCardsAll} from "../../store/reducers/action_creators/filter_fetch_usercards";
 import {AppDispatch} from "../../store/store";
-import {filterAPI} from "../../services/filterUsercardsService";
+import {filterAPI} from "../../services/filterService";
 import {UserCardInfo} from "../../types/UserCardInfo";
 import {defaultFilter} from "../../types/FilterModel";
+import {userdataAPI} from "../../services/userdataService";
 
-// TODO: их еще надо в какой-то момент отсортировать по приоритету! После того, как их привезли с сервера.
-// статус: завезли => useEffect: сортируем (если приоритет был определен)
-// возможно, то же самое с именем?
-// TODO: фильтр приоритета работает с 1. Для нескольких приоритетов надо сделать тесты. + Дефолтный приоритет?
-// типа по наибольшему количеству совпадений вообще?
-
+// TODO: поручить разделение данных на пользовательские/найденные бэкэнду?
 const FilterPageContent: FC = () => {
 
     const filterComponentsStatus = useAppSelector((state) => state.filterPageFilterReducer.filtes_categories_status);
@@ -40,17 +36,19 @@ const FilterPageContent: FC = () => {
 
     const priority = useAppSelector((state) => state.priorityReducer.priority);
 
+    const userId = useAppSelector((state) => state.authReducer.userId);
+    //const {data: userData, isLoading: isLoadingUserData} = userdataAPI.useFetchUserByIdQuery({id: userId!});
+
     // из редакса:
     //const userCardsRaw = useAppSelector((state) => state.filterPageFoundUsersReducer.userCards);
     // из api ALL
     //const {data: userCardsRaw, error, isLoading, refetch} = filterAPI.useFetchUserCardsAllQuery();
     //console.log(userCardsRaw);
     // из api FILTER
-    const {data: userCardsRaw, error, isLoading, refetch} = filterAPI.useFetchUserCardsByFilterQuery({filter: filter, priority: priority});
-
+    const {data: userCardsRaw, error, isLoading, refetch} = filterAPI.useFetchUserCardsByFilterQuery({userId: userId!, filter: filter, priority: priority});
 
     const [userCards, setUserCards] = useState<UserCardInfo[]>([]);
-    //console.log("cards:", userCardsRaw);
+    console.log("cards:", userCardsRaw);
 
     // --- сортировка данных
     useEffect(() => {
