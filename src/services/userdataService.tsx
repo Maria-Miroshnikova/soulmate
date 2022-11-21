@@ -47,16 +47,51 @@ export interface RequestsCountResponse {
     countRequests: number
 }
 
+export interface EditPersonalInfoRequest {
+    id: string,
+    nickname: string,
+    age: string,
+    gender: string,
+    telegram: string,
+    password: string
+}
+
+export const POLLING_INTERVAL_COUNT_REQUESTS = 10000;
+
 export const userdataAPI = createApi({
     reducerPath: 'userdataAPI',
     baseQuery: baseQueryWithReauth,
-    tagTypes: ['items', 'persons'],
+    tagTypes: ['items', 'persons', 'userInfo'],
     endpoints: (build) => ({
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
                 url: `/userdatausers/${arg.userId}`,
                 params: arg
-            })
+            }),
+            providesTags: result => ['userInfo']
+        }),
+        editUserPersonalInfoById: build.mutation<void, EditPersonalInfoRequest>({
+            query: (arg) => ({
+                url: `/userdatausers/${arg.id}`,
+                body: {
+                    id: arg.id,
+                    nickname: arg.nickname,
+                    age: arg.age,
+                    gender: arg.gender,
+                    telegram: arg.telegram,
+                    //password: string
+                },
+                method: 'PATCH'
+            }),
+            invalidatesTags: ['userInfo']
+        }),
+        // TODO: edit avarat request!
+        deleteUserAccount: build.mutation<void, UserByIdRequest>({
+            query: (arg) => ({
+                url: `/userdatausers/${arg.userId}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['userInfo']
         }),
         // TODO: определять, какой именно слой персон!
         fetchUserPersonsById: build.query<UserPersonalInfoModel[], PersonsOfUserRequst>({

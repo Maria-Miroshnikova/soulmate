@@ -23,6 +23,7 @@ const PersonCardFriend: FC<PersonCardProps> = ({person, onClick}) => {
         removeFriend({personId: person.id, userId: userId!});
     }
 
+    // TODO: open telegram
     const handleTelegram = () => {
 
     }

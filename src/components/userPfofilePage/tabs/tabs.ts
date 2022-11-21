@@ -102,3 +102,14 @@ export const getFriendsTabs = (id: string): INavButton[] => {
         },
     ];
 }
+
+export const getProfileTabs = (): INavButton[] => {
+    return (
+        [{
+            textBotton: 'Аккаунт',
+            isFiends: false,
+            isProfile: true,
+            url_to: ""
+        }]
+    );
+}

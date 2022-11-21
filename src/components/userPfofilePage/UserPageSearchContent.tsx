@@ -7,7 +7,7 @@ import {Outlet} from "react-router";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {getIdFromPath} from "../../router/routes";
 import {useAppSelector} from "../../hooks/redux";
-import {userdataAPI} from "../../services/userdataService";
+import {POLLING_INTERVAL_COUNT_REQUESTS, userdataAPI} from "../../services/userdataService";
 import MyBadge from "../UI/badge/MyBadge";
 
 interface UserPageContentProps {
@@ -32,7 +32,7 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAbo
     }
 
     const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
-        pollingInterval: 5000
+       // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
     });
 
     const [isVisibleBadge, setIsVisibleBadge] = useState<boolean>(false);

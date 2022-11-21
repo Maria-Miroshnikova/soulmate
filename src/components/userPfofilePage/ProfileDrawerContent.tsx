@@ -8,17 +8,13 @@ import {INavButton} from "../../types/INavButton";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {getIdFromPath} from "../../router/routes";
 import {useAppSelector} from "../../hooks/redux";
-import {userdataAPI} from "../../services/userdataService";
+import {POLLING_INTERVAL_COUNT_REQUESTS, userdataAPI} from "../../services/userdataService";
 import PersonHeader from "./personcard/PersonHeader";
 import MyBadge from "../UI/badge/MyBadge";
 
 interface ProfileDrawerProps {
     isUserProfile: boolean
 };
-
-/*
-<Button onClick={(event) => handleClickOnOption(idx)}> {option.textBotton} </Button>
- */
 
 const ProfileDrawerContent: FC = () => {
 
@@ -36,13 +32,14 @@ const ProfileDrawerContent: FC = () => {
         navigate(options[idx].url_to);
     }
 
+    // TODO! avatar update
     const handleClickOnAvatar = (id: string) => {
 
     }
 
     // TODO: т к это нужно только на пользовательской странице, хорошо бы разнести по разным....
     const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
-        pollingInterval: 5000
+        //pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
     });
 
     const [isVisibleBadge, setIsVisibleBadge] = useState<boolean>(false);
