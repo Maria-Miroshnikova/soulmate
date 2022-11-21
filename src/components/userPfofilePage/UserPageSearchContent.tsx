@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Box, Tab, Tabs} from "@mui/material";
 import {Categories} from "../../types/Categories";
 import {getCategoryTabs, getFriendsTabs} from "./tabs/tabs";
@@ -7,6 +7,8 @@ import {Outlet} from "react-router";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {getIdFromPath} from "../../router/routes";
 import {useAppSelector} from "../../hooks/redux";
+import {userdataAPI} from "../../services/userdataService";
+import MyBadge from "../UI/badge/MyBadge";
 
 interface UserPageContentProps {
     isContentAboutFriends: boolean,
@@ -29,12 +31,34 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAbo
         navigate(tabs[idx].url_to);
     }
 
+    const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
+        pollingInterval: 5000
+    });
+
+    const [isVisibleBadge, setIsVisibleBadge] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (isLoadingCount) {
+            setIsVisibleBadge(false);
+            console.log("loading response");
+        }
+        else {
+            setIsVisibleBadge((countResponse!.countRequests > 0));
+            console.log(countResponse);
+        }
+    }, [countResponse, isLoadingCount]);
+
     // TODO сделать красивые tabs
     return (
         <Box display="flex" flexDirection="column" width="100%" height="min-content">
             <Box  sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs>
-                    {tabs.map((tab, idx) => <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>)}
+                    {tabs.map((tab, idx) => {
+                        if (tab.isFiends && (idx === 1) && isVisibleBadge)
+                            return <Tab label={tab.textBotton} icon={<MyBadge/>} iconPosition={"end"} onClick={(event) => handleClickOnTab(idx)}/>
+                        else
+                            return <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>
+                    })}
                 </Tabs>
             </Box>
             <Box marginTop={0}>

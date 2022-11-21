@@ -15,6 +15,7 @@ interface SearchBarProps {
 const SearchBar: FC<SearchBarProps> = ({countFound, category, isFriends}) => {
 
     const countFoundText = "Найдено: " + countFound.toString();
+    const countFoundPersonsText = "Soulmates: " + countFound.toString();
     const notFoundText = "Не найдено совпадений по запросу.";
     const searchTitleText = "Искать в названии ...";
     const seatchNameText = "Искать в имени...";
@@ -68,7 +69,10 @@ const SearchBar: FC<SearchBarProps> = ({countFound, category, isFriends}) => {
                 </FormControl>
                 <Typography variant="body1" color="primary" marginTop={2}> {
                     (countFound > 0) ?
-                        countFoundText
+                        (isFriends) ?
+                            countFoundPersonsText
+                            :
+                            countFoundText
                         :
                         notFoundText
                 }

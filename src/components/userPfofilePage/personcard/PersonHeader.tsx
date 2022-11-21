@@ -3,15 +3,16 @@ import {Avatar, Box, Typography} from "@mui/material";
 import {UserPersonalInfoModel} from "../../../types/UserModels";
 
 export interface PersonHeaderProps {
-    person: UserPersonalInfoModel
+    person: UserPersonalInfoModel,
+    onClick: (id: string) => void
 }
 
 //TODO : avatar
-const PersonHeader: FC<PersonHeaderProps> = ({person}) => {
+const PersonHeader: FC<PersonHeaderProps> = ({person, onClick}) => {
 
     return (
-        <Box display="flex" flexDirection="row" gap={2} alignItems="center" >
-            <Avatar>
+        <Box display="flex" flexDirection="row" gap={2} alignItems="center">
+            <Avatar onClick={(event) => onClick(person.id)}>
                 ?
             </Avatar>
             <Box display="flex" flexDirection="column">

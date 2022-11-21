@@ -10,15 +10,7 @@
     "userId": "456",
     "accessToken": "registered"
   },
-  "userdatapersons": [
-    {
-      "id": "1",
-      "nickname": "misha",
-      "avatar": "",
-      "age": "12",
-      "gender": "M",
-      "telegram": "misha@t.me"
-    },
+  "visited": [
     {
       "id": "2",
       "nickname": "andrew",
@@ -28,12 +20,56 @@
       "telegram": "andrew@t.me"
     },
     {
-      "id": "3",
-      "nickname": "marina",
+      "id": "4",
+      "nickname": "4visit",
       "avatar": "",
-      "age": "34",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me"
+    },
+    {
+      "id": "5",
+      "nickname": "5visit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me"
+    }
+  ],
+  "requests": [
+    {
+      "id": "4",
+      "nickname": "nina",
+      "avatar": "",
+      "age": "29",
       "gender": "W",
-      "telegram": "marina@t.me"
+      "telegram": "nina@t.me"
+    },
+    {
+      "id": "5",
+      "nickname": "max max max",
+      "avatar": "",
+      "age": "90",
+      "gender": "M",
+      "telegram": "maxxx@t.me"
+    }
+  ],
+  "friends": [
+    {
+      "id": "8",
+      "nickname": "aphrodita",
+      "avatar": "",
+      "age": "21",
+      "gender": "W",
+      "telegram": "aphrodita@t.me"
+    },
+    {
+      "id": "4",
+      "nickname": "4accept",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "added@t.me"
     }
   ],
   "userdataitems": [
@@ -52,61 +88,57 @@
   "userdatausers": [
     {
       "id": "lel_kek",
-      "personal_data": {
-        "id": "lel_kek",
-        "nickname": "Lel Kek",
-        "avatar": "",
-        "age": "18",
-        "gender": "W",
-        "telegram": "lelkek@t.me"
-      },
-      "categories:": {
-        "book": {
-          "main_category": [
-            "1",
-            "2",
-            "0"
-          ],
-          "sub_category": [
-            "1",
-            "3"
-          ]
-        },
-        "game": {
-          "main_category": [
-            "0",
-            "2"
-          ],
-          "sub_category": [
-            "1"
-          ]
-        },
-        "music": {
-          "main_category": [],
-          "sub_category": [
-            "0",
-            "1",
-            "2",
-            "3"
-          ]
-        },
-        "film": {
-          "main_category": [
-            "1",
-            "2",
-            "3"
-          ],
-          "sub_category": [
-            "1",
-            "2"
-          ]
-        }
-      },
-      "persons": {
-        "friends": [],
-        "visited": [],
-        "requests": []
-      }
+      "nickname": "Lel Kek",
+      "avatar": "",
+      "age": "18",
+      "gender": "W",
+      "telegram": "lelkek@t.me"
+    },
+    {
+      "id": "2",
+      "nickname": "andrew",
+      "avatar": "",
+      "age": "10",
+      "gender": "M",
+      "telegram": "andrew@t.me"
+    },
+    {
+      "id": "3",
+      "nickname": "marina",
+      "avatar": "",
+      "age": "34",
+      "gender": "W",
+      "telegram": "marina@t.me"
+    },
+    {
+      "id": "8",
+      "nickname": "aphrodita",
+      "avatar": "",
+      "age": "21",
+      "gender": "W",
+      "telegram": "aphrodita@t.me"
+    },
+    {
+      "id": "4",
+      "nickname": "nina",
+      "avatar": "",
+      "age": "29",
+      "gender": "W",
+      "telegram": "nina@t.me"
+    },
+    {
+      "id": "5",
+      "nickname": "max max max",
+      "avatar": "",
+      "age": "90",
+      "gender": "M",
+      "telegram": "maxxx@t.me"
+    }
+  ],
+  "requestscount": [
+    {
+      "id": "lel_kek",
+      "countRequests": 0
     }
   ],
   "userfilter": [

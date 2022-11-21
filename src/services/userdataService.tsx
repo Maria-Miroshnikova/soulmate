@@ -42,6 +42,11 @@ export interface ConnectPersonsRequest {
     userId: string
 }
 
+export interface RequestsCountResponse {
+    id: string,
+    countRequests: number
+}
+
 export const userdataAPI = createApi({
     reducerPath: 'userdataAPI',
     baseQuery: baseQueryWithReauth,
@@ -49,16 +54,31 @@ export const userdataAPI = createApi({
     endpoints: (build) => ({
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
-                url: '/userdatausers',
+                url: `/userdatausers/${arg.userId}`,
                 params: arg
             })
         }),
         // TODO: определять, какой именно слой персон!
         fetchUserPersonsById: build.query<UserPersonalInfoModel[], PersonsOfUserRequst>({
-            query: (arg) => ({
-                url: '/userdatapersons',
-                params: arg
-            }),
+            query: (arg) => {
+                switch (arg.personsType) {
+                    case PersonType.VISITED: {
+                        return ({
+                            url: '/visited'
+                        })
+                    }
+                    case PersonType.FRIENDS: {
+                        return ({
+                            url: '/friends'
+                        })
+                    }
+                    case PersonType.REQUESTS: {
+                        return ({
+                            url: '/requests'
+                        })
+                    }
+                }
+            },
             providesTags: result => ['persons']
         }),
         fetchUserItemsById: build.query<ItemModel[], ItemByIdRequest>({
@@ -110,7 +130,7 @@ export const userdataAPI = createApi({
         /// REQUEST persons
         acceptRequestToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/userdatapersons/${arg.personId}`,
+                url: `/friends`,
                 method: "POST",
                 body: {
                     id: arg.personId,
@@ -125,22 +145,23 @@ export const userdataAPI = createApi({
         }),
         denyRequstToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/userdatapersons/${arg.personId}`,
+                url: `/requests/${arg.personId}`,
                 method: "DELETE"
             }),
             invalidatesTags: ['persons']
         }),
         /// VISITED persons
+        // TODO: попоросить не добавлять в посещенные друзей!
         requestPersonToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/userdatapersons/${arg.personId}`,
+                url: `/visited/${arg.personId}`,
                 method: "DELETE"
             }),
             invalidatesTags: ['persons']
         }),
         addPersonToVisited: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/userdatapersons/${arg.personId}`,
+                url: `/visited`,
                 method: "POST",
                 body: {
                     id: arg.personId,
@@ -156,10 +177,15 @@ export const userdataAPI = createApi({
         /// FRIENDS persons
         removePersonFromFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/userdatapersons/${arg.personId}`,
+                url: `/friends/${arg.personId}`,
                 method: "DELETE"
             }),
             invalidatesTags: ['persons']
         }),
+        fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
+            query: (arg) => ({
+                url: `/requestscount/${arg.userId}`
+            })
+        })
     })
 });

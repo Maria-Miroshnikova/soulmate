@@ -22,6 +22,15 @@ export interface UserPersonalInfoModel {
     telegram: string
 }
 
+export const loadingPersonalInfoModel : UserPersonalInfoModel = {
+    id: "",
+    nickname: "Loading...",
+    avatar: "?",
+    age: "loading...",
+    gender: "",
+    telegram: ""
+}
+
 export interface PersonsModel {
     friends: UserPersonalInfoModel[],
     visited: UserPersonalInfoModel[],

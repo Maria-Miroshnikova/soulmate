@@ -3,32 +3,35 @@ import {Box, Button, Card, CardContent, IconButton, Rating, Typography} from "@m
 import CommentIcon from "@mui/icons-material/Comment";
 import {UserPersonalInfoModel} from "../../../types/UserModels";
 import PersonHeader from "./PersonHeader";
+import {userdataAPI} from "../../../services/userdataService";
+import {PersonType} from "../lists/PersonList";
+import {useAppSelector} from "../../../hooks/redux";
 
 export interface PersonCardProps {
-    person: UserPersonalInfoModel
+    person: UserPersonalInfoModel,
+    onClick: (id: string) => void
 }
 
-const PersonCardFriend: FC<PersonCardProps> = ({person}) => {
+const PersonCardFriend: FC<PersonCardProps> = ({person, onClick}) => {
     const textDelete = "Удалить";
     const textTelegram = "Telegram";
 
-    const handleDelete = () => {
+    const userId = useAppSelector(state => state.authReducer.userId);
+    const [removeFriend] = userdataAPI.useRemovePersonFromFriendsMutation()
 
+    const handleDelete = () => {
+        removeFriend({personId: person.id, userId: userId!});
     }
 
     const handleTelegram = () => {
 
     }
 
-    const handleGoToProfile = () => {
-
-    }
-
     return (
-        <Card onClick={handleGoToProfile}>
+        <Card>
             <CardContent>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
-                    <PersonHeader person={person}/>
+                    <PersonHeader person={person} onClick={onClick}/>
                     <Box display="flex" flexDirection="row" justifyContent="flex-end" flexGrow="1" alignItems="center" gap={1}>
                         <Button variant="contained" onClick={handleDelete}> {textDelete} </Button>
                         <Button variant="contained" onClick={handleTelegram}> {textTelegram} </Button>
