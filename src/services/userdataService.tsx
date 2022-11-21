@@ -37,10 +37,15 @@ export interface ConnectItemRequest {
     isMain: boolean
 }
 
+export interface ConnectPersonsRequest {
+    personId: string,
+    userId: string
+}
+
 export const userdataAPI = createApi({
     reducerPath: 'userdataAPI',
     baseQuery: baseQueryWithReauth,
-    tagTypes: ['items'],
+    tagTypes: ['items', 'persons'],
     endpoints: (build) => ({
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
@@ -53,7 +58,8 @@ export const userdataAPI = createApi({
             query: (arg) => ({
                 url: '/userdatapersons',
                 params: arg
-            })
+            }),
+            providesTags: result => ['persons']
         }),
         fetchUserItemsById: build.query<ItemModel[], ItemByIdRequest>({
             query: (arg) => ({
@@ -100,6 +106,60 @@ export const userdataAPI = createApi({
                 method: "DELETE"
             }),
             invalidatesTags: ['items']
-        })
+        }),
+        /// REQUEST persons
+        acceptRequestToFriends: build.mutation<void, ConnectPersonsRequest>( {
+            query: (arg) => ({
+                url: `/userdatapersons/${arg.personId}`,
+                method: "POST",
+                body: {
+                    id: arg.personId,
+                    nickname: arg.personId + "accept",
+                    avatar: "",
+                    age: "hz",
+                    gender: "hz",
+                    telegram: "added@t.me"
+                },
+            }),
+            invalidatesTags: ['persons']
+        }),
+        denyRequstToFriends: build.mutation<void, ConnectPersonsRequest>( {
+            query: (arg) => ({
+                url: `/userdatapersons/${arg.personId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ['persons']
+        }),
+        /// VISITED persons
+        requestPersonToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
+            query: (arg) => ({
+                url: `/userdatapersons/${arg.personId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ['persons']
+        }),
+        addPersonToVisited: build.mutation<void, ConnectPersonsRequest>( {
+            query: (arg) => ({
+                url: `/userdatapersons/${arg.personId}`,
+                method: "POST",
+                body: {
+                    id: arg.personId,
+                    nickname: arg.personId + "visit",
+                    avatar: "",
+                    age: "hz",
+                    gender: "hz",
+                    telegram: "visited@t.me"
+                },
+            }),
+            invalidatesTags: ['persons']
+        }),
+        /// FRIENDS persons
+        removePersonFromFriends: build.mutation<void, ConnectPersonsRequest>( {
+            query: (arg) => ({
+                url: `/userdatapersons/${arg.personId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ['persons']
+        }),
     })
 });
