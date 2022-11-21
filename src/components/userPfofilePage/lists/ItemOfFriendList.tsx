@@ -7,12 +7,15 @@ import {ItemListProps} from "./ItemListLayout";
 import {setCountFound} from "../../../store/reducers/searchContentSlice";
 import {useLocation} from "react-router-dom";
 
+// TODO: возможно, подсвечивать другим цветом ваши общие кино и т д!
 const ItemOfFriendList: FC<ItemListProps> = ({category, isMain}) => {
 
     const title = useAppSelector(state => state.searchConentReducer.title);
 
     const personId = useAppSelector(state => state.searchConentReducer.pageId);
     const {data: items, isLoading} = userdataAPI.useFetchUserItemsByIdQuery({userId: personId!, category: category, isMain: isMain, title: title});
+    console.log("friends items: ", items);
+
 
     const dispatch = useAppDispatch();
     const location = useLocation();

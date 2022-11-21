@@ -1,7 +1,7 @@
 import {Categories} from "../../../types/Categories";
 import {INavButton} from "../../../types/INavButton";
 import {getFullCategoryPath, getFullFriendPath, getFullProfilePath} from "../../../router/routes";
-import {PersonListType} from "../lists/PersonList";
+import {PersonType} from "../lists/PersonList";
 
 export const getDrawerOptions = (isUserProfile: boolean, id: string): INavButton[] => {
     return (isUserProfile) ?
@@ -16,7 +16,7 @@ export const getDrawerOptions = (isUserProfile: boolean, id: string): INavButton
                 textBotton: 'Друзья',
                 isProfile: false,
                 isFiends: true,
-                url_to: getFullFriendPath(PersonListType.FRIENDS, id)
+                url_to: getFullFriendPath(PersonType.FRIENDS, id)
             },
             {
                 textBotton: 'Кино',

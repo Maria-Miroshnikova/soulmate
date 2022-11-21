@@ -10,7 +10,7 @@ import UserPageSearchContent from "./components/userPfofilePage/UserPageSearchCo
 import {Categories} from "./types/Categories";
 import UserPageProfileContent from "./components/userPfofilePage/UserPageProfileContent";
 import {ROUTES} from "./router/routes";
-import PersonList, {PersonListType} from "./components/userPfofilePage/lists/PersonList";
+import PersonList, {PersonType} from "./components/userPfofilePage/lists/PersonList";
 import ItemList from "./components/userPfofilePage/lists/ItemList";
 import {useAppDispatch, useAppSelector} from "./hooks/redux";
 import {filterAPI} from "./services/filterService";
@@ -101,37 +101,37 @@ function App() {
             <Route path=":id" element={<DrawerContentLayout drawerContent={<ProfileDrawerContent/>}/>}>
               <Route index element={<Navigate to={ROUTES.content_tabs.profile} replace/>}/>
               <Route path={ROUTES.content_tabs.profile} element={<UserPageProfileContent/>}/>
-              <Route path={ROUTES.content_tabs.friends.friends_main} element={<UserPageSearchContent/>}>
-                <Route index element={<PersonList type={PersonListType.FRIENDS}/>}/>
+              <Route path={ROUTES.content_tabs.friends.friends_main} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
+                <Route index element={<PersonList type={PersonType.FRIENDS}/>}/>
               </Route>
-              <Route path={ROUTES.content_tabs.friends.visited} element={<UserPageSearchContent/>}>
-                <Route index element={<PersonList type={PersonListType.VISITED}/>}/>
+              <Route path={ROUTES.content_tabs.friends.visited} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
+                <Route index element={<PersonList type={PersonType.VISITED}/>}/>
               </Route>
-              <Route path={ROUTES.content_tabs.friends.requests} element={<UserPageSearchContent/>}>
-                <Route index element={<PersonList type={PersonListType.REQUESTS}/>}/>
+              <Route path={ROUTES.content_tabs.friends.requests} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
+                <Route index element={<PersonList type={PersonType.REQUESTS}/>}/>
               </Route>
-              <Route path={ROUTES.content_tabs.films.films_main} element={<UserPageSearchContent category={Categories.FILM}/>}>
+              <Route path={ROUTES.content_tabs.films.films_main} element={<UserPageSearchContent category={Categories.FILM} isContentAboutFriends={false}/>}>
                 <Route index element={<ItemListLayout category={Categories.FILM} isMain={true}/>} />
               </Route>
-              <Route path={ROUTES.content_tabs.films.films_sub} element={<UserPageSearchContent category={Categories.FILM}/>}>
+              <Route path={ROUTES.content_tabs.films.films_sub} element={<UserPageSearchContent category={Categories.FILM} isContentAboutFriends={false}/>}>
                 <Route index element={<ItemListLayout category={Categories.FILM} isMain={false}/>} />
               </Route>
-              <Route path={ROUTES.content_tabs.books.books_main} element={<UserPageSearchContent category={Categories.BOOK}/>}>
+              <Route path={ROUTES.content_tabs.books.books_main} element={<UserPageSearchContent category={Categories.BOOK} isContentAboutFriends={false}/>}>
                 <Route index element={<ItemListLayout category={Categories.BOOK} isMain={true}/>} />
               </Route>
-              <Route path={ROUTES.content_tabs.books.books_sub} element={<UserPageSearchContent category={Categories.BOOK}/>}>
+              <Route path={ROUTES.content_tabs.books.books_sub} element={<UserPageSearchContent category={Categories.BOOK} isContentAboutFriends={false}/>}>
                 <Route index element={<ItemListLayout category={Categories.BOOK} isMain={false}/>} />
               </Route>
-              <Route path={ROUTES.content_tabs.music.music_main} element={<UserPageSearchContent category={Categories.MUSIC}/>}>
+              <Route path={ROUTES.content_tabs.music.music_main} element={<UserPageSearchContent category={Categories.MUSIC} isContentAboutFriends={false}/>}>
                 <Route index element={<ItemListLayout category={Categories.MUSIC} isMain={true}/>} />
               </Route>
-              <Route path={ROUTES.content_tabs.music.music_sub} element={<UserPageSearchContent category={Categories.MUSIC}/>}>
+              <Route path={ROUTES.content_tabs.music.music_sub} element={<UserPageSearchContent category={Categories.MUSIC} isContentAboutFriends={false}/>}>
                 <Route index element={<ItemListLayout category={Categories.MUSIC} isMain={false}/>} />
               </Route>
-              <Route path={ROUTES.content_tabs.games.games_main} element={<UserPageSearchContent category={Categories.GAME}/>}>
+              <Route path={ROUTES.content_tabs.games.games_main} element={<UserPageSearchContent category={Categories.GAME} isContentAboutFriends={false}/>}>
                 <Route index element={<ItemListLayout category={Categories.GAME} isMain={true}/>} />
               </Route>
-              <Route path={ROUTES.content_tabs.games.games_sub} element={<UserPageSearchContent category={Categories.GAME}/>}>
+              <Route path={ROUTES.content_tabs.games.games_sub} element={<UserPageSearchContent category={Categories.GAME} isContentAboutFriends={false}/>}>
                 <Route index element={<ItemListLayout category={Categories.GAME} isMain={false}/>}/>
               </Route>
             </Route>

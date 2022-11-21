@@ -12,8 +12,6 @@ export interface ItemListProps {
 
 const ItemListLayout: FC<ItemListProps> = ({category, isMain}) => {
 
-    const title = useAppSelector(state => state.searchConentReducer.title);
-
     const userId = useAppSelector(state => state.authReducer.userId);
     const location = useLocation();
     const isUserItemsList = (location.pathname.split('/')[2] === userId);

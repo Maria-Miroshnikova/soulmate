@@ -16,7 +16,8 @@ const SearchBar: FC<SearchBarProps> = ({countFound, category, isFriends}) => {
 
     const countFoundText = "Найдено: " + countFound.toString();
     const notFoundText = "Не найдено совпадений по запросу.";
-    const searchNameText = "Искать в названии ...";
+    const searchTitleText = "Искать в названии ...";
+    const seatchNameText = "Искать в имени...";
 
     const dispatch = useAppDispatch();
     const [title, setTitle] = useState<string>("");
@@ -50,7 +51,7 @@ const SearchBar: FC<SearchBarProps> = ({countFound, category, isFriends}) => {
         >
             <CardContent sx={{marginLeft: 1, marginRight: 1, marginTop: 2}}>
                 <FormControl fullWidth>
-                    <InputLabel> {searchNameText} </InputLabel>
+                    <InputLabel> { (isFriends) ? seatchNameText : searchTitleText } </InputLabel>
                     <Input
                         value={title}
                         onChange={(event) => handleChange(event)}

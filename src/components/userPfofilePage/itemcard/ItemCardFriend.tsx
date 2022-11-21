@@ -30,7 +30,7 @@ const ItemCardFriend: FC<ItemCardBasicProps> = ({item, isMain, category}) => {
                     <Typography width="100%"> {item.title} </Typography>
                     <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" alignItems="center" gap={1}>
                         {
-                            (item.comment === undefined) ?
+                            ((item.comment === undefined) || (item.comment === "")) ?
                                 null
                                 :
                                 <IconButton onClick={handleExpand}> <CommentIcon/> </IconButton>

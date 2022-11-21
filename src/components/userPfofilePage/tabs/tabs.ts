@@ -1,7 +1,7 @@
 import {Categories} from "../../../types/Categories";
 import {INavButton} from "../../../types/INavButton";
 import {getFullCategoryPath, getFullFriendPath} from "../../../router/routes";
-import {PersonListType} from "../lists/PersonList";
+import {PersonType} from "../lists/PersonList";
 
 export const getCategoryTabs = (category: Categories, id: string): INavButton[] => {
     switch (category) {
@@ -86,19 +86,19 @@ export const getFriendsTabs = (id: string): INavButton[] => {
             textBotton: 'Друзья',
             isFiends: true,
             isProfile: false,
-            url_to: getFullFriendPath(PersonListType.FRIENDS, id)
+            url_to: getFullFriendPath(PersonType.FRIENDS, id)
         },
         {
             textBotton: 'Заявки',
             isFiends: true,
             isProfile: false,
-            url_to: getFullFriendPath(PersonListType.REQUESTS, id)
+            url_to: getFullFriendPath(PersonType.REQUESTS, id)
         },
         {
             textBotton: 'Посещенные',
             isFiends: true,
             isProfile: false,
-            url_to: getFullFriendPath(PersonListType.VISITED, id)
+            url_to: getFullFriendPath(PersonType.VISITED, id)
         },
     ];
 }

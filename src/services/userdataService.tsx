@@ -1,12 +1,19 @@
 import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithReauth} from "./baseQueryFunctions";
 import {UserCardInfo} from "../types/UserCardInfo";
-import {UserModel} from "../types/UserModels";
+import {UserModel, UserPersonalInfoModel} from "../types/UserModels";
 import {ItemModel} from "../types/ItemModel";
 import {Categories} from "../types/Categories";
+import {PersonType} from "../components/userPfofilePage/lists/PersonList";
 
 export interface UserByIdRequest {
     userId: string
+}
+
+export interface PersonsOfUserRequst {
+    userId: string,
+    personsType: PersonType,
+    title: string
 }
 
 export interface ItemByIdRequest {
@@ -35,16 +42,16 @@ export const userdataAPI = createApi({
     baseQuery: baseQueryWithReauth,
     tagTypes: ['items'],
     endpoints: (build) => ({
-        fetchUserPersonalInfoById: build.query<UserModel, UserByIdRequest>({
+        fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
                 url: '/userdatausers',
                 params: arg
             })
         }),
         // TODO: определять, какой именно слой персон!
-        fetchUserPersonsById: build.query<UserModel, UserByIdRequest>({
+        fetchUserPersonsById: build.query<UserPersonalInfoModel[], PersonsOfUserRequst>({
             query: (arg) => ({
-                url: '/userdatausers',
+                url: '/userdatapersons',
                 params: arg
             })
         }),

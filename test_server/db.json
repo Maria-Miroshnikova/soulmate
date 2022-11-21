@@ -10,10 +10,37 @@
     "userId": "456",
     "accessToken": "registered"
   },
+  "userdatapersons": [
+    {
+      "id": "1",
+      "nickname": "misha",
+      "avatar": "",
+      "age": "12",
+      "gender": "M",
+      "telegram": "misha@t.me"
+    },
+    {
+      "id": "2",
+      "nickname": "andrew",
+      "avatar": "",
+      "age": "10",
+      "gender": "M",
+      "telegram": "andrew@t.me"
+    },
+    {
+      "id": "3",
+      "nickname": "marina",
+      "avatar": "",
+      "age": "34",
+      "gender": "W",
+      "telegram": "marina@t.me"
+    }
+  ],
   "userdataitems": [
     {
       "id": "2",
       "title": "2",
+      "comment": "lel kek check",
       "rating": 0
     },
     {

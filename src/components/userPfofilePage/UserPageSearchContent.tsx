@@ -9,17 +9,17 @@ import {getIdFromPath} from "../../router/routes";
 import {useAppSelector} from "../../hooks/redux";
 
 interface UserPageContentProps {
-    //isFriendsContent: boolean,
+    isContentAboutFriends: boolean,
     category?: Categories
 }
 
-const UserPageSearchContent: FC<UserPageContentProps> = ({category}) => {
+const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAboutFriends}) => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
     const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
     console.log("id: " + pageId);
-    const isFriendsContent = !(userId === pageId);
-    const tabs = (isFriendsContent) ? getFriendsTabs(pageId!) : getCategoryTabs(category!, pageId!);
+    const isUserPage = !(userId === pageId);
+    const tabs = (isContentAboutFriends) ? getFriendsTabs(pageId!) : getCategoryTabs(category!, pageId!);
 
     const countFound = useAppSelector((state) => state.searchConentReducer.countFound);
 
@@ -39,10 +39,10 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category}) => {
             </Box>
             <Box marginTop={0}>
                 {
-                    (isFriendsContent) ?
-                        <SearchBar countFound={countFound} isFriends={isFriendsContent}/>
+                    (isContentAboutFriends) ?
+                        <SearchBar countFound={countFound} isFriends={isContentAboutFriends}/>
                         :
-                        <SearchBar countFound={countFound} isFriends={isFriendsContent} category={category}/>
+                        <SearchBar countFound={countFound} isFriends={isContentAboutFriends} category={category}/>
                 }
             </Box>
             <Box display="flex" flexDirection="column" paddingLeft={2} paddingTop={2}>
