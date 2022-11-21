@@ -11,7 +11,7 @@ import {
     Typography
 } from "@mui/material";
 import {useAppSelector} from "../../../hooks/redux";
-import {userdataAPI} from "../../../services/userdataService";
+import {EditPersonalInfoRequest, userdataAPI} from "../../../services/userdataService";
 import {LoginRequest} from "../../../services/loginService";
 
 const UserProfileContent = () => {
@@ -32,20 +32,35 @@ const UserProfileContent = () => {
 
     const fieldSize = "350px"
 
+    const [deleteAccount] = userdataAPI.useDeleteUserAccountMutation();
+    const [editPersonalInfo] = userdataAPI.useEditUserPersonalInfoByIdMutation();
+
     const handleSave = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const editRequest = {
+        const password = data.get("password");
+        const editRequest: EditPersonalInfoRequest = {
+            age:  data.get("age")!.toString(),
+            gender:  data.get("gender")!.toString(),
+            id: userId!,
+            telegram:  data.get("telegram")!.toString(),
             nickname: data.get("nickname")!.toString(),
-            //password: data.get("password")!.toString()
+            password: (password === null) ? undefined : password!.toString()
         }
-        console.log(editRequest);
+        //console.log(editRequest);
+
+        editPersonalInfo(editRequest);
+
     }
 
+    // TODO сделать в конце самом
     const handleDeleteAccount = () => {
-
+        // спросить, точно ли он этого хочет
+        //deleteAccount({userId: userId});
+        // переброс на главную страницу, удаление из редакса
     }
 
+    // TODO: пол правильно выставляется дефолтный?
     return (
         <Card>
             <CardContent>
@@ -53,7 +68,7 @@ const UserProfileContent = () => {
                     (isLoading) ?
                         <Box> Loading... </Box>
                         :
-                        <Box display="flex" flexDirection="row" justifyContent="center" marginTop={2}>
+                        <Box display="flex" flexDirection="row" justifyContent="center" marginTop={4}>
                             <Box display="flex" flexDirection="column" component="form" onSubmit={handleSave} gap={2}>
                                 <Box display="flex" flexDirection="row" gap={1} alignItems="center" justifyContent="flex-end">
                                     <Typography> {textNick + ":"} </Typography>

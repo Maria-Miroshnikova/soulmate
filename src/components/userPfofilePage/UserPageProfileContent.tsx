@@ -27,7 +27,7 @@ const UserPageProfileContent = () => {
                     {tabs.map((tab, idx) => <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>)}
                 </Tabs>
             </Box>
-            <Box display="flex" flexDirection="column" paddingLeft={2} paddingTop={2}>
+            <Box display="flex" flexDirection="column" paddingLeft={2}>
                 {(isUserPage) ?
                     <UserProfileContent />
                     :

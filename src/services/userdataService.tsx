@@ -49,11 +49,11 @@ export interface RequestsCountResponse {
 
 export interface EditPersonalInfoRequest {
     id: string,
-    nickname: string,
-    age: string,
-    gender: string,
-    telegram: string,
-    password: string
+    nickname?: string,
+    age?: string,
+    gender?: string,
+    telegram?: string,
+    password?: string
 }
 
 export const POLLING_INTERVAL_COUNT_REQUESTS = 10000;
