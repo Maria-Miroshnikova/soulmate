@@ -342,5 +342,92 @@
       "id": "4",
       "title": "studio4"
     }
-  ]
+  ],
+  "common": [
+    {
+      "id": "1",
+      "title": "1",
+      "rating": 1
+    },
+    {
+      "id": "2",
+      "title": "2",
+      "rating": 2
+    },
+    {
+      "id": "3",
+      "title": "3",
+      "rating": 4
+    },
+    {
+      "id": "4",
+      "title": "4",
+      "rating": 1
+    }
+  ],
+  "new": [
+  ],
+  "top": {
+    "userTop": [
+      {
+        "id": "1",
+        "title": "1",
+        "rating": 5
+      },
+      {
+        "id": "2",
+        "title": "2",
+        "rating": 5
+      },
+      {
+        "id": "3",
+        "title": "3",
+        "rating": 4
+      },
+      {
+        "id": "4",
+        "title": "4",
+        "rating": 4
+      }
+    ],
+    "personTop": [
+      {
+        "id": "11",
+        "title": "11",
+        "rating": 5
+      },
+      {
+        "id": "22",
+        "title": "22",
+        "rating": 4
+      }
+    ]
+  },
+  "difference": {
+    "userItems": [
+      {
+        "id": "1",
+        "title": "1",
+        "rating": 5
+      },
+      {
+        "id": "2",
+        "title": "2",
+        "rating": 5
+      },
+      {
+        "id": "3",
+        "title": "3",
+        "rating": 4
+      },
+      {
+        "id": "4",
+        "title": "4",
+        "rating": 4
+      }
+    ],
+    "personRatings": [
+      1, 3, 2, 2
+    ]
+  }
 }

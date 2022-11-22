@@ -17,10 +17,6 @@ const CommonCard: FC<CommonCardProps> = ({category}) => {
 
     const textCommons = "У вас совпали:";
     const textNew = "Новое для вас:";
-    const textTopHigh = "Топ-5 высоких оценок";
-    const textTopLow = "Топ-5 низких оценок";
-    const textYours = "Ваша оценка";
-    const textHis = "Оценка пользователя";
     const textDifference = "Противоположные оценки";
     const textCategories = UserAccordionText(category);
     const textCategoriesDifference = CommonCardText(category);
@@ -58,8 +54,8 @@ const CommonCard: FC<CommonCardProps> = ({category}) => {
             </CardContent>
             <Collapse in={expanded}>
                 <CardContent>
-                    <ListDifferenceTemplate items={[]} rating_your={[]} rating_his={[]} textCategory={textCategoriesDifference.main} />
-                    <ListDifferenceTemplate items={[]} rating_your={[]} rating_his={[]} textCategory={textCategoriesDifference.sub} />
+                    <ListDifferenceTemplate userItems={[]} rating_his={[]} textCategory={textCategoriesDifference.main} />
+                    <ListDifferenceTemplate userItems={[]} rating_his={[]} textCategory={textCategoriesDifference.sub} />
                 </CardContent>
             </Collapse>
         </Card>
