@@ -10,9 +10,11 @@ import {setupListeners} from "@reduxjs/toolkit/query";
 import authReducer from "./reducers/authSlice";
 import {loginAPI} from "../services/loginService";
 import {userdataAPI} from "../services/userdataService";
+import {analizAPI} from "../services/analizService";
 
 const rootReducer = combineReducers({
     optionsReducer,
+    [analizAPI.reducerPath]: analizAPI.reducer,
     filterPageFoundUsersReducer,
     filterPageFilterReducer,
     priorityReducer,
@@ -20,14 +22,14 @@ const rootReducer = combineReducers({
     authReducer,
     [filterAPI.reducerPath]: filterAPI.reducer,
     [loginAPI.reducerPath]: loginAPI.reducer,
-    [userdataAPI.reducerPath]: userdataAPI.reducer
+    [userdataAPI.reducerPath]: userdataAPI.reducer,
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(filterAPI.middleware, thunk, loginAPI.middleware, userdataAPI.middleware)
+            getDefaultMiddleware().concat(filterAPI.middleware, thunk, loginAPI.middleware, userdataAPI.middleware, analizAPI.middleware)
     });
 };
 

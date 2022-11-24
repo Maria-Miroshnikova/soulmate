@@ -11,14 +11,15 @@ export interface SharedDataRequest {
     isMain: boolean
 }
 
+// топ одного пользователя
 export interface TopDataRequest {
     userId: string,
-    personId: string,
     category: Categories,
     isMain: boolean,
     isHigh: boolean
 }
 
+// TODO: после тестов убрать personTop
 export interface TopDataResponse {
     userTop: ItemModel[],
     personTop: ItemModel[]
@@ -30,26 +31,26 @@ export interface DifferentRatingResponse {
 }
 
 export const analizAPI = createApi({
-    reducerPath: 'filterAPI',
+    reducerPath: 'analizAPI',
     baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
         fetchCommonData: build.query<ItemModel[], SharedDataRequest>({
-            query: (ard) => ({
+            query: (arg) => ({
                 url: '/common',
             })
         }),
         fetchNewData: build.query<ItemModel[], SharedDataRequest>({
-            query: (ard) => ({
+            query: (arg) => ({
                 url: '/new',
             })
         }),
         fetchTopData:  build.query<TopDataResponse, TopDataRequest>({
-            query: (ard) => ({
+            query: (arg) => ({
                 url: '/top',
             })
         }),
         fetchDifferentRatingData:  build.query<DifferentRatingResponse, SharedDataRequest>({
-            query: (ard) => ({
+            query: (arg) => ({
                 url: '/different',
             })
         })

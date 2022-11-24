@@ -24,7 +24,7 @@ const UserPageProfileContent = () => {
         <Box display="flex" flexDirection="column" width="100%" height="min-content">
             <Box  sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs>
-                    {tabs.map((tab, idx) => <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>)}
+                    {tabs.map((tab, idx) => <Tab label={tab.textBotton} key={idx} onClick={(event) => handleClickOnTab(idx)}/>)}
                 </Tabs>
             </Box>
             <Box display="flex" flexDirection="column" paddingLeft={2}>

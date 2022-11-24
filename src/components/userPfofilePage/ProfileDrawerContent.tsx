@@ -20,7 +20,6 @@ const ProfileDrawerContent: FC = () => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
     const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
-    console.log("user id: " + userId + " pageid: " + pageId);
     const isUserProfile = pageId === userId!;
     const options: INavButton[] = getDrawerOptions(isUserProfile, pageId!);
 
@@ -47,11 +46,9 @@ const ProfileDrawerContent: FC = () => {
     useEffect(() => {
         if (isLoadingCount) {
             setIsVisibleBadge(false);
-            console.log("loading response");
         }
         else {
             setIsVisibleBadge((countResponse!.countRequests > 0));
-            console.log(countResponse);
         }
     }, [countResponse, isLoadingCount]);
 
@@ -60,7 +57,7 @@ const ProfileDrawerContent: FC = () => {
     return (
         <Box>
             <List>
-                <ListItem>
+                <ListItem key={-1}>
                     {
                         (isLoading) ?
                             <PersonHeader person={loadingPersonalInfoModel} onClick={handleClickOnAvatar}/>
@@ -69,7 +66,7 @@ const ProfileDrawerContent: FC = () => {
                     }
                 </ListItem>
                 {options.map((option, idx) =>
-                    <ListItemButton onClick={() => handleClickOnOption(idx)}>
+                    <ListItemButton key={idx} onClick={() => handleClickOnOption(idx)}>
                         {
                             (option.isFiends) ?
                                 <Box display="flex" flexDirection="row" gap={2}>

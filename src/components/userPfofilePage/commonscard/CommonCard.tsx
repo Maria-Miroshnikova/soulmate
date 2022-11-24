@@ -44,8 +44,8 @@ const CommonCard: FC<CommonCardProps> = ({category}) => {
                     <Typography> {textNew} </Typography>
                     <Typography align="center" flexGrow="1" > { count + " " + textCategories.summary.first + " / " + count + " " + textCategories.summary.last} </Typography>
                 </Box>
-                <TopListTemplate isHighList={true} yourMain={[]} yourSub={[]} hisMain={[]} hisSub={[]} textCategoryMain={textCategories.summary.first} textCategorySub={textCategories.summary.last}/>
-                <TopListTemplate isHighList={false} yourMain={[]} yourSub={[]} hisMain={[]} hisSub={[]} textCategoryMain={textCategories.summary.first} textCategorySub={textCategories.summary.last}/>
+                <TopListTemplate isHighList={true} category={category} personId={pageId}/>
+                <TopListTemplate isHighList={false} category={category} personId={pageId}/>
                 <Box display="flex" flexDirection="row" alignItems="center" sx={{marginTop: 1}}>
                     <Typography variant="h6" color={themeMain.palette.primary.main}> {textDifference} </Typography>
                     <Typography align="center" flexGrow="1" > { count + " " + textCategories.summary.first + " / " + count + " " + textCategories.summary.last} </Typography>
