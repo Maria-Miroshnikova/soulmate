@@ -391,16 +391,6 @@
       }
     ],
     "personTop": [
-      {
-        "id": "11",
-        "title": "11",
-        "rating": 5
-      },
-      {
-        "id": "22",
-        "title": "22",
-        "rating": 4
-      }
     ]
   },
   "difference": {

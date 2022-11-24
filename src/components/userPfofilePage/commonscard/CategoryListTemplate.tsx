@@ -4,56 +4,32 @@ import {ItemModel} from "../../../types/ItemModel";
 import {Categories} from "../../../types/Categories";
 import {analizAPI} from "../../../services/analizService";
 import {useAppSelector} from "../../../hooks/redux";
+import {noop} from "@reduxjs/toolkit/dist/listenerMiddleware/utils";
 
 export interface TopListTemplateProps {
     title: string,
-    category: Categories,
-    isMain: boolean,
-    personId: string,
-    isHigh: boolean
+    items: ItemModel[],
 }
 
-const CategoryListTemplate: FC<TopListTemplateProps> = ({title, category, isMain, personId, isHigh}) => {
+const CategoryListTemplate: FC<TopListTemplateProps> = ({title, items}) => {
 
-    const {data: items, isLoading} = analizAPI.useFetchTopDataQuery({
-        userId: personId,
-        category: category,
-        isMain: isMain,
-        isHigh: isHigh
-    });
-
-    //убрать разграничение когда нормальный ответ от API будет
-    const userId = useAppSelector(state => state.authReducer.userId);
-    const isUsers = userId === personId;
-
-    console.log("isLoading: ", isLoading);
-    console.log("data: ", items)
+    const textNoItems = "У пользователя нет избранного :(";
 
     return (
         <Box display="flex" flexDirection="column" sx={{marginTop: 1}}>
             <Typography> {title} </Typography>
-            {(isLoading) ?
-                <Typography> Loading... </Typography>
+            {(items.length > 0) ?
+                <List>
+                    {items.map((item) => (
+                        <ListItem>
+                            <Box display="flex" flexDirection="row" gap={1}>
+                                <Typography> {item.title} </Typography>
+                                <Rating value={item.rating} disabled />
+                            </Box>
+                        </ListItem>))}
+                </List>
                 :
-                (<List>
-                    {(isUsers) ?
-                        (items!.userTop.map((item) => (
-                                <ListItem>
-                                    <Box display="flex" flexDirection="row">
-                                        <Typography> {item.title} </Typography>
-                                        <Rating value={item.rating} disabled />
-                                    </Box>
-                                </ListItem>)))
-                        :
-                        (items!.personTop.map((item) => (
-                                <ListItem>
-                                    <Box display="flex" flexDirection="row">
-                                        <Typography> {item.title} </Typography>
-                                        <Rating value={item.rating} disabled />
-                                    </Box>
-                                </ListItem>)))
-                    }
-                </List>)
+                <Typography marginTop={2} variant="body2"> {textNoItems} </Typography>
             }
         </Box>
     );
