@@ -34,6 +34,7 @@ export const analizAPI = createApi({
     reducerPath: 'analizAPI',
     baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
+        // сразу по двум?
         fetchCommonData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
                 url: '/common',
