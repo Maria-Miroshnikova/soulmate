@@ -1,0 +1,176 @@
+{
+  "userfilter": [
+    {
+      "personal_data": {
+        "id": 1,
+        "nickname": 1,
+        "avatar": 1,
+        "age": 1,
+        "gender": 1,
+        "telegram": 1
+      },
+      "categories": {
+        "book": {
+          "main_category": ["1","2","3"],
+          "sub_category": ["1","2"]
+        },
+        "game": {
+          "main_category": ["1","4"],
+          "sub_category": ["2","3"]
+        },
+        "music": {
+          "main_category": ["4","2"],
+          "sub_category": ["2"]
+        },
+        "film": {
+          "main_category": ["1"],
+          "sub_category": []
+        }
+      }
+    }
+  ],
+  "options_book_main": [
+    {
+      "id":"1",
+      "title": "book1"
+    },
+    {
+      "id":"2",
+      "title": "book2"
+    },
+    {
+      "id":"3",
+      "title": "book3"
+    },
+    {
+      "id":"4",
+      "title": "book4"
+    }
+  ],
+  "options_book_sub": [
+    {
+      "id":"1",
+      "title": "author1"
+    },
+    {
+      "id":"2",
+      "title": "author2"
+    },
+    {
+      "id":"3",
+      "title": "author3"
+    },
+    {
+      "id":"4",
+      "title": "author4"
+    }
+  ],
+  "options_film_main": [
+    {
+      "id":"1",
+      "title": "film1"
+    },
+    {
+      "id":"2",
+      "title": "film2"
+    },
+    {
+      "id":"3",
+      "title": "film3"
+    },
+    {
+      "id":"4",
+      "title": "film4"
+    }
+  ],
+  "options_film_sub": [
+    {
+      "id":"1",
+      "title": "rej1"
+    },
+    {
+      "id":"2",
+      "title": "rej2"
+    },
+    {
+      "id":"3",
+      "title": "rej3"
+    },
+    {
+      "id":"4",
+      "title": "rej4"
+    }
+  ],
+  "options_music_main": [
+    {
+      "id":"1",
+      "title": "music1"
+    },
+    {
+      "id":"2",
+      "title": "music2"
+    },
+    {
+      "id":"3",
+      "title": "music3"
+    },
+    {
+      "id":"4",
+      "title": "music4"
+    }
+  ],
+  "options_music_sub": [
+    {
+      "id":"1",
+      "title": "group1"
+    },
+    {
+      "id":"2",
+      "title": "group2"
+    },
+    {
+      "id":"3",
+      "title": "group3"
+    },
+    {
+      "id":"4",
+      "title": "group4"
+    }
+  ],
+  "options_game_main": [
+    {
+      "id":"1",
+      "title": "game1"
+    },
+    {
+      "id":"2",
+      "title": "game2"
+    },
+    {
+      "id":"3",
+      "title": "game3"
+    },
+    {
+      "id":"4",
+      "title": "game4"
+    }
+  ],
+  "options_game_sub": [
+    {
+      "id":"1",
+      "title": "studio1"
+    },
+    {
+      "id":"2",
+      "title": "studio2"
+    },
+    {
+      "id":"3",
+      "title": "studio3"
+    },
+    {
+      "id":"4",
+      "title": "studio4"
+    }
+  ]
+}
