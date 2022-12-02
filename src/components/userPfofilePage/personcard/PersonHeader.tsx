@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
-import {Avatar, Box, Typography} from "@mui/material";
+import {Avatar, Box, Button, Typography} from "@mui/material";
 import {UserPersonalInfoModel} from "../../../types/UserModels";
+import {PersonType} from "../lists/PersonList";
 
 export interface PersonHeaderProps {
     person: UserPersonalInfoModel,

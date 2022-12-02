@@ -53,7 +53,7 @@ const ProfileDrawerContent: FC = () => {
     }, [countResponse, isLoadingCount]);
 
     //<UserHeader user={} />
-    // TODO: в будущем можно добавить иконку для действия с юзером
+    // TODO: проверка PersonType в случае если userId = pageId
     return (
         <Box>
             <List>

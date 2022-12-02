@@ -12,22 +12,6 @@
   },
   "visited": [
     {
-      "id": "2",
-      "nickname": "andrew",
-      "avatar": "",
-      "age": "10",
-      "gender": "M",
-      "telegram": "andrew@t.me"
-    },
-    {
-      "id": "4",
-      "nickname": "4visit",
-      "avatar": "",
-      "age": "hz",
-      "gender": "hz",
-      "telegram": "visited@t.me"
-    },
-    {
       "id": "5",
       "nickname": "5visit",
       "avatar": "",
@@ -365,8 +349,7 @@
       "rating": 1
     }
   ],
-  "new": [
-  ],
+  "new": [],
   "top": {
     "userTop": [
       {
@@ -403,6 +386,9 @@
       }
     ]
   },
+  "usertype": {
+    "personType": 1
+  },
   "different": {
     "userItems": [
       {
@@ -427,7 +413,10 @@
       }
     ],
     "personRatings": [
-      1, 3, 2, 2
+      1,
+      3,
+      2,
+      2
     ]
   }
 }

@@ -56,6 +56,10 @@ export interface EditPersonalInfoRequest {
     password?: string
 }
 
+export interface PersonTypeResponse {
+    personType: PersonType
+}
+
 export const POLLING_INTERVAL_COUNT_REQUESTS = 10000;
 
 export const userdataAPI = createApi({
@@ -63,6 +67,11 @@ export const userdataAPI = createApi({
     baseQuery: baseQueryWithReauth,
     tagTypes: ['items', 'persons', 'userInfo'],
     endpoints: (build) => ({
+        fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
+            query: (arg) => ({
+                url: `/usertype`
+            }),
+        }),
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
                 url: `/userdatausers/${arg.userId}`,
