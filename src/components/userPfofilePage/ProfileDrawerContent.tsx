@@ -1,6 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
 import {Badge, Box, Button, Icon, List, ListItem, ListItemButton, Typography} from "@mui/material";
-import UserHeader from "./UserHeader";
 import {loadingPersonalInfoModel, UserModel, UserPersonalInfoModel} from "../../types/UserModels";
 import {userpersonalinfo_number_set} from "../../test/userpersonalinfo";
 import {getDrawerOptions} from "./tabs/drawerOptions";

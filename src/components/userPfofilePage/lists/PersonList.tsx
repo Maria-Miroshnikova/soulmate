@@ -37,17 +37,6 @@ const PersonList: FC<PersonListProps> = ({type}) => {
         }
     }, [isLoading, persons, location.pathname])
 
-    const [addToVisited] = userdataAPI.useAddPersonToVisitedMutation();
-    const navigate = useNavigate();
-
-    // TODO добавить такое же на filterPage
-    const handleGoToProfile = (personId: string) => {
-        addToVisited({
-            personId: personId,
-            userId: userId!
-        });
-        navigate(getFullProfilePath(personId));
-    }
 
     return (isLoading) ?
         <Box> Loading... </Box>
@@ -55,12 +44,12 @@ const PersonList: FC<PersonListProps> = ({type}) => {
         (
             <Box display="flex" flexDirection="column" gap={2}>
                 { (type === PersonType.FRIENDS) ?
-                    persons!.map(person =>  <PersonCardFriend person={person} onClick={handleGoToProfile}/>)
+                    persons!.map(person =>  <PersonCardFriend person={person}/>)
                     :
                     (type === PersonType.VISITED) ?
-                        persons!.map(person =>  <PersonCardVisited person={person} onClick={handleGoToProfile}/>)
+                        persons!.map(person =>  <PersonCardVisited person={person}/>)
                         :
-                        persons!.map(person =>  <PersonCardRequest person={person} onClick={handleGoToProfile}/>)
+                        persons!.map(person =>  <PersonCardRequest person={person}/>)
                 }
             </Box>)
         ;

@@ -9,6 +9,7 @@ import {PersonType} from "../../userPfofilePage/lists/PersonList";
 import ButtonFriend from "../../UI/buttons/ButtonFriend";
 import ButtonRequest from "../../UI/buttons/ButtonRequest";
 import ButtonVisited from "../../UI/buttons/ButtonVisited";
+import AvatarClickable from "../../UI/avatar/AvatarClickable";
 
 interface UserCardProps{
     user: UserCardInfo
@@ -36,9 +37,7 @@ const UserCard: FC<UserCardProps> = ({user}) => {
                 title={user.personal_data.nickname}
                 sx={{paddingBottom: 1}}
                 avatar={
-                <Avatar sx={{ bgcolor: "primary" }} aria-label="avatar">
-                    ?
-                </Avatar>
+                <AvatarClickable person={user.personal_data}/>
             } />
             <CardContent>
                 <UserAccordionTemplate category={Categories.FILM} user={user} />

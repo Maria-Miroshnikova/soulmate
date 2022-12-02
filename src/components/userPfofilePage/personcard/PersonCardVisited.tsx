@@ -6,13 +6,13 @@ import {useAppSelector} from "../../../hooks/redux";
 import {userdataAPI} from "../../../services/userdataService";
 import ButtonVisited from "../../UI/buttons/ButtonVisited";
 
-const PersonCardVisited: FC<PersonCardProps> = ({person, onClick}) => {
+const PersonCardVisited: FC<PersonCardProps> = ({person}) => {
 
     return (
         <Card>
             <CardContent>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
-                    <PersonHeader person={person} onClick={onClick}/>
+                    <PersonHeader person={person}/>
                     <Box display="flex" flexDirection="row" justifyContent="flex-end" flexGrow="1" alignItems="center" gap={1}>
                         <ButtonVisited person={person}/>
                     </Box>

@@ -26,6 +26,22 @@
       "age": "hz",
       "gender": "hz",
       "telegram": "visited@t.me"
+    },
+    {
+      "id": 1,
+      "nickname": "1visit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me"
+    },
+    {
+      "id": "4",
+      "nickname": "4visit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me"
     }
   ],
   "requests": [
@@ -387,7 +403,7 @@
     ]
   },
   "usertype": {
-    "personType": 1
+    "personType": 0
   },
   "different": {
     "userItems": [

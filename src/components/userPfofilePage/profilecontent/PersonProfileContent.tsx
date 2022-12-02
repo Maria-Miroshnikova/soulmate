@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Box, Button} from "@mui/material";
 import CommonCard from "../commonscard/CommonCard";
 import {Categories} from "../../../types/Categories";
@@ -16,10 +16,15 @@ const PersonProfileContent = () => {
     const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: pageId});
     const {data: person, isLoading: isLoadingPerson} = userdataAPI.useFetchUserPersonalInfoByIdQuery({userId : pageId})
 
-    const textDelete = "Удалить";
-    const textDeny = "Отказать";
-    const textAdd = "Принять";
-    const textRequest = "Подать заявку";
+    const [addToVisited] = userdataAPI.useAddPersonToVisitedMutation();
+
+    // TODO: бэк должен добавлять в visited не друзей и не ... ну ясно!
+    useEffect(() => {
+        addToVisited({
+            personId: pageId,
+            userId: userId!
+        });
+    }, [])
 
     return (
         <Box display="flex" flexDirection="column" gap={2}>
