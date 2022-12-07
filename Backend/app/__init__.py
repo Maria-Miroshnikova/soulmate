@@ -28,4 +28,7 @@ def create_app():
     from app.main.routes import main
     app.register_blueprint(main)
 
+    from app.user.routes import user
+    app.register_blueprint(user)
+    
     return app

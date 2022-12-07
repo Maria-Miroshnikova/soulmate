@@ -7,5 +7,6 @@ load_dotenv(os.path.join(basedir, '.env'))
 SECRET_KEY = os.urandom(36)
 # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Soulmate_db22@localhost/SoulmateDB'
 # SQLALCHEMY_TRACK_MODIFICATIONS = True
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
+# TRAP_HTTP_EXCEPTIONS = os.environ.get('TRAP_HTTP_EXCEPTIONS')
+SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
 SQLALCHEMY_TRACK_MODIFICATIONS = os.environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')

@@ -5,6 +5,7 @@ from flask_login import UserMixin
 from app import db, login_manager, bcrypt, ma
 from datetime import datetime
 from marshmallow_enum import EnumField
+from marshmallow import Schema, fields
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -123,13 +124,13 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.hashed_password, password)
 
     def __repr__(self):
-        return f'User({self.username}, {self.email}, {self.password}'
+        return f"{{\"id\": {self.id}, \"username\": {self.username}, \"age\": {self.age}, \"gender\": {self.gender}, \"telegram\": {self.telegram}}}"
 
 class UserSchema(ma.SQLAlchemySchema):
     gender = EnumField(Gender, by_value=True)
     
     class Meta:
-        fields = ("id", "email", "username", "date_joined", "gender")
+        fields = ("id", "username", "age", "gender", "telegram")
 
 class Book(db.Model):
     __tablename__ = "book"
@@ -144,7 +145,7 @@ class Book(db.Model):
 
 class BookSchema(ma.SQLAlchemySchema):
     class Meta:
-        fields = ("id", "title")
+        fields = ("id", "title", "author_id")
 
 class Name_book_tag(db.Model):
     __tablename__ = "name_book_tag"
@@ -179,7 +180,7 @@ class Film(db.Model):
 
 class FilmSchema(ma.SQLAlchemySchema):
     class Meta:
-        fields = ("id", "title")
+        fields = ("id", "title", "director_id")
 
 class Name_film_tag(db.Model):
     __tablename__ = "name_film_tag"
@@ -214,7 +215,7 @@ class Game(db.Model):
 
 class GameSchema(ma.SQLAlchemySchema):
     class Meta:
-        fields = ("id", "title")
+        fields = ("id", "title", "studio_id")
 
 class Name_game_tag(db.Model):
     __tablename__ = "name_game_tag"
@@ -250,7 +251,7 @@ class Song(db.Model):
 class SongSchema(ma.SQLAlchemySchema):
     
     class Meta:
-        fields = ("id", "title")
+        fields = ("id", "title", "artist_id")
 
 class Name_song_tag(db.Model):
     __tablename__ = "name_song_tag"
@@ -271,3 +272,19 @@ class Artist(db.Model):
 class ArtistSchema(ma.SQLAlchemySchema):
     class Meta:
         fields = ("id", "title")    
+
+class FoundUserSchema(ma.SQLAlchemySchema):
+    # gender = EnumField(Gender, by_value=True)
+    # id = fields.Integer()
+    # username = fields.String()
+    # age = fields.Integer()
+    # telegram = fields.String()
+    # book_id = fields.Integer(many=True)
+    # book_title = fields.String(many=True)
+    # film_id = fields.Integer(many=True)
+    # film_title = fields.String(many=True)
+    User = fields.Nested(UserSchema())
+    Book = fields.Nested(BookSchema())
+    Film = fields.Nested(FilmSchema())
+    # books = fields.Nested(BookSchema, many=True)
+    # films = fields.Nested(FilmSchema, many=True)
