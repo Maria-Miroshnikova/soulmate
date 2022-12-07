@@ -85,7 +85,15 @@
       "id": "2",
       "title": "2",
       "comment": "lel kek check",
-      "rating": 0
+      "commentIsRejected": 1,
+      "rating": "1"
+    },
+    {
+      "id": "3",
+      "title": "3",
+      "comment": "ppppppppppppppppppppppp",
+      "commentIsRejected": 0,
+      "rating": "1"
     },
     {
       "id": "1",

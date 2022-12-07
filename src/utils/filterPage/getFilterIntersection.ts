@@ -19,6 +19,7 @@ export const getFilterDifference = (userCategory: CategoryModel, intersectionCat
     return difference;
 }
 
+
 /*export const getDifference = (items: ItemModel[], category: Categories, isMain: boolean): string[] => {
     const options_ontology = useAppSelector((state) => state.optionsReducer.categories);
     const options = extractOptionFromOptions(options_ontology!, category);

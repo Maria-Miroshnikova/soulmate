@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import {ItemModel} from "../../../types/ItemModel";
-import {Box, Button, Card, CardContent, Collapse, IconButton, Rating, TextField, Typography} from "@mui/material";
+import {Box, Button, Card, CardContent, Chip, Collapse, IconButton, Rating, TextField, Typography} from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import CommentIcon from "@mui/icons-material/Comment";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -15,6 +15,9 @@ export interface ItemCardBasicProps {
 }
 
 const ItemCardBasic: FC<ItemCardBasicProps> = ({item, category, isMain}) => {
+
+    const textCommentModeration = "На модерации ...";
+    const textCommentRejected = "Отклонен модератором";
 
     const textCommentLabel = "Ваш комментарий";
     const textBtnSave = "Сохранить";
@@ -96,6 +99,19 @@ const ItemCardBasic: FC<ItemCardBasicProps> = ({item, category, isMain}) => {
                         >
                         </TextField>
                         <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" gap={1}>
+                            {
+                                (item.commentIsRejected === undefined) ?
+                                    null
+                                    :
+                                    (item.commentIsRejected) ?
+                                        <Box width="100%" display="flex" flexDirection="row" alignItems="center">
+                                            <Chip label={textCommentRejected} color="secondary" variant="outlined" sx={{minWidth: "72px"}} />
+                                        </Box>
+                                        :
+                                        <Box width="100%" display="flex" flexDirection="row" alignItems="center">
+                                            <Chip label={textCommentModeration} color="primary" variant="outlined" sx={{minWidth: "72px"}}/>
+                                        </Box>
+                            }
                             <Button variant="contained" onClick={handleDeleteComment}> {textBtnDeleteComment} </Button>
                             <Button variant="contained" onClick={handleSaveComment}> {textBtnSave} </Button>
                         </Box>
