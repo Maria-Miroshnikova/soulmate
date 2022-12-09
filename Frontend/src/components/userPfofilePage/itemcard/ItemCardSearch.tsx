@@ -6,39 +6,46 @@ import {
     Typography
 } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import {useAppDispatch} from "../../../hooks/redux";
-import {addItem} from "../../../store/reducers/userItemsPageSlice";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {ItemCardBasicProps} from "./ItemCardBasic";
 import CreateIcon from "@mui/icons-material/Create";
 import CommentIcon from "@mui/icons-material/Comment";
 import ClearIcon from "@mui/icons-material/Clear";
+import {Categories} from "../../../types/Categories";
+import {OptionItemModel} from "../../../types/OptionModels";
+import {userdataAPI} from "../../../services/userdataService";
 
+export interface ItemCardSearchProps {
+    option: OptionItemModel
+    category: Categories,
+    isMain: boolean
+}
 
-// TODO: изменить itemmodel на option?
-const ItemCardSearch: FC<ItemCardBasicProps> = ({item}) => {
+const ItemCardSearch: FC<ItemCardSearchProps> = ({option, category, isMain}) => {
 
-    const dispatch = useAppDispatch();
+    const [addItem] = userdataAPI.useAddItemMutation();
+    const userId = useAppSelector(state => state.authReducer.userId);
 
-    // TODO: переделать всё в экшены
-    // TODO: переделать с редакс-тул-китом
     const onAdd = () => {
-        dispatch(addItem(item.id));
-
-        /*
-        * удаление этого варианта из списка для добавки!
-        * */
+        addItem({
+            itemId: option.id,
+            userId: userId!,
+            category: category,
+            isMain: isMain
+        })
     }
 
     // TODO: padding bottom изменить
     return (
         <Card>
             <CardContent sx={{ '& .MuiCardContent-root': {
-                    paddingBottom: 2
+                    paddingBottom: 2,
+                    //transparent: "10%"
                 }}}>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
-                    <Typography width="100%"> {item.title} </Typography>
+                    <Typography width="100%"> {option.title} </Typography>
                     <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" alignItems="center" gap={1}>
-                        <IconButton> <AddIcon/> </IconButton>
+                        <IconButton onClick={onAdd}> <AddIcon/> </IconButton>
                     </Box>
                 </Box>
             </CardContent>

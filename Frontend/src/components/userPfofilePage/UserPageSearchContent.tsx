@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Box, Tab, Tabs} from "@mui/material";
 import {Categories} from "../../types/Categories";
 import {getCategoryTabs, getFriendsTabs} from "./tabs/tabs";
@@ -7,18 +7,23 @@ import {Outlet} from "react-router";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {getIdFromPath} from "../../router/routes";
 import {useAppSelector} from "../../hooks/redux";
+import {POLLING_INTERVAL_COUNT_REQUESTS, userdataAPI} from "../../services/userdataService";
+import MyBadge from "../UI/badge/MyBadge";
 
 interface UserPageContentProps {
-    isFriendsContent: boolean,
+    isContentAboutFriends: boolean,
     category?: Categories
 }
 
-const UserPageSearchContent: FC<UserPageContentProps> = ({isFriendsContent, category}) => {
+const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAboutFriends}) => {
 
-    const userId = useAppSelector((state) => state.userItemPageReducer.userPageId);
-    console.log("id: " + userId);
-    const isUserProfile = true;
-    const tabs = (isFriendsContent) ? getFriendsTabs(userId!) : getCategoryTabs(category!, userId!);
+    const userId = useAppSelector(state => state.authReducer.userId);
+    const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
+    console.log("id: " + pageId);
+    const isUserPage = !(userId === pageId);
+    const tabs = (isContentAboutFriends) ? getFriendsTabs(pageId!) : getCategoryTabs(category!, pageId!);
+
+    const countFound = useAppSelector((state) => state.searchConentReducer.countFound);
 
     const navigate = useNavigate();
 
@@ -26,20 +31,42 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({isFriendsContent, cate
         navigate(tabs[idx].url_to);
     }
 
+    const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
+       // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
+    });
+
+    const [isVisibleBadge, setIsVisibleBadge] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (isLoadingCount) {
+            setIsVisibleBadge(false);
+            console.log("loading response");
+        }
+        else {
+            setIsVisibleBadge((countResponse!.countRequests > 0));
+            console.log(countResponse);
+        }
+    }, [countResponse, isLoadingCount]);
+
     // TODO сделать красивые tabs
     return (
         <Box display="flex" flexDirection="column" width="100%" height="min-content">
             <Box  sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs>
-                    {tabs.map((tab, idx) => <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>)}
+                    {tabs.map((tab, idx) => {
+                        if (tab.isFiends && (idx === 1) && isVisibleBadge)
+                            return <Tab label={tab.textBotton} icon={<MyBadge/>} iconPosition={"end"} onClick={(event) => handleClickOnTab(idx)}/>
+                        else
+                            return <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>
+                    })}
                 </Tabs>
             </Box>
             <Box marginTop={0}>
                 {
-                    (isFriendsContent) ?
-                        <SearchBar countFound={0} isFriends={isFriendsContent}/>
+                    (isContentAboutFriends) ?
+                        <SearchBar countFound={countFound} isFriends={isContentAboutFriends}/>
                         :
-                        <SearchBar countFound={0} isFriends={isFriendsContent} category={category}/>
+                        <SearchBar countFound={countFound} isFriends={isContentAboutFriends} category={category}/>
                 }
             </Box>
             <Box display="flex" flexDirection="column" paddingLeft={2} paddingTop={2}>

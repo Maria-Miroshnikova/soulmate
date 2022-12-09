@@ -1,22 +1,29 @@
 import React, {FC, useState} from 'react';
 import {ItemModel} from "../../../types/ItemModel";
-import {Box, Button, Card, CardContent, Collapse, IconButton, Rating, TextField, Typography} from "@mui/material";
+import {Box, Button, Card, CardContent, Chip, Collapse, IconButton, Rating, TextField, Typography} from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import CommentIcon from "@mui/icons-material/Comment";
 import ClearIcon from "@mui/icons-material/Clear";
-import {useAppDispatch} from "../../../hooks/redux";
-import {deleteComment, deleteItem, setComment, setRating} from "../../../store/reducers/userItemsPageSlice";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import {userdataAPI} from "../../../services/userdataService";
+import {Categories, CategoriesModel} from "../../../types/Categories";
 
 export interface ItemCardBasicProps {
-    item: ItemModel
+    item: ItemModel,
+    category: Categories,
+    isMain: boolean
 }
 
-const ItemCardBasic: FC<ItemCardBasicProps> = ({item}) => {
+const ItemCardBasic: FC<ItemCardBasicProps> = ({item, category, isMain}) => {
+
+    const textCommentModeration = "На модерации ...";
+    const textCommentRejected = "Отклонен модератором";
 
     const textCommentLabel = "Ваш комментарий";
     const textBtnSave = "Сохранить";
     const textBtnDeleteComment = "Удалить";
 
+    const userId = useAppSelector(state => state.authReducer.userId);
     const [commentValue, setCommentValue] = useState<string>(item.comment!);
     const [ratingValue, setRatingValue] = useState<number>(item.rating);
 
@@ -24,23 +31,27 @@ const ItemCardBasic: FC<ItemCardBasicProps> = ({item}) => {
 
     const dispatch = useAppDispatch();
 
-    // TODO: переделать всё в экшены
-    // TODO: переделать с редакс-тул-китом
-    const handleEditComment = () => {
+    const [removeItem] = userdataAPI.useRemoveItemMutation();
+    const [changeRating] = userdataAPI.useUpdateItemRatingMutation();
+    const [changeComment] = userdataAPI.useUpdateItemCommentMutation();
 
-        dispatch(setComment({id: item.id, comment: commentValue}));
-        /*
-        dispatch(udpateComment()) -> запись в БД
-        */
+
+
+    // TODO: как будет перерисовываться после обновления??
+    const handleSaveComment = () => {
+        changeComment({itemId: item.id, value: commentValue, category: category, isMain: isMain});
+        setExpanded(!expanded);
     }
 
     const handleDeleteComment = () => {
-        dispatch(deleteComment(item.id));
+        setCommentValue("");
+        changeComment({itemId: item.id, value: "", category: category, isMain: isMain});
+        setExpanded(!expanded);
     }
 
     const handleChangeRating = (value: number | null) => {
         setRatingValue(value!);
-        dispatch(setRating({id:item.id, rating: value!}));
+        changeRating({itemId: item.id, value: value!.toString(), category: category, isMain: isMain});
     }
 
     const handleChangeComment = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -48,7 +59,11 @@ const ItemCardBasic: FC<ItemCardBasicProps> = ({item}) => {
     }
 
     const handleDeleteItem = () => {
-        dispatch(deleteItem(item.id));
+        removeItem({
+            itemId: item.id,
+            userId: userId!,
+            category: category,
+            isMain: isMain})
     }
 
     const handleExpand = () => {
@@ -62,7 +77,7 @@ const ItemCardBasic: FC<ItemCardBasicProps> = ({item}) => {
                     <Typography width="100%"> {item.title} </Typography>
                     <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" alignItems="center" gap={1}>
                         {
-                            (item.comment === undefined) ?
+                            ((item.comment === undefined) || (item.comment === "")) ?
                                 <IconButton onClick={handleExpand}> <CreateIcon /> </IconButton>
                                 :
                                 <IconButton  onClick={handleExpand}> <CommentIcon/> </IconButton>
@@ -84,8 +99,21 @@ const ItemCardBasic: FC<ItemCardBasicProps> = ({item}) => {
                         >
                         </TextField>
                         <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" gap={1}>
+                            {
+                                (item.commentIsRejected === undefined) ?
+                                    null
+                                    :
+                                    (item.commentIsRejected) ?
+                                        <Box width="100%" display="flex" flexDirection="row" alignItems="center">
+                                            <Chip label={textCommentRejected} color="secondary" variant="outlined" sx={{minWidth: "72px"}} />
+                                        </Box>
+                                        :
+                                        <Box width="100%" display="flex" flexDirection="row" alignItems="center">
+                                            <Chip label={textCommentModeration} color="primary" variant="outlined" sx={{minWidth: "72px"}}/>
+                                        </Box>
+                            }
                             <Button variant="contained" onClick={handleDeleteComment}> {textBtnDeleteComment} </Button>
-                            <Button variant="contained" onClick={handleEditComment}> {textBtnSave} </Button>
+                            <Button variant="contained" onClick={handleSaveComment}> {textBtnSave} </Button>
                         </Box>
                     </Box>
                 </CardContent>

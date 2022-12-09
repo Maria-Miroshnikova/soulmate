@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {usercard_number_set} from "../../../test/usercards";
-import {filterAPI} from "../../../services/filterUsercardsService";
+import {filterAPI} from "../../../services/filterService";
 import {OptionModel} from "../../../types/OptionModels";
 
 // как выглядит онтология

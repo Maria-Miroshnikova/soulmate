@@ -6,6 +6,8 @@ import {setupStore, STORE} from "./store/store";
 import {Provider} from "react-redux";
 import {ThemeProvider} from "@mui/material";
 import {themeMain} from "./theme";
+import AuthPage from "./components/loginPage/authPage";
+import RegistrPage from "./components/loginPage/registrPage";
 
 //const store = setupStore();
 
@@ -17,7 +19,7 @@ root.render(
         <ThemeProvider theme={themeMain}>
             <BrowserRouter>
                 <React.StrictMode>
-                    <App />
+                    <App/>
                 </React.StrictMode>
             </BrowserRouter>
         </ThemeProvider>

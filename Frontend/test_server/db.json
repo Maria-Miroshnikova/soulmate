@@ -1,4 +1,162 @@
 {
+  "refresh": {
+    "accessToken": "undefined"
+  },
+  "login": {
+    "nickname": "kek",
+    "password": "check"
+  },
+  "registration": {
+    "userId": "456",
+    "accessToken": "registered"
+  },
+  "visited": [
+    {
+      "id": "5",
+      "nickname": "5visit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me"
+    },
+    {
+      "id": "8",
+      "nickname": "8visit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me"
+    },
+    {
+      "id": 1,
+      "nickname": "1visit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me"
+    },
+    {
+      "id": "4",
+      "nickname": "4visit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me"
+    }
+  ],
+  "requests": [
+    {
+      "id": "4",
+      "nickname": "nina",
+      "avatar": "",
+      "age": "29",
+      "gender": "W",
+      "telegram": "nina@t.me"
+    },
+    {
+      "id": "5",
+      "nickname": "max max max",
+      "avatar": "",
+      "age": "90",
+      "gender": "M",
+      "telegram": "maxxx@t.me"
+    }
+  ],
+  "friends": [
+    {
+      "id": "8",
+      "nickname": "aphrodita",
+      "avatar": "",
+      "age": "21",
+      "gender": "W",
+      "telegram": "aphrodita@t.me"
+    },
+    {
+      "id": "4",
+      "nickname": "4accept",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "added@t.me"
+    }
+  ],
+  "userdataitems": [
+    {
+      "id": "2",
+      "title": "2",
+      "comment": "lel kek check",
+      "commentIsRejected": 1,
+      "rating": "1"
+    },
+    {
+      "id": "3",
+      "title": "3",
+      "comment": "ppppppppppppppppppppppp",
+      "commentIsRejected": 0,
+      "rating": "1"
+    },
+    {
+      "id": "1",
+      "title": "1",
+      "rating": 0
+    }
+  ],
+  "userdatausers": [
+    {
+      "id": "lel_kek",
+      "nickname": "Kekushka",
+      "avatar": "",
+      "age": "18",
+      "gender": "other",
+      "telegram": "lelkek@t.me"
+    },
+    {
+      "id": "2",
+      "nickname": "andrew",
+      "avatar": "",
+      "age": "10",
+      "gender": "M",
+      "telegram": "andrew@t.me"
+    },
+    {
+      "id": "3",
+      "nickname": "marina",
+      "avatar": "",
+      "age": "34",
+      "gender": "W",
+      "telegram": "marina@t.me"
+    },
+    {
+      "id": "8",
+      "nickname": "aphrodita",
+      "avatar": "",
+      "age": "21",
+      "gender": "W",
+      "telegram": "aphrodita@t.me"
+    },
+    {
+      "id": "4",
+      "nickname": "nina",
+      "avatar": "",
+      "age": "29",
+      "gender": "W",
+      "telegram": "nina@t.me"
+    },
+    {
+      "id": "5",
+      "nickname": "max max max",
+      "avatar": "",
+      "age": "90",
+      "gender": "M",
+      "telegram": "maxxx@t.me"
+    }
+  ],
+  "requestscount": [
+    {
+      "id": "lel_kek",
+      "countRequests": 0
+    }
+  ],
   "userfilter": [
     {
       "personal_data": {
@@ -11,19 +169,39 @@
       },
       "categories": {
         "book": {
-          "main_category": ["1","2","3"],
-          "sub_category": ["1","2"]
+          "main_category": [
+            "1",
+            "2",
+            "3"
+          ],
+          "sub_category": [
+            "1",
+            "2"
+          ]
         },
         "game": {
-          "main_category": ["1","4"],
-          "sub_category": ["2","3"]
+          "main_category": [
+            "1",
+            "4"
+          ],
+          "sub_category": [
+            "2",
+            "3"
+          ]
         },
         "music": {
-          "main_category": ["4","2"],
-          "sub_category": ["2"]
+          "main_category": [
+            "4",
+            "2"
+          ],
+          "sub_category": [
+            "2"
+          ]
         },
         "film": {
-          "main_category": ["1"],
+          "main_category": [
+            "1"
+          ],
           "sub_category": []
         }
       }
@@ -31,146 +209,238 @@
   ],
   "options_book_main": [
     {
-      "id":"1",
+      "id": "1",
       "title": "book1"
     },
     {
-      "id":"2",
+      "id": "2",
       "title": "book2"
     },
     {
-      "id":"3",
+      "id": "3",
       "title": "book3"
     },
     {
-      "id":"4",
+      "id": "4",
       "title": "book4"
     }
   ],
   "options_book_sub": [
     {
-      "id":"1",
+      "id": "1",
       "title": "author1"
     },
     {
-      "id":"2",
+      "id": "2",
       "title": "author2"
     },
     {
-      "id":"3",
+      "id": "3",
       "title": "author3"
     },
     {
-      "id":"4",
+      "id": "4",
       "title": "author4"
     }
   ],
   "options_film_main": [
     {
-      "id":"1",
+      "id": "1",
       "title": "film1"
     },
     {
-      "id":"2",
+      "id": "2",
       "title": "film2"
     },
     {
-      "id":"3",
+      "id": "3",
       "title": "film3"
     },
     {
-      "id":"4",
+      "id": "4",
       "title": "film4"
     }
   ],
   "options_film_sub": [
     {
-      "id":"1",
+      "id": "1",
       "title": "rej1"
     },
     {
-      "id":"2",
+      "id": "2",
       "title": "rej2"
     },
     {
-      "id":"3",
+      "id": "3",
       "title": "rej3"
     },
     {
-      "id":"4",
+      "id": "4",
       "title": "rej4"
     }
   ],
   "options_music_main": [
     {
-      "id":"1",
+      "id": "1",
       "title": "music1"
     },
     {
-      "id":"2",
+      "id": "2",
       "title": "music2"
     },
     {
-      "id":"3",
+      "id": "3",
       "title": "music3"
     },
     {
-      "id":"4",
+      "id": "4",
       "title": "music4"
     }
   ],
   "options_music_sub": [
     {
-      "id":"1",
+      "id": "1",
       "title": "group1"
     },
     {
-      "id":"2",
+      "id": "2",
       "title": "group2"
     },
     {
-      "id":"3",
+      "id": "3",
       "title": "group3"
     },
     {
-      "id":"4",
+      "id": "4",
       "title": "group4"
     }
   ],
   "options_game_main": [
     {
-      "id":"1",
+      "id": "1",
       "title": "game1"
     },
     {
-      "id":"2",
+      "id": "2",
       "title": "game2"
     },
     {
-      "id":"3",
+      "id": "3",
       "title": "game3"
     },
     {
-      "id":"4",
+      "id": "4",
       "title": "game4"
     }
   ],
   "options_game_sub": [
     {
-      "id":"1",
+      "id": "1",
       "title": "studio1"
     },
     {
-      "id":"2",
+      "id": "2",
       "title": "studio2"
     },
     {
-      "id":"3",
+      "id": "3",
       "title": "studio3"
     },
     {
-      "id":"4",
+      "id": "4",
       "title": "studio4"
     }
-  ]
+  ],
+  "common": [
+    {
+      "id": "1",
+      "title": "1",
+      "rating": 1
+    },
+    {
+      "id": "2",
+      "title": "2",
+      "rating": 2
+    },
+    {
+      "id": "3",
+      "title": "3",
+      "rating": 4
+    },
+    {
+      "id": "4",
+      "title": "4",
+      "rating": 1
+    }
+  ],
+  "new": [],
+  "top": {
+    "userTop": [
+      {
+        "id": "1",
+        "title": "1",
+        "rating": 5
+      },
+      {
+        "id": "2",
+        "title": "2",
+        "rating": 5
+      },
+      {
+        "id": "3",
+        "title": "3",
+        "rating": 4
+      },
+      {
+        "id": "4",
+        "title": "4",
+        "rating": 4
+      }
+    ],
+    "personTop": [
+      {
+        "id": "2",
+        "title": "2",
+        "rating": 5
+      },
+      {
+        "id": "3",
+        "title": "3",
+        "rating": 4
+      }
+    ]
+  },
+  "usertype": {
+    "personType": 0
+  },
+  "different": {
+    "userItems": [
+      {
+        "id": "1",
+        "title": "1",
+        "rating": 5
+      },
+      {
+        "id": "2",
+        "title": "2",
+        "rating": 5
+      },
+      {
+        "id": "3",
+        "title": "3",
+        "rating": 4
+      },
+      {
+        "id": "4",
+        "title": "4",
+        "rating": 4
+      }
+    ],
+    "personRatings": [
+      1,
+      3,
+      2,
+      2
+    ]
+  }
 }

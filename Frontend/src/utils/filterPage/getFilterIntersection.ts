@@ -1,4 +1,7 @@
-import {CategoryModel} from "../../types/Categories";
+import {Categories, CategoryModel} from "../../types/Categories";
+import {ItemModel} from "../../types/ItemModel";
+import {useAppSelector} from "../../hooks/redux";
+import {extractOptionFromOptions} from "../../types/OptionModels";
 
 export const getFilterIntersection = (userCategory: CategoryModel, filterCategory: CategoryModel): CategoryModel => {
     let intersection: CategoryModel = { main_category: [], sub_category: []};
@@ -15,3 +18,9 @@ export const getFilterDifference = (userCategory: CategoryModel, intersectionCat
 
     return difference;
 }
+
+
+/*export const getDifference = (items: ItemModel[], category: Categories, isMain: boolean): string[] => {
+    const options_ontology = useAppSelector((state) => state.optionsReducer.categories);
+    const options = extractOptionFromOptions(options_ontology!, category);
+}*/

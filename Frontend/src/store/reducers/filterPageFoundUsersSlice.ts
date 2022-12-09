@@ -2,7 +2,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {UserCardInfo} from "../../types/UserCardInfo";
 import {usercard_number_set} from "../../test/usercards";
-import {fetchUserCardsAll} from "./action_creators/filter_fetch_usercards";
+//import {fetchUserCardsAll} from "./action_creators/filter_fetch_usercards";
 
 interface FoundUsersState {
     userCards: UserCardInfo[],
@@ -21,7 +21,7 @@ export const filterPageFoundUsersSlice = createSlice({
     initialState,
     reducers: { },
     extraReducers: {
-        [fetchUserCardsAll.fulfilled.type]: (state, action: PayloadAction<UserCardInfo[]>) => {
+        /*[fetchUserCardsAll.fulfilled.type]: (state, action: PayloadAction<UserCardInfo[]>) => {
             state.isLoading = false;
             state.userCards = action.payload;
         },
@@ -33,7 +33,7 @@ export const filterPageFoundUsersSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
             state.userCards = [];
-        }
+        }*/
     }
 });
 

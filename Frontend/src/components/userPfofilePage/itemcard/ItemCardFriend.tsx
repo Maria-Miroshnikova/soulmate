@@ -13,7 +13,7 @@ import {ItemCardBasicProps} from "./ItemCardBasic";
 import CreateIcon from "@mui/icons-material/Create";
 import ClearIcon from "@mui/icons-material/Clear";
 
-const ItemCardFriend: FC<ItemCardBasicProps> = ({item}) => {
+const ItemCardFriend: FC<ItemCardBasicProps> = ({item, isMain, category}) => {
 
     const textCommentLabel = "Комментарий пользователя";
 
@@ -30,7 +30,7 @@ const ItemCardFriend: FC<ItemCardBasicProps> = ({item}) => {
                     <Typography width="100%"> {item.title} </Typography>
                     <Box display="flex" flexDirection="row" justifyContent="flex-end" width="100%" alignItems="center" gap={1}>
                         {
-                            (item.comment === undefined) ?
+                            ((item.comment === undefined) || (item.comment === "")) ?
                                 null
                                 :
                                 <IconButton onClick={handleExpand}> <CommentIcon/> </IconButton>

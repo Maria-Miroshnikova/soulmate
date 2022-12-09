@@ -1,7 +1,7 @@
 import {Categories} from "../../../types/Categories";
 import {INavButton} from "../../../types/INavButton";
 import {getFullCategoryPath, getFullFriendPath, getFullProfilePath} from "../../../router/routes";
-import {PersonListType} from "../lists/PersonList";
+import {PersonType} from "../lists/PersonList";
 
 export const getDrawerOptions = (isUserProfile: boolean, id: string): INavButton[] => {
     return (isUserProfile) ?
@@ -16,7 +16,7 @@ export const getDrawerOptions = (isUserProfile: boolean, id: string): INavButton
                 textBotton: 'Друзья',
                 isProfile: false,
                 isFiends: true,
-                url_to: getFullFriendPath(PersonListType.FRIENDS, id)
+                url_to: getFullFriendPath(PersonType.FRIENDS, id)
             },
             {
                 textBotton: 'Кино',
@@ -53,35 +53,35 @@ export const getDrawerOptions = (isUserProfile: boolean, id: string): INavButton
                 textBotton: 'Aккаунт',
                 isProfile: true,
                 isFiends: false,
-                url_to: ""
+                url_to: getFullProfilePath(id)
             },
             {
                 textBotton: 'Кино',
                 isProfile: false,
                 isFiends: false,
                 category: Categories.FILM,
-                url_to: ""
+                url_to: getFullCategoryPath(Categories.FILM, true, id)
             },
             {
                 textBotton: 'Книги',
                 isProfile: false,
                 isFiends: false,
                 category: Categories.BOOK,
-                url_to: ""
+                url_to: getFullCategoryPath(Categories.BOOK, true, id)
             },
             {
                 textBotton: 'Музыка',
                 isProfile: false,
                 isFiends: false,
                 category: Categories.MUSIC,
-                url_to: ""
+                url_to: getFullCategoryPath(Categories.MUSIC, true, id)
             },
             {
                 textBotton: 'Игры',
                 isProfile: false,
                 isFiends: false,
                 category: Categories.GAME,
-                url_to: ""
+                url_to: getFullCategoryPath(Categories.GAME, true, id)
             }
         ]
 }

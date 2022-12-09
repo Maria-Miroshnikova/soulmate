@@ -4,6 +4,7 @@ import {Categories} from "../Categories";
 
 
 export interface IParamsFilter {
+    userid: string,
     film_main?: string,
     is_film_main?: string,
     film_sub?: string,
@@ -27,8 +28,9 @@ export interface IParamsFilter {
 
 // TODO is_ and id
 // TODO странный toString....
-export const makeParamsFromFilter = (filter: FilterModel, priority: Categories[]): Record<string, any> => {
+export const makeParamsFromFilter = (userId: string, filter: FilterModel, priority: Categories[]): Record<string, any> => {
     const result: IParamsFilter = {
+        userid: userId,
         film_main: (filter.filter_categories.film.main_category.length > 0) ? makeRequestString(filter.filter_categories.film.main_category) : undefined,
        // is_film_main?: string,
         film_sub: (filter.filter_categories.film.sub_category.length > 0) ? makeRequestString(filter.filter_categories.film.sub_category) : undefined,
