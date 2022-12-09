@@ -37,7 +37,8 @@ export const ROUTES = {
         filter: "filter",
         account: "account",
         login: "login",
-        registr: "registration"
+        registr: "registration",
+        moderator: "moderator"
     },
     content_tabs: {
         profile: "profile",

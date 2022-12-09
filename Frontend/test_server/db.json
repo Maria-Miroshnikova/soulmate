@@ -91,7 +91,7 @@
     {
       "id": "3",
       "title": "3",
-      "comment": "ppppppppppppppppppppppp",
+      "comment": "",
       "commentIsRejected": 0,
       "rating": "1"
     },
@@ -99,15 +99,20 @@
       "id": "1",
       "title": "1",
       "rating": 0
+    },
+    {
+      "id": "4",
+      "title": "4",
+      "rating": 0
     }
   ],
   "userdatausers": [
     {
       "id": "lel_kek",
-      "nickname": "Kekushka",
+      "nickname": "Kekushkaf",
       "avatar": "",
       "age": "18",
-      "gender": "other",
+      "gender": "male",
       "telegram": "lelkek@t.me"
     },
     {
@@ -442,5 +447,29 @@
       2,
       2
     ]
-  }
+  },
+  "moderator": [
+    {
+      "item": {
+        "id": "2",
+        "title": "FILM",
+        "rating": 4,
+        "comment": "kek check lel"
+      },
+      "category": 1,
+      "isMain": true,
+      "userId": "lel_kek"
+    },
+    {
+      "item": {
+        "id": "3",
+        "title": "FILM",
+        "rating": 2,
+        "comment": "very long interesting but disgusting comment"
+      },
+      "category": 1,
+      "isMain": true,
+      "userId": "lel_kek"
+    }
+  ]
 }

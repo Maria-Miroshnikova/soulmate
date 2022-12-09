@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import AppLayout from "./components/appLayout";
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import DrawerContentLayout from "./components/drawerContentLayout";
 import FilterDrawerContent from "./components/filterPage/filter/FilterDrawerContent";
 import FilterPageContent from "./components/filterPage/FilterPageContent";
@@ -22,8 +22,23 @@ import {loginAPI} from "./services/loginService";
 import {login_success} from "./store/reducers/authSlice";
 import ItemListLayout from "./components/userPfofilePage/lists/ItemListLayout";
 import {updatePageId} from "./store/reducers/searchContentSlice";
+import ModeratorDrawerContent from "./components/moderatorPage/ModeratorDrawerContent";
+import ModeratorPageContent from "./components/moderatorPage/ModeratorPageContent";
+import {gapi} from "gapi-script";
+
+const clientId = "407844009418-2hui8hbgvgpi034p4eb8ooer9akbnknj.apps.googleusercontent.com";
 
 function App() {
+
+  useEffect(() => {
+    const initClient = () => {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ''
+      });
+    };
+    gapi.load('client:auth2', initClient);
+  });
 
   const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useRefreshMutation();
 
@@ -87,9 +102,23 @@ function App() {
     dispatch(updatePageId(location.pathname.split('/')[2]));
   }, [location.pathname]);
 
+  const isModerator = useAppSelector(state => state.authReducer.isModerator);
+
   // TODO страничка входа
-  return (
-      <Routes>
+  return (isModerator) ?
+      (<Routes>
+        <Route path={ROUTES.base_url + ROUTES.pages.login} element={<AuthPage />}/>
+        <Route path={ROUTES.base_url + ROUTES.pages.registr} element={<RegistrPage />}/>
+        <Route path={ROUTES.base_url} element={<AppLayout/>}>
+          <Route index element={<Navigate to={ROUTES.pages.moderator}/>} />
+          <Route path={ROUTES.pages.moderator} element={<DrawerContentLayout drawerContent={<ModeratorDrawerContent/>}/>}>
+            <Route index element={<ModeratorPageContent/>}/>
+          </Route>
+        </Route>
+        <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
+      </Routes>)
+      :
+      (<Routes>
         <Route path={ROUTES.base_url + ROUTES.pages.login} element={<AuthPage />}/>
         <Route path={ROUTES.base_url + ROUTES.pages.registr} element={<RegistrPage />}/>
         <Route path={ROUTES.base_url} element={<AppLayout/>}>
@@ -137,6 +166,7 @@ function App() {
             </Route>
           </Route>
         </Route>
+        <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
       </Routes>
   );
 }
