@@ -9,7 +9,8 @@ interface AuthState {
     isAuth: boolean,
     isLoading: boolean,
     error: string,
-    userId?: string
+    userId?: string,
+    isModerator?: boolean
 }
 
 // TODO сделать false
@@ -18,7 +19,9 @@ const initialState: AuthState = {
     isLoading: false,
     error: '',
     // TODO: убрать
-    userId: 'lel_kek'
+    userId: 'lel_kek',
+    // TODO: убрать
+    isModerator: false
 }
 
 // для регистрации как - отдельный? но они ведь пересекаются...
@@ -30,6 +33,8 @@ export const authSlice = createSlice({
             state.isAuth = true;
             state.isLoading = false;
             state.userId = action.payload.userId;
+            // TODO: обработка модератора!
+            state.isModerator = false;
             localStorage.setItem('accessToken', action.payload.accessToken);
             //console.log('token = ', action.payload.accessToken);
         },
@@ -37,6 +42,7 @@ export const authSlice = createSlice({
             state.isAuth = false;
             state.userId = undefined;
             state.isLoading = false;
+            state.isModerator = undefined;
             localStorage.removeItem('accessToken');
         },
         login_failed: (state, action) => {

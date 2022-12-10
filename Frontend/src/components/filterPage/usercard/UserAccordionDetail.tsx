@@ -51,7 +51,9 @@ const UserAccordionDetail: FC<UserAccordionDetailProps> = ({dataYou, dataFilter,
                     flexWrap="wrap"
                     marginTop={1}
                 >
-                    {dataYou.map((id) => <Chip key={id} label={options.find((option) => {return option.id === id})!.title} color="primary" sx={{minWidth: "72px"}}/>)}
+                    {dataYou.map((id) => <Chip key={id} label={options.find((option) => {
+                        //console.log("--- id : ", id);
+                        return option.id === id})!.title} color="primary" sx={{minWidth: "72px"}}/>)}
                     {dataFilter.map((id) => <Chip key={id} label={options.find((option) => {return option.id === id})!.title} color="secondary" sx={{minWidth: "72px"}}/>)}
                 </Box>
             </Box>
