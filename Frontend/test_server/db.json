@@ -162,56 +162,57 @@
       "countRequests": 0
     }
   ],
-  "userfilter": [
-    {
-      "personal_data": {
-        "id": 1,
-        "nickname": 1,
-        "avatar": 1,
-        "age": 1,
-        "gender": 1,
-        "telegram": 1
+  "userfilter": {
+    "FoundUsers": [
+      {
+        "User":
+          {
+            "telegram": "lel",
+            "id": "1",
+            "gender": "lel",
+            "username": "Ярослав",
+            "age": "lel"
+          }
+        ,
+        "Film": [
+          "3",
+          "1"
+        ],
+        "Director": [],
+        "Book": [
+          "2"
+        ],
+        "Author": [],
+        "Game": [],
+        "Studio": [],
+        "Song": [],
+        "Artist": []
       },
-      "categories": {
-        "book": {
-          "main_category": [
-            "1",
-            "2",
-            "3"
-          ],
-          "sub_category": [
-            "1",
-            "2"
-          ]
-        },
-        "game": {
-          "main_category": [
-            "1",
-            "4"
-          ],
-          "sub_category": [
-            "2",
-            "3"
-          ]
-        },
-        "music": {
-          "main_category": [
-            "4",
-            "2"
-          ],
-          "sub_category": [
-            "2"
-          ]
-        },
-        "film": {
-          "main_category": [
-            "1"
-          ],
-          "sub_category": []
-        }
+      {
+        "User":
+          {
+            "telegram": "lel",
+            "id": "2",
+            "gender": "lel",
+            "username": "Илья",
+            "age": "lel"
+          }
+        ,
+        "Film": [
+          "1"
+        ],
+        "Director": [],
+        "Book": [
+          "2"
+        ],
+        "Author": [],
+        "Game": [],
+        "Studio": [],
+        "Song": [],
+        "Artist": []
       }
-    }
-  ],
+    ]
+  },
   "options_book_main": [
     {
       "id": "1",

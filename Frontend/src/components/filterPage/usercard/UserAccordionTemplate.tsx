@@ -32,7 +32,9 @@ const UserAccordionTemplate: FC<UserAccordionTemplateProps> = ({category, user})
     // TODO: разбиение пришедших данных на совпадение по фильтру и по личным
     // ATTENTION: предполагается, что общие категории юзера содержат только то, что совпало с фильтром/запросом, а не весь его набор!
     const dataFilter: CategoryModel = getFilterIntersection(data, filterCategory);
+   // console.log("DATAFILER: ", dataFilter);
     const dataYou: CategoryModel = getFilterDifference(data, dataFilter);
+   // console.log("DATAYOU: ", dataYou);
 
     return (
         <Accordion>

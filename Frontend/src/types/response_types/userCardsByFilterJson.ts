@@ -1,11 +1,13 @@
+export interface UserInfoJson {
+    telegram: string,
+    id: string,
+    gender: string,
+    username: string,
+    age: string
+}
+
 export interface UserCardJson {
-    User: {
-        telegram: string,
-        id: string,
-        gender: string,
-        username: string,
-        age: number
-    },
+    User: UserInfoJson,
     Film: string[]
     Director: string[]
     Book: string[]

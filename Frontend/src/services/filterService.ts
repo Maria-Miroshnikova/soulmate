@@ -6,7 +6,7 @@ import {makeRequestString} from "../utils/api_convertations";
 import {makeParamsFromFilter} from "../types/api/ParamsFilter";
 import {OptionItemModel} from "../types/OptionModels";
 import {baseQueryWithReauth} from "./baseQueryFunctions";
-import {UserCardsByFilterJson} from "../types/response_types/userCardsByFilterJson";
+import {UserCardJson, UserCardsByFilterJson, UserInfoJson} from "../types/response_types/userCardsByFilterJson";
 import UserCard from "../components/filterPage/usercard/UserCard";
 //import {fetchUserCardsAll} from "../store/reducers/action_creators/filter_fetch_usercards";
 
@@ -27,18 +27,26 @@ export const filterAPI = createApi({
         fetchUserCardsByFilter: build.query<UserCardInfo[], {userId: string, filter: FilterModel, priority: Categories[]}>({
             query: (arg) => ({
                 url: '/userfilter',
-                params: makeParamsFromFilter(arg.userId, arg.filter, arg.priority)
+               // params: makeParamsFromFilter(arg.userId, arg.filter, arg.priority)
             }),
             transformResponse: (response: UserCardsByFilterJson, meta, arg) => {
+                //console.log("response ODIN: ", response1);
+                //const user =  JSON.parse(response1);
+                //const response : UserCardsByFilterJson = JSON.parse(response1);
+              //  console.log("RESPONSE: ", response);
                 const result: UserCardInfo[] = [];
                 for (var i = 0; i < response.FoundUsers.length; ++i) {
+                    const user : UserCardJson = response.FoundUsers[i];
+                    const userInfo : UserInfoJson = response.FoundUsers[i].User;
+//                    console.log("user: ", user);
+ //                   console.log("userInfo: ", userInfo);
                     result.push({
                         personal_data: {
                             id: response.FoundUsers[i].User.id,
                             nickname: response.FoundUsers[i].User.username,
                             avatar: "",
-                            age: response.FoundUsers[i].User.age.toString(),
-                            gender: response.FoundUsers[i].User.gender.toString(),
+                            age: response.FoundUsers[i].User.age,
+                            gender: response.FoundUsers[i].User.gender,
                             telegram: response.FoundUsers[i].User.telegram
                         },
                         categories: {
@@ -61,6 +69,7 @@ export const filterAPI = createApi({
                         }
                     })
                 }
+              //  console.log("RESULT: ", result)
                 return result;
             }
         }),
