@@ -91,7 +91,7 @@
     {
       "id": "3",
       "title": "3",
-      "comment": "ppppppppppppppppppppppp",
+      "comment": "",
       "commentIsRejected": 0,
       "rating": "1"
     },
@@ -99,15 +99,20 @@
       "id": "1",
       "title": "1",
       "rating": 0
+    },
+    {
+      "id": "4",
+      "title": "4",
+      "rating": 0
     }
   ],
   "userdatausers": [
     {
       "id": "lel_kek",
-      "nickname": "Kekushka",
+      "nickname": "Kekushkaf",
       "avatar": "",
       "age": "18",
-      "gender": "other",
+      "gender": "male",
       "telegram": "lelkek@t.me"
     },
     {
@@ -157,56 +162,57 @@
       "countRequests": 0
     }
   ],
-  "userfilter": [
-    {
-      "personal_data": {
-        "id": 1,
-        "nickname": 1,
-        "avatar": 1,
-        "age": 1,
-        "gender": 1,
-        "telegram": 1
+  "userfilter": {
+    "FoundUsers": [
+      {
+        "User":
+          {
+            "telegram": "lel",
+            "id": "1",
+            "gender": "lel",
+            "username": "Ярослав",
+            "age": "lel"
+          }
+        ,
+        "Film": [
+          "3",
+          "1"
+        ],
+        "Director": [],
+        "Book": [
+          "2"
+        ],
+        "Author": [],
+        "Game": [],
+        "Studio": [],
+        "Song": [],
+        "Artist": []
       },
-      "categories": {
-        "book": {
-          "main_category": [
-            "1",
-            "2",
-            "3"
-          ],
-          "sub_category": [
-            "1",
-            "2"
-          ]
-        },
-        "game": {
-          "main_category": [
-            "1",
-            "4"
-          ],
-          "sub_category": [
-            "2",
-            "3"
-          ]
-        },
-        "music": {
-          "main_category": [
-            "4",
-            "2"
-          ],
-          "sub_category": [
-            "2"
-          ]
-        },
-        "film": {
-          "main_category": [
-            "1"
-          ],
-          "sub_category": []
-        }
+      {
+        "User":
+          {
+            "telegram": "lel",
+            "id": "2",
+            "gender": "lel",
+            "username": "Илья",
+            "age": "lel"
+          }
+        ,
+        "Film": [
+          "1"
+        ],
+        "Director": [],
+        "Book": [
+          "2"
+        ],
+        "Author": [],
+        "Game": [],
+        "Studio": [],
+        "Song": [],
+        "Artist": []
       }
-    }
-  ],
+    ]
+  },
   "options_book_main": [
     {
       "id": "1",
@@ -442,5 +448,29 @@
       2,
       2
     ]
-  }
+  },
+  "moderator": [
+    {
+      "item": {
+        "id": "2",
+        "title": "FILM",
+        "rating": 4,
+        "comment": "kek check lel"
+      },
+      "category": 1,
+      "isMain": true,
+      "userId": "lel_kek"
+    },
+    {
+      "item": {
+        "id": "3",
+        "title": "FILM",
+        "rating": 2,
+        "comment": "very long interesting but disgusting comment"
+      },
+      "category": 1,
+      "isMain": true,
+      "userId": "lel_kek"
+    }
+  ]
 }

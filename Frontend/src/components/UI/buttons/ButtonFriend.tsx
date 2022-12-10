@@ -26,8 +26,8 @@ const ButtonFriend: FC<ButtonPersonProps> = ({person}) => {
 
     return (
         <Box display="flex" flexDirection="row" gap={1}>
-            <Button variant="contained" onClick={handleDelete}> {textDelete} </Button>
-            <Button variant="contained" onClick={handleTelegram}> {textTelegram} </Button>
+            <Button variant="contained" onClick={handleDelete} > {textDelete} </Button>
+            <Button variant="contained" onClick={handleTelegram} > {textTelegram} </Button>
         </Box>
     );
 };
