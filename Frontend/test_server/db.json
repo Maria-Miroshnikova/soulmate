@@ -42,6 +42,22 @@
       "age": "hz",
       "gender": "hz",
       "telegram": "visited@t.me"
+    },
+    {
+      "nickname": "undefinedvisit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me",
+      "id": "KnBhcUy"
+    },
+    {
+      "nickname": "undefinedvisit",
+      "avatar": "",
+      "age": "hz",
+      "gender": "hz",
+      "telegram": "visited@t.me",
+      "id": "9Unz0LO"
     }
   ],
   "requests": [
@@ -165,15 +181,13 @@
   "userfilter": {
     "FoundUsers": [
       {
-        "User":
-          {
-            "telegram": "lel",
-            "id": "1",
-            "gender": "lel",
-            "username": "Ярослав",
-            "age": "lel"
-          }
-        ,
+        "User": {
+          "telegram": "lel",
+          "id": "1",
+          "gender": "lel",
+          "username": "Ярослав",
+          "age": "lel"
+        },
         "Film": [
           "3",
           "1"
@@ -189,15 +203,13 @@
         "Artist": []
       },
       {
-        "User":
-          {
-            "telegram": "lel",
-            "id": "2",
-            "gender": "lel",
-            "username": "Илья",
-            "age": "lel"
-          }
-        ,
+        "User": {
+          "telegram": "lel",
+          "id": "2",
+          "gender": "lel",
+          "username": "Илья",
+          "age": "lel"
+        },
         "Film": [
           "1"
         ],
