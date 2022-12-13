@@ -25,32 +25,23 @@ import {updatePageId} from "./store/reducers/searchContentSlice";
 import ModeratorDrawerContent from "./components/moderatorPage/ModeratorDrawerContent";
 import ModeratorPageContent from "./components/moderatorPage/ModeratorPageContent";
 import {gapi} from "gapi-script";
-
-const clientId = "407844009418-2hui8hbgvgpi034p4eb8ooer9akbnknj.apps.googleusercontent.com";
+import StartPage from "./components/loginPage/StartPage";
 
 function App() {
 
-  useEffect(() => {
-    const initClient = () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: ''
-      });
-    };
-    gapi.load('client:auth2', initClient);
-  });
-
   const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useRefreshMutation();
 
-  useEffect(() => {
+  // TODO: рефреш?????????
+/*  useEffect(() => {
     const token = localStorage.getItem('accessToken');
     if (token) {
 
       trigger.call({}, {accessToken: token});
     }
-  }, [])
+  }, [])*/
 
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(state => state.authReducer.isAuth);
 
   // TODO: перенести это в unwrap к call у триггера?
   useEffect(() => {
@@ -107,10 +98,9 @@ function App() {
   // TODO страничка входа
   return (isModerator) ?
       (<Routes>
-        <Route path={ROUTES.base_url + ROUTES.pages.login} element={<AuthPage />}/>
-        <Route path={ROUTES.base_url + ROUTES.pages.registr} element={<RegistrPage />}/>
         <Route path={ROUTES.base_url} element={<AppLayout/>}>
-          <Route index element={<Navigate to={ROUTES.pages.moderator}/>} />
+          <Route index element={<StartPage />} />
+          <Route path={ROUTES.pages.filter} element={<Navigate to={ROUTES.pages.moderator} />} />
           <Route path={ROUTES.pages.moderator} element={<DrawerContentLayout drawerContent={<ModeratorDrawerContent/>}/>}>
             <Route index element={<ModeratorPageContent/>}/>
           </Route>
@@ -118,57 +108,65 @@ function App() {
         <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
       </Routes>)
       :
-      (<Routes>
-        <Route path={ROUTES.base_url + ROUTES.pages.login} element={<AuthPage />}/>
-        <Route path={ROUTES.base_url + ROUTES.pages.registr} element={<RegistrPage />}/>
-        <Route path={ROUTES.base_url} element={<AppLayout/>}>
-          <Route index element={<Navigate to={ROUTES.pages.filter}/>} />
-          <Route path={ROUTES.pages.filter} element={<DrawerContentLayout drawerContent={<FilterDrawerContent/>}/>}>
-            <Route index element={<FilterPageContent/>}/>
-          </Route>
-          <Route path={ROUTES.pages.account}>
-            <Route path=":id" element={<DrawerContentLayout drawerContent={<ProfileDrawerContent/>}/>}>
-              <Route index element={<Navigate to={ROUTES.content_tabs.profile} replace/>}/>
-              <Route path={ROUTES.content_tabs.profile} element={<UserPageProfileContent/>}/>
-              <Route path={ROUTES.content_tabs.friends.friends_main} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
-                <Route index element={<PersonList type={PersonType.FRIENDS}/>}/>
-              </Route>
-              <Route path={ROUTES.content_tabs.friends.visited} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
-                <Route index element={<PersonList type={PersonType.VISITED}/>}/>
-              </Route>
-              <Route path={ROUTES.content_tabs.friends.requests} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
-                <Route index element={<PersonList type={PersonType.REQUESTS}/>}/>
-              </Route>
-              <Route path={ROUTES.content_tabs.films.films_main} element={<UserPageSearchContent category={Categories.FILM} isContentAboutFriends={false}/>}>
-                <Route index element={<ItemListLayout category={Categories.FILM} isMain={true}/>} />
-              </Route>
-              <Route path={ROUTES.content_tabs.films.films_sub} element={<UserPageSearchContent category={Categories.FILM} isContentAboutFriends={false}/>}>
-                <Route index element={<ItemListLayout category={Categories.FILM} isMain={false}/>} />
-              </Route>
-              <Route path={ROUTES.content_tabs.books.books_main} element={<UserPageSearchContent category={Categories.BOOK} isContentAboutFriends={false}/>}>
-                <Route index element={<ItemListLayout category={Categories.BOOK} isMain={true}/>} />
-              </Route>
-              <Route path={ROUTES.content_tabs.books.books_sub} element={<UserPageSearchContent category={Categories.BOOK} isContentAboutFriends={false}/>}>
-                <Route index element={<ItemListLayout category={Categories.BOOK} isMain={false}/>} />
-              </Route>
-              <Route path={ROUTES.content_tabs.music.music_main} element={<UserPageSearchContent category={Categories.MUSIC} isContentAboutFriends={false}/>}>
-                <Route index element={<ItemListLayout category={Categories.MUSIC} isMain={true}/>} />
-              </Route>
-              <Route path={ROUTES.content_tabs.music.music_sub} element={<UserPageSearchContent category={Categories.MUSIC} isContentAboutFriends={false}/>}>
-                <Route index element={<ItemListLayout category={Categories.MUSIC} isMain={false}/>} />
-              </Route>
-              <Route path={ROUTES.content_tabs.games.games_main} element={<UserPageSearchContent category={Categories.GAME} isContentAboutFriends={false}/>}>
-                <Route index element={<ItemListLayout category={Categories.GAME} isMain={true}/>} />
-              </Route>
-              <Route path={ROUTES.content_tabs.games.games_sub} element={<UserPageSearchContent category={Categories.GAME} isContentAboutFriends={false}/>}>
-                <Route index element={<ItemListLayout category={Categories.GAME} isMain={false}/>}/>
-              </Route>
-            </Route>
-          </Route>
-        </Route>
-        <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
-      </Routes>
-  );
+      (isAuth) ?
+          (<Routes>
+                <Route path={ROUTES.base_url} element={<AppLayout/>}>
+                  <Route index element={<StartPage />} />
+                  <Route path={ROUTES.pages.filter} element={<DrawerContentLayout drawerContent={<FilterDrawerContent/>}/>}>
+                    <Route index element={<FilterPageContent/>}/>
+                  </Route>
+                  <Route path={ROUTES.pages.account}>
+                    <Route path=":id" element={<DrawerContentLayout drawerContent={<ProfileDrawerContent/>}/>}>
+                      <Route index element={<Navigate to={ROUTES.content_tabs.profile} replace/>}/>
+                      <Route path={ROUTES.content_tabs.profile} element={<UserPageProfileContent/>}/>
+                      <Route path={ROUTES.content_tabs.friends.friends_main} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
+                        <Route index element={<PersonList type={PersonType.FRIENDS}/>}/>
+                      </Route>
+                      <Route path={ROUTES.content_tabs.friends.visited} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
+                        <Route index element={<PersonList type={PersonType.VISITED}/>}/>
+                      </Route>
+                      <Route path={ROUTES.content_tabs.friends.requests} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
+                        <Route index element={<PersonList type={PersonType.REQUESTS}/>}/>
+                      </Route>
+                      <Route path={ROUTES.content_tabs.films.films_main} element={<UserPageSearchContent category={Categories.FILM} isContentAboutFriends={false}/>}>
+                        <Route index element={<ItemListLayout category={Categories.FILM} isMain={true}/>} />
+                      </Route>
+                      <Route path={ROUTES.content_tabs.films.films_sub} element={<UserPageSearchContent category={Categories.FILM} isContentAboutFriends={false}/>}>
+                        <Route index element={<ItemListLayout category={Categories.FILM} isMain={false}/>} />
+                      </Route>
+                      <Route path={ROUTES.content_tabs.books.books_main} element={<UserPageSearchContent category={Categories.BOOK} isContentAboutFriends={false}/>}>
+                        <Route index element={<ItemListLayout category={Categories.BOOK} isMain={true}/>} />
+                      </Route>
+                      <Route path={ROUTES.content_tabs.books.books_sub} element={<UserPageSearchContent category={Categories.BOOK} isContentAboutFriends={false}/>}>
+                        <Route index element={<ItemListLayout category={Categories.BOOK} isMain={false}/>} />
+                      </Route>
+                      <Route path={ROUTES.content_tabs.music.music_main} element={<UserPageSearchContent category={Categories.MUSIC} isContentAboutFriends={false}/>}>
+                        <Route index element={<ItemListLayout category={Categories.MUSIC} isMain={true}/>} />
+                      </Route>
+                      <Route path={ROUTES.content_tabs.music.music_sub} element={<UserPageSearchContent category={Categories.MUSIC} isContentAboutFriends={false}/>}>
+                        <Route index element={<ItemListLayout category={Categories.MUSIC} isMain={false}/>} />
+                      </Route>
+                      <Route path={ROUTES.content_tabs.games.games_main} element={<UserPageSearchContent category={Categories.GAME} isContentAboutFriends={false}/>}>
+                        <Route index element={<ItemListLayout category={Categories.GAME} isMain={true}/>} />
+                      </Route>
+                      <Route path={ROUTES.content_tabs.games.games_sub} element={<UserPageSearchContent category={Categories.GAME} isContentAboutFriends={false}/>}>
+                        <Route index element={<ItemListLayout category={Categories.GAME} isMain={false}/>}/>
+                      </Route>
+                    </Route>
+                  </Route>
+                </Route>
+                <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
+              </Routes>
+          )
+          :
+          (<Routes>
+                <Route path={ROUTES.base_url} element={<AppLayout/>}>
+                  <Route index element={<StartPage />} />
+                </Route>
+                <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
+              </Routes>
+          )
+      ;
 }
 
 export default App;

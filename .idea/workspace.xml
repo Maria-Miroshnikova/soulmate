@@ -4,17 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add front to other branch">
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/usercard/UserAccordionDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/usercard/UserAccordionDetail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/usercard/UserAccordionTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/usercard/UserAccordionTemplate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/types/response_types/userCardsByFilterJson.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/response_types/userCardsByFilterJson.ts" afterDir="false" />
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="TEST: remove userType fetching in userCard for API-tests">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/test_server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/test_server/db.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -69,6 +77,9 @@
       <updated>1670628844471</updated>
       <workItem from="1670628845986" duration="635000" />
       <workItem from="1670629500579" duration="3200000" />
+      <workItem from="1670728600498" duration="6725000" />
+      <workItem from="1670743004954" duration="2032000" />
+      <workItem from="1670908380860" duration="5732000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -77,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670629007239</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="TEST: remove userType fetching in userCard for API-tests">
+      <created>1670710616720</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670710616720</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,6 +114,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add front to other branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="add front to other branch" />
+    <MESSAGE value="TEST: remove userType fetching in userCard for API-tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="TEST: remove userType fetching in userCard for API-tests" />
   </component>
 </project>
