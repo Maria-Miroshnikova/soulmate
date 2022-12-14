@@ -15,11 +15,11 @@ interface AuthState {
 
 // TODO сделать false
 const initialState: AuthState = {
-    isAuth: false,
+    isAuth: true,
     isLoading: false,
     error: '',
     // TODO: убрать
-  //  userId: 'lel_kek',
+    userId: 'lel_kek',
     // TODO: убрать
     isModerator: false
 }

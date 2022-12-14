@@ -63,7 +63,7 @@ const CustomAppBar: FC = () => {
 
     const handleLogin = () => {
         // перенаправление на фильтр
-        navigate(ROUTES.pages.filter);
+       // navigate(ROUTES.pages.filter);
         const user = gapi.auth2.getAuthInstance().currentUser.get();
         console.log("AUTH: ", user);
         dispatch(login_success({

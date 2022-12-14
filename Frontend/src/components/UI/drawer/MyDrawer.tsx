@@ -16,18 +16,25 @@ const MyDrawer: FC<MyDrawerProps> = ({children}) => {
     return (
         <Box
             height="100%"
-            width={drawerWidth}
-            display="flex"
+            minHeight="100hv"
             flexDirection="column"
-            flexShrink={0}
-            sx={{
-                paddingTop: 6,
-                paddingLeft: 3,
-                paddingRight: 3,
-                backgroundColor: "white"
-            }}
-        >
-            {children}
+            display="flex">
+            <Box
+                height="100%"
+                flexGrow="1"
+                width={drawerWidth}
+                display="flex"
+                flexDirection="column"
+                flexShrink={0}
+                sx={{
+                    paddingTop: 6,
+                    paddingLeft: 3,
+                    paddingRight: 3,
+                    backgroundColor: "white"
+                }}
+            >
+                {children}
+            </Box>
         </Box>
     );
 };
