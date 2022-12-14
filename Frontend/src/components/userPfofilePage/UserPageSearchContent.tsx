@@ -55,9 +55,9 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAbo
                 <Tabs>
                     {tabs.map((tab, idx) => {
                         if (tab.isFiends && (idx === 1) && isVisibleBadge)
-                            return <Tab label={tab.textBotton} icon={<MyBadge/>} iconPosition={"end"} onClick={(event) => handleClickOnTab(idx)}/>
+                            return <Box width="100%" display="flex" justifyContent="center"><Tab label={tab.textBotton} key={idx} icon={<MyBadge/>} iconPosition={"end"} onClick={(event) => handleClickOnTab(idx)}/></Box>
                         else
-                            return <Tab label={tab.textBotton} onClick={(event) => handleClickOnTab(idx)}/>
+                            return <Box width="100%" display="flex" justifyContent="center"><Tab label={tab.textBotton} key={idx} onClick={(event) => handleClickOnTab(idx)}/></Box>
                     })}
                 </Tabs>
             </Box>

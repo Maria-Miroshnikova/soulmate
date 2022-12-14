@@ -17,14 +17,18 @@ const UserPageProfileContent = () => {
     const tabs = getProfileTabs();
 
     const handleClickOnTab = (idx: number) => {
-
+        console.log("idx: ", idx);
     }
 
     return (
         <Box display="flex" flexDirection="column" width="100%" height="min-content">
-            <Box  sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs>
-                    {tabs.map((tab, idx) => <Tab label={tab.textBotton} key={idx} onClick={(event) => handleClickOnTab(idx)}/>)}
+            <Box  sx={{ borderBottom: 1, borderColor: 'divider' }} display="flex" flexDirection="row" justifyContent="center">
+                <Tabs value={false}>
+                    {
+                        tabs.map((tab, idx) => {
+                            return <Tab label={tab.textBotton} value={0} key={idx} onClick={(event) => handleClickOnTab(idx)}/>
+                    })
+                    }
                 </Tabs>
             </Box>
             <Box display="flex" flexDirection="column" paddingLeft={2}>

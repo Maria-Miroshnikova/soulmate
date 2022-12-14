@@ -14,6 +14,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import {Categories} from "../../../types/Categories";
 import {OptionItemModel} from "../../../types/OptionModels";
 import {userdataAPI} from "../../../services/userdataService";
+import {themeMain} from "../../../theme";
 
 export interface ItemCardSearchProps {
     option: OptionItemModel
@@ -38,9 +39,10 @@ const ItemCardSearch: FC<ItemCardSearchProps> = ({option, category, isMain}) => 
     // TODO: padding bottom изменить
     return (
         <Card>
-            <CardContent sx={{ '& .MuiCardContent-root': {
-                    paddingBottom: 2,
-                    //transparent: "10%"
+            <CardContent sx={{
+                opacity: .5,
+                '& .MuiCardContent-root': {
+                    paddingBottom: 2
                 }}}>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
                     <Typography width="100%"> {option.title} </Typography>

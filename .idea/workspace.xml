@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="make friend button TELEGRAM linkable">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add bottom padding">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/drawerContentLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/drawerContentLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/FilterPageContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/FilterPageContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/ProfileDrawerContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/ProfileDrawerContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageSearchContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageSearchContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardSearch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/types/api/ParamsFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/api/ParamsFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/test_server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/test_server/db.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +83,8 @@
       <workItem from="1670629500579" duration="3200000" />
       <workItem from="1670728600498" duration="6725000" />
       <workItem from="1670743004954" duration="2032000" />
-      <workItem from="1670908380860" duration="16980000" />
+      <workItem from="1670908380860" duration="20407000" />
+      <workItem from="1671018853284" duration="5750000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -126,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671005577019</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add bottom padding">
+      <created>1671005670625</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671005670625</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +168,7 @@
     <MESSAGE value="fix userProfileContent and userDataService fetch: delete password editing" />
     <MESSAGE value="add beautiful StartPage" />
     <MESSAGE value="make friend button TELEGRAM linkable" />
-    <option name="LAST_COMMIT_MESSAGE" value="make friend button TELEGRAM linkable" />
+    <MESSAGE value="add bottom padding" />
+    <option name="LAST_COMMIT_MESSAGE" value="add bottom padding" />
   </component>
 </project>

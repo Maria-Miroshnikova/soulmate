@@ -26,6 +26,7 @@ import ModeratorDrawerContent from "./components/moderatorPage/ModeratorDrawerCo
 import ModeratorPageContent from "./components/moderatorPage/ModeratorPageContent";
 import {gapi} from "gapi-script";
 import StartPage from "./components/loginPage/StartPage";
+import ErrorPage from "./components/errorPage/ErrorPage";
 
 function App() {
 
@@ -105,7 +106,7 @@ function App() {
             <Route index element={<ModeratorPageContent/>}/>
           </Route>
         </Route>
-        <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>)
       :
       (isAuth) ?
@@ -155,7 +156,7 @@ function App() {
                     </Route>
                   </Route>
                 </Route>
-                <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
+                <Route path="*" element={<ErrorPage />} />
               </Routes>
           )
           :
@@ -163,7 +164,7 @@ function App() {
                 <Route path={ROUTES.base_url} element={<AppLayout/>}>
                   <Route index element={<StartPage />} />
                 </Route>
-                <Route path="*" element={<Typography> ERROR PAGE </Typography>} />
+                <Route path="*" element={<ErrorPage />} />
               </Routes>
           )
       ;

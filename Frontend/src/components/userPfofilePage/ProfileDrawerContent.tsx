@@ -54,9 +54,9 @@ const ProfileDrawerContent: FC = () => {
     //<UserHeader user={} />
     // TODO: проверка PersonType в случае если userId = pageId
     return (
-        <Box>
+        <Box paddingLeft={2}>
             <List>
-                <ListItem key={-1}>
+                <ListItem key={-1} sx={{marginBottom: 12}}>
                     {
                         (isLoading) ?
                             <PersonHeader person={loadingPersonalInfoModel} onClick={handleClickOnAvatar}/>
@@ -69,14 +69,14 @@ const ProfileDrawerContent: FC = () => {
                         {
                             (option.isFiends) ?
                                 <Box display="flex" flexDirection="row" gap={2}>
-                                    <Typography> {option.textBotton} </Typography>
+                                    <Typography variant="subtitle1"> {option.textBotton} </Typography>
                                     {(isVisibleBadge) ?
                                         <MyBadge />
                                         : null
                                     }
                                 </Box>
                                 :
-                                <Typography> {option.textBotton} </Typography>
+                                <Typography variant="subtitle1"> {option.textBotton} </Typography>
                         }
                     </ListItemButton>
                 )}

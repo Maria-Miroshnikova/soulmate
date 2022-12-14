@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import SearchNameDrawer from "./filter/SearchNameDrawer";
-import {Box, Typography} from "@mui/material";
+import {Box, Pagination, Typography} from "@mui/material";
 import UserCard from "./usercard/UserCard";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {getSortedByPriority} from "../../utils/filterPage/getSortedByPriority";
@@ -76,7 +76,19 @@ const FilterPageContent: FC = () => {
         }
     }, [filterStatus]);
 
+    // countCards, perPage = 10
+    // countPagesInt = countCards / perPage;
+    // countPages = (countPagesInt % perPage === 0) ? countPagesInt : countPagesInt + 1;
+    // pageNumber
+    const [pageNumber, setPageNumber] = useState<number>(1);
+    const countPages = 10;
+
+    const handleChangePage = (event:  React.ChangeEvent<unknown>, value: number) => {
+        setPageNumber(value);
+    }
+
     // TODO: сделать красивый loader
+    // TODO: сделать pagination в запросе
     return (
         <Box height="min-content" width="100%">
             <SearchNameDrawer countFound={userCards.length}/>
@@ -86,6 +98,14 @@ const FilterPageContent: FC = () => {
                         <Typography> идет загрузка </Typography>
                         :
                         userCards.map((user) => <UserCard user={user} key={user.personal_data.id}/>)}
+                <Box alignSelf="center" marginTop={2}>
+                    {
+                        (isLoading) ?
+                            null
+                            :
+                            <Pagination count={countPages} page={pageNumber} onChange={handleChangePage}/>
+                    }
+                </Box>
             </Box>
         </Box>
     );

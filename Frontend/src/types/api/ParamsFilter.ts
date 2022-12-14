@@ -48,7 +48,6 @@ export const makeParamsFromFilter = (userId: string, filter: FilterModel, priori
         game_sub: (filter.filter_categories.game.sub_category.length > 0) ? makeRequestString(filter.filter_categories.game.sub_category) : undefined,
        // is_game_sub?: string,
         name: filter.title,
-       // id?: string
         priority: (priority.length > 0) ? priority.toString() : undefined
     }
     return result;
