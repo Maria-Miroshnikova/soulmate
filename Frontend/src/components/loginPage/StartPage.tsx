@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Button, Typography} from "@mui/material";
+import {Box, Button, Typography} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {gapi} from "gapi-script";
 import {login_success, logout} from "../../store/reducers/authSlice";
@@ -74,10 +74,14 @@ const StartPage = () => {
             </Button>
     */
 
+    const textTitle = "SOULMATE.";
+    const textSubTitle = "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum";
+
     return (
-        <>
-        <Typography>SOULMATE.</Typography>
-        </>
+        <Box display="flex" flexDirection="column" width="100%" height="100%" minHeight="100vh" alignItems="center" justifyContent="center">
+            <Typography fontSize="16vw">{textTitle}</Typography>
+            <Typography align="justify" fontSize="2vw">{textSubTitle}</Typography>
+        </Box>
     );
 };
 
