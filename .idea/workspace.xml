@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="fix userProfileContent and userDataService fetch: delete password editing">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add beautiful StartPage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/loginPage/StartPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/loginPage/StartPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/UI/buttons/ButtonFriend.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/UI/buttons/ButtonFriend.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +75,7 @@
       <workItem from="1670629500579" duration="3200000" />
       <workItem from="1670728600498" duration="6725000" />
       <workItem from="1670743004954" duration="2032000" />
-      <workItem from="1670908380860" duration="16012000" />
+      <workItem from="1670908380860" duration="16835000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -112,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671003430055</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add beautiful StartPage">
+      <created>1671004788794</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671004788794</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +143,7 @@
     <MESSAGE value="add oauth with renavigation&#10;TODO: work with token, refresh" />
     <MESSAGE value="fix design: height" />
     <MESSAGE value="fix userProfileContent and userDataService fetch: delete password editing" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix userProfileContent and userDataService fetch: delete password editing" />
+    <MESSAGE value="add beautiful StartPage" />
+    <option name="LAST_COMMIT_MESSAGE" value="add beautiful StartPage" />
   </component>
 </project>
