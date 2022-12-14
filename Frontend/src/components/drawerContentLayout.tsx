@@ -33,7 +33,7 @@ interface DrawerContentLayoutProps{
 const DrawerContentLayout: FC<DrawerContentLayoutProps> = ({drawerContent}) => {
 
     return (
-        <Box display="flex" flexDirection="row" sx={{background: themeMain.palette.background.default}} justifyContent="center">
+        <Box display="flex" flexDirection="row" sx={{background: themeMain.palette.background.default, paddingBottom: 8}} justifyContent="center">
             <Grid container height="100%" minHeight="100vh" display="flex" flexDirection="row" flexGrow={1} flexWrap="wrap" minWidth="max-content" maxWidth="1000px" overflow="">
                 <Grid item minHeight="100%">
                     <MyDrawer children={drawerContent}/>
