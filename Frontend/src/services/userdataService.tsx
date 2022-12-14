@@ -52,8 +52,7 @@ export interface EditPersonalInfoRequest {
     nickname?: string,
     age?: string,
     gender?: string,
-    telegram?: string,
-    password?: string
+    telegram?: string
 }
 
 export interface PersonTypeResponse {

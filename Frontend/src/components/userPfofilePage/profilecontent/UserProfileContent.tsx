@@ -24,7 +24,6 @@ const UserProfileContent = () => {
     const textAge = "Возвраст";
     const textGender = "Пол";
     const textTelegram = "Telegram";
-    const textPassword = "Пароль";
     const textSaveButton = "Сохранить данные";
     const textDeleteAccountButton = "Удалить аккаунт";
 
@@ -44,8 +43,7 @@ const UserProfileContent = () => {
             gender:  data.get("gender")!.toString(),
             id: userId!,
             telegram:  data.get("telegram")!.toString(),
-            nickname: data.get("nickname")!.toString(),
-            password: (password === null) ? undefined : password!.toString()
+            nickname: data.get("nickname")!.toString()
         }
         //console.log(editRequest);
 
@@ -106,14 +104,6 @@ const UserProfileContent = () => {
                                         required
                                         variant={"standard"}
                                         defaultValue={userInfo!.telegram}
-                                    />
-                                </Box>
-                                <Box display="flex" flexDirection="row" gap={1} alignItems="center" justifyContent="flex-end">
-                                    <Typography> {textPassword + ":"} </Typography>
-                                    <TextField
-                                        sx={{width: fieldSize}}
-                                        name="password"
-                                        variant={"standard"}
                                     />
                                 </Box>
                                 <Button sx={{marginTop: 2}} type="submit" > {textSaveButton} </Button>
