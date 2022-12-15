@@ -116,13 +116,13 @@ class User(db.Model):
         self.password = bcrypt.generate_password_hash(kwargs.get('password')).decode('utf-8')
         self.username = kwargs.get('username')
 
-    def get_access_token(self, expire_time=30):
+    def get_access_token(self, expire_time=1):
         expire_delta = timedelta(minutes=expire_time)
         token = create_access_token(identity=self, expires_delta=expire_delta, fresh=True)
         return token
 
-    def get_refresh_token(self, expire_time=15):
-        expire_delta = timedelta(days=expire_time)
+    def get_refresh_token(self, expire_time=2):
+        expire_delta = timedelta(minutes=expire_time)
         token = create_refresh_token(identity=self, expires_delta=expire_delta)
         return token
     
@@ -166,6 +166,17 @@ class UserSchema(ma.SQLAlchemySchema):
     
     class Meta:
         fields = ("id", "username", "age", "gender", "telegram")
+
+# class RefreshSessions(db.Model):
+#     __tablename__ = "refreshSessions"
+
+#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     refreshToken = db.Column(db.String(100))
+#     expiresIn = db.Column(db.Date, default=datetime.utcnow)
+
+#     def __repr__(self):
+#         return f'<Token_id: {self.id}, hash: {self.hash}>'
 
 class Book(db.Model):
     __tablename__ = "book"
