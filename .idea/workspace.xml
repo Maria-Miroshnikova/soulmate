@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add bottom padding">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add ErrorPage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/FilterPageContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/FilterPageContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/ProfileDrawerContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/ProfileDrawerContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageSearchContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageSearchContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardSearch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/types/api/ParamsFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/api/ParamsFilter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardFriend.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardFriend.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/utils/filterPage/getFilterIntersection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/utils/filterPage/getFilterIntersection.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/test_server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/test_server/db.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -84,7 +81,8 @@
       <workItem from="1670728600498" duration="6725000" />
       <workItem from="1670743004954" duration="2032000" />
       <workItem from="1670908380860" duration="20407000" />
-      <workItem from="1671018853284" duration="5750000" />
+      <workItem from="1671018853284" duration="8005000" />
+      <workItem from="1671102088082" duration="7856000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -142,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671005670625</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add ErrorPage">
+      <created>1671025662592</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671025662592</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,6 +174,7 @@
     <MESSAGE value="add beautiful StartPage" />
     <MESSAGE value="make friend button TELEGRAM linkable" />
     <MESSAGE value="add bottom padding" />
-    <option name="LAST_COMMIT_MESSAGE" value="add bottom padding" />
+    <MESSAGE value="add ErrorPage" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ErrorPage" />
   </component>
 </project>

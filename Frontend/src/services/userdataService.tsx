@@ -1,10 +1,23 @@
 import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithReauth} from "./baseQueryFunctions";
-import {UserCardInfo} from "../types/UserCardInfo";
-import {UserModel, UserPersonalInfoModel} from "../types/UserModels";
+import {UserPersonalInfoModel} from "../types/UserModels";
 import {ItemModel} from "../types/ItemModel";
 import {Categories} from "../types/Categories";
 import {PersonType} from "../components/userPfofilePage/lists/PersonList";
+import {UserInfoRequestJson} from "../types/response_types/userInfoJson";
+import {UserCardInfo} from "../types/UserCardInfo";
+import {UserCardJson, UserInfoJson} from "../types/response_types/userCardsByFilterJson";
+import {ItemJson, UserItemsRequestJson} from "../types/response_types/userItemsRequestJson";
+
+const categoryParamByCategories = (category: Categories) : string => {
+    switch (category) {
+        case Categories.FILM: return 'film';
+        case Categories.MUSIC: return 'music';
+        case Categories.GAME: return 'game';
+        case Categories.BOOK: return 'book';
+    }
+}
+
 
 export interface UserByIdRequest {
     userId: string
@@ -71,12 +84,23 @@ export const userdataAPI = createApi({
                 url: `/usertype`
             }),
         }),
+        // in progress
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
                 url: `/userdatausers/${arg.userId}`,
                 params: arg
             }),
-            providesTags: result => ['userInfo']
+            providesTags: result => ['userInfo'],
+            transformResponse: (response: UserInfoRequestJson, meta, arg) => {
+                return {
+                    id: response.User.id,
+                    nickname: response.User.username,
+                    avatar: "",
+                    age: response.User.age,
+                    gender: response.User.gender,
+                    telegram: response.User.telegram
+                }
+            }
         }),
         editUserPersonalInfoById: build.mutation<void, EditPersonalInfoRequest>({
             query: (arg) => ({
@@ -124,12 +148,31 @@ export const userdataAPI = createApi({
             },
             providesTags: result => ['persons']
         }),
+        // in progress
         fetchUserItemsById: build.query<ItemModel[], ItemByIdRequest>({
             query: (arg) => ({
                 url: '/userdataitems',
-                //params: arg
+                params: {
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    title: arg.title
+                }
             }),
-            providesTags: result => ['items']
+            providesTags: result => ['items'],
+            transformResponse: (response: UserItemsRequestJson, meta, arg): ItemModel[] => {
+                const result: ItemModel[] = [];
+                for (var i = 0; i < response.Items.length; ++i) {
+                    const item: ItemJson = response.Items[i];
+                    result.push({
+                        id: item.id,
+                        title: item.title,
+                        comment: item.comment,
+                        rating: item.rating
+                    })
+                }
+                return result;
+            }
         }),
         updateItemRating: build.mutation<void, UpdateItemRequest>( {
             query: (arg) => ({

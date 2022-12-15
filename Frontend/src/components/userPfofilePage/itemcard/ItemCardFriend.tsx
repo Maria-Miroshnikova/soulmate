@@ -13,6 +13,10 @@ import {ItemCardBasicProps} from "./ItemCardBasic";
 import CreateIcon from "@mui/icons-material/Create";
 import ClearIcon from "@mui/icons-material/Clear";
 
+/*export interface ItemCardFriendProps {
+    item:
+}*/
+
 const ItemCardFriend: FC<ItemCardBasicProps> = ({item, isMain, category}) => {
 
     const textCommentLabel = "Комментарий пользователя";

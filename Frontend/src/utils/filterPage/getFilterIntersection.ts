@@ -11,6 +11,12 @@ export const getFilterIntersection = (userCategory: CategoryModel, filterCategor
     return intersection;
 }
 
+export const getFilterIntersectionOnlyId = (userItems: string[], personItems: string[]): string[] => {
+    let intersection: string[] = [];
+    intersection = userItems.filter((value) => personItems.includes(value));
+    return intersection;
+}
+
 export const getFilterDifference = (userCategory: CategoryModel, intersectionCategory: CategoryModel): CategoryModel => {
     let difference: CategoryModel = { main_category: [], sub_category: []};
     difference.main_category = userCategory.main_category.filter((value) => !intersectionCategory.main_category.includes(value));
@@ -19,6 +25,11 @@ export const getFilterDifference = (userCategory: CategoryModel, intersectionCat
     return difference;
 }
 
+export const getFilterDifferenceOnlyId = (userItems: string[], intersectionItems: string[]): string[] => {
+    let difference: string[] = [];
+    difference = userItems.filter((value) => !intersectionItems.includes(value));
+    return difference;
+}
 
 /*export const getDifference = (items: ItemModel[], category: Categories, isMain: boolean): string[] => {
     const options_ontology = useAppSelector((state) => state.optionsReducer.categories);
