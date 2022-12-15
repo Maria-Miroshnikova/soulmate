@@ -24,7 +24,7 @@ const CustomAppBar: FC = () => {
     const navigate = useNavigate();
     const isAuth = useAppSelector(state => state.authReducer.isAuth);
 
-    useEffect(() => {
+  /*  useEffect(() => {
         const initClient = () => {
             gapi.client.init({
                 clientId: clientId,
@@ -35,7 +35,7 @@ const CustomAppBar: FC = () => {
             });
         };
         gapi.load('client:auth2', initClient);
-    });
+    });*/
 
     const handleClickLogButton = () => {
         console.log("CKICK");

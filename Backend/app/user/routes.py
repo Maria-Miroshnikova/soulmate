@@ -113,65 +113,74 @@ def userdataitems():
     Studio_schema = StudioSchema(many=True)
     Song_Schema = SongSchema(many=True, exclude=("title", "artist_id"))
     Artist_schema = ArtistSchema(many=True)
+    result = {"Items" : []}
     if category == "film":
         if is_main:
             films = db.session.query(Film).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(User.id == userid).all()
             films_dump = Film_schema.dump(films)
-            result = {"Film" : []}
             for film in films_dump:
-                 result["Film"] = result.setdefault("Film", []) + [film["id"]]
+                relationship = db.session.query(user_film).filter(user_film.c.film_id == film["id"]).filter(user_film.c.user_id == userid).first()
+                result_temp = {"id": film["id"], "title": film["title"], "rating": relationship.rating, "review": relationship.review}
+                result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
         else:
             directors = db.session.query(Director).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(Film.director_id == Director.id).filter(User.id == userid).all()
             directors_dump = Director_schema.dump(directors)
-            result = {"Director" : []}
             for director in directors_dump:
-                 result["Director"] = result.setdefault("Director", []) + [director["id"]]
+                relationship = db.session.query(user_director).filter(user_director.c.director_id == director["id"]).filter(user_director.c.user_id == userid).first()
+                result_temp = {"id": director["id"], "title": director["title"], "rating": relationship.rating, "review": relationship.review}
+                result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
     elif category == "book":
         if is_main:
             books = db.session.query(Book).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(User.id == userid).all()
             books_dump = Book_schema.dump(books)
-            result = {"Book" : []}
             for book in books_dump:
-                 result["Book"] = result.setdefault("Book", []) + [book["id"]]
+                relationship = db.session.query(user_book).filter(user_book.c.book_id == book["id"]).filter(user_book.c.user_id == userid).first()
+                result_temp = {"id": book["id"], "title": book["title"], "rating": relationship.rating, "review": relationship.review}
+                result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
         else:
             authors = db.session.query(Author).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(Book.author_id == Author.id).filter(User.id == userid).all()
             authors_dump = Author_schema.dump(authors)
-            result = {"Author" : []}
             for author in authors_dump:
-                 result["Author"] = result.setdefault("Author", []) + [author["id"]]
+                relationship = db.session.query(user_author).filter(user_author.c.author_id == author["id"]).filter(user_author.c.user_id == userid).first()
+                result_temp = {"id": author["id"], "title": author["title"], "rating": relationship.rating, "review": relationship.review}
+                result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
     elif category == "game":
         if is_main:
             games = db.session.query(Game).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(User.id == userid).all()
             games_dump = Game_schema.dump(games)
-            result = {"Game" : []}
             for game in games_dump:
-                 result["Game"] = result.setdefault("Game", []) + [game["id"]]
+                relationship = db.session.query(user_game).filter(user_game.c.game_id == game["id"]).filter(user_game.c.user_id == userid).first()
+                result_temp = {"id": game["id"], "title": game["title"], "rating": relationship.rating, "review": relationship.review}
+                result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
         else:
             studios = db.session.query(Studio).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(Game.studio_id == Studio.id).filter(User.id == userid).all()
             studios_dump = Studio_schema.dump(studios)
-            result = {"Studio" : []}
             for studio in studios_dump:
-                 result["Studio"] = result.setdefault("Studio", []) + [studio["id"]]
+                relationship = db.session.query(user_studio).filter(user_studio.c.studio_id == studio["id"]).filter(user_studio.c.user_id == userid).first()
+                result_temp = {"id": studio["id"], "title": studio["title"], "rating": relationship.rating, "review": relationship.review}
+                result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
     elif category == "music":
         if is_main:
             songs = db.session.query(Song).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(User.id == userid).all()
             songs_dump = Song_Schema.dump(songs)
-            result = {"Song" : []}
             for song in songs_dump:
-                 result["Song"] = result.setdefault("Song", []) + [song["id"]]
+                relationship = db.session.query(user_song).filter(user_song.c.song_id == song["id"]).filter(user_song.c.user_id == userid).first()
+                result_temp = {"id": song["id"], "title": song["title"], "rating": relationship.rating, "review": relationship.review}
+                result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
         else:
             artists = db.session.query(Artist).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(Song.artist_id == Artist.id).filter(User.id == userid).all()            
             artists_dump = Artist_schema.dump(artists)
-            result = {"Artist" : []}
             for artist in artists_dump:
-                 result["Artist"] = result.setdefault("Artist", []) + [artist["id"]]
+                relationship = db.session.query(user_artist).filter(user_artist.c.artist_id == artist["id"]).filter(user_artist.c.user_id == userid).first()
+                result_temp = {"id": artist["id"], "title": artist["title"], "rating": relationship.rating, "review": relationship.review}
+                result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
 
 @user.route("/register", methods=["POST", "GET"])

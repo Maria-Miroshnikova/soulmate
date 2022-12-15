@@ -42,6 +42,13 @@ user_book = db.Table('user_book',
     db.Column('review', db.String(500))
 )
 
+user_author = db.Table('user_author',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('author_id', db.Integer, db.ForeignKey('author.id'), nullable=False),
+    db.Column('rating', db.Integer),
+    db.Column('review', db.String(500))
+)
+
 book_tag = db.Table('book_tag',
     db.Column('book_id', db.Integer, db.ForeignKey('book.id'), nullable=False),
     db.Column('tag_id', db.Integer, db.ForeignKey('name_book_tag.id'), nullable=False)
@@ -50,6 +57,13 @@ book_tag = db.Table('book_tag',
 user_film = db.Table('user_film',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
     db.Column('film_id', db.Integer, db.ForeignKey('film.id'), nullable=False),
+    db.Column('rating', db.Integer),
+    db.Column('review', db.String(500))
+)
+
+user_director = db.Table('user_director',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('director_id', db.Integer, db.ForeignKey('director.id'), nullable=False),
     db.Column('rating', db.Integer),
     db.Column('review', db.String(500))
 )
@@ -66,6 +80,13 @@ user_game = db.Table('user_game',
     db.Column('review', db.String(500))
 )
 
+user_studio = db.Table('user_studio',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('studio_id', db.Integer, db.ForeignKey('studio.id'), nullable=False),
+    db.Column('rating', db.Integer),
+    db.Column('review', db.String(500))
+)
+
 game_tag = db.Table('game_tag',
     db.Column('game_id', db.Integer, db.ForeignKey('game.id'), nullable=False),
     db.Column('tag_id', db.Integer, db.ForeignKey('name_game_tag.id'), nullable=False)
@@ -74,6 +95,13 @@ game_tag = db.Table('game_tag',
 user_song = db.Table('user_song',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
     db.Column('song_id', db.Integer, db.ForeignKey('song.id'), nullable=False),
+    db.Column('rating', db.Integer),
+    db.Column('review', db.String(500))
+)
+
+user_artist = db.Table('user_artist',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('artist_id', db.Integer, db.ForeignKey('artist.id'), nullable=False),
     db.Column('rating', db.Integer),
     db.Column('review', db.String(500))
 )
@@ -110,6 +138,11 @@ class User(db.Model):
     films = db.relationship('Film', secondary=user_film, backref='viewers')
     games = db.relationship('Game', secondary=user_game, backref='gamers')
     songs = db.relationship('Song', secondary=user_song, backref='listeners')
+
+    authors = db.relationship('Author', secondary=user_author, backref='readers')
+    directors = db.relationship('Director', secondary=user_director, backref='viewers')
+    studios = db.relationship('Studio', secondary=user_studio, backref='gamers')
+    artists = db.relationship('Artist', secondary=user_artist, backref='listeners')
 
     def __init__(self, **kwargs):
         self.email = kwargs.get('email')
