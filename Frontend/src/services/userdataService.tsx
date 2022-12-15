@@ -71,9 +71,10 @@ export const userdataAPI = createApi({
                 url: `/usertype`
             }),
         }),
+        // this
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
-                url: `/userdatausers/${arg.userId}`,
+                url: `/userdatausers/`,
                 params: arg
             }),
             providesTags: result => ['userInfo']
@@ -124,6 +125,7 @@ export const userdataAPI = createApi({
             },
             providesTags: result => ['persons']
         }),
+        // this
         fetchUserItemsById: build.query<ItemModel[], ItemByIdRequest>({
             query: (arg) => ({
                 url: '/userdataitems',

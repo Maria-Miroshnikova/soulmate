@@ -44,11 +44,11 @@ function App() {
   const isAuth = useAppSelector(state => state.authReducer.isAuth);
 
   // TODO: перенести это в unwrap к call у триггера?
-  useEffect(() => {
+ /* useEffect(() => {
     if (isSuccess && !isLoading) {
       dispatch(login_success(loginResponse!));
     }
-  }, [isSuccess, isLoading])
+  }, [isSuccess, isLoading])*/
 
   const {data: film_main} = filterAPI.useFetchOptionsFilmMainQuery();
   const {data: film_sub} = filterAPI.useFetchOptionsFilmSubQuery();

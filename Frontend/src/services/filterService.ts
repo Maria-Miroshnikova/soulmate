@@ -27,7 +27,7 @@ export const filterAPI = createApi({
         fetchUserCardsByFilter: build.query<UserCardInfo[], {userId: string, filter: FilterModel, priority: Categories[]}>({
             query: (arg) => ({
                 url: '/userfilter',
-               // params: makeParamsFromFilter(arg.userId, arg.filter, arg.priority)
+                params: makeParamsFromFilter(arg.userId, arg.filter, arg.priority)
             }),
             transformResponse: (response: UserCardsByFilterJson, meta, arg) => {
                 //console.log("response ODIN: ", response1);
@@ -39,7 +39,7 @@ export const filterAPI = createApi({
                     const user : UserCardJson = response.FoundUsers[i];
                     const userInfo : UserInfoJson = response.FoundUsers[i].User;
 //                    console.log("user: ", user);
- //                   console.log("userInfo: ", userInfo);
+                    console.log("userInfo: ", userInfo);
                     result.push({
                         personal_data: {
                             id: response.FoundUsers[i].User.id,
