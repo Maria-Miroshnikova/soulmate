@@ -15,7 +15,7 @@ SQLALCHEMY_TRACK_MODIFICATIONS = os.environ.get('SQLALCHEMY_TRACK_MODIFICATIONS'
 
 JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
 JWT_TOKEN_LOCATION = ['cookies']
-JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=30)
+JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=1)
 JWT_COOKIE_SECURE = False
 JWT_REFRESH_TOKEN_EXPIRES = datetime.timedelta(days=15)
 JWT_COOKIE_CSRF_PROTECT = True 
