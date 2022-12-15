@@ -36,9 +36,12 @@ const ProfileDrawerContent: FC = () => {
     }
 
     // TODO: т к это нужно только на пользовательской странице, хорошо бы разнести по разным....
-    const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
+    // TODO testind
+    const countResponse = {countRequests: 0};
+    const isLoadingCount = false;
+    /*  const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
         //pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
-    });
+    });*/
 
     const [isVisibleBadge, setIsVisibleBadge] = useState<boolean>(false);
 

@@ -31,9 +31,12 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAbo
         navigate(tabs[idx].url_to);
     }
 
-    const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
+    // TODO testind
+    const countResponse = {countRequests: 0};
+    const isLoadingCount = false;
+/*    const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
        // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
-    });
+    });*/
 
     const [isVisibleBadge, setIsVisibleBadge] = useState<boolean>(false);
 

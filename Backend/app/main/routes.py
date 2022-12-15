@@ -76,9 +76,9 @@ def options_game_sub():
     results = studios_schema.dump(all_studios)
     return json.dumps(results, ensure_ascii=False)   
 
-@main.app_errorhandler(404)
-def forbidden(e):
-   return render_template("page404.html"), 404
+# @main.app_errorhandler(404)
+# def forbidden(e):
+#    return render_template("page404.html"), 404
 
 @main.route('/userfilter/', methods = ['GET'])
 def userfilter():

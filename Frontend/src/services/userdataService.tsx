@@ -87,7 +87,7 @@ export const userdataAPI = createApi({
         // in progress
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
-                url: `/userdatausers/${arg.userId}`,
+                url: `/userdatausers`,
                 params: arg
             }),
             providesTags: result => ['userInfo'],
@@ -167,7 +167,7 @@ export const userdataAPI = createApi({
                     result.push({
                         id: item.id,
                         title: item.title,
-                        comment: item.comment,
+                        comment: item.review,
                         rating: item.rating
                     })
                 }
@@ -268,10 +268,10 @@ export const userdataAPI = createApi({
             }),
             invalidatesTags: ['persons']
         }),
-        fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
+       /* fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
             query: (arg) => ({
-                url: `/requestscount/${arg.userId}`
+                url: `/requestscount`
             })
-        })
+        })*/
     })
 });

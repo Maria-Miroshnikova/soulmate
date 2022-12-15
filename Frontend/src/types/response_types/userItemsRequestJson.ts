@@ -1,7 +1,7 @@
 export interface ItemJson {
     id: string,
     title: string,
-    comment?: string,
+    review?: string,
     rating: number
 }
 

@@ -105,17 +105,17 @@ def userdataitems():
     userid = request.args.get('userId')
     category = request.args.get('category')
     title = request.args.get('title')
-    Film_schema = FilmSchema(many=True, exclude=("title", "director_id"))
+    Film_schema = FilmSchema(many=True, only=("id", "title"))
     Director_schema = DirectorSchema(many=True)
-    Book_schema = BookSchema(many=True, exclude=("title", "author_id"))
+    Book_schema = BookSchema(many=True, only=("id", "title"))
     Author_schema = AuthorSchema(many=True)
-    Game_schema = GameSchema(many=True, exclude=("title", "studio_id"))
+    Game_schema = GameSchema(many=True, only=("id", "title"))
     Studio_schema = StudioSchema(many=True)
-    Song_Schema = SongSchema(many=True, exclude=("title", "artist_id"))
+    Song_Schema = SongSchema(many=True, only=("id", "title"))
     Artist_schema = ArtistSchema(many=True)
     result = {"Items" : []}
     if category == "film":
-        if is_main:
+        if is_main == "true":
             films = db.session.query(Film).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(User.id == userid).all()
             films_dump = Film_schema.dump(films)
             for film in films_dump:
@@ -132,7 +132,7 @@ def userdataitems():
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
     elif category == "book":
-        if is_main:
+        if is_main == "true":
             books = db.session.query(Book).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(User.id == userid).all()
             books_dump = Book_schema.dump(books)
             for book in books_dump:
@@ -149,7 +149,7 @@ def userdataitems():
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
     elif category == "game":
-        if is_main:
+        if is_main == "true":
             games = db.session.query(Game).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(User.id == userid).all()
             games_dump = Game_schema.dump(games)
             for game in games_dump:
@@ -166,7 +166,7 @@ def userdataitems():
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
             return json.dumps(result, ensure_ascii=False)
     elif category == "music":
-        if is_main:
+        if is_main == "true":
             songs = db.session.query(Song).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(User.id == userid).all()
             songs_dump = Song_Schema.dump(songs)
             for song in songs_dump:
