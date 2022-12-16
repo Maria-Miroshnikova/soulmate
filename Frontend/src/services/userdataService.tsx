@@ -183,7 +183,7 @@ export const userdataAPI = createApi({
                     result.push({
                         id: item.id,
                         title: item.title,
-                        comment: (item.review === null) ? undefined : item.comment,
+                        comment: (item.review === null) ? undefined : item.review,
                         rating: item.rating
                     })
                 }
