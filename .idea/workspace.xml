@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="resolve conflicts">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="fix Universal fetchOptions, sketch PersonMyRequest card">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/PersonList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/PersonList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +78,7 @@
       <workItem from="1670908380860" duration="20407000" />
       <workItem from="1671018853284" duration="8005000" />
       <workItem from="1671102088082" duration="11549000" />
-      <workItem from="1671194068127" duration="6136000" />
+      <workItem from="1671194068127" duration="6916000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -167,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671196696503</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="fix Universal fetchOptions, sketch PersonMyRequest card">
+      <created>1671200383595</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1671200383595</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +202,7 @@
     <MESSAGE value="add parsing JSON for fetchUserInfo and fetchUserItems" />
     <MESSAGE value="add parsing JSON for updating comments and personConnections" />
     <MESSAGE value="resolve conflicts" />
-    <option name="LAST_COMMIT_MESSAGE" value="resolve conflicts" />
+    <MESSAGE value="fix Universal fetchOptions, sketch PersonMyRequest card" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix Universal fetchOptions, sketch PersonMyRequest card" />
   </component>
 </project>
