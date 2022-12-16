@@ -91,8 +91,7 @@ export const userdataAPI = createApi({
     endpoints: (build) => ({
         fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
             query: (arg) => ({
-                url: `/usertype`,
-                params: arg
+                url: `/fetchTypeOfPersonForUser`
             }),
            /* transformResponse: (response: TypeOfConnetctionResponseJson , meta, arg) => {
                 return {
@@ -100,6 +99,7 @@ export const userdataAPI = createApi({
                 }
             }*/
         }),
+        // in progress
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
                 url: `/userdatausers`,
@@ -183,7 +183,7 @@ export const userdataAPI = createApi({
                     result.push({
                         id: item.id,
                         title: item.title,
-                        comment: (item.comment === null) ? undefined : item.comment,
+                        comment: (item.review === null) ? undefined : item.comment,
                         rating: item.rating
                     })
                 }
@@ -192,7 +192,7 @@ export const userdataAPI = createApi({
         }),
         updateItemRating: build.mutation<void, UpdateItemRequest>( {
             query: (arg) => ({
-                url: `/userdataitems/${arg.itemId}`,
+                url: `/updateItemRating/${arg.itemId}`,
                 body: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -206,7 +206,7 @@ export const userdataAPI = createApi({
         }),
         updateItemComment: build.mutation<void, UpdateItemRequest>( {
             query: (arg) => ({
-                url: `/userdataitems/${arg.itemId}`,
+                url: `/updateItemComment/${arg.itemId}`,
                 body: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -220,7 +220,7 @@ export const userdataAPI = createApi({
         }),
         addItem: build.mutation<void, ConnectItemRequest>( {
             query: (arg) => ({
-                url: `/userdataitems`,
+                url: `/addItem`,
                 body: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -233,7 +233,7 @@ export const userdataAPI = createApi({
         }),
         removeItem: build.mutation<void, ConnectItemRequest>( {
             query: (arg) => ({
-                url: `/userdataitems/${arg.itemId}`,
+                url: `/removeItem/${arg.itemId}`,
                 method: "POST",
                 body: {
                     userId: arg.userId,
@@ -271,7 +271,7 @@ export const userdataAPI = createApi({
         // TODO: попоросить не добавлять в посещенные друзей!
         requestPersonToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/visited/${arg.personId}`,
+                url: `/requestPersonToBeFriends/${arg.personId}`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -294,7 +294,7 @@ export const userdataAPI = createApi({
         /// FRIENDS persons
         removePersonFromFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/friends/${arg.personId}`,
+                url: `/removePersonFromFriends/${arg.personId}`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -305,7 +305,7 @@ export const userdataAPI = createApi({
         }),
         fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
             query: (arg) => ({
-                url: `/requestscount/${arg.userId}`,
+                url: `/requestscount`,
                 parmas: arg.userId
             }),
             /*transformResponse: (response , meta, arg) => {
