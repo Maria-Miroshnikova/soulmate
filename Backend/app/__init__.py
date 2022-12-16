@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 import datetime
 
 db = SQLAlchemy()
@@ -12,6 +13,7 @@ bcrypt = Bcrypt()
 ma = Marshmallow()
 login_manager = LoginManager()
 jwt_manager = JWTManager()
+cors_manager = CORS()
 login_manager.login_view ='user.login'
 login_manager.login_message = "Авторизуйтесь для доступа к закрытым страницам"
 login_manager.login_message_category = 'danger'
@@ -26,7 +28,7 @@ def create_app():
     ma.init_app(app)
     login_manager.init_app(app)
     jwt_manager.init_app(app)
-
+    cors_manager.init_app(app, resources={r'/api/*': {'origins': 'http://localhost:3000'}})
     #blueprint main
     from app.main.routes import main
     app.register_blueprint(main)

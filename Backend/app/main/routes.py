@@ -22,56 +22,88 @@ def index():
 
 @main.route('/options_book_main', methods = ['GET'])
 def options_book_main():
-    all_books = Book.query.all()
+    title = request.args.get('title')
+    if title == '':
+        all_books = Book.query.all()
+    else:
+        all_books = Book.query.filter(Book.title.contains(title)).all()
     books_schema = BookSchema(many=True)
     results = books_schema.dump(all_books)
     return json.dumps(results, ensure_ascii=False)
 
 @main.route('/options_book_sub', methods = ['GET'])
 def options_book_sub():
-    all_authors = Author.query.all()
+    title = request.args.get('title')
+    if title == '':
+        all_authors = Author.query.all()
+    else:
+        all_authors = Author.query.filter(Author.title.contains(title)).all()
     authors_schema = AuthorSchema(many=True)
     results = authors_schema.dump(all_authors)
     return json.dumps(results, ensure_ascii=False)
 
 @main.route('/options_film_main', methods = ['GET'])
 def options_film_main():
-    all_films = Film.query.all()
+    title = request.args.get('title')
+    if title == '':
+        all_films = Film.query.all()
+    else:
+        all_films = Film.query.filter(Film.title.contains(title)).all()
     films_schema = FilmSchema(many=True)
     results = films_schema.dump(all_films)
     return json.dumps(results, ensure_ascii=False)
 
 @main.route('/options_film_sub', methods = ['GET'])
 def options_film_sub():
-    all_directors = Director.query.all()
+    title = request.args.get('title')
+    if title == '':
+        all_directors = Director.query.all()
+    else:
+        all_directors = Director.query.filter(Director.title.contains(title)).all()
     directors_schema = DirectorSchema(many=True)
     results = directors_schema.dump(all_directors)
     return json.dumps(results, ensure_ascii=False)
 
 @main.route('/options_music_main', methods = ['GET'])
 def options_music_main():
-    all_songs = Song.query.all()
+    title = request.args.get('title')
+    if title == '':
+        all_songs = Song.query.all()
+    else:
+        all_songs = Song.query.filter(Song.title.contains(title)).all()
     songs_schema = FilmSchema(many=True)
     results = songs_schema.dump(all_songs)
     return json.dumps(results, ensure_ascii=False)
 
 @main.route('/options_music_sub', methods = ['GET'])
 def options_music_sub():
-    all_artists = Artist.query.all()
+    title = request.args.get('title')
+    if title == '':
+        all_artists = Artist.query.all()
+    else:
+        all_artists = Artist.query.filter(Artist.title.contains(title)).all()
     artists_schema = ArtistSchema(many=True)
     results = artists_schema.dump(all_artists)
     return json.dumps(results, ensure_ascii=False)
 
 @main.route('/options_game_main', methods = ['GET'])
 def options_game_main():
-    all_games = Game.query.all()
+    title = request.args.get('title')
+    if title == '':
+        all_games = Game.query.all()
+    else:
+        all_games = Game.query.filter(Game.title.contains(title)).all()
     games_schema = GameSchema(many=True)
     results = games_schema.dump(all_games)
     return json.dumps(results, ensure_ascii=False)
 
 @main.route('/options_game_sub', methods = ['GET'])
 def options_game_sub():
-    all_studios = Studio.query.all()
+    title = request.args.get('title')
+    if title == '':
+        all_studios = Studio.query.all()
+    else:
+        all_studios = Studio.query.filter(Studio.title.contains(title)).all()
     studios_schema = StudioSchema(many=True)
     results = studios_schema.dump(all_studios)
     return json.dumps(results, ensure_ascii=False)   
