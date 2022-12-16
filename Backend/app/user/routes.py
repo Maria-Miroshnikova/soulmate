@@ -122,7 +122,6 @@ def userdataitems():
                 relationship = db.session.query(user_film).filter(user_film.c.film_id == film["id"]).filter(user_film.c.user_id == userid).first()
                 result_temp = {"id": film["id"], "title": film["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
-            return json.dumps(result, ensure_ascii=False)
         else:
             directors = db.session.query(Director).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(Film.director_id == Director.id).filter(User.id == userid).all()
             directors_dump = Director_schema.dump(directors)
@@ -130,7 +129,6 @@ def userdataitems():
                 relationship = db.session.query(user_director).filter(user_director.c.director_id == director["id"]).filter(user_director.c.user_id == userid).first()
                 result_temp = {"id": director["id"], "title": director["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
-            return json.dumps(result, ensure_ascii=False)
     elif category == "book":
         if is_main == "true":
             books = db.session.query(Book).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(User.id == userid).all()
@@ -139,7 +137,6 @@ def userdataitems():
                 relationship = db.session.query(user_book).filter(user_book.c.book_id == book["id"]).filter(user_book.c.user_id == userid).first()
                 result_temp = {"id": book["id"], "title": book["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
-            return json.dumps(result, ensure_ascii=False)
         else:
             authors = db.session.query(Author).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(Book.author_id == Author.id).filter(User.id == userid).all()
             authors_dump = Author_schema.dump(authors)
@@ -147,7 +144,6 @@ def userdataitems():
                 relationship = db.session.query(user_author).filter(user_author.c.author_id == author["id"]).filter(user_author.c.user_id == userid).first()
                 result_temp = {"id": author["id"], "title": author["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
-            return json.dumps(result, ensure_ascii=False)
     elif category == "game":
         if is_main == "true":
             games = db.session.query(Game).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(User.id == userid).all()
@@ -156,7 +152,6 @@ def userdataitems():
                 relationship = db.session.query(user_game).filter(user_game.c.game_id == game["id"]).filter(user_game.c.user_id == userid).first()
                 result_temp = {"id": game["id"], "title": game["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
-            return json.dumps(result, ensure_ascii=False)
         else:
             studios = db.session.query(Studio).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(Game.studio_id == Studio.id).filter(User.id == userid).all()
             studios_dump = Studio_schema.dump(studios)
@@ -164,7 +159,6 @@ def userdataitems():
                 relationship = db.session.query(user_studio).filter(user_studio.c.studio_id == studio["id"]).filter(user_studio.c.user_id == userid).first()
                 result_temp = {"id": studio["id"], "title": studio["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
-            return json.dumps(result, ensure_ascii=False)
     elif category == "music":
         if is_main == "true":
             songs = db.session.query(Song).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(User.id == userid).all()
@@ -173,7 +167,6 @@ def userdataitems():
                 relationship = db.session.query(user_song).filter(user_song.c.song_id == song["id"]).filter(user_song.c.user_id == userid).first()
                 result_temp = {"id": song["id"], "title": song["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
-            return json.dumps(result, ensure_ascii=False)
         else:
             artists = db.session.query(Artist).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(Song.artist_id == Artist.id).filter(User.id == userid).all()            
             artists_dump = Artist_schema.dump(artists)
@@ -181,7 +174,185 @@ def userdataitems():
                 relationship = db.session.query(user_artist).filter(user_artist.c.artist_id == artist["id"]).filter(user_artist.c.user_id == userid).first()
                 result_temp = {"id": artist["id"], "title": artist["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
-            return json.dumps(result, ensure_ascii=False)
+    return json.dumps(result, ensure_ascii=False)
+
+@user.route('/updateItemRating/', methods = ['POST'])
+def updateItemRating():
+    #PATCH
+    userid = request.json.get('userId', None)
+    itemId = request.json.get('itemId', None)
+    category = request.json.get('category', None)
+    is_main = request.json.get('isMain', None)
+    value = request.json.get('value', None)
+
+    if category == "film":
+        if is_main == "true":
+            entry = db.session.query(user_film).filter(user_film.c.film_id == itemId).filter(user_film.c.user_id == userid).update({'rating': value})
+        else:
+            entry = db.session.query(user_director).filter(user_director.c.director_id == itemId).filter(user_director.c.user_id == userid).update({'rating': value})
+    elif category == "book":
+        if is_main == "true":
+            entry = db.session.query(user_book).filter(user_book.c.book_id == itemId).filter(user_book.c.user_id == userid).update({'rating': value})
+        else:
+            entry = db.session.query(user_author).filter(user_author.c.author_id == itemId).filter(user_author.c.user_id == userid).update({'rating': value})
+    elif category == "game":
+        if is_main == "true":
+            entry = db.session.query(user_game).filter(user_game.c.game_id == itemId).filter(user_game.c.user_id == userid).update({'rating': value})
+        else:
+            entry = db.session.query(user_studio).filter(user_studio.c.studio_id == itemId).filter(user_studio.c.user_id == userid).update({'rating': value})
+    elif category == "music":
+        if is_main == "true":
+            entry = db.session.query(user_song).filter(user_song.c.song_id == itemId).filter(user_song.c.user_id == userid).update({'rating': value})
+        else:
+            entry = db.session.query(user_artist).filter(user_artist.c.song_id == itemId).filter(user_artist.c.user_id == userid).update({'rating': value})
+    if entry:
+        db.session.commit()
+
+@user.route('/updateItemComment/', methods = ['POST'])
+def updateItemRating():
+    #PATCH
+    userid = request.json.get('userId', None)
+    itemId = request.json.get('itemId', None)
+    category = request.json.get('category', None)
+    is_main = request.json.get('isMain', None)
+    value = request.json.get('value', None)
+
+    if category == "film":
+        if is_main == "true":
+            entry = db.session.query(user_film).filter(user_film.c.film_id == itemId).filter(user_film.c.user_id == userid).update({'review': value})
+        else:
+            entry = db.session.query(user_director).filter(user_director.c.director_id == itemId).filter(user_director.c.user_id == userid).update({'review': value})
+    elif category == "book":
+        if is_main == "true":
+            entry = db.session.query(user_book).filter(user_book.c.book_id == itemId).filter(user_book.c.user_id == userid).update({'review': value})
+        else:
+            entry = db.session.query(user_author).filter(user_author.c.author_id == itemId).filter(user_author.c.user_id == userid).update({'review': value})
+    elif category == "game":
+        if is_main == "true":
+            entry = db.session.query(user_game).filter(user_game.c.game_id == itemId).filter(user_game.c.user_id == userid).update({'review': value})
+        else:
+            entry = db.session.query(user_studio).filter(user_studio.c.studio_id == itemId).filter(user_studio.c.user_id == userid).update({'review': value})
+    elif category == "music":
+        if is_main == "true":
+            entry = db.session.query(user_song).filter(user_song.c.song_id == itemId).filter(user_song.c.user_id == userid).update({'review': value})
+        else:
+            entry = db.session.query(user_artist).filter(user_artist.c.song_id == itemId).filter(user_artist.c.user_id == userid).update({'review': value})
+    if entry:
+        db.session.commit()
+            
+
+@user.route('/addItem/', methods = ['POST'])
+def updateItemRating():
+    userid = request.json.get('userId', None)
+    itemId = request.json.get('itemId', None)
+    category = request.json.get('category', None)
+    is_main = request.json.get('isMain', None)
+
+    if category == "film":
+        if is_main == "true":
+            entry = user_film.insert().values(user_id=userid, film_id=itemId)
+        else:
+            entry = user_director.insert().values(user_id=userid, director_id=itemId)
+    elif category == "book":
+        if is_main == "true":
+            entry = user_book.insert().values(user_id=userid, book_id=itemId)
+        else:
+            entry = user_author.insert().values(user_id=userid, author_id=itemId)
+    elif category == "game":
+        if is_main == "true":
+            entry = user_game.insert().values(user_id=userid, game_id=itemId)
+        else:
+            entry = user_studio.insert().values(user_id=userid, studio_id=itemId)
+    elif category == "music":
+        if is_main == "true":
+            entry = user_song.insert().values(user_id=userid, song_id=itemId)
+        else:
+            entry = user_artist.insert().values(user_id=userid, artist_id=itemId)
+    if entry:
+        db.session.execute(entry) 
+        db.session.commit()
+
+@user.route('/removeItem/', methods = ['POST'])
+def updateItemRating():
+    #DELETE
+    userid = request.json.get('userId', None)
+    itemId = request.json.get('itemId', None)
+    category = request.json.get('category', None)
+    is_main = request.json.get('isMain', None)
+
+    if category == "film":
+        if is_main == "true":
+            entry = db.session.query(user_film).filter(user_film.c.film_id == itemId, user_film.c.user_id == userid).delete()
+        else:
+            entry = db.session.query(user_director).filter(user_director.c.director_id == itemId, user_director.c.user_id == userid).delete()
+    elif category == "book":
+        if is_main == "true":
+            entry = db.session.query(user_book).filter(user_book.c.book_id == itemId, user_book.c.user_id == userid).delete()
+        else:
+            entry = db.session.query(user_author).filter(user_author.c.author_id == itemId, user_author.c.user_id == userid).delete()
+    elif category == "game":
+        if is_main == "true":
+            entry = db.session.query(user_game).filter(user_game.c.game_id == itemId, user_game.c.user_id == userid).delete()
+        else:
+            entry = db.session.query(user_studio).filter(user_studio.c.studio_id == itemId, user_studio.c.user_id == userid).delete()
+    elif category == "music":
+        if is_main == "true":
+            entry = db.session.query(user_song).filter(user_song.c.song_id == itemId, user_song.c.user_id == userid).delete()
+        else:
+            entry = db.session.query(user_artist).filter(user_artist.c.artist_id == itemId, user_artist.c.user_id == userid).delete()
+    if entry:
+        db.session.commit()
+
+@user.route("/friends", methods = ['POST'])
+def friends():
+    userid = request.json.get('userId', None)
+    personId = request.json.get('personId', None)
+    entry = requests.insert().values(followed_id=personId, follower_id=userid)
+    if entry:
+        db.session.execute(entry) 
+        db.session.commit()
+
+@user.route("/requestPersonToBeFriends", methods = ['POST'])
+def requestPersonToBeFriends():
+    #DELETE
+    userid = request.json.get('userId', None)
+    personId = request.json.get('personId', None)
+    entry = requests.insert().values(followed_id=personId, follower_id=userid)
+    if entry:
+        db.session.execute(entry) 
+        db.session.commit()
+
+@user.route("/removePersonFromFriends", methods = ['POST'])
+def removePersonFromFriends():
+    #DELETE
+    userid = request.json.get('userId', None)
+    personId = request.json.get('personId', None)
+    entry = db.session.query(requests).filter(requests.c.followed_id == personId, requests.c.follower_id == userid).delete()
+    db.session.commit()
+
+@user.route("/fetchTypeOfPersonForUser", methods = ['GET'])
+def fetchTypeOfPersonForUser():
+    userid = request.args.get('userId')
+    personId = request.args.get('personId')
+    user_follower = db.session.query(requests).filter(requests.c.follower_id == userid, requests.c.followed_id == personId).first()
+    person_follower = db.session.query(requests).filter(requests.c.follower_id == personId, requests.c.followed_id == userid).first()
+    if user_follower and person_follower:
+        return {"friends"}
+    elif user_follower:
+        return {"user_is_follower"}
+    elif person_follower:
+        return {"person_is_follower"}
+    else:
+        return {""}
+
+@user.route("/visited", methods = ['POST'])
+def visited():
+    userid = request.json.get('userId', None)
+    personId = request.json.get('personId', None)
+    entry = browsingHistory.insert().values(viewer_id=userid, viewed_id=personId)
+    if entry:
+        db.session.execute(entry) 
+        db.session.commit()
 
 @user.route("/register", methods=["POST", "GET"])
 def register():
@@ -345,8 +516,6 @@ def user_id(id):
 #         return redirect(url_for('user.login') + '?next=' + request.url)
 #     return response
 
-
-
 # @user.route('/login', methods=['GET', 'POST'])
 # def login():
 #     if current_user.is_authenticated:
@@ -363,20 +532,3 @@ def user_id(id):
 #         else:
 #             flash('Войти не удалось. Пожалуйста, проверьте электронную почту или пароль', 'danger')
 #     return render_template("login.html", title="Авторизация", form=form)
-
-# @user.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if current_user.is_authenticated:
-#         return redirect(url_for('user.account'))
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         user = User.query.filter_by(email=form.email.data).first()
-#         if user and bcrypt.check_password_hash(user.password, form.password.data):
-#             login_user(user, remember=form.remember.data)
-#             next_page = request.args.get('next')
-
-#             return redirect(next_page) if next_page else redirect(url_for('.account'))
-#         else:
-#             flash('Войти не удалось. Пожалуйста, проверьте электронную почту или пароль', 'danger')
-#     return render_template("login.html", title="Авторизация", form=form)
-#     # return render_template('login.html', form=form, title='Логин', legend='Войти')

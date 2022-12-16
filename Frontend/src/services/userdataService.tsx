@@ -81,7 +81,7 @@ export const userdataAPI = createApi({
     endpoints: (build) => ({
         fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
             query: (arg) => ({
-                url: `/usertype`
+                url: `/fetchTypeOfPersonForUser`
             }),
         }),
         // in progress
@@ -176,7 +176,7 @@ export const userdataAPI = createApi({
         }),
         updateItemRating: build.mutation<void, UpdateItemRequest>( {
             query: (arg) => ({
-                url: `/userdataitems/${arg.itemId}`,
+                url: `/updateItemRating/${arg.itemId}`,
                 body: {
                     rating: arg.value,
                 },
@@ -186,7 +186,7 @@ export const userdataAPI = createApi({
         }),
         updateItemComment: build.mutation<void, UpdateItemRequest>( {
             query: (arg) => ({
-                url: `/userdataitems/${arg.itemId}`,
+                url: `/updateItemComment/${arg.itemId}`,
                 body: {
                     comment: arg.value
                 },
@@ -196,7 +196,7 @@ export const userdataAPI = createApi({
         }),
         addItem: build.mutation<void, ConnectItemRequest>( {
             query: (arg) => ({
-                url: `/userdataitems`,
+                url: `/addItem`,
                 body: {
                     id: arg.itemId,
                     title: arg.itemId,
@@ -208,7 +208,7 @@ export const userdataAPI = createApi({
         }),
         removeItem: build.mutation<void, ConnectItemRequest>( {
             query: (arg) => ({
-                url: `/userdataitems/${arg.itemId}`,
+                url: `/removeItem/${arg.itemId}`,
                 method: "DELETE"
             }),
             invalidatesTags: ['items']
@@ -240,7 +240,7 @@ export const userdataAPI = createApi({
         // TODO: попоросить не добавлять в посещенные друзей!
         requestPersonToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/visited/${arg.personId}`,
+                url: `/requestPersonToBeFriends/${arg.personId}`,
                 method: "DELETE"
             }),
             invalidatesTags: ['persons']
@@ -263,7 +263,7 @@ export const userdataAPI = createApi({
         /// FRIENDS persons
         removePersonFromFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/friends/${arg.personId}`,
+                url: `/removePersonFromFriends/${arg.personId}`,
                 method: "DELETE"
             }),
             invalidatesTags: ['persons']
