@@ -337,13 +337,13 @@ def fetchTypeOfPersonForUser():
     user_follower = db.session.query(requests).filter(requests.c.follower_id == userid, requests.c.followed_id == personId).first()
     person_follower = db.session.query(requests).filter(requests.c.follower_id == personId, requests.c.followed_id == userid).first()
     if user_follower and person_follower:
-        return {"friends"}
+        return {"type": "friends"}
     elif user_follower:
-        return {"user_is_follower"}
+        return {"type": "user_is_follower"}
     elif person_follower:
-        return {"person_is_follower"}
+        return {"type": "person_is_follower"}
     else:
-        return {""}
+        return {"type": ""}
 
 @user.route("/visited", methods = ['POST'])
 def visited():
@@ -353,6 +353,12 @@ def visited():
     if entry:
         db.session.execute(entry) 
         db.session.commit()
+
+# @user.route("/requestscount", methods = ['GET'])
+# def requestscount():
+#     userid = request.args.get('userId')
+#     countFollowersWithFriends = db.session.query(requests).filter(requests.c.followed_id == userid).count()
+#     countFollowersWithFriends = db.session.query(requests).filter(requests.c.followed_id == userid).count()
 
 @user.route("/register", methods=["POST", "GET"])
 def register():

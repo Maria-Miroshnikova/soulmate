@@ -268,10 +268,10 @@ export const userdataAPI = createApi({
             }),
             invalidatesTags: ['persons']
         }),
-       /* fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
+        fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
             query: (arg) => ({
                 url: `/requestscount`
             })
-        })*/
+        })
     })
 });
