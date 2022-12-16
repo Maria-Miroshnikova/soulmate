@@ -8,6 +8,7 @@ import {UserInfoRequestJson} from "../types/response_types/userInfoJson";
 import {UserCardInfo} from "../types/UserCardInfo";
 import {UserCardJson, UserInfoJson} from "../types/response_types/userCardsByFilterJson";
 import {ItemJson, UserItemsRequestJson} from "../types/response_types/userItemsRequestJson";
+import {TypeOfConnetctionResponseJson} from "../types/response_types/TypeOfConnetctionResponseJson";
 
 const categoryParamByCategories = (category: Categories) : string => {
     switch (category) {
@@ -18,6 +19,14 @@ const categoryParamByCategories = (category: Categories) : string => {
     }
 }
 
+/*const typeOfConnectionByString = (type: string) : PersonType => {
+    switch (type) {
+        case "": return PersonType.VISITED;
+        case "user_is_follower": return PersonType.REQUESTS;
+        case "friends": return PersonType.FRIENDS;
+        case "user": return PersonType.VISITED;
+    }
+}*/
 
 export interface UserByIdRequest {
     userId: string
@@ -37,6 +46,7 @@ export interface ItemByIdRequest {
 }
 
 export interface UpdateItemRequest {
+    userId: string
     itemId: string,
     value: string,
     category: Categories,
@@ -81,13 +91,18 @@ export const userdataAPI = createApi({
     endpoints: (build) => ({
         fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
             query: (arg) => ({
-                url: `/usertype`
+                url: `/usertype`,
+                params: arg
             }),
+           /* transformResponse: (response: TypeOfConnetctionResponseJson , meta, arg) => {
+                return {
+                    personType: (response.type ===)
+                }
+            }*/
         }),
-        // in progress
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
-                url: `/userdatausers/${arg.userId}`,
+                url: `/userdatausers`,
                 params: arg
             }),
             providesTags: result => ['userInfo'],
@@ -102,6 +117,7 @@ export const userdataAPI = createApi({
                 }
             }
         }),
+        // не сделан еще!
         editUserPersonalInfoById: build.mutation<void, EditPersonalInfoRequest>({
             query: (arg) => ({
                 url: `/userdatausers/${arg.id}`,
@@ -113,15 +129,16 @@ export const userdataAPI = createApi({
                     telegram: arg.telegram,
                     //password: string
                 },
-                method: 'PATCH'
+                method: "POST"
             }),
             invalidatesTags: ['userInfo']
         }),
         // TODO: edit avarat request!
+        // НЕ СДЕЛАН ЕЩЕ
         deleteUserAccount: build.mutation<void, UserByIdRequest>({
             query: (arg) => ({
                 url: `/userdatausers/${arg.userId}`,
-                method: 'DELETE'
+                method: "POST"
             }),
             invalidatesTags: ['userInfo']
         }),
@@ -148,7 +165,6 @@ export const userdataAPI = createApi({
             },
             providesTags: result => ['persons']
         }),
-        // in progress
         fetchUserItemsById: build.query<ItemModel[], ItemByIdRequest>({
             query: (arg) => ({
                 url: '/userdataitems',
@@ -167,7 +183,7 @@ export const userdataAPI = createApi({
                     result.push({
                         id: item.id,
                         title: item.title,
-                        comment: item.comment,
+                        comment: (item.comment === null) ? undefined : item.comment,
                         rating: item.rating
                     })
                 }
@@ -178,9 +194,13 @@ export const userdataAPI = createApi({
             query: (arg) => ({
                 url: `/userdataitems/${arg.itemId}`,
                 body: {
-                    rating: arg.value,
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    itemId: arg.itemId,
+                    value: arg.value
                 },
-                method: "PATCH"
+                method: "POST"
             }),
             invalidatesTags: ['items']
         }),
@@ -188,9 +208,13 @@ export const userdataAPI = createApi({
             query: (arg) => ({
                 url: `/userdataitems/${arg.itemId}`,
                 body: {
-                    comment: arg.value
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    itemId: arg.itemId,
+                    value: arg.value
                 },
-                method: "PATCH"
+                method: "POST"
             }),
             invalidatesTags: ['items']
         }),
@@ -198,9 +222,10 @@ export const userdataAPI = createApi({
             query: (arg) => ({
                 url: `/userdataitems`,
                 body: {
-                    id: arg.itemId,
-                    title: arg.itemId,
-                    rating: 0
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    itemId: arg.itemId
                 },
                 method: "POST"
             }),
@@ -209,7 +234,13 @@ export const userdataAPI = createApi({
         removeItem: build.mutation<void, ConnectItemRequest>( {
             query: (arg) => ({
                 url: `/userdataitems/${arg.itemId}`,
-                method: "DELETE"
+                method: "POST",
+                body: {
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    itemId: arg.itemId
+                }
             }),
             invalidatesTags: ['items']
         }),
@@ -219,12 +250,8 @@ export const userdataAPI = createApi({
                 url: `/friends`,
                 method: "POST",
                 body: {
-                    id: arg.personId,
-                    nickname: arg.personId + "accept",
-                    avatar: "",
-                    age: "hz",
-                    gender: "hz",
-                    telegram: "added@t.me"
+                    personId: arg.personId,
+                    userId: arg.userId
                 },
             }),
             invalidatesTags: ['persons']
@@ -232,7 +259,11 @@ export const userdataAPI = createApi({
         denyRequstToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
                 url: `/requests/${arg.personId}`,
-                method: "DELETE"
+                method: "POST",
+                body: {
+                    personId: arg.personId,
+                    userId: arg.userId
+                }
             }),
             invalidatesTags: ['persons']
         }),
@@ -241,7 +272,11 @@ export const userdataAPI = createApi({
         requestPersonToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
                 url: `/visited/${arg.personId}`,
-                method: "DELETE"
+                method: "POST",
+                body: {
+                    personId: arg.personId,
+                    userId: arg.userId
+                }
             }),
             invalidatesTags: ['persons']
         }),
@@ -250,12 +285,8 @@ export const userdataAPI = createApi({
                 url: `/visited`,
                 method: "POST",
                 body: {
-                    id: arg.personId,
-                    nickname: arg.personId + "visit",
-                    avatar: "",
-                    age: "hz",
-                    gender: "hz",
-                    telegram: "visited@t.me"
+                    personId: arg.personId,
+                    userId: arg.userId
                 },
             }),
             invalidatesTags: ['persons']
@@ -264,14 +295,41 @@ export const userdataAPI = createApi({
         removePersonFromFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
                 url: `/friends/${arg.personId}`,
-                method: "DELETE"
+                method: "POST",
+                body: {
+                    personId: arg.personId,
+                    userId: arg.userId
+                }
             }),
             invalidatesTags: ['persons']
         }),
         fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
             query: (arg) => ({
-                url: `/requestscount/${arg.userId}`
-            })
+                url: `/requestscount/${arg.userId}`,
+                parmas: arg.userId
+            }),
+            /*transformResponse: (response , meta, arg) => {
+                return {
+                    response.
+                }
+            }*/
         })
     })
 });
+
+/*
+const localEndpoint = {
+    fetchUserCountOfRequestsToFriends: `/requestscount/${arg.userId}`,
+    removePersonFromFriends: `/friends/${arg.personId}`,
+    addPersonToVisited: `/friends/${arg.personId}`,
+    requestPersonToBeFriends: `/visited/${arg.personId}`,
+    denyRequstToFriends: `/requests/${arg.personId}`,
+    acceptRequestToFriends: `/friends`,
+    removeItem: `/userdataitems/${arg.itemId}`,
+    addItem: `/userdataitems`,
+    updateItemComment: `/userdataitems/${arg.itemId}`,
+    updateItemRating: `/userdataitems/${arg.itemId}`,
+    deleteUserAccount: `/userdatausers/${arg.userId}`,
+    editUserPersonalInfoById: `/userdatausers/${arg.id}`,
+    fetchTypeOfPersonForUser: `/usertype`
+}*/

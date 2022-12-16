@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add ErrorPage">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add parsing JSON for fetchUserInfo and fetchUserItems">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardFriend.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardFriend.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardBasic.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/itemcard/ItemCardBasic.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/utils/filterPage/getFilterIntersection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/utils/filterPage/getFilterIntersection.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/test_server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/test_server/db.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +80,8 @@
       <workItem from="1670743004954" duration="2032000" />
       <workItem from="1670908380860" duration="20407000" />
       <workItem from="1671018853284" duration="8005000" />
-      <workItem from="1671102088082" duration="7856000" />
+      <workItem from="1671102088082" duration="11549000" />
+      <workItem from="1671194068127" duration="2211000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -147,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671025662592</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add parsing JSON for fetchUserInfo and fetchUserItems">
+      <created>1671111973661</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1671111973661</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +181,7 @@
     <MESSAGE value="make friend button TELEGRAM linkable" />
     <MESSAGE value="add bottom padding" />
     <MESSAGE value="add ErrorPage" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ErrorPage" />
+    <MESSAGE value="add parsing JSON for fetchUserInfo and fetchUserItems" />
+    <option name="LAST_COMMIT_MESSAGE" value="add parsing JSON for fetchUserInfo and fetchUserItems" />
   </component>
 </project>

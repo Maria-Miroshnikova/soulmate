@@ -22,6 +22,7 @@ const ItemList: FC<ItemListProps> = ({category, isMain}) => {
     const {data: items, isLoading: isLoadingItems} = userdataAPI.useFetchUserItemsByIdQuery({userId: userId!, category: category, isMain: isMain, title: title});
 
     // Загрузка опций
+    // TODO
     const {data: options, isLoading: isLoadingOptions} = filterAPI.useFetchOptionsQuery({category: category, isMain: isMain, title: title});
     const [opt_add, setOpt] = useState<OptionItemModel[]>([]);
 

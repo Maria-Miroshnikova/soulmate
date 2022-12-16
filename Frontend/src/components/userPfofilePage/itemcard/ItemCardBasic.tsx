@@ -39,19 +39,19 @@ const ItemCardBasic: FC<ItemCardBasicProps> = ({item, category, isMain}) => {
 
     // TODO: как будет перерисовываться после обновления??
     const handleSaveComment = () => {
-        changeComment({itemId: item.id, value: commentValue, category: category, isMain: isMain});
+        changeComment({itemId: item.id, value: commentValue, category: category, isMain: isMain, userId: userId!});
         setExpanded(!expanded);
     }
 
     const handleDeleteComment = () => {
         setCommentValue("");
-        changeComment({itemId: item.id, value: "", category: category, isMain: isMain});
+        changeComment({itemId: item.id, value: "", category: category, isMain: isMain, userId: userId!});
         setExpanded(!expanded);
     }
 
     const handleChangeRating = (value: number | null) => {
         setRatingValue(value!);
-        changeRating({itemId: item.id, value: value!.toString(), category: category, isMain: isMain});
+        changeRating({itemId: item.id, value: value!.toString(), category: category, isMain: isMain, userId: userId!});
     }
 
     const handleChangeComment = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
