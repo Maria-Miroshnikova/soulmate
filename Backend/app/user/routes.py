@@ -8,6 +8,7 @@ import json
 import urllib
 from sqlalchemy import or_, and_
 from flask_jwt_extended import current_user, jwt_required, create_access_token, get_jwt_identity, get_jwt, set_access_cookies, set_refresh_cookies, unset_access_cookies, unset_refresh_cookies, unset_jwt_cookies, get_current_user
+from flask_cors import cross_origin
 
 user = Blueprint('user', __name__)
 
@@ -116,14 +117,21 @@ def userdataitems():
     result = {"Items" : []}
     if category == "film":
         if is_main == "true":
-            films = db.session.query(Film).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(User.id == userid).all()
+            if title == '':
+                films = db.session.query(Film).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(User.id == userid).all()
+            else:
+                films = db.session.query(Film).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(User.id == userid).filter(Film.title.contains(title)).all()
+            
             films_dump = Film_schema.dump(films)
             for film in films_dump:
                 relationship = db.session.query(user_film).filter(user_film.c.film_id == film["id"]).filter(user_film.c.user_id == userid).first()
                 result_temp = {"id": film["id"], "title": film["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
-            directors = db.session.query(Director).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(Film.director_id == Director.id).filter(User.id == userid).all()
+            if title == '':
+                directors = db.session.query(Director).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(Film.director_id == Director.id).filter(User.id == userid).all()
+            else:
+                directors = db.session.query(Director).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(Film.director_id == Director.id).filter(User.id == userid).filter(Director.title.contains(title)).all()
             directors_dump = Director_schema.dump(directors)
             for director in directors_dump:
                 relationship = db.session.query(user_director).filter(user_director.c.director_id == director["id"]).filter(user_director.c.user_id == userid).first()
@@ -131,14 +139,20 @@ def userdataitems():
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "book":
         if is_main == "true":
-            books = db.session.query(Book).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(User.id == userid).all()
+            if title == '':
+                books = db.session.query(Book).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(User.id == userid).all()
+            else:
+                books = db.session.query(Book).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(User.id == userid).filter(Book.title.contains(title)).all()
             books_dump = Book_schema.dump(books)
             for book in books_dump:
                 relationship = db.session.query(user_book).filter(user_book.c.book_id == book["id"]).filter(user_book.c.user_id == userid).first()
                 result_temp = {"id": book["id"], "title": book["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
-            authors = db.session.query(Author).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(Book.author_id == Author.id).filter(User.id == userid).all()
+            if title == '':
+                authors = db.session.query(Author).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(Book.author_id == Author.id).filter(User.id == userid).all()
+            else:
+                authors = db.session.query(Author).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(Book.author_id == Author.id).filter(User.id == userid).filter(Author.title.contains(title)).all()
             authors_dump = Author_schema.dump(authors)
             for author in authors_dump:
                 relationship = db.session.query(user_author).filter(user_author.c.author_id == author["id"]).filter(user_author.c.user_id == userid).first()
@@ -146,14 +160,20 @@ def userdataitems():
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "game":
         if is_main == "true":
-            games = db.session.query(Game).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(User.id == userid).all()
+            if title == '':
+                games = db.session.query(Game).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(User.id == userid).all()
+            else:
+                games = db.session.query(Game).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(User.id == userid).filter(Game.title.contains(title)).all()
             games_dump = Game_schema.dump(games)
             for game in games_dump:
                 relationship = db.session.query(user_game).filter(user_game.c.game_id == game["id"]).filter(user_game.c.user_id == userid).first()
                 result_temp = {"id": game["id"], "title": game["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
-            studios = db.session.query(Studio).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(Game.studio_id == Studio.id).filter(User.id == userid).all()
+            if title == '':
+                studios = db.session.query(Studio).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(Game.studio_id == Studio.id).filter(User.id == userid).all()
+            else:
+                studios = db.session.query(Studio).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(Game.studio_id == Studio.id).filter(User.id == userid).filter(Studio.title.contains(title)).all()
             studios_dump = Studio_schema.dump(studios)
             for studio in studios_dump:
                 relationship = db.session.query(user_studio).filter(user_studio.c.studio_id == studio["id"]).filter(user_studio.c.user_id == userid).first()
@@ -161,14 +181,20 @@ def userdataitems():
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "music":
         if is_main == "true":
-            songs = db.session.query(Song).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(User.id == userid).all()
+            if title == '':
+                songs = db.session.query(Song).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(User.id == userid).all()
+            else:
+                songs = db.session.query(Song).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(User.id == userid).filter(Song.title.contains(title)).all()
             songs_dump = Song_Schema.dump(songs)
             for song in songs_dump:
                 relationship = db.session.query(user_song).filter(user_song.c.song_id == song["id"]).filter(user_song.c.user_id == userid).first()
                 result_temp = {"id": song["id"], "title": song["title"], "rating": relationship.rating, "review": relationship.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
-            artists = db.session.query(Artist).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(Song.artist_id == Artist.id).filter(User.id == userid).all()            
+            if title == '':
+                artists = db.session.query(Artist).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(Song.artist_id == Artist.id).filter(User.id == userid).all()   
+            else:
+                artists = db.session.query(Artist).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(Song.artist_id == Artist.id).filter(User.id == userid).filter(Artist.title.contains(title)).all()           
             artists_dump = Artist_schema.dump(artists)
             for artist in artists_dump:
                 relationship = db.session.query(user_artist).filter(user_artist.c.artist_id == artist["id"]).filter(user_artist.c.user_id == userid).first()
@@ -176,7 +202,8 @@ def userdataitems():
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     return json.dumps(result, ensure_ascii=False)
 
-@user.route('/updateItemRating/', methods = ['POST'])
+@user.route('/api/updateItemRating/', methods=['POST'])
+@cross_origin(origins=['http://localhost:3000'])
 def updateItemRating():
     #PATCH
     userid = request.json.get('userId', None)
@@ -207,9 +234,11 @@ def updateItemRating():
             entry = db.session.query(user_artist).filter(user_artist.c.song_id == itemId).filter(user_artist.c.user_id == userid).update({'rating': value})
     if entry:
         db.session.commit()
+    return ''
 
-@user.route('/updateItemComment/', methods = ['POST'])
-def updateItemRating():
+@user.route('/api/updateItemComment/', methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
+def updateItemComment():
     #PATCH
     userid = request.json.get('userId', None)
     itemId = request.json.get('itemId', None)
@@ -239,15 +268,17 @@ def updateItemRating():
             entry = db.session.query(user_artist).filter(user_artist.c.song_id == itemId).filter(user_artist.c.user_id == userid).update({'review': value})
     if entry:
         db.session.commit()
+    return ''
             
 
-@user.route('/addItem/', methods = ['POST'])
-def updateItemRating():
+@user.route('/api/addItem/', methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
+def addItem():
     userid = request.json.get('userId', None)
     itemId = request.json.get('itemId', None)
     category = request.json.get('category', None)
     is_main = request.json.get('isMain', None)
-
+    print(userid, itemId, category, is_main)
     if category == "film":
         if is_main == "true":
             entry = user_film.insert().values(user_id=userid, film_id=itemId)
@@ -268,12 +299,13 @@ def updateItemRating():
             entry = user_song.insert().values(user_id=userid, song_id=itemId)
         else:
             entry = user_artist.insert().values(user_id=userid, artist_id=itemId)
-    if entry:
-        db.session.execute(entry) 
-        db.session.commit()
+    db.session.execute(entry) 
+    db.session.commit()
+    return ''
 
-@user.route('/removeItem/', methods = ['POST'])
-def updateItemRating():
+@user.route('/api/removeItem/', methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
+def removeItem():
     #DELETE
     userid = request.json.get('userId', None)
     itemId = request.json.get('itemId', None)
@@ -300,35 +332,40 @@ def updateItemRating():
             entry = db.session.query(user_song).filter(user_song.c.song_id == itemId, user_song.c.user_id == userid).delete()
         else:
             entry = db.session.query(user_artist).filter(user_artist.c.artist_id == itemId, user_artist.c.user_id == userid).delete()
-    if entry:
-        db.session.commit()
+    db.session.commit()
+    return ''
 
-@user.route("/friends", methods = ['POST'])
+@user.route("/api/friends", methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
 def friends():
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
     entry = requests.insert().values(followed_id=personId, follower_id=userid)
-    if entry:
-        db.session.execute(entry) 
-        db.session.commit()
+    # entry_1 = requests.insert().values(followed_id=personId, follower_id=userid, relationship="friends")
+    # entry_2 = db.session.query(requests).filter(requests.c.followed_id == userid).filter(requests.c.user_id == personId).update({'relationship': "friends"})
+    db.session.execute(entry) 
+    db.session.commit()
+    return ''
 
-@user.route("/requestPersonToBeFriends", methods = ['POST'])
+@user.route("/api/requestPersonToBeFriends", methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
 def requestPersonToBeFriends():
-    #DELETE
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
     entry = requests.insert().values(followed_id=personId, follower_id=userid)
-    if entry:
-        db.session.execute(entry) 
-        db.session.commit()
+    db.session.execute(entry) 
+    db.session.commit()
+    return ''
 
-@user.route("/removePersonFromFriends", methods = ['POST'])
+@user.route("/api/removePersonFromFriends", methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
 def removePersonFromFriends():
     #DELETE
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
     entry = db.session.query(requests).filter(requests.c.followed_id == personId, requests.c.follower_id == userid).delete()
     db.session.commit()
+    return ''
 
 @user.route("/fetchTypeOfPersonForUser", methods = ['GET'])
 def fetchTypeOfPersonForUser():
@@ -345,7 +382,8 @@ def fetchTypeOfPersonForUser():
     else:
         return {"type": ""}
 
-@user.route("/visited", methods = ['POST'])
+@user.route("/api/visited", methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
 def visited():
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
@@ -353,6 +391,7 @@ def visited():
     if entry:
         db.session.execute(entry) 
         db.session.commit()
+    return ''
 
 # @user.route("/requestscount", methods = ['GET'])
 # def requestscount():

@@ -202,7 +202,7 @@ export const userdataAPI = createApi({
         }),
         updateItemRating: build.mutation<void, UpdateItemRequest>( {
             query: (arg) => ({
-                url: `/updateItemRating/${arg.itemId}`,
+                url: `/api/updateItemRating/`,
                 body: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -216,7 +216,7 @@ export const userdataAPI = createApi({
         }),
         updateItemComment: build.mutation<void, UpdateItemRequest>( {
             query: (arg) => ({
-                url: `/updateItemComment/${arg.itemId}`,
+                url: `/api/updateItemComment/`,
                 body: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -230,7 +230,7 @@ export const userdataAPI = createApi({
         }),
         addItem: build.mutation<void, ConnectItemRequest>( {
             query: (arg) => ({
-                url: `/addItem`,
+                url: `/api/addItem/`,
                 body: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -243,7 +243,7 @@ export const userdataAPI = createApi({
         }),
         removeItem: build.mutation<void, ConnectItemRequest>( {
             query: (arg) => ({
-                url: `/removeItem/${arg.itemId}`,
+                url: `/api/removeItem/`,
                 method: "POST",
                 body: {
                     userId: arg.userId,
@@ -257,7 +257,7 @@ export const userdataAPI = createApi({
         /// REQUEST persons
         acceptRequestToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/friends`,
+                url: `/api/friends/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -268,7 +268,7 @@ export const userdataAPI = createApi({
         }),
         denyRequstToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/requests/${arg.personId}`,
+                url: `/api/requests/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -281,7 +281,7 @@ export const userdataAPI = createApi({
         // TODO: попоросить не добавлять в посещенные друзей!
         requestPersonToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/requestPersonToBeFriends/${arg.personId}`,
+                url: `/api/requestPersonToBeFriends/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -292,7 +292,7 @@ export const userdataAPI = createApi({
         }),
         addPersonToVisited: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/visited`,
+                url: `/api/visited/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -304,7 +304,7 @@ export const userdataAPI = createApi({
         /// FRIENDS persons
         removePersonFromFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/removePersonFromFriends/${arg.personId}`,
+                url: `/api/removePersonFromFriends/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -315,7 +315,7 @@ export const userdataAPI = createApi({
         }),
         fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
             query: (arg) => ({
-                url: `/requestscount`,
+                url: `/requestscount/`,
                 parmas: arg.userId
             }),
             /*transformResponse: (response , meta, arg) => {
