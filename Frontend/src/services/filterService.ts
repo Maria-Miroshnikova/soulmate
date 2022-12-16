@@ -118,41 +118,65 @@ export const filterAPI = createApi({
                     case Categories.BOOK: {
                         return (arg.isMain) ?
                             ({
-                                url: '/options_book_main'
+                                url: '/options_book_main',
+                                params: {
+                                    title: arg.title
+                                }
                             })
                             :
                             ({
-                                url: '/options_book_sub'
+                                url: '/options_book_sub',
+                                params: {
+                                    title: arg.title
+                                }
                             })
                     }
                     case Categories.GAME: {
                         return (arg.isMain) ?
                             ({
-                                url: '/options_game_main'
+                                url: '/options_game_main',
+                                params: {
+                                    title: arg.title
+                                }
                             })
                             :
                             ({
-                                url: '/options_game_sub'
+                                url: '/options_game_sub',
+                                params: {
+                                    title: arg.title
+                                }
                             })
                     }
                     case Categories.MUSIC: {
                         return (arg.isMain) ?
                             ({
-                                url: '/options_music_main'
+                                url: '/options_music_main',
+                                params: {
+                                    title: arg.title
+                                }
                             })
                             :
                             ({
-                                url: '/options_music_sub'
+                                url: '/options_music_sub',
+                                params: {
+                                    title: arg.title
+                                }
                             })
                     }
                     case Categories.FILM: {
                         return (arg.isMain) ?
                             ({
-                                url: '/options_film_main'
+                                url: '/options_film_main',
+                                params: {
+                                    title: arg.title
+                                }
                             })
                             :
                             ({
-                                url: '/options_film_sub'
+                                url: '/options_film_sub',
+                                params: {
+                                    title: arg.title
+                                }
                             })
                     }
                 }

@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="fix Universal fetchOptions, sketch PersonMyRequest card">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="sketch oldRequestButton and personCard">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +79,7 @@
       <workItem from="1670908380860" duration="20407000" />
       <workItem from="1671018853284" duration="8005000" />
       <workItem from="1671102088082" duration="11549000" />
-      <workItem from="1671194068127" duration="6916000" />
+      <workItem from="1671194068127" duration="7313000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -171,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671200383595</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="sketch oldRequestButton and personCard">
+      <created>1671201170040</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1671201170040</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +211,7 @@
     <MESSAGE value="add parsing JSON for updating comments and personConnections" />
     <MESSAGE value="resolve conflicts" />
     <MESSAGE value="fix Universal fetchOptions, sketch PersonMyRequest card" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix Universal fetchOptions, sketch PersonMyRequest card" />
+    <MESSAGE value="sketch oldRequestButton and personCard" />
+    <option name="LAST_COMMIT_MESSAGE" value="sketch oldRequestButton and personCard" />
   </component>
 </project>
