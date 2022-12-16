@@ -1,14 +1,11 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import {createApi} from "@reduxjs/toolkit/query/react";
 import {UserCardInfo} from "../types/UserCardInfo";
 import {FilterModel} from "../types/FilterModel";
 import {Categories} from "../types/Categories";
-import {makeRequestString} from "../utils/api_convertations";
 import {makeParamsFromFilter} from "../types/api/ParamsFilter";
 import {OptionItemModel} from "../types/OptionModels";
 import {baseQueryWithReauth} from "./baseQueryFunctions";
 import {UserCardJson, UserCardsByFilterJson, UserInfoJson} from "../types/response_types/userCardsByFilterJson";
-import UserCard from "../components/filterPage/usercard/UserCard";
-//import {fetchUserCardsAll} from "../store/reducers/action_creators/filter_fetch_usercards";
 
 
 export interface OptionsRequest {
@@ -17,13 +14,11 @@ export interface OptionsRequest {
     title?: string
 }
 
-// TODO: params!
+// TODO: title проверка
 export const filterAPI = createApi({
     reducerPath: 'filterAPI',
     baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
-        // TODO: checkboks пока не отправляю, потом надо будет
-        // TODO: если пустой массив, то как?
         fetchUserCardsByFilter: build.query<UserCardInfo[], {userId: string, filter: FilterModel, priority: Categories[]}>({
             query: (arg) => ({
                 url: '/userfilter',
@@ -116,12 +111,52 @@ export const filterAPI = createApi({
             })
         }),
 
-        // TODO сделать универсальной для всех подкачек опций, удалить всё что сверху!/
         // TODO: Title не забываем просить!!!
         fetchOptions: build.query<OptionItemModel[], OptionsRequest>({
-            query: (arg) => ({
-                url: '/options_film_main',
-            })
+            query: (arg) => {
+                switch (arg.category) {
+                    case Categories.BOOK: {
+                        return (arg.isMain) ?
+                            ({
+                                url: '/options_book_main'
+                            })
+                            :
+                            ({
+                                url: '/options_book_sub'
+                            })
+                    }
+                    case Categories.GAME: {
+                        return (arg.isMain) ?
+                            ({
+                                url: '/options_game_main'
+                            })
+                            :
+                            ({
+                                url: '/options_game_sub'
+                            })
+                    }
+                    case Categories.MUSIC: {
+                        return (arg.isMain) ?
+                            ({
+                                url: '/options_music_main'
+                            })
+                            :
+                            ({
+                                url: '/options_music_sub'
+                            })
+                    }
+                    case Categories.FILM: {
+                        return (arg.isMain) ?
+                            ({
+                                url: '/options_film_main'
+                            })
+                            :
+                            ({
+                                url: '/options_film_sub'
+                            })
+                    }
+                }
+            }
         }),
     })
 });

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add parsing JSON for updating comments and personConnections">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="resolve conflicts">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/PersonList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/PersonList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -78,7 +81,7 @@
       <workItem from="1670908380860" duration="20407000" />
       <workItem from="1671018853284" duration="8005000" />
       <workItem from="1671102088082" duration="11549000" />
-      <workItem from="1671194068127" duration="2592000" />
+      <workItem from="1671194068127" duration="6136000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -157,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671196349946</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="resolve conflicts">
+      <created>1671196696503</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1671196696503</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +197,7 @@
     <MESSAGE value="add ErrorPage" />
     <MESSAGE value="add parsing JSON for fetchUserInfo and fetchUserItems" />
     <MESSAGE value="add parsing JSON for updating comments and personConnections" />
-    <option name="LAST_COMMIT_MESSAGE" value="add parsing JSON for updating comments and personConnections" />
+    <MESSAGE value="resolve conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve conflicts" />
   </component>
 </project>

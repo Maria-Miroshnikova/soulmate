@@ -5,10 +5,7 @@ import {ItemModel} from "../types/ItemModel";
 import {Categories} from "../types/Categories";
 import {PersonType} from "../components/userPfofilePage/lists/PersonList";
 import {UserInfoRequestJson} from "../types/response_types/userInfoJson";
-import {UserCardInfo} from "../types/UserCardInfo";
-import {UserCardJson, UserInfoJson} from "../types/response_types/userCardsByFilterJson";
 import {ItemJson, UserItemsRequestJson} from "../types/response_types/userItemsRequestJson";
-import {TypeOfConnetctionResponseJson} from "../types/response_types/TypeOfConnetctionResponseJson";
 
 const categoryParamByCategories = (category: Categories) : string => {
     switch (category) {
@@ -19,14 +16,16 @@ const categoryParamByCategories = (category: Categories) : string => {
     }
 }
 
-/*const typeOfConnectionByString = (type: string) : PersonType => {
+const typeOfConnectionByString = (type: string) : PersonType => {
     switch (type) {
-        case "": return PersonType.VISITED;
-        case "user_is_follower": return PersonType.REQUESTS;
+        case "": return PersonType.NO_CONNECTION;
+        case "user_is_follower": return PersonType.MY_REQUEST;
         case "friends": return PersonType.FRIENDS;
-        case "user": return PersonType.VISITED;
+        case "person_is_followe": return PersonType.REQUESTS;
+        case "visited": return PersonType.VISITED;
+        default: return PersonType.NO_CONNECTION;
     }
-}*/
+}
 
 export interface UserByIdRequest {
     userId: string
@@ -95,7 +94,7 @@ export const userdataAPI = createApi({
             }),
            /* transformResponse: (response: TypeOfConnetctionResponseJson , meta, arg) => {
                 return {
-                    personType: (response.type ===)
+                    personType: typeOfConnectionByString(response.type)
                 }
             }*/
         }),
@@ -142,6 +141,7 @@ export const userdataAPI = createApi({
             }),
             invalidatesTags: ['userInfo']
         }),
+        // НЕ СДЕЛАН
         // TODO: определять, какой именно слой персон!
         fetchUserPersonsById: build.query<UserPersonalInfoModel[], PersonsOfUserRequst>({
             query: (arg) => {
@@ -159,6 +159,16 @@ export const userdataAPI = createApi({
                     case PersonType.REQUESTS: {
                         return ({
                             url: '/requests'
+                        })
+                    }
+                    case PersonType.MY_REQUEST: {
+                        return ({
+                            url: '/////'
+                        })
+                    }
+                    default: {
+                        return ({
+                            url: '/visited'
                         })
                     }
                 }

@@ -13,7 +13,9 @@ import {getFullProfilePath} from "../../../router/routes";
 export enum PersonType {
     FRIENDS,
     VISITED,
-    REQUESTS
+    REQUESTS,
+    MY_REQUEST,
+    NO_CONNECTION
 }
 
 interface PersonListProps {
