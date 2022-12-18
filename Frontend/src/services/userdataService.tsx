@@ -8,6 +8,7 @@ import {ItemJson, UserItemsRequestJson} from "../types/response_types/userItemsR
 import { PersonType } from "../types/PersonType";
 import {UserPersonsResponseJson} from "../types/response_types/UserPersonsResponseJson";
 import {UserInfoJson} from "../types/response_types/userCardsByFilterJson";
+import {TypeOfConnetctionResponseJson} from "../types/response_types/TypeOfConnetctionResponseJson";
 
 export const categoryParamByCategories = (category: Categories) : string => {
     switch (category) {
@@ -35,7 +36,7 @@ const typeOfConnectionByString = (type: string) : PersonType => {
         case "": return PersonType.NO_CONNECTION;
         case "user_is_follower": return PersonType.MY_REQUEST;
         case "friends": return PersonType.FRIENDS;
-        case "person_is_followe": return PersonType.REQUESTS;
+        case "person_is_follower": return PersonType.REQUESTS;
         case "visited": return PersonType.VISITED;
         default: return PersonType.NO_CONNECTION;
     }
@@ -104,13 +105,14 @@ export const userdataAPI = createApi({
     endpoints: (build) => ({
         fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
             query: (arg) => ({
-                url: `/fetchTypeOfPersonForUser`
+                url: `/fetchTypeOfPersonForUser`,
+                params: arg
             }),
-           /* transformResponse: (response: TypeOfConnetctionResponseJson , meta, arg) => {
+            transformResponse: (response: TypeOfConnetctionResponseJson , meta, arg) => {
                 return {
                     personType: typeOfConnectionByString(response.type)
                 }
-            }*/
+            }
         }),
         // in progress
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
