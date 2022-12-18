@@ -24,7 +24,6 @@ export interface TopDataRequest {
     isHigh: boolean
 }
 
-// TODO: после тестов убрать personTop
 export interface TopDataResponse {
     userTop: ItemModel[]
 }
@@ -38,8 +37,6 @@ export const analizAPI = createApi({
     reducerPath: 'analizAPI',
     baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
-        // сразу по двум?
-        // transform для РЭЙТИНГА который не передается
         fetchCommonData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
                 url: '/common',
@@ -63,7 +60,6 @@ export const analizAPI = createApi({
                 return result;
             }
         }),
-        // transform для РЭЙТИНГА который не передается
         fetchNewData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
                 url: '/new',
@@ -87,7 +83,6 @@ export const analizAPI = createApi({
                 return result;
             }
         }),
-        // transform для типов
         fetchTopData:  build.query<TopDataResponse, TopDataRequest>({
             query: (arg) => ({
                 url: '/top',
@@ -113,7 +108,6 @@ export const analizAPI = createApi({
                 };
             }
         }),
-        // transform для всего
         fetchDifferentRatingData:  build.query<DifferentRatingResponse, SharedDataRequest>({
             query: (arg) => ({
                 url: '/different',

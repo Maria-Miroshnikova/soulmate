@@ -114,7 +114,6 @@ export const userdataAPI = createApi({
                 }
             }
         }),
-        // in progress
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
                 url: `/userdatausers`,
@@ -132,7 +131,7 @@ export const userdataAPI = createApi({
                 }
             }
         }),
-        // не сделан еще!
+        // TODO
         editUserPersonalInfoById: build.mutation<void, EditPersonalInfoRequest>({
             query: (arg) => ({
                 url: `/userdatausers/${arg.id}`,
@@ -141,15 +140,16 @@ export const userdataAPI = createApi({
                     nickname: arg.nickname,
                     age: arg.age,
                     gender: arg.gender,
-                    telegram: arg.telegram,
-                    //password: string
+                    telegram: arg.telegram
                 },
                 method: "POST"
             }),
             invalidatesTags: ['userInfo']
         }),
+
         // TODO: edit avarat request!
-        // НЕ СДЕЛАН ЕЩЕ
+
+        // TODO
         deleteUserAccount: build.mutation<void, UserByIdRequest>({
             query: (arg) => ({
                 url: `/userdatausers/${arg.userId}`,
@@ -157,8 +157,6 @@ export const userdataAPI = createApi({
             }),
             invalidatesTags: ['userInfo']
         }),
-        // НЕ СДЕЛАН
-        // TODO: определять, какой именно слой персон!
         fetchUserPersonsById: build.query<UserPersonalInfoModel[], PersonsOfUserRequst>({
             query: (arg) => ({
                 url: '/users_peers',
@@ -288,8 +286,6 @@ export const userdataAPI = createApi({
             }),
             invalidatesTags: ['persons']
         }),
-        /// VISITED persons
-        // TODO: попоросить не добавлять в посещенные друзей!
         requestPersonToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
                 url: `/api/requestPersonToBeFriends/`,
@@ -323,7 +319,6 @@ export const userdataAPI = createApi({
             }),
             invalidatesTags: ['persons']
         }),
-        /// FRIENDS persons
         removePersonFromFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
                 url: `/api/removePersonFromFriends/`,
