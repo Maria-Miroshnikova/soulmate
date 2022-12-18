@@ -384,6 +384,7 @@ def removePersonFromFriends():
     #DELETE
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
+    print(userid, personId)
     if userid != None and personId != None:
         entry_1 = db.session.query(requests).filter(requests.c.followed_id == personId, requests.c.follower_id == userid).delete()
         entry_2 = db.session.query(requests).filter(requests.c.followed_id == userid).filter(requests.c.follower_id == personId).update({'type': "follower"})
@@ -430,25 +431,25 @@ def requestscount():
 @user.route("/users_peers/", methods = ['GET'])
 def user_peers():
     userid = request.args.get('userId')
-    personsType = request.args.get('personsType')
-    title = request.args.get('personsType', default=None)
+    personType = request.args.get('personType')
+    title = request.args.get('title', default=None)
     found_users = None
-    if personsType == "FRIENDS":
+    if personType == "friends":
         if title == None or title == '':
             found_users = db.session.query(User).filter(requests.c.follower_id == User.id).filter(requests.c.followed_id == userid, requests.c.type == "friends").all()
         else:
             found_users = db.session.query(User).filter(requests.c.follower_id == User.id).filter(requests.c.followed_id == userid, requests.c.type == "friends").filter(User.username.contains(title)).all()
-    elif personsType == "REQUESTS":
+    elif personType == "requests":
         if title == None or title == '':
             found_users = db.session.query(User).filter(requests.c.follower_id == User.id).filter(requests.c.followed_id == userid, requests.c.type == "follower").all()
         else:
             found_users = db.session.query(User).filter(requests.c.follower_id == User.id).filter(requests.c.followed_id == userid, requests.c.type == "follower").filter(User.username.contains(title)).all()
-    elif personsType == "MY_REQUEST":
+    elif personType == "my_requests":
         if title == None or title == '':
             found_users = db.session.query(User).filter(requests.c.followed_id == User.id).filter(requests.c.follower_id == userid, requests.c.type == "follower").all()
         else:
             found_users = db.session.query(User).filter(requests.c.followed_id == User.id).filter(requests.c.follower_id == userid, requests.c.type == "follower").filter(User.username.contains(title)).all()
-    elif personsType == "VISITED":
+    elif personType == "visited":
         if title == None or title == '':
             found_users = db.session.query(User).filter(browsingHistory.c.viewed_id == User.id).filter(browsingHistory.c.viewer_id == userid).all()
         else:

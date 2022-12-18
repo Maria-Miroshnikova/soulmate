@@ -21,12 +21,12 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAbo
     const userId = useAppSelector(state => state.authReducer.userId);
     const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
     console.log("id: " + pageId);
-    const isUserPage = !(userId === pageId);
+    const isUserPage = !(userId === pageId!);
     const tabs = (isContentAboutFriends) ?
         getFriendsTabs(pageId!)
         :
         (isSubscribers) ?
-            getSubscribeTabs(pageId)
+            getSubscribeTabs(pageId!)
             :
             getCategoryTabs(category!, pageId!);
 

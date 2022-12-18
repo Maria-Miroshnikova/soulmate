@@ -22,7 +22,7 @@ const ProfileDrawerContent: FC = () => {
     const isUserProfile = pageId === userId!;
     const options: INavButton[] = getDrawerOptions(isUserProfile, pageId!);
 
-    const {data: user, isLoading} = userdataAPI.useFetchUserPersonalInfoByIdQuery({ userId: pageId });
+    const {data: user, isLoading} = userdataAPI.useFetchUserPersonalInfoByIdQuery({ userId: pageId! });
 
     const navigate = useNavigate();
 

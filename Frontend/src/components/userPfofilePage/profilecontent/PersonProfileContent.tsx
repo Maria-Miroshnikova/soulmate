@@ -21,7 +21,7 @@ const PersonProfileContent = () => {
    const isLoadingPersonType = false;
 //
 
-    const {data: person, isLoading: isLoadingPerson} = userdataAPI.useFetchUserPersonalInfoByIdQuery({userId : pageId})
+    const {data: person, isLoading: isLoadingPerson} = userdataAPI.useFetchUserPersonalInfoByIdQuery({userId : pageId!})
 
     // TODO: раскоммитить после тестов
         //  const [addToVisited] = userdataAPI.useAddPersonToVisitedMutation();

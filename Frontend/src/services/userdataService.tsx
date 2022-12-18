@@ -9,7 +9,7 @@ import { PersonType } from "../types/PersonType";
 import {UserPersonsResponseJson} from "../types/response_types/UserPersonsResponseJson";
 import {UserInfoJson} from "../types/response_types/userCardsByFilterJson";
 
-const categoryParamByCategories = (category: Categories) : string => {
+export const categoryParamByCategories = (category: Categories) : string => {
     switch (category) {
         case Categories.FILM: return 'film';
         case Categories.MUSIC: return 'music';
@@ -48,7 +48,7 @@ export interface UserByIdRequest {
 export interface PersonsOfUserRequst {
     userId: string,
     personsType: PersonType,
-    title: string
+    title?: string
 }
 
 export interface ItemByIdRequest {
@@ -165,23 +165,23 @@ export const userdataAPI = createApi({
                     userId: arg.userId,
                     title: arg.title
                 },
-                transformResponse: (response: UserPersonsResponseJson) => {
-                    const result: UserPersonalInfoModel[] = [];
-                    for (var i = 0; i < response.FoundUsers.length; ++i) {
-                        const user: UserInfoJson = response.FoundUsers[i];
-                        result.push({
-                            id: user.id,
-                            nickname: user.username,
-                            avatar: "",
-                            age: user.age,
-                            gender: user.gender,
-                            telegram: user.telegram
-                        })
-                    }
-                    return result;
-                }
-
             }),
+            transformResponse: (response: UserPersonsResponseJson, meta, arg) => {
+                const result: UserPersonalInfoModel[] = [];
+                for (var i = 0; i < response.FoundUsers.length; ++i) {
+                    const user: UserInfoJson = response.FoundUsers[i];
+                    console.log("user", user.username)
+                    result.push({
+                        id: user.id,
+                        nickname: user.username,
+                        avatar: "",
+                        age: user.age,
+                        gender: user.gender,
+                        telegram: user.telegram
+                    })
+                }
+                return result;
+            },
             providesTags: result => ['persons']
         }),
         fetchUserItemsById: build.query<ItemModel[], ItemByIdRequest>({

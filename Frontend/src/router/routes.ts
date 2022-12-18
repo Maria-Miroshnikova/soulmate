@@ -21,6 +21,7 @@ export const getFullCategoryPath = (category: Categories, isMain: boolean, id: s
 
 export const getFullFriendPath = (type: PersonType, id: string): string => {
     const url = ROUTES.base_url + ROUTES.pages.account + '/' + id + '/';
+    //console.log
     switch (type) {
         case PersonType.FRIENDS: return url + ROUTES.content_tabs.friends.friends_main;
         case PersonType.REQUESTS: return url + ROUTES.content_tabs.friends.requests;
