@@ -19,7 +19,7 @@ const initialState: AuthState = {
     isLoading: false,
     error: '',
     // TODO: убрать
-    userId: 'lel_kek',
+    userId: '2',
     // TODO: убрать
     isModerator: false
 }
@@ -34,7 +34,7 @@ export const authSlice = createSlice({
             state.isLoading = false;
 
             // TODO убрать после тестов
-            state.userId = "lel_kek";
+            state.userId = "2";
             // state.userId = action.payload.userId;
             // TODO: обработка модератора!
             state.isModerator = false;
