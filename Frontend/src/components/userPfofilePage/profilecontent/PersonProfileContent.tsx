@@ -8,13 +8,15 @@ import ButtonFriend from "../../UI/buttons/ButtonFriend";
 import ButtonRequest from "../../UI/buttons/ButtonRequest";
 import ButtonVisited from "../../UI/buttons/ButtonVisited";
 import {PersonType} from "../../../types/PersonType";
+import ButtonMyRequest from "../../UI/buttons/ButtonMyRequest";
+import ButtonOldRequest from "../../UI/buttons/ButtonOldRequest";
 
 const PersonProfileContent = () => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
     const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
 
-   const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: pageId});
+   const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: pageId!});
 
    const {data: person, isLoading: isLoadingPerson} = userdataAPI.useFetchUserPersonalInfoByIdQuery({userId : pageId!})
 
@@ -46,7 +48,13 @@ const PersonProfileContent = () => {
                         (personTypeRespone!.personType === PersonType.REQUESTS) ?
                             <ButtonRequest person={person!} />
                             :
-                            <ButtonVisited person={person!} />
+                            (personTypeRespone!.personType === PersonType.MY_REQUEST) ?
+                                <ButtonMyRequest person={person!} />
+                                :
+                                (personTypeRespone!.personType === PersonType.SUBSCRIBERS) ?
+                                    <ButtonOldRequest person={person!} />
+                                    :
+                                    <ButtonVisited person={person!} />
                 }
             </Box>
         </Box>
