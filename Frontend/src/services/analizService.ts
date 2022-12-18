@@ -105,7 +105,7 @@ export const analizAPI = createApi({
                     result.push({
                         id: item.id,
                         title: item.title,
-                        rating: 0
+                        rating: item.rating
                     })
                 }
                 return {

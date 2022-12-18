@@ -31,10 +31,8 @@ old version
 const UserCard: FC<UserCardProps> = ({user}) => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
-    // TODO: раскоммитить после интеграции с API
-  //  const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: user.personal_data.id});
-    const personTypeRespone = { personType: PersonType.VISITED };
-    const isLoadingPersonType = false;
+
+    const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: user.personal_data.id});
 
     return (
         <Card sx={{paddingLeft: 1, paddingRight: 1, paddingTop: 1}}>

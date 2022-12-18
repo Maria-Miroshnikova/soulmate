@@ -14,14 +14,9 @@ const PersonProfileContent = () => {
     const userId = useAppSelector(state => state.authReducer.userId);
     const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
 
-    // TODO: раскоммитить после тестов
-//
-    //   const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: pageId});
-   const personTypeRespone = {personType: PersonType.FRIENDS};
-   const isLoadingPersonType = false;
-//
+   const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: pageId});
 
-    const {data: person, isLoading: isLoadingPerson} = userdataAPI.useFetchUserPersonalInfoByIdQuery({userId : pageId!})
+   const {data: person, isLoading: isLoadingPerson} = userdataAPI.useFetchUserPersonalInfoByIdQuery({userId : pageId!})
 
     // TODO: раскоммитить после тестов
         //  const [addToVisited] = userdataAPI.useAddPersonToVisitedMutation();

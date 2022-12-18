@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="---">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="make parsing json for analiz">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/commonscard/TopListTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/commonscard/TopListTemplate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/usercard/UserCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/usercard/UserCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/profilecontent/PersonProfileContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/profilecontent/PersonProfileContent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/services/analizService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/analizService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/types/response_types/DifferentRatingResponseJson.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/response_types/DifferentRatingResponseJson.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/types/response_types/SharedItemsResponseJson.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/response_types/SharedItemsResponseJson.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/types/response_types/TopItemsResponseJson.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/response_types/TopItemsResponseJson.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +84,7 @@
       <workItem from="1671194068127" duration="13693000" />
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
-      <workItem from="1671368483806" duration="8295000" />
+      <workItem from="1671368483806" duration="8798000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -291,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671376987298</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="make parsing json for analiz">
+      <created>1671378677185</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1671378677185</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +314,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix design: height" />
     <MESSAGE value="fix userProfileContent and userDataService fetch: delete password editing" />
     <MESSAGE value="add beautiful StartPage" />
     <MESSAGE value="make friend button TELEGRAM linkable" />
@@ -334,7 +338,8 @@
     <MESSAGE value="make tranfsorm for fetching persons of user" />
     <MESSAGE value="make params for fethcing persons" />
     <MESSAGE value="---" />
-    <option name="LAST_COMMIT_MESSAGE" value="---" />
+    <MESSAGE value="make parsing json for analiz" />
+    <option name="LAST_COMMIT_MESSAGE" value="make parsing json for analiz" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
