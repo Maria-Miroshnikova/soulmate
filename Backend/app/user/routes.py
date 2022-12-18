@@ -426,8 +426,10 @@ def fetchTypeOfPersonForUser():
 def visited():
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
+    print(userid, personId)
     if userid != None and personId != None:
-        entry = browsingHistory.insert().values(viewer_id=userid, viewed_id=personId)
+        entry = db.session.query(browsingHistory).filter(browsingHistory.c.viewer_id == userid).filter(browsingHistory.c.viewed_id == personId).update({'timedate': datetime.utcnow})
+        # entry = browsingHistory.insert().values(viewer_id=userid, viewed_id=personId)
         db.session.execute(entry) 
         db.session.commit()
     return ''

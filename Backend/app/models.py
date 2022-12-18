@@ -194,10 +194,13 @@ class User(db.Model):
         return f"{{\"id\": {self.id}, \"username\": {self.username}, \"age\": {self.age}, \"gender\": {self.gender}, \"telegram\": {self.telegram}}}"
 
 class UserSchema(ma.SQLAlchemySchema):
+    id = fields.String()
+    username = fields.String()
+    age = fields.String()
     gender = EnumField(Gender, by_value=True)
-    
-    class Meta:
-        fields = ("id", "username", "age", "gender", "telegram")
+    telegram = fields.String()
+    # class Meta:
+    #     fields = ("id", "username", "age", "gender", "telegram")
 
 # class RefreshSessions(db.Model):
 #     __tablename__ = "refreshSessions"
