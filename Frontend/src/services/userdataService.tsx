@@ -314,7 +314,7 @@ export const userdataAPI = createApi({
         }),
         closeMyRequestToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/api/removePersonFromFriends/`,
+                url: `/api/closeMyRequest/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
