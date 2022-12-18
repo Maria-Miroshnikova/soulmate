@@ -28,12 +28,26 @@ const TopListTemplate: FC<TopListTemplateProps> = ({isHighList, category, person
 
     // TODO: переделать на раздельный fetching либо добавить personId в request
     const {data: itemsMain, isLoading: isLoadingMain} = analizAPI.useFetchTopDataQuery({
-        userId: personId,
+        userId: userId!,
         category: category,
         isMain: true,
         isHigh: isHighList
     });
+    const {data: itemsMain2, isLoading: isLoadingMain2} =
+        analizAPI.useFetchTopDataQuery({
+            userId: personId,
+            category: category,
+            isMain: true,
+            isHigh: isHighList
+        });
+
     const {data: itemsSub, isLoading: isLoadingSub} = analizAPI.useFetchTopDataQuery({
+        userId: userId!,
+        category: category,
+        isMain: false,
+        isHigh: isHighList
+    });
+    const {data: itemsSub2, isLoading: isLoadingSub2} = analizAPI.useFetchTopDataQuery({
         userId: personId,
         category: category,
         isMain: false,
@@ -44,17 +58,17 @@ const TopListTemplate: FC<TopListTemplateProps> = ({isHighList, category, person
         <Box display="flex" flexDirection="column" sx={{marginTop: 3}}>
             <Typography variant="h6" color="secondary"> {(isHighList) ? textTopHigh : textTopLow} </Typography>
             {
-                (isLoadingMain || isLoadingSub) ?
+                (isLoadingMain || isLoadingSub || isLoadingMain2 || isLoadingSub2) ?
                     <Box> Loading... </Box>
                     :
                     (<Grid display="flex" flexDirection="column" width="100%">
                         <Grid display="flex" flexDirection="row" gap={3}>
                             <Grid flexGrow={1}> <CategoryListTemplate title={textYours + " " + textCategories.summary.first} items={itemsMain!.userTop} /> </Grid>
-                            <Grid flexGrow={1}> <CategoryListTemplate title={textHis} items={itemsMain!.personTop} /> </Grid>
+                            <Grid flexGrow={1}> <CategoryListTemplate title={textHis} items={itemsMain2!.userTop} /> </Grid>
                         </Grid>
                         <Grid display="flex" flexDirection="row" flexGrow={1} gap={3}>
                             <Grid flexGrow={1}> <CategoryListTemplate title={textYours + " " +  textCategories.summary.last} items={itemsSub!.userTop} /> </Grid>
-                            <Grid flexGrow={1}> <CategoryListTemplate title={textHis} items={itemsSub!.personTop} /> </Grid>
+                            <Grid flexGrow={1}> <CategoryListTemplate title={textHis} items={itemsSub2!.userTop} /> </Grid>
                         </Grid>
                     </Grid>)
             }
