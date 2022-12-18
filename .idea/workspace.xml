@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="fix transform countRequests">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="raise adding to visited">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/profilecontent/PersonProfileContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/profilecontent/PersonProfileContent.tsx" afterDir="false" />
     </list>
@@ -82,7 +82,7 @@
       <workItem from="1671194068127" duration="13693000" />
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
-      <workItem from="1671368483806" duration="11430000" />
+      <workItem from="1671368483806" duration="12040000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -329,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671380735941</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="raise adding to visited">
+      <created>1671381967872</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1671381967872</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,7 +354,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add parsing JSON for fetchUserInfo and fetchUserItems" />
     <MESSAGE value="add parsing JSON for updating comments and personConnections" />
     <MESSAGE value="resolve conflicts" />
     <MESSAGE value="fix Universal fetchOptions, sketch PersonMyRequest card" />
@@ -372,7 +378,8 @@
     <MESSAGE value="fix button type in personProfileContent" />
     <MESSAGE value="raise countRequests" />
     <MESSAGE value="fix transform countRequests" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix transform countRequests" />
+    <MESSAGE value="raise adding to visited" />
+    <option name="LAST_COMMIT_MESSAGE" value="raise adding to visited" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
