@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="raise local priority sort">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="make filter interactive: make priority and searchname interactive">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/FilterPageContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/FilterPageContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/filter/SearchNameDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/filter/SearchNameDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/priority/Priority.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/priority/Priority.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/filter/FilterTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/filter/FilterTemplate.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +80,7 @@
       <workItem from="1671018853284" duration="8005000" />
       <workItem from="1671102088082" duration="11549000" />
       <workItem from="1671194068127" duration="13693000" />
-      <workItem from="1671346742495" duration="7058000" />
+      <workItem from="1671346742495" duration="8158000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -210,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671353219874</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="make filter interactive: make priority and searchname interactive">
+      <created>1671356340735</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1671356340735</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +252,7 @@
     <MESSAGE value="make subscribers pages and tabs and buttons in all app" />
     <MESSAGE value="delete odd todos" />
     <MESSAGE value="raise local priority sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="raise local priority sort" />
+    <MESSAGE value="make filter interactive: make priority and searchname interactive" />
+    <option name="LAST_COMMIT_MESSAGE" value="make filter interactive: make priority and searchname interactive" />
   </component>
 </project>

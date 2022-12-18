@@ -36,7 +36,7 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
     const submitStatus = useAppSelector((state) => state.filterPageFilterReducer.status);
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (submitStatus === FilterStatus.IS_SUBMITTING) {
             dispatch(setFilterCategory({
                 category: category,
@@ -44,14 +44,64 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
                 checkboxes: {main_category: isCheckedMain, sub_category: isCheckedSub}
             }));
         }
-    }, [submitStatus])
+    }, [submitStatus])*/
+
+    const updateFilter = (isCheckbox: boolean, isMain: boolean, value: any) => {
+        const opt_main = (isCheckbox) ?
+            selectedOptionsMain
+            :
+            (isMain) ?
+                value
+                :
+                selectedOptionsMain;
+        const opt_sub = (isCheckbox) ?
+            selectedOptionsSub
+            :
+            (isMain) ?
+                selectedOptionsSub
+                :
+                value;
+        const check_main = (!isCheckbox) ?
+            isCheckedMain
+            :
+            (isMain) ?
+                value
+                :
+                isCheckedMain;
+        const check_sub = (!isCheckbox) ?
+            isCheckedSub
+            :
+            (isMain) ?
+                isCheckedSub
+                :
+                value;
+
+        dispatch(setFilterCategory({
+            category: category,
+            filterCategory: {main_category: opt_main, sub_category: opt_sub},
+            checkboxes: {main_category: check_main, sub_category: check_sub}
+        }));
+    }
+
+    const handleChoseOptions = (newValue: any | null, isMain: boolean) => {
+        const options = newValue.map((option: { value: any; }) => option.value || option);
+        if (isMain)
+            setSelectedOptionsMain(options);
+        else
+            setSelectedOptionsSub(options);
+        updateFilter(false, isMain, options);
+    }
 
     const handleCheckMain = () => {
-        setIsCheckedMain(!isCheckedMain);
+        const value = !isCheckedMain;
+        setIsCheckedMain(value);
+        updateFilter(true, true, value);
     }
 
     const handleCheckSub = () => {
-        setIsCheckedSub(!isCheckedSub);
+        const value = !isCheckedSub;
+        setIsCheckedSub(value);
+        updateFilter(true, false, value);
     }
 
     // add LOADING to AUTOCOMPLETE when fetch
@@ -69,9 +119,7 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
                         filterSelectedOptions={true}
                         renderInput={(params) => <TextField {...params} label={filterText.labelFirstTextField} />}
                         value={selectedOptionsMain}
-                        onChange={(event: any, newValue: any | null) => {
-                            setSelectedOptionsMain(newValue.map((option: { value: any; }) => option.value || option));
-                        }}
+                        onChange={(event: any, newValue: any | null) => handleChoseOptions(newValue, true)}
                         renderTags={(tagValue, getTagProps) => {
                             return tagValue.map((id, index) => (
                             //return tagValue.map((option, index) => (
@@ -89,9 +137,7 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
                         filterSelectedOptions={true}
                         renderInput={(params) => <TextField {...params} label={filterText.labelLastTextField} />}
                         value={selectedOptionsSub}
-                        onChange={(event: any, newValue: any | null) => {
-                            setSelectedOptionsSub(newValue.map((option: { value: any; }) => option.value || option));
-                        }}
+                        onChange={(event: any, newValue: any | null) => handleChoseOptions(newValue, false)}
                         renderTags={(tagValue, getTagProps) => {
                             return tagValue.map((id, index) => (
                             //return tagValue.map((option, index) => (
