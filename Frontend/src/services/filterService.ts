@@ -14,7 +14,6 @@ export interface OptionsRequest {
     title?: string
 }
 
-// TODO: title проверка
 export const filterAPI = createApi({
     reducerPath: 'filterAPI',
     baseQuery: baseQueryWithReauth,
@@ -111,7 +110,6 @@ export const filterAPI = createApi({
             })
         }),
 
-        // TODO: Title не забываем просить!!!
         fetchOptions: build.query<OptionItemModel[], OptionsRequest>({
             query: (arg) => {
                 console.log(`title=${arg.title}.`);

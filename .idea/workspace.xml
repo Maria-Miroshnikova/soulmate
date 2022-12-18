@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="fix friends parsing problem">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/analizService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/analizService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" afterDir="false" />
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="delete todos">
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +81,7 @@
       <workItem from="1671194068127" duration="13693000" />
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
-      <workItem from="1671368483806" duration="13074000" />
+      <workItem from="1671368483806" duration="13120000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -358,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671383330905</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="delete todos">
+      <created>1671383639142</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1671383639142</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +381,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix Universal fetchOptions, sketch PersonMyRequest card" />
     <MESSAGE value="sketch oldRequestButton and personCard" />
     <MESSAGE value="fix UniversalOptionsFetching with title" />
     <MESSAGE value="make subscribers pages and tabs and buttons in all app" />
@@ -401,6 +405,7 @@
     <MESSAGE value="raise adding to visited" />
     <MESSAGE value="try fix visiting" />
     <MESSAGE value="fix friends parsing problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix friends parsing problem" />
+    <MESSAGE value="delete todos" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete todos" />
   </component>
 </project>
