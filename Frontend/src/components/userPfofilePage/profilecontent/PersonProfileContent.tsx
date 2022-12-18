@@ -20,16 +20,14 @@ const PersonProfileContent = () => {
 
    const {data: person, isLoading: isLoadingPerson} = userdataAPI.useFetchUserPersonalInfoByIdQuery({userId : pageId!})
 
-    // TODO: раскоммитить после тестов
-        //  const [addToVisited] = userdataAPI.useAddPersonToVisitedMutation();
-//
+    const [addToVisited] = userdataAPI.useAddPersonToVisitedMutation();
 
     // TODO: бэк должен добавлять в visited не друзей и не ... ну ясно!
     useEffect(() => {
-      /*  addToVisited({
-            personId: pageId,
+        addToVisited({
+            personId: pageId!,
             userId: userId!
-        });*/
+        });
     }, [])
 
     return (
