@@ -164,14 +164,7 @@ export const userdataAPI = createApi({
                     personType: personTypeToString(arg.personsType),
                     userId: arg.userId,
                     title: arg.title
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
                 },
-=======
-=======
->>>>>>> Stashed changes
-                }
->>>>>>> Stashed changes
             }),
             transformResponse: (response: UserPersonsResponseJson, meta, arg) => {
                 const result: UserPersonalInfoModel[] = [];
