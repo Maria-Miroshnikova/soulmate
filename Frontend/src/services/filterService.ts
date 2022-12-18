@@ -114,20 +114,21 @@ export const filterAPI = createApi({
         // TODO: Title не забываем просить!!!
         fetchOptions: build.query<OptionItemModel[], OptionsRequest>({
             query: (arg) => {
+                console.log(`title=${arg.title}.`);
                 switch (arg.category) {
                     case Categories.BOOK: {
                         return (arg.isMain) ?
                             ({
                                 url: '/options_book_main',
                                 params: {
-                                    title: arg.title
+                                    title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                             :
                             ({
                                 url: '/options_book_sub',
                                 params: {
-                                    title: arg.title
+                                    title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                     }
@@ -136,14 +137,14 @@ export const filterAPI = createApi({
                             ({
                                 url: '/options_game_main',
                                 params: {
-                                    title: arg.title
+                                    title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                             :
                             ({
                                 url: '/options_game_sub',
                                 params: {
-                                    title: arg.title
+                                    title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                     }
@@ -152,14 +153,14 @@ export const filterAPI = createApi({
                             ({
                                 url: '/options_music_main',
                                 params: {
-                                    title: arg.title
+                                    title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                             :
                             ({
                                 url: '/options_music_sub',
                                 params: {
-                                    title: arg.title
+                                    title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                     }
@@ -168,14 +169,14 @@ export const filterAPI = createApi({
                             ({
                                 url: '/options_film_main',
                                 params: {
-                                    title: arg.title
+                                    title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                             :
                             ({
                                 url: '/options_film_sub',
                                 params: {
-                                    title: arg.title
+                                    title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                     }

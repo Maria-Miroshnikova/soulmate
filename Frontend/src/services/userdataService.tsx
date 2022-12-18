@@ -99,7 +99,7 @@ export const userdataAPI = createApi({
     baseQuery: baseQueryWithReauth,
     tagTypes: ['items', 'persons', 'userInfo'],
     endpoints: (build) => ({
-        /*fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
+        fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
             query: (arg) => ({
                 url: `/fetchTypeOfPersonForUser`
             }),
@@ -108,7 +108,7 @@ export const userdataAPI = createApi({
                     personType: typeOfConnectionByString(response.type)
                 }
             }*/
-        /*}),*/
+        }),
         // in progress
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
@@ -156,7 +156,7 @@ export const userdataAPI = createApi({
         // TODO: определять, какой именно слой персон!
         fetchUserPersonsById: build.query<UserPersonalInfoModel[], PersonsOfUserRequst>({
             query: (arg) => ({
-                url: '/visited',
+                url: '/users_peers',
                 params: {
                     personType: personTypeToString(arg.personsType)
                 }
@@ -245,7 +245,7 @@ export const userdataAPI = createApi({
         /// REQUEST persons
         acceptRequestToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/api/friends/`,
+                url: `/api/acceptRequestToFriends/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -256,7 +256,7 @@ export const userdataAPI = createApi({
         }),
         denyRequstToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/api/requests/`,
+                url: `/api/denyRequstToFriends/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -314,7 +314,7 @@ export const userdataAPI = createApi({
         }),
         fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
             query: (arg) => ({
-                url: `/requestscount/`,
+                url: `/countFollowers/`,
                 parmas: arg.userId
             }),
             /*transformResponse: (response , meta, arg) => {

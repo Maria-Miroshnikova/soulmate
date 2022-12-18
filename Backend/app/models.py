@@ -19,14 +19,13 @@ class Gender(str, Enum):
     female = 'female'
 
 class StatusRequests(Enum):
-    outgoing = 0
-    friends = 1
-    incoming = 2
+    follower = 'follower'
+    friends = 'friends'
 
 requests = db.Table('requests',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id')),
-    # db.Column('status', db.Enum(StatusRequests))
+    db.Column('type', db.Enum(StatusRequests))
 )
 
 browsingHistory = db.Table('browsingHistory',
