@@ -148,7 +148,7 @@ export const userdataAPI = createApi({
                 switch (arg.personsType) {
                     case PersonType.VISITED: {
                         return ({
-                            url: '/visited'
+                            url: '/users_peers'
                         })
                     }
                     case PersonType.FRIENDS: {
@@ -158,17 +158,17 @@ export const userdataAPI = createApi({
                     }
                     case PersonType.REQUESTS: {
                         return ({
-                            url: '/requests'
+                            url: '/users_peers'
                         })
                     }
                     case PersonType.MY_REQUEST: {
                         return ({
-                            url: '/////'
+                            url: '/users_peers'
                         })
                     }
                     default: {
                         return ({
-                            url: '/visited'
+                            url: '/users_peers'
                         })
                     }
                 }

@@ -9,6 +9,7 @@ import urllib
 from sqlalchemy import or_, and_
 from flask_jwt_extended import current_user, jwt_required, create_access_token, get_jwt_identity, get_jwt, set_access_cookies, set_refresh_cookies, unset_access_cookies, unset_refresh_cookies, unset_jwt_cookies, get_current_user
 from flask_cors import cross_origin
+import math
 
 analysis = Blueprint('analysis', __name__)
 
@@ -34,8 +35,7 @@ def fetchCommonData():
             
             films_dump = Film_schema.dump(common_films)
             for film in films_dump:
-                relationship = db.session.query(user_film).filter(user_film.c.film_id == film["id"]).filter(user_film.c.user_id == userId).first()
-                result_temp = {"id": film["id"], "title": film["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": film["id"], "title": film["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
             users_directors = db.session.query(Director).filter(user_director.c.director_id == Director.id).filter(user_director.c.user_id == User.id).filter(User.id == userId).all()
@@ -43,8 +43,7 @@ def fetchCommonData():
 
             directors_dump = Director_schema.dump(common_directors)
             for director in directors_dump:
-                relationship = db.session.query(user_director).filter(user_director.c.director_id == director["id"]).filter(user_director.c.user_id == userId).first()
-                result_temp = {"id": director["id"], "title": director["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": director["id"], "title": director["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "book":
         if is_main == "true":
@@ -53,8 +52,7 @@ def fetchCommonData():
 
             books_dump = Book_schema.dump(common_books)
             for book in books_dump:
-                relationship = db.session.query(user_book).filter(user_book.c.book_id == book["id"]).filter(user_book.c.user_id == userId).first()
-                result_temp = {"id": book["id"], "title": book["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": book["id"], "title": book["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
             users_authors = db.session.query(Author).filter(user_author.c.author_id == Author.id).filter(user_author.c.user_id == User.id).filter(User.id == userId).all()
@@ -62,8 +60,7 @@ def fetchCommonData():
 
             authors_dump = Author_schema.dump(common_authors)
             for author in authors_dump:
-                relationship = db.session.query(user_author).filter(user_author.c.author_id == author["id"]).filter(user_author.c.user_id == userId).first()
-                result_temp = {"id": author["id"], "title": author["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": author["id"], "title": author["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "game":
         if is_main == "true":
@@ -72,8 +69,7 @@ def fetchCommonData():
 
             games_dump = Game_schema.dump(common_games)
             for game in games_dump:
-                relationship = db.session.query(user_game).filter(user_game.c.game_id == game["id"]).filter(user_game.c.user_id == userId).first()
-                result_temp = {"id": game["id"], "title": game["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": game["id"], "title": game["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
             users_studios = db.session.query(Studio).filter(user_studio.c.studio_id == Studio.id).filter(user_studio.c.user_id == User.id).filter(User.id == userId).all()
@@ -81,8 +77,7 @@ def fetchCommonData():
 
             studios_dump = Studio_schema.dump(common_studios)
             for studio in studios_dump:
-                relationship = db.session.query(user_studio).filter(user_studio.c.studio_id == studio["id"]).filter(user_studio.c.user_id == userId).first()
-                result_temp = {"id": studio["id"], "title": studio["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": studio["id"], "title": studio["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "music":
         if is_main == "true":
@@ -91,8 +86,7 @@ def fetchCommonData():
 
             songs_dump = Song_Schema.dump(common_songs)
             for song in songs_dump:
-                relationship = db.session.query(user_song).filter(user_song.c.song_id == song["id"]).filter(user_song.c.user_id == userId).first()
-                result_temp = {"id": song["id"], "title": song["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": song["id"], "title": song["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
             users_artists = db.session.query(Artist).filter(user_artist.c.artist_id == Artist.id).filter(user_artist.c.user_id == User.id).filter(User.id == userId).all()
@@ -100,8 +94,7 @@ def fetchCommonData():
 
             artists_dump = Artist_schema.dump(common_artists)
             for artist in artists_dump:
-                relationship = db.session.query(user_artist).filter(user_artist.c.artist_id == artist["id"]).filter(user_artist.c.user_id == userId).first()
-                result_temp = {"id": artist["id"], "title": artist["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": artist["id"], "title": artist["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     return json.dumps(result, ensure_ascii=False)
 
@@ -127,8 +120,7 @@ def fetchNewData():
             
             films_dump = Film_schema.dump(new_films)
             for film in films_dump:
-                relationship = db.session.query(user_film).filter(user_film.c.film_id == film["id"]).filter(user_film.c.user_id == personId).first()
-                result_temp = {"id": film["id"], "title": film["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": film["id"], "title": film["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
             users_directors = db.session.query(Director).filter(user_director.c.director_id == Director.id).filter(user_director.c.user_id == User.id).filter(User.id == userId).all()
@@ -136,8 +128,7 @@ def fetchNewData():
 
             directors_dump = Director_schema.dump(new_directors)
             for director in directors_dump:
-                relationship = db.session.query(user_director).filter(user_director.c.director_id == director["id"]).filter(user_director.c.user_id == personId).first()
-                result_temp = {"id": director["id"], "title": director["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": director["id"], "title": director["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "book":
         if is_main == "true":
@@ -146,8 +137,7 @@ def fetchNewData():
 
             books_dump = Book_schema.dump(new_books)
             for book in books_dump:
-                relationship = db.session.query(user_book).filter(user_book.c.book_id == book["id"]).filter(user_book.c.user_id == personId).first()
-                result_temp = {"id": book["id"], "title": book["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": book["id"], "title": book["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
             users_authors = db.session.query(Author).filter(user_author.c.author_id == Author.id).filter(user_author.c.user_id == User.id).filter(User.id == userId).all()
@@ -155,8 +145,7 @@ def fetchNewData():
 
             authors_dump = Author_schema.dump(new_authors)
             for author in authors_dump:
-                relationship = db.session.query(user_author).filter(user_author.c.author_id == author["id"]).filter(user_author.c.user_id == personId).first()
-                result_temp = {"id": author["id"], "title": author["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": author["id"], "title": author["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "game":
         if is_main == "true":
@@ -165,8 +154,7 @@ def fetchNewData():
 
             games_dump = Game_schema.dump(new_games)
             for game in games_dump:
-                relationship = db.session.query(user_game).filter(user_game.c.game_id == game["id"]).filter(user_game.c.user_id == personId).first()
-                result_temp = {"id": game["id"], "title": game["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": game["id"], "title": game["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
             users_studios = db.session.query(Studio).filter(user_studio.c.studio_id == Studio.id).filter(user_studio.c.user_id == User.id).filter(User.id == userId).all()
@@ -174,8 +162,7 @@ def fetchNewData():
 
             studios_dump = Studio_schema.dump(new_studios)
             for studio in studios_dump:
-                relationship = db.session.query(user_studio).filter(user_studio.c.studio_id == studio["id"]).filter(user_studio.c.user_id == personId).first()
-                result_temp = {"id": studio["id"], "title": studio["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": studio["id"], "title": studio["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     elif category == "music":
         if is_main == "true":
@@ -184,8 +171,7 @@ def fetchNewData():
 
             songs_dump = Song_Schema.dump(new_songs)
             for song in songs_dump:
-                relationship = db.session.query(user_song).filter(user_song.c.song_id == song["id"]).filter(user_song.c.user_id == personId).first()
-                result_temp = {"id": song["id"], "title": song["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": song["id"], "title": song["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
         else:
             users_artists = db.session.query(Artist).filter(user_artist.c.artist_id == Artist.id).filter(user_artist.c.user_id == User.id).filter(User.id == userId).all()
@@ -193,8 +179,7 @@ def fetchNewData():
 
             artists_dump = Artist_schema.dump(new_artists)
             for artist in artists_dump:
-                relationship = db.session.query(user_artist).filter(user_artist.c.artist_id == artist["id"]).filter(user_artist.c.user_id == personId).first()
-                result_temp = {"id": artist["id"], "title": artist["title"], "rating": relationship.rating, "review": relationship.review}
+                result_temp = {"id": artist["id"], "title": artist["title"]}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     return json.dumps(result, ensure_ascii=False)
 
@@ -282,13 +267,116 @@ def fetchTopData():
                 result_temp = {"id": artist.id, "title": artist.title, "rating": entry.rating, "review": entry.review}
                 result["Items"] = result.setdefault("Items", []) + [result_temp]
     return json.dumps(result, ensure_ascii=False)
-# @analysis.route("/countFollowers/", methods = ['GET'])
-# def requestscount():
-#     userid = request.args.get('userId')
-#     countFollowers = 0
-#     if userid != None:
-#         countFollowers = db.session.query(requests).filter(requests.c.followed_id == userid, requests.c.type == 'follower').count()
-#     return {"count followers": countFollowers}
+
+
+@analysis.route("/different/", methods = ['GET'])
+def fetchDifferentRatingData():
+    userId = request.args.get('userId')
+    personId = request.args.get('personId')
+    category = request.args.get('category')
+    is_main = request.args.get('isMain')
+    Film_schema = FilmSchema(many=True, only=("id", "title"))
+    Director_schema = DirectorSchema(many=True)
+    Book_schema = BookSchema(many=True, only=("id", "title"))
+    Author_schema = AuthorSchema(many=True)
+    Game_schema = GameSchema(many=True, only=("id", "title"))
+    Studio_schema = StudioSchema(many=True)
+    Song_Schema = SongSchema(many=True, only=("id", "title"))
+    Artist_schema = ArtistSchema(many=True)
+    result = {"Items" : []}
+    if category == "film":
+        if is_main == "true":
+            users_films = db.session.query(Film).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(User.id == userId).all()
+            common_films = db.session.query(Film).filter(user_film.c.film_id == Film.id).filter(user_film.c.user_id == User.id).filter(User.id == personId).filter(or_(False, *[Film.id.like(film.id) for film in users_films])).all()
+            
+            films_dump = Film_schema.dump(common_films)
+            for film in films_dump:
+                entry_user = db.session.query(user_film).filter(user_film.c.film_id == film["id"]).filter(user_film.c.user_id == userId).first()
+                entry_person = db.session.query(user_film).filter(user_film.c.film_id == film["id"]).filter(user_film.c.user_id == personId).first()
+                if math.fabs((entry_user.rating - entry_person.rating)) > 1:
+                    result_temp = {"id": film["id"], "title": film["title"], "rating_user": entry_user.rating, "rating_person": entry_person.rating}
+                    result["Items"] = result.setdefault("Items", []) + [result_temp]
+        else:
+            users_directors = db.session.query(Director).filter(user_director.c.director_id == Director.id).filter(user_director.c.user_id == User.id).filter(User.id == userId).all()
+            common_directors = db.session.query(Director).filter(user_director.c.director_id == Director.id).filter(user_director.c.user_id == User.id).filter(User.id == personId).filter(or_(False, *[Director.id.like(director.id) for director in users_directors])).all()
+
+            directors_dump = Director_schema.dump(common_directors)
+            for director in directors_dump:
+                entry_user = db.session.query(user_director).filter(user_director.c.director_id == director["id"]).filter(user_director.c.user_id == userId).first()
+                entry_person = db.session.query(user_director).filter(user_director.c.director_id == director["id"]).filter(user_director.c.user_id == personId).first()
+                if math.fabs((entry_user.rating - entry_person.rating)) > 1:
+                    result_temp = {"id": director["id"], "title": director["title"], "rating_user": entry_user.rating, "rating_person": entry_person.rating}
+                    result["Items"] = result.setdefault("Items", []) + [result_temp]
+    elif category == "book":
+        if is_main == "true":
+            users_books = db.session.query(Book).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(User.id == userId).all()
+            common_books = db.session.query(Book).filter(user_book.c.book_id == Book.id).filter(user_book.c.user_id == User.id).filter(User.id == personId).filter(or_(False, *[Book.id.like(book.id) for book in users_books])).all()
+
+            books_dump = Book_schema.dump(common_books)
+            for book in books_dump:
+                entry_user = db.session.query(user_book).filter(user_book.c.book_id == book["id"]).filter(user_book.c.user_id == userId).first()
+                entry_person = db.session.query(user_book).filter(user_book.c.book_id == book["id"]).filter(user_book.c.user_id == personId).first()
+                if math.fabs((entry_user.rating - entry_person.rating)) > 1:
+                    result_temp = {"id": book["id"], "title": book["title"], "rating_user": entry_user.rating, "rating_person": entry_person.rating}
+                    result["Items"] = result.setdefault("Items", []) + [result_temp]
+        else:
+            users_authors = db.session.query(Author).filter(user_author.c.author_id == Author.id).filter(user_author.c.user_id == User.id).filter(User.id == userId).all()
+            common_authors = db.session.query(Author).filter(user_author.c.author_id == Author.id).filter(user_author.c.user_id == User.id).filter(User.id == personId).filter(or_(False, *[Author.id.like(author.id) for author in users_authors])).all()
+
+            authors_dump = Author_schema.dump(common_authors)
+            for author in authors_dump:
+                entry_user = db.session.query(user_author).filter(user_author.c.author_id == author["id"]).filter(user_author.c.user_id == userId).first()
+                entry_person = db.session.query(user_author).filter(user_author.c.author_id == author["id"]).filter(user_author.c.user_id == personId).first()
+                if math.fabs((entry_user.rating - entry_person.rating)) > 1:
+                    result_temp = {"id": author["id"], "title": author["title"], "rating_user": entry_user.rating, "rating_person": entry_person.rating}
+                    result["Items"] = result.setdefault("Items", []) + [result_temp]
+    elif category == "game":
+        if is_main == "true":
+            users_games = db.session.query(Game).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(User.id == userId).all()
+            common_games = db.session.query(Game).filter(user_game.c.game_id == Game.id).filter(user_game.c.user_id == User.id).filter(User.id == personId).filter(or_(False, *[Game.id.like(game.id) for game in users_games])).all()
+
+            games_dump = Game_schema.dump(common_games)
+            for game in games_dump:
+                entry_user = db.session.query(user_game).filter(user_game.c.game_id == game["id"]).filter(user_game.c.user_id == userId).first()
+                entry_person = db.session.query(user_game).filter(user_game.c.game_id == game["id"]).filter(user_game.c.user_id == personId).first()
+                if math.fabs((entry_user.rating - entry_person.rating)) > 1:
+                    result_temp = {"id": game["id"], "title": game["title"], "rating_user": entry_user.rating, "rating_person": entry_person.rating}
+                    result["Items"] = result.setdefault("Items", []) + [result_temp]
+        else:
+            users_studios = db.session.query(Studio).filter(user_studio.c.studio_id == Studio.id).filter(user_studio.c.user_id == User.id).filter(User.id == userId).all()
+            common_studios = db.session.query(Studio).filter(user_studio.c.studio_id == Studio.id).filter(user_studio.c.user_id == User.id).filter(User.id == personId).filter(or_(False, *[Studio.id.like(studio.id) for studio in users_studios])).all()
+
+            studios_dump = Studio_schema.dump(common_studios)
+            for studio in studios_dump:
+                entry_user = db.session.query(user_studio).filter(user_studio.c.studio_id == studio["id"]).filter(user_studio.c.user_id == userId).first()
+                entry_person = db.session.query(user_studio).filter(user_studio.c.studio_id == studio["id"]).filter(user_studio.c.user_id == personId).first()
+                if math.fabs((entry_user.rating - entry_person.rating)) > 1:
+                    result_temp = {"id": studio["id"], "title": studio["title"], "rating_user": entry_user.rating, "rating_person": entry_person.rating}
+                    result["Items"] = result.setdefault("Items", []) + [result_temp]
+    elif category == "music":
+        if is_main == "true":
+            users_songs = db.session.query(Song).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(User.id == userId).all()
+            common_songs = db.session.query(Song).filter(user_song.c.song_id == Song.id).filter(user_song.c.user_id == User.id).filter(User.id == personId).filter(or_(False, *[Song.id.like(song.id) for song in users_songs])).all()
+
+            songs_dump = Song_Schema.dump(common_songs)
+            for song in songs_dump:
+                entry_user = db.session.query(user_song).filter(user_song.c.song_id == song["id"]).filter(user_song.c.user_id == userId).first()
+                entry_person = db.session.query(user_song).filter(user_song.c.song_id == song["id"]).filter(user_song.c.user_id == personId).first()
+                if math.fabs((entry_user.rating - entry_person.rating)) > 1:
+                    result_temp = {"id": song["id"], "title": song["title"], "rating_user": entry_user.rating, "rating_person": entry_person.rating}
+                    result["Items"] = result.setdefault("Items", []) + [result_temp]
+        else:
+            users_artists = db.session.query(Artist).filter(user_artist.c.artist_id == Artist.id).filter(user_artist.c.user_id == User.id).filter(User.id == userId).all()
+            common_artists = db.session.query(Artist).filter(user_artist.c.artist_id == Artist.id).filter(user_artist.c.user_id == User.id).filter(User.id == personId).filter(or_(False, *[Artist.id.like(artist.id) for artist in users_artists])).all()
+
+            artists_dump = Artist_schema.dump(common_artists)
+            for artist in artists_dump:
+                entry_user = db.session.query(user_artist).filter(user_artist.c.artist_id == artist["id"]).filter(user_artist.c.user_id == userId).first()
+                entry_person = db.session.query(user_artist).filter(user_artist.c.artist_id == artist["id"]).filter(user_artist.c.user_id == personId).first()
+                if math.fabs((entry_user.rating - entry_person.rating)) > 1:
+                    result_temp = {"id": artist["id"], "title": artist["title"], "rating_user": entry_user.rating, "rating_person": entry_person.rating}
+                    result["Items"] = result.setdefault("Items", []) + [result_temp]
+    return json.dumps(result, ensure_ascii=False)
 
 # @analysis.route("/api/visited/", methods = ['POST'])
 # @cross_origin(origins=['http://localhost:3000'])
