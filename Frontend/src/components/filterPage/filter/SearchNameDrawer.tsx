@@ -29,13 +29,14 @@ const SearchNameDrawer: FC<SearchNameDrawerProps> = ({countFound}) => {
 
     const handleClickSearch = () => {
         dispatch(setFilterTitle(title));
-        dispatch(submitFilterStart());
+        //dispatch(submitFilterStart());
     }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         event.preventDefault();
-        // TODO: точно работает?
         setTitle(event.target.value);
+        // для интерактивности
+        dispatch(setFilterTitle(event.target.value));
     }
 
     return (

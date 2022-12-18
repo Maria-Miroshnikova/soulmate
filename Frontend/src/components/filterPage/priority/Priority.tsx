@@ -36,11 +36,17 @@ const Priority: FC = () => {
     const filterStatus = useAppSelector((state) => state.filterPageFilterReducer.status);
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
+   /* useEffect(() => {
         if (filterStatus == FilterStatus.IS_SUBMITTING)
             dispatch(setPriority(selectedOptions));
-    }, [filterStatus])
+    }, [filterStatus])*/
 
+    const handleChange = (newValue: any | null) => {
+        const result = newValue.map((option: { value: any; }) => option.value || option)
+        setSelectedOptions(result)
+        // интерактивность
+        dispatch(setPriority(result));
+    }
     //console.log(selectedOptions);
 
     return (
@@ -51,9 +57,7 @@ const Priority: FC = () => {
             getOptionLabel={(option) => options_dict.getValue(option)!}
             renderInput={(params) => <TextField {...params} label={priorityText} />}
             value={selectedOptions}
-            onChange={(event: any, newValue: any | null) => {
-                setSelectedOptions(newValue.map((option: { value: any; }) => option.value || option));
-            }}
+            onChange={(event: any, newValue: any | null) => handleChange(newValue)}
             renderTags={(tagValue, getTagProps) => {
                 return tagValue.map((option, index) => (
                     <Chip {...getTagProps({ index })} label={options_dict.getValue(option)} color="primary" sx={{minWidth: "72px"}} />

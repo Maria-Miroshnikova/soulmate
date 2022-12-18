@@ -60,22 +60,8 @@ const FilterPageContent: FC = () => {
         }
         else
             setUserCards([]);
-    }, [userCardsRaw]);
+    }, [userCardsRaw, priority]);
 
-    // --- перезагрузка данных
-    useEffect(() => {
-        if (filterStatus === FilterStatus.SUBMITTED) {
-            // Через REDUX
-            //dispatch(fetchUserCardsAll());
-
-            // через api ALL
-            //refetch(); // - временно!!! потом заменить на иной вид, фильтр же изменится
-
-            // через api с ФИЛЬТРОМ
-            // из api FILTER
-            // по идее все заново перерисуется, т к запрос делает от filter!
-        }
-    }, [filterStatus]);
 
     // countCards, perPage = 10
     // countPagesInt = countCards / perPage;
