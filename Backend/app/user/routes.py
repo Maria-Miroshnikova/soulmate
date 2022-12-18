@@ -9,6 +9,7 @@ import urllib
 from sqlalchemy import or_, and_
 from flask_jwt_extended import current_user, jwt_required, create_access_token, get_jwt_identity, get_jwt, set_access_cookies, set_refresh_cookies, unset_access_cookies, unset_refresh_cookies, unset_jwt_cookies, get_current_user
 from flask_cors import cross_origin
+from datetime import datetime
 
 user = Blueprint('user', __name__)
 
@@ -427,8 +428,16 @@ def visited():
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
     if userid != None and personId != None:
-        entry = browsingHistory.insert().values(viewer_id=userid, viewed_id=personId)
-        db.session.execute(entry) 
+        is_entry = db.session.query(browsingHistory).filter(browsingHistory.c.viewer_id == userid).filter(browsingHistory.c.viewed_id == personId).first()
+        if is_entry != None:
+            entry = db.session.query(browsingHistory).filter(browsingHistory.c.viewer_id == userid).filter(browsingHistory.c.viewed_id == personId).update({'timedate': f"{datetime.now()}"})
+        else:
+            entry = browsingHistory.insert().values(viewer_id=userid, viewed_id=personId)
+            db.session.execute(entry) 
+        db.session.commit()
+        count_entry = db.session.query(browsingHistory).filter(browsingHistory.c.viewer_id == userid).filter(browsingHistory.c.viewed_id == personId).count()
+        if count_entry > 1:
+            entry = db.session.query(browsingHistory).filter(browsingHistory.c.viewer_id == userid).filter(browsingHistory.c.viewed_id == personId).first().delete()
         db.session.commit()
     return ''
 

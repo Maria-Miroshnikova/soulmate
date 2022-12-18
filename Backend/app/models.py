@@ -31,7 +31,7 @@ requests = db.Table('requests',
 browsingHistory = db.Table('browsingHistory',
     db.Column('viewer_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
     db.Column('viewed_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
-    db.Column('timedate', db.Date, default=datetime.utcnow)
+    db.Column('timedate', db.Date, default=datetime.now())
 )
 
 user_book = db.Table('user_book',
@@ -194,10 +194,13 @@ class User(db.Model):
         return f"{{\"id\": {self.id}, \"username\": {self.username}, \"age\": {self.age}, \"gender\": {self.gender}, \"telegram\": {self.telegram}}}"
 
 class UserSchema(ma.SQLAlchemySchema):
+    id = fields.String()
+    username = fields.String()
+    age = fields.String()
     gender = EnumField(Gender, by_value=True)
-    
-    class Meta:
-        fields = ("id", "username", "age", "gender", "telegram")
+    telegram = fields.String()
+    # class Meta:
+    #     fields = ("id", "username", "age", "gender", "telegram")
 
 # class RefreshSessions(db.Model):
 #     __tablename__ = "refreshSessions"
