@@ -4,7 +4,7 @@ import {getIdFromPath, ROUTES} from "../../router/routes";
 
 
 interface ItemsState {
-    pageId: string,
+    pageId?: string,
     //isUserId: boolean,
     countFound: number,
     title?: string
@@ -12,7 +12,6 @@ interface ItemsState {
 
 // Чей профиль просматриваем
 const initialState: ItemsState = {
-    pageId: "lel_kek",
     //isUserId: true,
     countFound: 0
 };
