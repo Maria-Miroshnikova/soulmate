@@ -36,6 +36,9 @@ def create_app():
     from app.user.routes import user
     app.register_blueprint(user)
 
+    from app.analysis.routes import analysis
+    app.register_blueprint(analysis)
+
     # with app.app_context():
     #     db.create_all()
 

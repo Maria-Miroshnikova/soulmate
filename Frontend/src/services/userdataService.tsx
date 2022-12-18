@@ -153,7 +153,7 @@ export const userdataAPI = createApi({
                     }
                     case PersonType.FRIENDS: {
                         return ({
-                            url: '/friends'
+                            url: '/users_peers'
                         })
                     }
                     case PersonType.REQUESTS: {
@@ -257,7 +257,7 @@ export const userdataAPI = createApi({
         /// REQUEST persons
         acceptRequestToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/api/friends/`,
+                url: `/api/acceptRequestToFriends/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -268,7 +268,7 @@ export const userdataAPI = createApi({
         }),
         denyRequstToFriends: build.mutation<void, ConnectPersonsRequest>( {
             query: (arg) => ({
-                url: `/api/requests/`,
+                url: `/api/denyRequstToFriends/`,
                 method: "POST",
                 body: {
                     personId: arg.personId,
@@ -315,7 +315,7 @@ export const userdataAPI = createApi({
         }),
         fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
             query: (arg) => ({
-                url: `/requestscount/`,
+                url: `/countFollowers/`,
                 parmas: arg.userId
             }),
             /*transformResponse: (response , meta, arg) => {

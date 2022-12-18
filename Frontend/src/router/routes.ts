@@ -25,6 +25,7 @@ export const getFullFriendPath = (type: PersonType, id: string): string => {
         case PersonType.FRIENDS: return url + ROUTES.content_tabs.friends.friends_main;
         case PersonType.REQUESTS: return url + ROUTES.content_tabs.friends.requests;
         case PersonType.VISITED: return url + ROUTES.content_tabs.friends.visited;
+        default: return "";
     }
 }
 
