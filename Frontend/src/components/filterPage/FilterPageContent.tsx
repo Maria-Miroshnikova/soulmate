@@ -54,8 +54,9 @@ const FilterPageContent: FC = () => {
     useEffect(() => {
         if (!(userCardsRaw === undefined)) {
             // это для приорита локально
-            //setUserCards(getSortedByPriority(userCardsRaw, priority));
-            setUserCards(userCardsRaw);
+            setUserCards(getSortedByPriority(userCardsRaw, priority));
+            // это для удаленного
+            //setUserCards(userCardsRaw);
         }
         else
             setUserCards([]);

@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="make subscribers pages and tabs and buttons in all app">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="delete odd todos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/router/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/router/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/types/Categories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/Categories.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/types/UserModels.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/UserModels.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/types/api/ParamsFilter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/api/ParamsFilter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/utils/filterPage/getSortedByPriority.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/utils/filterPage/getSortedByPriority.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/filterPage/FilterPageContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/filterPage/FilterPageContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/test_server/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/test_server/db.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +81,7 @@
       <workItem from="1671018853284" duration="8005000" />
       <workItem from="1671102088082" duration="11549000" />
       <workItem from="1671194068127" duration="13693000" />
-      <workItem from="1671346742495" duration="4114000" />
+      <workItem from="1671346742495" duration="4449000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -198,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671352688418</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="delete odd todos">
+      <created>1671352851537</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1671352851537</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +237,7 @@
     <MESSAGE value="sketch oldRequestButton and personCard" />
     <MESSAGE value="fix UniversalOptionsFetching with title" />
     <MESSAGE value="make subscribers pages and tabs and buttons in all app" />
-    <option name="LAST_COMMIT_MESSAGE" value="make subscribers pages and tabs and buttons in all app" />
+    <MESSAGE value="delete odd todos" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete odd todos" />
   </component>
 </project>
