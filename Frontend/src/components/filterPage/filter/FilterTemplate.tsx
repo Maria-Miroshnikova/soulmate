@@ -36,7 +36,7 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
     const submitStatus = useAppSelector((state) => state.filterPageFilterReducer.status);
     const dispatch = useAppDispatch();
 
-    /*useEffect(() => {
+    useEffect(() => {
         if (submitStatus === FilterStatus.IS_SUBMITTING) {
             dispatch(setFilterCategory({
                 category: category,
@@ -44,7 +44,7 @@ const FilterTemplate: FC<FilterTemplateProps> = ({category}) => {
                 checkboxes: {main_category: isCheckedMain, sub_category: isCheckedSub}
             }));
         }
-    }, [submitStatus])*/
+    }, [submitStatus])
 
     const updateFilter = (isCheckbox: boolean, isMain: boolean, value: any) => {
         const opt_main = (isCheckbox) ?
