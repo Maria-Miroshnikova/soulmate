@@ -2,21 +2,14 @@ import React, {FC, useEffect} from 'react';
 import {userdataAPI} from "../../../services/userdataService";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {Box} from "@mui/material";
-import ItemCardFriend from "../itemcard/ItemCardFriend";
 import PersonCardFriend from "../personcard/PersonCardFriend";
 import PersonCardVisited from "../personcard/PersonCardVisited";
-import PersonCardRequest from "../personcard/PersonCardRequest";
 import {setCountFound} from "../../../store/reducers/searchContentSlice";
-import {useLocation, useNavigate} from "react-router-dom";
-import {getFullProfilePath} from "../../../router/routes";
-
-export enum PersonType {
-    FRIENDS,
-    VISITED,
-    REQUESTS,
-    MY_REQUEST,
-    NO_CONNECTION
-}
+import {useLocation} from "react-router-dom";
+import {PersonType} from "../../../types/PersonType";
+import PersonCardMyRequest from "../personcard/PersonCardMyRequest";
+import PersonCardOldRequest from "../personcard/PersonCardOldRequest";
+import PersonCardRequest from "../personcard/PersonCardRequest";
 
 interface PersonListProps {
     type: PersonType
@@ -51,7 +44,13 @@ const PersonList: FC<PersonListProps> = ({type}) => {
                     (type === PersonType.VISITED) ?
                         persons!.map(person =>  <PersonCardVisited person={person}/>)
                         :
-                        persons!.map(person =>  <PersonCardRequest person={person}/>)
+                        (type === PersonType.MY_REQUEST) ?
+                            persons!.map(person =>  <PersonCardMyRequest person={person}/>)
+                            :
+                            (type === PersonType.SUBSCRIBERS) ?
+                                persons!.map(person =>  <PersonCardOldRequest person={person}/>)
+                                :
+                                persons!.map(person =>  <PersonCardRequest person={person}/>)
                 }
             </Box>)
         ;

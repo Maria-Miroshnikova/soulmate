@@ -1,5 +1,5 @@
 import {Categories} from "../types/Categories";
-import {PersonType} from "../components/userPfofilePage/lists/PersonList";
+import {PersonType} from "../types/PersonType";
 
 export const getFullCategoryPath = (category: Categories, isMain: boolean, id: string): string => {
     const url = ROUTES.base_url + ROUTES.pages.account + '/' + id + '/';
@@ -19,12 +19,16 @@ export const getFullCategoryPath = (category: Categories, isMain: boolean, id: s
     }
 }
 
+// TODO: ИСПРАВИТЬ
 export const getFullFriendPath = (type: PersonType, id: string): string => {
     const url = ROUTES.base_url + ROUTES.pages.account + '/' + id + '/';
     switch (type) {
         case PersonType.FRIENDS: return url + ROUTES.content_tabs.friends.friends_main;
         case PersonType.REQUESTS: return url + ROUTES.content_tabs.friends.requests;
         case PersonType.VISITED: return url + ROUTES.content_tabs.friends.visited;
+        case PersonType.MY_REQUEST: return url + ROUTES.content_tabs.friends.my_subscriptions;
+        case PersonType.SUBSCRIBERS: return url + ROUTES.content_tabs.friends.subscribers;
+        default: return url;
     }
 }
 
@@ -61,7 +65,9 @@ export const ROUTES = {
         friends: {
             friends_main: "friends",
             visited: "visited",
-            requests: "requests"
+            requests: "requests",
+            my_subscriptions: "my_subscriptions",
+            subscribers: "subscribers"
         }
     },
     base_url: "/"

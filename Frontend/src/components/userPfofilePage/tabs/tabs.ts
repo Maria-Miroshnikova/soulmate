@@ -1,7 +1,7 @@
 import {Categories} from "../../../types/Categories";
 import {INavButton} from "../../../types/INavButton";
 import {getFullCategoryPath, getFullFriendPath} from "../../../router/routes";
-import {PersonType} from "../lists/PersonList";
+import {PersonType} from "../../../types/PersonType";
 
 export const getCategoryTabs = (category: Categories, id: string): INavButton[] => {
     switch (category) {
@@ -99,7 +99,24 @@ export const getFriendsTabs = (id: string): INavButton[] => {
             isFiends: true,
             isProfile: false,
             url_to: getFullFriendPath(PersonType.VISITED, id)
+        }
+    ];
+}
+
+export const getSubscribeTabs = (id: string): INavButton[] => {
+    return [
+        {
+            textBotton: 'Подписки',
+            isFiends: false,
+            isProfile: false,
+            url_to: getFullFriendPath(PersonType.MY_REQUEST, id)
         },
+        {
+            textBotton: 'Подписчики',
+            isFiends: false,
+            isProfile: false,
+            url_to: getFullFriendPath(PersonType.REQUESTS, id)
+        }
     ];
 }
 

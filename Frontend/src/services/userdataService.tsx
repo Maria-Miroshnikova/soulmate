@@ -3,9 +3,9 @@ import {baseQueryWithReauth} from "./baseQueryFunctions";
 import {UserPersonalInfoModel} from "../types/UserModels";
 import {ItemModel} from "../types/ItemModel";
 import {Categories} from "../types/Categories";
-import {PersonType} from "../components/userPfofilePage/lists/PersonList";
 import {UserInfoRequestJson} from "../types/response_types/userInfoJson";
 import {ItemJson, UserItemsRequestJson} from "../types/response_types/userItemsRequestJson";
+import { PersonType } from "../types/PersonType";
 
 const categoryParamByCategories = (category: Categories) : string => {
     switch (category) {
@@ -88,7 +88,7 @@ export const userdataAPI = createApi({
     baseQuery: baseQueryWithReauth,
     tagTypes: ['items', 'persons', 'userInfo'],
     endpoints: (build) => ({
-        fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
+        /*fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
             query: (arg) => ({
                 url: `/fetchTypeOfPersonForUser`
             }),
@@ -97,7 +97,7 @@ export const userdataAPI = createApi({
                     personType: typeOfConnectionByString(response.type)
                 }
             }*/
-        }),
+        /*}),*/
         // in progress
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
@@ -166,6 +166,11 @@ export const userdataAPI = createApi({
                             url: '/////'
                         })
                     }
+                    case PersonType.SUBSCRIBERS: {
+                        return ({
+                            url: '//f///'
+                        })
+                    }
                     default: {
                         return ({
                             url: '/visited'
@@ -182,7 +187,7 @@ export const userdataAPI = createApi({
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
                     isMain: (arg.isMain) ? 'true' : 'false',
-                    title: arg.title
+                    title: ((arg.title === null) || (arg.title === '')) ? undefined : arg.title
                 }
             }),
             providesTags: result => ['items'],
@@ -193,7 +198,7 @@ export const userdataAPI = createApi({
                     result.push({
                         id: item.id,
                         title: item.title,
-                        comment: (item.review === null) ? undefined : item.review,
+                        comment: ((item.review === null) || (item.review === '')) ? undefined : item.review,
                         rating: item.rating
                     })
                 }
@@ -222,7 +227,7 @@ export const userdataAPI = createApi({
                     category: categoryParamByCategories(arg.category),
                     isMain: (arg.isMain) ? 'true' : 'false',
                     itemId: arg.itemId,
-                    value: arg.value
+                    value: ((arg.value === null) || (arg.value === '')) ? undefined : arg.value,
                 },
                 method: "POST"
             }),
@@ -298,6 +303,17 @@ export const userdataAPI = createApi({
                     personId: arg.personId,
                     userId: arg.userId
                 },
+            }),
+            invalidatesTags: ['persons']
+        }),
+        closeMyRequestToBeFriends: build.mutation<void, ConnectPersonsRequest>( {
+            query: (arg) => ({
+                url: `/api/removePersonFromFriends/`,
+                method: "POST",
+                body: {
+                    personId: arg.personId,
+                    userId: arg.userId
+                }
             }),
             invalidatesTags: ['persons']
         }),

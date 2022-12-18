@@ -5,11 +5,13 @@ import UserAccordionTemplate from "./UserAccordionTemplate";
 import {Categories} from "../../../types/Categories";
 import {userdataAPI} from "../../../services/userdataService";
 import {useAppSelector} from "../../../hooks/redux";
-import {PersonType} from "../../userPfofilePage/lists/PersonList";
 import ButtonFriend from "../../UI/buttons/ButtonFriend";
 import ButtonRequest from "../../UI/buttons/ButtonRequest";
 import ButtonVisited from "../../UI/buttons/ButtonVisited";
 import AvatarClickable from "../../UI/avatar/AvatarClickable";
+import {PersonType} from "../../../types/PersonType";
+import ButtonMyRequest from "../../UI/buttons/ButtonMyRequest";
+import ButtonOldRequest from "../../UI/buttons/ButtonOldRequest";
 
 interface UserCardProps{
     user: UserCardInfo
@@ -57,7 +59,13 @@ const UserCard: FC<UserCardProps> = ({user}) => {
                             (personTypeRespone!.personType === PersonType.REQUESTS) ?
                                 <ButtonRequest person={user.personal_data!} />
                                 :
-                                <ButtonVisited person={user.personal_data!} />
+                                (personTypeRespone!.personType === PersonType.MY_REQUEST) ?
+                                    <ButtonMyRequest person={user.personal_data} />
+                                    :
+                                    (personTypeRespone!.personType === PersonType.SUBSCRIBERS) ?
+                                        <ButtonOldRequest person={user.personal_data} />
+                                        :
+                                        <ButtonVisited person={user.personal_data!} />
                     }
                 </Box>
             </CardContent>

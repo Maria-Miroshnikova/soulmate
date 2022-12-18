@@ -4,7 +4,6 @@ import CommentIcon from "@mui/icons-material/Comment";
 import {UserPersonalInfoModel} from "../../../types/UserModels";
 import PersonHeader from "./PersonHeader";
 import {userdataAPI} from "../../../services/userdataService";
-import {PersonType} from "../lists/PersonList";
 import {useAppSelector} from "../../../hooks/redux";
 import ButtonFriend from "../../UI/buttons/ButtonFriend";
 

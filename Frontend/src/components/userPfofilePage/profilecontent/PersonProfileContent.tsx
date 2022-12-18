@@ -2,28 +2,37 @@ import React, {useEffect} from 'react';
 import {Box, Button} from "@mui/material";
 import CommonCard from "../commonscard/CommonCard";
 import {Categories} from "../../../types/Categories";
-import {PersonType} from "../lists/PersonList";
 import {userdataAPI} from "../../../services/userdataService";
 import {useAppSelector} from "../../../hooks/redux";
 import ButtonFriend from "../../UI/buttons/ButtonFriend";
 import ButtonRequest from "../../UI/buttons/ButtonRequest";
 import ButtonVisited from "../../UI/buttons/ButtonVisited";
+import {PersonType} from "../../../types/PersonType";
 
 const PersonProfileContent = () => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
     const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
-    const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: pageId});
+
+    // TODO: раскоммитить после тестов
+//
+    //   const {data: personTypeRespone, isLoading: isLoadingPersonType} = userdataAPI.useFetchTypeOfPersonForUserQuery({userId: userId!, personId: pageId});
+   const personTypeRespone = {personType: PersonType.FRIENDS};
+   const isLoadingPersonType = false;
+//
+
     const {data: person, isLoading: isLoadingPerson} = userdataAPI.useFetchUserPersonalInfoByIdQuery({userId : pageId})
 
-    const [addToVisited] = userdataAPI.useAddPersonToVisitedMutation();
+    // TODO: раскоммитить после тестов
+        //  const [addToVisited] = userdataAPI.useAddPersonToVisitedMutation();
+//
 
     // TODO: бэк должен добавлять в visited не друзей и не ... ну ясно!
     useEffect(() => {
-        addToVisited({
+      /*  addToVisited({
             personId: pageId,
             userId: userId!
-        });
+        });*/
     }, [])
 
     return (

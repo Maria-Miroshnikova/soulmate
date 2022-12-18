@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {Avatar, Box, Button, Typography} from "@mui/material";
 import {UserPersonalInfoModel} from "../../../types/UserModels";
-import {PersonType} from "../lists/PersonList";
 import AvatarClickable from "../../UI/avatar/AvatarClickable";
 
 export interface PersonHeaderProps {
