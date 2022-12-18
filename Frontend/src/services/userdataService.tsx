@@ -338,13 +338,14 @@ export const userdataAPI = createApi({
         fetchUserCountOfRequestsToFriends: build.query<RequestsCountResponse, UserByIdRequest> ({
             query: (arg) => ({
                 url: `/countFollowers/`,
-                parmas: arg.userId
+                params: arg
             }),
-            /*transformResponse: (response , meta, arg) => {
+            transformResponse: (response: {count_followers: number} , meta, arg) => {
                 return {
-                    response.
+                    id: "",
+                    countRequests: response.count_followers
                 }
-            }*/
+            }
         })
     })
 });
