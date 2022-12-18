@@ -16,6 +16,17 @@ const categoryParamByCategories = (category: Categories) : string => {
     }
 }
 
+const personTypeToString = (type: PersonType): string => {
+    switch (type) {
+        case PersonType.FRIENDS: return "friend";
+        case PersonType.MY_REQUEST: return "sub";
+        case PersonType.REQUESTS: return "";
+        case PersonType.VISITED: return "";
+        case PersonType.SUBSCRIBERS: return "";
+        default: return "";
+    }
+}
+
 const typeOfConnectionByString = (type: string) : PersonType => {
     switch (type) {
         case "": return PersonType.NO_CONNECTION;
@@ -144,40 +155,12 @@ export const userdataAPI = createApi({
         // НЕ СДЕЛАН
         // TODO: определять, какой именно слой персон!
         fetchUserPersonsById: build.query<UserPersonalInfoModel[], PersonsOfUserRequst>({
-            query: (arg) => {
-                switch (arg.personsType) {
-                    case PersonType.VISITED: {
-                        return ({
-                            url: '/visited'
-                        })
-                    }
-                    case PersonType.FRIENDS: {
-                        return ({
-                            url: '/friends'
-                        })
-                    }
-                    case PersonType.REQUESTS: {
-                        return ({
-                            url: '/requests'
-                        })
-                    }
-                    case PersonType.MY_REQUEST: {
-                        return ({
-                            url: '/////'
-                        })
-                    }
-                    case PersonType.SUBSCRIBERS: {
-                        return ({
-                            url: '//f///'
-                        })
-                    }
-                    default: {
-                        return ({
-                            url: '/visited'
-                        })
-                    }
+            query: (arg) => ({
+                url: '/visited',
+                params: {
+                    personType: personTypeToString(arg.personsType)
                 }
-            },
+            }),
             providesTags: result => ['persons']
         }),
         fetchUserItemsById: build.query<ItemModel[], ItemByIdRequest>({
