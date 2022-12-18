@@ -26,7 +26,11 @@ const PersonProfileContent = () => {
 
     // TODO: бэк должен добавлять в visited не друзей и не ... ну ясно!
     useEffect(() => {
+<<<<<<< HEAD
+        console.log("VISIT: ", pageId!)
+=======
         console.log("VISITED: ", location.pathname.split('/')[2]);
+>>>>>>> 582f77cb3e4139fc22f512cc4d4782838a52805d
         addToVisited({
             personId: location.pathname.split('/')[2],
             userId: userId!

@@ -31,7 +31,7 @@ requests = db.Table('requests',
 browsingHistory = db.Table('browsingHistory',
     db.Column('viewer_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
     db.Column('viewed_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
-    db.Column('timedate', db.Date, default=datetime.utcnow)
+    db.Column('timedate', db.Date, default=datetime.now())
 )
 
 user_book = db.Table('user_book',
