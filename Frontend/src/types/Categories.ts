@@ -6,7 +6,6 @@ export enum Categories {
     BOOK
 }
 
-// TODO: НЕ Set?
 // хранят в себе только idx!
 export interface CategoryModel {
     main_category: string[],

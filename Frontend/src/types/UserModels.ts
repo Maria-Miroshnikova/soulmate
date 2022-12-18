@@ -1,6 +1,5 @@
 import {ItemModel} from "./ItemModel";
 
-// TODO: не set?
 export interface UserCategoryModel {
     main_category: ItemModel[],
     sub_category: ItemModel[]

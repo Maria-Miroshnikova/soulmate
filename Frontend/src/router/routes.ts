@@ -19,7 +19,6 @@ export const getFullCategoryPath = (category: Categories, isMain: boolean, id: s
     }
 }
 
-// TODO: ИСПРАВИТЬ
 export const getFullFriendPath = (type: PersonType, id: string): string => {
     const url = ROUTES.base_url + ROUTES.pages.account + '/' + id + '/';
     switch (type) {

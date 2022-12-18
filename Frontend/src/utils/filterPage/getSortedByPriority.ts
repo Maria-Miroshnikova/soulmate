@@ -1,11 +1,6 @@
 import {UserCardInfo} from "../../types/UserCardInfo";
 import {Categories} from "../../types/Categories";
 
-//TODO
-//const comparator by Count of full count of ...
-// TODO
-// оставить это работу бэкэнду? пока что не работает MULTI!
-
 /*const priority_localStorage = "priority";
   const priority_str: any = localStorage.getItem(priority_localStorage);
     console.log(priority_str);
@@ -82,8 +77,8 @@ const comparatorDEFAULT = (a: UserCardInfo, b: UserCardInfo) : number => {
 
 // Сортируем по количество совпадений в категории
 // TODO: ОЧЕНЬ медленное сравнение (просто кошмар, полный просчет по каждой категории)
-// TODO: глобальная переменная ???????
-// TODO: default по общему размеру отделен от категориального. А слитный? Чтобы среди МАКСИМУМА совпадений шло внутреннее.
+// глобальная переменная ???????
+// default по общему размеру отделен от категориального. А слитный? Чтобы среди МАКСИМУМА совпадений шло внутреннее.
 // это требует изменить систему приоритетов....
 export const getSortedByPriority = (userCards: UserCardInfo[], priority: Categories[]): UserCardInfo[] => {
     PRIORITY = priority;

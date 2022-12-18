@@ -26,8 +26,6 @@ export interface IParamsFilter {
     priority?: string
 }
 
-// TODO is_ and id
-// TODO странный toString....
 export const makeParamsFromFilter = (userId: string, filter: FilterModel, priority: Categories[]): Record<string, any> => {
     const result: IParamsFilter = {
         userid: userId,
