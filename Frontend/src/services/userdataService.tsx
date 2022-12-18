@@ -171,15 +171,15 @@ export const userdataAPI = createApi({
             transformResponse: (response: UserPersonsResponseJson, meta, arg) => {
                 const result: UserPersonalInfoModel[] = [];
                 for (var i = 0; i < response.FoundUsers.length; ++i) {
-                    const user: UserInfoJson = response.FoundUsers[i];
-                    console.log("user", user.username)
+                    const user: UserInfoRequestJson = response.FoundUsers[i];
+                    console.log("user", user.User.username)
                     result.push({
-                        id: user.id,
-                        nickname: user.username,
+                        id: user.User.id,
+                        nickname: user.User.username,
                         avatar: "",
-                        age: user.age,
-                        gender: user.gender,
-                        telegram: user.telegram
+                        age: user.User.age,
+                        gender: user.User.gender,
+                        telegram: user.User.telegram
                     })
                 }
                 return result;
