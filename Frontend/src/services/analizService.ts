@@ -35,21 +35,25 @@ export const analizAPI = createApi({
     baseQuery: baseQueryWithReauth,
     endpoints: (build) => ({
         // сразу по двум?
+        // transform для РЭЙТИНГА который не передается
         fetchCommonData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
                 url: '/common',
             })
         }),
+        // transform для РЭЙТИНГА который не передается
         fetchNewData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
                 url: '/new',
             })
         }),
+        // transform для типов
         fetchTopData:  build.query<TopDataResponse, TopDataRequest>({
             query: (arg) => ({
                 url: '/top',
             })
         }),
+        // transform для всего
         fetchDifferentRatingData:  build.query<DifferentRatingResponse, SharedDataRequest>({
             query: (arg) => ({
                 url: '/different',
