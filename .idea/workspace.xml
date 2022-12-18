@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="raise adding to visited">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="try fix visiting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/profilecontent/PersonProfileContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/profilecontent/PersonProfileContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/types/response_types/UserPersonsResponseJson.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/types/response_types/UserPersonsResponseJson.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +82,7 @@
       <workItem from="1671194068127" duration="13693000" />
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
-      <workItem from="1671368483806" duration="12040000" />
+      <workItem from="1671368483806" duration="12686000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -336,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671381967872</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="try fix visiting">
+      <created>1671382567941</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1671382567941</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +361,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add parsing JSON for updating comments and personConnections" />
     <MESSAGE value="resolve conflicts" />
     <MESSAGE value="fix Universal fetchOptions, sketch PersonMyRequest card" />
     <MESSAGE value="sketch oldRequestButton and personCard" />
@@ -379,7 +385,8 @@
     <MESSAGE value="raise countRequests" />
     <MESSAGE value="fix transform countRequests" />
     <MESSAGE value="raise adding to visited" />
-    <option name="LAST_COMMIT_MESSAGE" value="raise adding to visited" />
+    <MESSAGE value="try fix visiting" />
+    <option name="LAST_COMMIT_MESSAGE" value="try fix visiting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
