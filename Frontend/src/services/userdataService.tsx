@@ -6,6 +6,8 @@ import {Categories} from "../types/Categories";
 import {UserInfoRequestJson} from "../types/response_types/userInfoJson";
 import {ItemJson, UserItemsRequestJson} from "../types/response_types/userItemsRequestJson";
 import { PersonType } from "../types/PersonType";
+import {UserPersonsResponseJson} from "../types/response_types/UserPersonsResponseJson";
+import {UserInfoJson} from "../types/response_types/userCardsByFilterJson";
 
 const categoryParamByCategories = (category: Categories) : string => {
     switch (category) {
@@ -16,12 +18,13 @@ const categoryParamByCategories = (category: Categories) : string => {
     }
 }
 
+// TODO: подписчики
 const personTypeToString = (type: PersonType): string => {
     switch (type) {
-        case PersonType.FRIENDS: return "friend";
-        case PersonType.MY_REQUEST: return "sub";
-        case PersonType.REQUESTS: return "";
-        case PersonType.VISITED: return "";
+        case PersonType.FRIENDS: return "friends";
+        case PersonType.MY_REQUEST: return "my_requests";
+        case PersonType.REQUESTS: return "requests";
+        case PersonType.VISITED: return "visited";
         case PersonType.SUBSCRIBERS: return "";
         default: return "";
     }
@@ -159,7 +162,23 @@ export const userdataAPI = createApi({
                 url: '/users_peers',
                 params: {
                     personType: personTypeToString(arg.personsType)
+                },
+                transformResponse: (response: UserPersonsResponseJson) => {
+                    const result: UserPersonalInfoModel[] = [];
+                    for (var i = 0; i < response.FoundUsers.length; ++i) {
+                        const user: UserInfoJson = response.FoundUsers[i];
+                        result.push({
+                            id: user.id,
+                            nickname: user.username,
+                            avatar: "",
+                            age: user.age,
+                            gender: user.gender,
+                            telegram: user.telegram
+                        })
+                    }
+                    return result;
                 }
+
             }),
             providesTags: result => ['persons']
         }),

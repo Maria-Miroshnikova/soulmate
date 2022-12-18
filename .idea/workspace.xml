@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="sketch json types for fetching analize">
-      <change beforePath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" afterDir="false" />
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="merge">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +82,7 @@
       <workItem from="1671194068127" duration="13693000" />
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
-      <workItem from="1671368483806" duration="1891000" />
+      <workItem from="1671368483806" duration="3074000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -258,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671369976995</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="merge">
+      <created>1671370407552</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1671370407552</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +284,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add front to other branch" />
     <MESSAGE value="TEST: remove userType fetching in userCard for API-tests" />
     <MESSAGE value="add Login" />
     <MESSAGE value="add oauth with renavigation&#10;TODO: work with token, refresh" />
@@ -301,6 +308,7 @@
     <MESSAGE value="fix fetching user persons" />
     <MESSAGE value="add comments form transform in alanizService" />
     <MESSAGE value="sketch json types for fetching analize" />
-    <option name="LAST_COMMIT_MESSAGE" value="sketch json types for fetching analize" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
 </project>
