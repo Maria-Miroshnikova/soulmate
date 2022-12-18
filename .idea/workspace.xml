@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="fix fetching user persons">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add comments form transform in alanizService">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/analizService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/analizService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +81,7 @@
       <workItem from="1671194068127" duration="13693000" />
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
-      <workItem from="1671368483806" duration="817000" />
+      <workItem from="1671368483806" duration="1455000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -238,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671368932340</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="add comments form transform in alanizService">
+      <created>1671369332908</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1671369332908</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +285,7 @@
     <MESSAGE value="make filter interactive: make filterTemplate interactive" />
     <MESSAGE value="fix button on filter" />
     <MESSAGE value="fix fetching user persons" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix fetching user persons" />
+    <MESSAGE value="add comments form transform in alanizService" />
+    <option name="LAST_COMMIT_MESSAGE" value="add comments form transform in alanizService" />
   </component>
 </project>
