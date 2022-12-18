@@ -3,6 +3,7 @@ import {baseQueryWithReauth} from "./baseQueryFunctions";
 import {UserCardInfo} from "../types/UserCardInfo";
 import {ItemModel} from "../types/ItemModel";
 import {Categories} from "../types/Categories";
+import { categoryParamByCategories } from "./userdataService";
 
 export interface SharedDataRequest {
     userId: string,
@@ -39,24 +40,48 @@ export const analizAPI = createApi({
         fetchCommonData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
                 url: '/common',
+                params: {
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    personId: arg.personId
+                }
             })
         }),
         // transform для РЭЙТИНГА который не передается
         fetchNewData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
                 url: '/new',
+                params: {
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    personId: arg.personId
+                }
             })
         }),
         // transform для типов
         fetchTopData:  build.query<TopDataResponse, TopDataRequest>({
             query: (arg) => ({
                 url: '/top',
+                params: {
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    isHigh: (arg.isHigh) ? 'true' : 'false'
+                }
             })
         }),
         // transform для всего
         fetchDifferentRatingData:  build.query<DifferentRatingResponse, SharedDataRequest>({
             query: (arg) => ({
                 url: '/different',
+                params: {
+                    userId: arg.userId,
+                    category: categoryParamByCategories(arg.category),
+                    isMain: (arg.isMain) ? 'true' : 'false',
+                    personId: arg.personId
+                }
             })
         })
     })

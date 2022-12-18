@@ -37,25 +37,25 @@ const CommonCard: FC<CommonCardProps> = ({category}) => {
     // Совпадения/новое для пользователя
     const {data: itemsSharedMain, isLoading: isLoadingSharedMain} = analizAPI.useFetchCommonDataQuery({
         userId: userId!,
-        personId: pageId,
+        personId: pageId!,
         category: category,
         isMain: true
     });
     const {data: itemsSharedSub, isLoading: isLoadingSharedSub} = analizAPI.useFetchCommonDataQuery({
         userId: userId!,
-        personId: pageId,
+        personId: pageId!,
         category: category,
         isMain: false
     });
     const {data: itemsNewMain, isLoading: isLoadingNewMain} = analizAPI.useFetchNewDataQuery({
         userId: userId!,
-        personId: pageId,
+        personId: pageId!,
         category: category,
         isMain: true
     });
     const {data: itemsNewSub, isLoading: isLoadingNewSub} = analizAPI.useFetchNewDataQuery({
         userId: userId!,
-        personId: pageId,
+        personId: pageId!,
         category: category,
         isMain: true
     });
@@ -63,13 +63,13 @@ const CommonCard: FC<CommonCardProps> = ({category}) => {
     // Противоположные рэйтинги
     const {data: differentItemsMain, isLoading: isLoadingDifferentMain} = analizAPI.useFetchDifferentRatingDataQuery({
         userId: userId!,
-        personId: pageId,
+        personId: pageId!,
         category: category,
         isMain: true
     });
     const {data: differentItemsSub, isLoading: isLoadingDifferentSub} = analizAPI.useFetchDifferentRatingDataQuery({
         userId: userId!,
-        personId: pageId,
+        personId: pageId!,
         category: category,
         isMain: false
     });
@@ -92,8 +92,8 @@ const CommonCard: FC<CommonCardProps> = ({category}) => {
                         title={textNew}
                         textCategories={textCategories} />
                 </Box>
-                <TopListTemplate isHighList={true} category={category} personId={pageId}/>
-                <TopListTemplate isHighList={false} category={category} personId={pageId}/>
+                <TopListTemplate isHighList={true} category={category} personId={pageId!}/>
+                <TopListTemplate isHighList={false} category={category} personId={pageId!}/>
                 <Box display="flex" flexDirection="row" alignItems="center" sx={{marginTop: 1}}>
                     <Typography variant="h6" color={themeMain.palette.primary.main}> {textDifference} </Typography>
                     {
