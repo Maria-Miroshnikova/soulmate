@@ -378,6 +378,18 @@ def requestPersonToBeFriends():
         db.session.commit()
     return ''
 
+user.route("/api/closeMyRequest/", methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
+def removePersonFromFriends():
+    #DELETE
+    userid = request.json.get('userId', None)
+    personId = request.json.get('personId', None)
+    print(userid, personId)
+    if userid != None and personId != None:
+        entry_1 = db.session.query(requests).filter(requests.c.followed_id == personId, requests.c.follower_id == userid).delete()
+        db.session.commit()
+    return ''
+
 @user.route("/api/removePersonFromFriends/", methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
 def removePersonFromFriends():
@@ -426,7 +438,7 @@ def requestscount():
     countFollowers = 0
     if userid != None:
         countFollowers = db.session.query(requests).filter(requests.c.followed_id == userid, requests.c.type == 'follower').count()
-    return {"count followers": countFollowers}
+    return {"count_followers": countFollowers}
 
 @user.route("/users_peers/", methods = ['GET'])
 def user_peers():
