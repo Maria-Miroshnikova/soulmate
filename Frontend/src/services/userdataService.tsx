@@ -161,7 +161,9 @@ export const userdataAPI = createApi({
             query: (arg) => ({
                 url: '/users_peers',
                 params: {
-                    personType: personTypeToString(arg.personsType)
+                    personType: personTypeToString(arg.personsType),
+                    userId: arg.userId,
+                    title: arg.title
                 },
                 transformResponse: (response: UserPersonsResponseJson) => {
                     const result: UserPersonalInfoModel[] = [];
