@@ -18,12 +18,12 @@ export const getDrawerOptions = (isUserProfile: boolean, id: string): INavButton
                 isFiends: true,
                 url_to: getFullFriendPath(PersonType.FRIENDS, id)
             },
-            {
+         /*   {
                 textBotton: 'Подписки',
                 isProfile: false,
                 isFiends: false,
                 url_to: getFullFriendPath(PersonType.FRIENDS, id)
-            },
+            },*/
             {
                 textBotton: 'Кино',
                 isProfile: false,

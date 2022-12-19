@@ -12,23 +12,24 @@ import MyBadge from "../UI/badge/MyBadge";
 
 interface UserPageContentProps {
     isContentAboutFriends: boolean,
-    isSubscribers: boolean,
+   // isSubscribers: boolean,
     category?: Categories
 }
 
-const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAboutFriends, isSubscribers}) => {
+const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAboutFriends}) => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
     const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
     console.log("id: " + pageId);
     const isUserPage = !(userId === pageId!);
-    const tabs = (isContentAboutFriends) ?
+  /*  const tabs = (isContentAboutFriends) ?
         getFriendsTabs(pageId!)
         :
         (isSubscribers) ?
             getSubscribeTabs(pageId!)
             :
-            getCategoryTabs(category!, pageId!);
+            getCategoryTabs(category!, pageId!);*/
+    const tabs = (isContentAboutFriends) ? getFriendsTabs(pageId!) : getCategoryTabs(category!, pageId!);
 
     const countFound = useAppSelector((state) => state.searchConentReducer.countFound);
 

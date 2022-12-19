@@ -95,6 +95,12 @@ export const getFriendsTabs = (id: string): INavButton[] => {
             url_to: getFullFriendPath(PersonType.REQUESTS, id)
         },
         {
+            textBotton: 'Подписки',
+            isFiends: true,
+            isProfile: false,
+            url_to: getFullFriendPath(PersonType.MY_REQUEST, id)
+        },
+        {
             textBotton: 'Посещенные',
             isFiends: true,
             isProfile: false,
