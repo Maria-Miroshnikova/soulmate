@@ -136,7 +136,7 @@ function App() {
                       <Route path={ROUTES.content_tabs.friends.requests} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
                         <Route index element={<PersonList type={PersonType.REQUESTS}/>}/>
                       </Route>
-                      <Route path={ROUTES.content_tabs.friends.my_subscriptions} element={<UserPageSearchContent isContentAboutFriends={false}/>}>
+                      <Route path={ROUTES.content_tabs.friends.my_subscriptions} element={<UserPageSearchContent isContentAboutFriends={true}/>}>
                         <Route index element={<PersonList type={PersonType.MY_REQUEST}/>}/>
                       </Route>
                       <Route path={ROUTES.content_tabs.films.films_main} element={<UserPageSearchContent category={Categories.FILM} isContentAboutFriends={false}/>}>

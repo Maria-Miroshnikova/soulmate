@@ -18,6 +18,8 @@ interface PersonListProps {
 const PersonList: FC<PersonListProps> = ({type}) => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
+    console.log("userId personList: ", userId);
+
     const title = useAppSelector(state => state.searchConentReducer.title);
 
     const {data: persons, isLoading} = userdataAPI.useFetchUserPersonsByIdQuery({userId: userId!, personsType: type, title: title!}, {

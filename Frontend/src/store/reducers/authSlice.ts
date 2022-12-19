@@ -15,11 +15,12 @@ interface AuthState {
 
 // TODO сделать false
 const initialState: AuthState = {
-    isAuth: false,
+   // isAuth: false,
+    isAuth: true,
     isLoading: false,
     error: '',
     // TODO: убрать
-   // userId: '2',
+    userId: '2',
     // TODO: убрать
     isModerator: false
 }
@@ -34,8 +35,8 @@ export const authSlice = createSlice({
             state.isLoading = false;
 
             // TODO убрать после тестов
-           // state.userId = "2";
-             state.userId = action.payload.userId;
+            state.userId = "2";
+          //   state.userId = action.payload.userId;
             // TODO: обработка модератора!
             state.isModerator = false;
             localStorage.setItem('accessToken', action.payload.accessToken);
