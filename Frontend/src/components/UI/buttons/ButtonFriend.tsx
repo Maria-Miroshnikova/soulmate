@@ -13,6 +13,7 @@ const ButtonFriend: FC<ButtonPersonProps> = ({person}) => {
     const textDelete = "Удалить";
     const textTelegram = "Telegram";
     const navigate = useNavigate();
+    const textNoTelegram = "Telegram не указан";
 
     const userId = useAppSelector(state => state.authReducer.userId);
     const [removeFriend] = userdataAPI.useRemovePersonFromFriendsMutation()
@@ -24,7 +25,12 @@ const ButtonFriend: FC<ButtonPersonProps> = ({person}) => {
     return (
         <Box display="flex" flexDirection="row" gap={1}>
             <Button variant="contained" onClick={handleDelete} > {textDelete} </Button>
-            <Button variant="contained" href={person.telegram}> {textTelegram} </Button>
+            {
+                ((person.telegram === undefined) || (person.telegram === null) || (person.telegram === "")) ?
+                    <Button variant="contained" disabled> {textNoTelegram} </Button>
+                    :
+                    <Button variant="contained" href={person.telegram}> {textTelegram} </Button>
+            }
         </Box>
     );
 };
