@@ -19,9 +19,11 @@ const PersonList: FC<PersonListProps> = ({type}) => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
     const title = useAppSelector(state => state.searchConentReducer.title);
-    // TODO title правильно там хранится/обнуляется?
-    const {data: persons, isLoading} = userdataAPI.useFetchUserPersonsByIdQuery({userId: userId!, personsType: type, title: title!});
-    console.log("persons ", persons);
+
+    const {data: persons, isLoading} = userdataAPI.useFetchUserPersonsByIdQuery({userId: userId!, personsType: type, title: title!}, {
+        // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
+    });
+ //   console.log("persons ", persons);
 
     const dispatch = useAppDispatch();
     const location = useLocation();

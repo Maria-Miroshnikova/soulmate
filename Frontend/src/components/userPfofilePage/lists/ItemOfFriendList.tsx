@@ -18,8 +18,10 @@ const ItemOfFriendList: FC<ItemListProps> = ({category, isMain}) => {
     const title = useAppSelector(state => state.searchConentReducer.title);
 
     const personId = useAppSelector(state => state.searchConentReducer.pageId);
-    const {data: items, isLoading} = userdataAPI.useFetchUserItemsByIdQuery({userId: personId!, category: category, isMain: isMain, title: title});
-    console.log("friends items: ", items);
+    const {data: items, isLoading} = userdataAPI.useFetchUserItemsByIdQuery({userId: personId!, category: category, isMain: isMain, title: title}, {
+        // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
+    });
+   // console.log("friends items: ", items);
 
     /*
     update: вывод совпадений/различий

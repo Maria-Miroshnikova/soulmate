@@ -97,7 +97,6 @@ function App() {
 
   const isModerator = useAppSelector(state => state.authReducer.isModerator);
 
-  // TODO страничка входа
   return (isModerator) ?
       (<Routes>
         <Route path={ROUTES.base_url} element={<AppLayout/>}>

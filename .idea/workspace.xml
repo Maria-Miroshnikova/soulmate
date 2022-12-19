@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add connection between fetch userType and use buttons for connection requests">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="move My_Requests to friends tab">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageSearchContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageSearchContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/tabs/drawerOptions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/tabs/drawerOptions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/tabs/tabs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/tabs/tabs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +85,7 @@
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
       <workItem from="1671368483806" duration="14833000" />
-      <workItem from="1671444442803" duration="1189000" />
+      <workItem from="1671444442803" duration="2083000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -389,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671445349181</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="move My_Requests to friends tab">
+      <created>1671445705226</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1671445705226</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +413,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="make subscribers pages and tabs and buttons in all app" />
     <MESSAGE value="delete odd todos" />
     <MESSAGE value="raise local priority sort" />
     <MESSAGE value="make filter interactive: make priority and searchname interactive" />
@@ -432,6 +437,7 @@
     <MESSAGE value="delete todos" />
     <MESSAGE value="make button for telegram disabled if telegram === null" />
     <MESSAGE value="add connection between fetch userType and use buttons for connection requests" />
-    <option name="LAST_COMMIT_MESSAGE" value="add connection between fetch userType and use buttons for connection requests" />
+    <MESSAGE value="move My_Requests to friends tab" />
+    <option name="LAST_COMMIT_MESSAGE" value="move My_Requests to friends tab" />
   </component>
 </project>

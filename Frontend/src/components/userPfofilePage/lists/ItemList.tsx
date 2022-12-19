@@ -19,7 +19,9 @@ const ItemList: FC<ItemListProps> = ({category, isMain}) => {
 
     // Загрузка избранных пользователя
     const userId = useAppSelector(state => state.authReducer.userId);
-    const {data: items, isLoading: isLoadingItems} = userdataAPI.useFetchUserItemsByIdQuery({userId: userId!, category: category, isMain: isMain, title: title});
+    const {data: items, isLoading: isLoadingItems} = userdataAPI.useFetchUserItemsByIdQuery({userId: userId!, category: category, isMain: isMain, title: title}, {
+        // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
+    });
 
     // Загрузка опций
     // TODO
