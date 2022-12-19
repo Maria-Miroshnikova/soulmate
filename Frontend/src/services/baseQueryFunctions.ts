@@ -1,6 +1,7 @@
 import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@reduxjs/toolkit/dist/query/react";
 
-export const BASE_URL = "http://127.0.0.1:5000";
+//export const BASE_URL = "http://127.0.0.1:5000";
+export const BASE_URL = "http://localhost:3001";
 
 // TODO: протестировать работу,когда токена нет
 const baseQueryWithAuthToken = fetchBaseQuery({

@@ -3,7 +3,6 @@ import {useAppSelector} from "../../../hooks/redux";
 import {userdataAPI} from "../../../services/userdataService";
 import {UserPersonalInfoModel} from "../../../types/UserModels";
 import {Box, Button, Link} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 
 export interface ButtonPersonProps {
     person: UserPersonalInfoModel
@@ -12,7 +11,6 @@ export interface ButtonPersonProps {
 const ButtonFriend: FC<ButtonPersonProps> = ({person}) => {
     const textDelete = "Удалить";
     const textTelegram = "Telegram";
-    const navigate = useNavigate();
     const textNoTelegram = "Telegram не указан";
 
     const userId = useAppSelector(state => state.authReducer.userId);

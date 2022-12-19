@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="delete todos">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="make button for telegram disabled if telegram === null">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/UI/buttons/ButtonFriend.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/UI/buttons/ButtonFriend.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/profilecontent/PersonProfileContent.tsx.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +86,7 @@
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
       <workItem from="1671368483806" duration="14833000" />
-      <workItem from="1671444442803" duration="357000" />
+      <workItem from="1671444442803" duration="866000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -372,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671383670745</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="make button for telegram disabled if telegram === null">
+      <created>1671444831078</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1671444831078</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -390,7 +400,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sketch oldRequestButton and personCard" />
     <MESSAGE value="fix UniversalOptionsFetching with title" />
     <MESSAGE value="make subscribers pages and tabs and buttons in all app" />
     <MESSAGE value="delete odd todos" />
@@ -415,6 +424,7 @@
     <MESSAGE value="try fix visiting" />
     <MESSAGE value="fix friends parsing problem" />
     <MESSAGE value="delete todos" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete todos" />
+    <MESSAGE value="make button for telegram disabled if telegram === null" />
+    <option name="LAST_COMMIT_MESSAGE" value="make button for telegram disabled if telegram === null" />
   </component>
 </project>

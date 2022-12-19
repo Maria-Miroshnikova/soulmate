@@ -112,7 +112,8 @@ export const userdataAPI = createApi({
                 return {
                     personType: typeOfConnectionByString(response.type)
                 }
-            }
+            },
+            providesTags: result => ['persons']
         }),
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
