@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="move My_Requests to friends tab">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add polling interval to all lists (itemList)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/moderatorService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/moderatorService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +84,7 @@
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
       <workItem from="1671368483806" duration="14833000" />
-      <workItem from="1671444442803" duration="2083000" />
+      <workItem from="1671444442803" duration="2805000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -395,7 +394,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671445705226</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="add polling interval to all lists (itemList)">
+      <created>1671446618436</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1671446618436</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,8 +419,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="delete odd todos" />
-    <MESSAGE value="raise local priority sort" />
     <MESSAGE value="make filter interactive: make priority and searchname interactive" />
     <MESSAGE value="make filter interactive: make filterTemplate interactive" />
     <MESSAGE value="fix button on filter" />
@@ -438,6 +442,8 @@
     <MESSAGE value="make button for telegram disabled if telegram === null" />
     <MESSAGE value="add connection between fetch userType and use buttons for connection requests" />
     <MESSAGE value="move My_Requests to friends tab" />
-    <option name="LAST_COMMIT_MESSAGE" value="move My_Requests to friends tab" />
+    <MESSAGE value="ad polling interval to all lists (itemList)" />
+    <MESSAGE value="add polling interval to all lists (itemList)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add polling interval to all lists (itemList)" />
   </component>
 </project>

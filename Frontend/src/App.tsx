@@ -97,6 +97,12 @@ function App() {
 
   const isModerator = useAppSelector(state => state.authReducer.isModerator);
 
+
+  /*
+  <Route path={ROUTES.content_tabs.friends.subscribers} element={<UserPageSearchContent isContentAboutFriends={false}/>}>
+                        <Route index element={<PersonList type={PersonType.SUBSCRIBERS}/>}/>
+                      </Route>
+   */
   return (isModerator) ?
       (<Routes>
         <Route path={ROUTES.base_url} element={<AppLayout/>}>
@@ -131,9 +137,6 @@ function App() {
                       </Route>
                       <Route path={ROUTES.content_tabs.friends.my_subscriptions} element={<UserPageSearchContent isContentAboutFriends={false}/>}>
                         <Route index element={<PersonList type={PersonType.MY_REQUEST}/>}/>
-                      </Route>
-                      <Route path={ROUTES.content_tabs.friends.subscribers} element={<UserPageSearchContent isContentAboutFriends={false}/>}>
-                        <Route index element={<PersonList type={PersonType.SUBSCRIBERS}/>}/>
                       </Route>
                       <Route path={ROUTES.content_tabs.films.films_main} element={<UserPageSearchContent category={Categories.FILM} isContentAboutFriends={false}/>}>
                         <Route index element={<ItemListLayout category={Categories.FILM} isMain={true}/>} />
