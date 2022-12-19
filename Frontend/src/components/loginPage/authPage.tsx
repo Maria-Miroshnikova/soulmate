@@ -8,7 +8,7 @@ import {login_success} from "../../store/reducers/authSlice";
 
 const AuthPage = () => {
 
-    const width = "512px";
+   /* const width = "512px";
 
     const textSignIn = "Sign in";
     const textNicknameTextField = "Nickname";
@@ -32,7 +32,7 @@ const AuthPage = () => {
 
         // TODO
         /* отправка */
-        trigger.call({}, loginRequest);
+     /*   trigger.call({}, loginRequest);
     }
 
     // TODO: перенести в unwrap? то же для registrPage?
@@ -87,7 +87,9 @@ const AuthPage = () => {
                 </Link>
             </Box>
         </Box>
-    );
+    );*/
+
+    return null;
 };
 
 export default AuthPage;

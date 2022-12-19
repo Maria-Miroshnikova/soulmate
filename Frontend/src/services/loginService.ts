@@ -29,7 +29,7 @@ export const loginAPI = createApi({
         baseUrl: BASE_URL
     }),
     endpoints: (build) => ({
-        login: build.mutation<LoginResponse, LoginRequest>({
+       /* login: build.mutation<LoginResponse, LoginRequest>({
             query: (loginData) => ({
                 url: '/login',
                 body: loginData,
@@ -38,8 +38,8 @@ export const loginAPI = createApi({
             extraOptions: {
                 maxRetries: 2
             }
-        }),
-        refresh: build.mutation<LoginResponse, LoginRefresh>({
+        }),*/
+       /* refresh: build.mutation<LoginResponse, LoginRefresh>({
             query: (loginRefresh) => ({
                 url: '/refresh',
                 body: loginRefresh,
@@ -58,6 +58,11 @@ export const loginAPI = createApi({
             extraOptions: {
                 maxRetries: 2
             }
+        }),*/
+        login: build.query<void, void>({
+            query: () => ({
+                url: '/login'
+            })
         }),
     })
 })

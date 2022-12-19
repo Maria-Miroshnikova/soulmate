@@ -8,7 +8,7 @@ import {login_success} from "../../store/reducers/authSlice";
 
 const RegistrPage = () => {
 
-    const width = "512px";
+  /*  const width = "512px";
 
     const textSignUp = "Sign up";
     const textNicknameTextField = "Nickname";
@@ -32,7 +32,7 @@ const RegistrPage = () => {
 
         // TODO
         /* отправка */
-        trigger.call({}, loginRequest);
+      /*  trigger.call({}, loginRequest);
     }
 
     useEffect(() => {
@@ -83,7 +83,9 @@ const RegistrPage = () => {
                 </Link>
             </Box>
         </Box>
-    );
+    );*/
+
+    return null;
 };
 
 export default RegistrPage;

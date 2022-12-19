@@ -20,7 +20,7 @@ export const filterAPI = createApi({
     endpoints: (build) => ({
         fetchUserCardsByFilter: build.query<UserCardInfo[], {userId: string, filter: FilterModel, priority: Categories[]}>({
             query: (arg) => ({
-                url: '/userfilter',
+                url: '/userfilter/',
                 params: makeParamsFromFilter(arg.userId, arg.filter, arg.priority)
             }),
             transformResponse: (response: UserCardsByFilterJson, meta, arg) => {
@@ -71,42 +71,42 @@ export const filterAPI = createApi({
         // все эти функции для загрузки всей анталогии перед стартом приложения (в дальнейшем лучше сделать подгрузку по необходимости!)
         fetchOptionsBookMain: build.query<OptionItemModel[], void>({
             query: () => ({
-                url: '/options_book_main',
+                url: '/options_book_main/',
             })
         }),
         fetchOptionsBookSub: build.query<OptionItemModel[], void>({
             query: () => ({
-                url: '/options_book_sub',
+                url: '/options_book_sub/',
             })
         }),
         fetchOptionsFilmMain: build.query<OptionItemModel[], void>({
             query: () => ({
-                url: '/options_film_main',
+                url: '/options_film_main/',
             })
         }),
         fetchOptionsFilmSub: build.query<OptionItemModel[], void>({
             query: () => ({
-                url: '/options_film_sub',
+                url: '/options_film_sub/',
             })
         }),
         fetchOptionsMusicMain: build.query<OptionItemModel[], void>({
             query: () => ({
-                url: '/options_music_main',
+                url: '/options_music_main/',
             })
         }),
         fetchOptionsMusicSub: build.query<OptionItemModel[], void>({
             query: () => ({
-                url: '/options_music_sub',
+                url: '/options_music_sub/',
             })
         }),
         fetchOptionsGameMain: build.query<OptionItemModel[], void>({
             query: () => ({
-                url: '/options_game_main',
+                url: '/options_game_main/',
             })
         }),
         fetchOptionsGameSub: build.query<OptionItemModel[], void>({
             query: () => ({
-                url: '/options_game_sub',
+                url: '/options_game_sub/',
             })
         }),
 
@@ -117,14 +117,14 @@ export const filterAPI = createApi({
                     case Categories.BOOK: {
                         return (arg.isMain) ?
                             ({
-                                url: '/options_book_main',
+                                url: '/options_book_main/',
                                 params: {
                                     title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                             :
                             ({
-                                url: '/options_book_sub',
+                                url: '/options_book_sub/',
                                 params: {
                                     title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
@@ -133,14 +133,14 @@ export const filterAPI = createApi({
                     case Categories.GAME: {
                         return (arg.isMain) ?
                             ({
-                                url: '/options_game_main',
+                                url: '/options_game_main/',
                                 params: {
                                     title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                             :
                             ({
-                                url: '/options_game_sub',
+                                url: '/options_game_sub/',
                                 params: {
                                     title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
@@ -149,14 +149,14 @@ export const filterAPI = createApi({
                     case Categories.MUSIC: {
                         return (arg.isMain) ?
                             ({
-                                url: '/options_music_main',
+                                url: '/options_music_main/',
                                 params: {
                                     title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                             :
                             ({
-                                url: '/options_music_sub',
+                                url: '/options_music_sub/',
                                 params: {
                                     title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
@@ -165,14 +165,14 @@ export const filterAPI = createApi({
                     case Categories.FILM: {
                         return (arg.isMain) ?
                             ({
-                                url: '/options_film_main',
+                                url: '/options_film_main/',
                                 params: {
                                     title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }
                             })
                             :
                             ({
-                                url: '/options_film_sub',
+                                url: '/options_film_sub/',
                                 params: {
                                     title: ((arg.title === "") || (arg.title === null)) ? undefined : arg.title
                                 }

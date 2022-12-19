@@ -8,11 +8,12 @@ import {gapi} from "gapi-script";
 import {login_success, logout} from "../../../store/reducers/authSlice";
 import {useNavigate} from "react-router-dom";
 import {ROUTES} from "../../../router/routes";
+import {loginAPI} from "../../../services/loginService";
 
 const CustomAppBar: FC = () => {
 
-    const clientId = "407844009418-2hui8hbgvgpi034p4eb8ooer9akbnknj.apps.googleusercontent.com";
-    const SCOPES = 'https://www.googleapis.com/auth/drive';
+   // const clientId = "407844009418-2hui8hbgvgpi034p4eb8ooer9akbnknj.apps.googleusercontent.com";
+  //  const SCOPES = 'https://www.googleapis.com/auth/drive';
 
     const textTitle = "Soulmate.";
     const isModerator = useAppSelector(state => state.authReducer.isModerator);
@@ -37,7 +38,7 @@ const CustomAppBar: FC = () => {
         gapi.load('client:auth2', initClient);
     });*/
 
-    const handleClickLogButton = () => {
+  /*  const handleClickLogButton = () => {
         console.log("CKICK");
         if (isAuth) {
             console.log("OUT");
@@ -75,6 +76,21 @@ const CustomAppBar: FC = () => {
     const handleLogout = () => {
         dispatch(logout());
         console.log("LOGED OUT");
+    }*/
+
+    const [login] = loginAPI.useLazyLoginQuery();
+
+    const handleClickLogButton = () => {
+        if (isAuth) {
+            console.log("OUT");
+            // переадресация
+            navigate('/');
+            dispatch(logout());
+        }
+        else {
+            console.log("IN");
+            login().then();
+        }
     }
 
     return (

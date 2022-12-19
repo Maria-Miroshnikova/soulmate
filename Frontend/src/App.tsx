@@ -31,7 +31,8 @@ import {PersonType} from "./types/PersonType";
 
 function App() {
 
-  const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useRefreshMutation();
+ // TODO
+ // const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useRefreshMutation();
 
   // TODO: рефреш?????????
 /*  useEffect(() => {

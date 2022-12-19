@@ -105,7 +105,7 @@ export const userdataAPI = createApi({
     endpoints: (build) => ({
         fetchTypeOfPersonForUser: build.query<PersonTypeResponse, ConnectPersonsRequest>({
             query: (arg) => ({
-                url: `/fetchTypeOfPersonForUser`,
+                url: `/fetchTypeOfPersonForUser/`,
                 params: arg
             }),
             transformResponse: (response: TypeOfConnetctionResponseJson , meta, arg) => {
@@ -117,7 +117,7 @@ export const userdataAPI = createApi({
         }),
         fetchUserPersonalInfoById: build.query<UserPersonalInfoModel, UserByIdRequest>({
             query: (arg) => ({
-                url: `/userdatausers`,
+                url: `/userdatausers/`,
                 params: arg
             }),
             providesTags: result => ['userInfo'],
@@ -160,7 +160,7 @@ export const userdataAPI = createApi({
         }),
         fetchUserPersonsById: build.query<UserPersonalInfoModel[], PersonsOfUserRequst>({
             query: (arg) => ({
-                url: '/users_peers',
+                url: '/users_peers/',
                 params: {
                     personType: personTypeToString(arg.personsType),
                     userId: arg.userId,
@@ -187,7 +187,7 @@ export const userdataAPI = createApi({
         }),
         fetchUserItemsById: build.query<ItemModel[], ItemByIdRequest>({
             query: (arg) => ({
-                url: '/userdataitems',
+                url: '/userdataitems/',
                 params: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),

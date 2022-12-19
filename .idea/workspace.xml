@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="add polling interval to all lists (itemList)">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="prepare parsing moderator jsons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/app/main/.env" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app/main/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/moderatorService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/moderatorService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/loginPage/authPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/loginPage/authPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/loginPage/registrPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/loginPage/registrPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/filterService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/userdataService.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +52,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/webstorm/soulmate&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programming/webstorm/soulmate_off_repo/soulmate&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -54,11 +63,11 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/Frontend/package.json" />
       <command value="run" />
       <scripts>
-        <script value="dev" />
+        <script value="start" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -84,7 +93,12 @@
       <workItem from="1671346742495" duration="8185000" />
       <workItem from="1671357500888" duration="39000" />
       <workItem from="1671368483806" duration="14833000" />
-      <workItem from="1671444442803" duration="2805000" />
+      <workItem from="1671444442803" duration="2878000" />
+      <workItem from="1671447551372" duration="105000" />
+      <workItem from="1671451159392" duration="1485000" />
+      <workItem from="1671462121796" duration="4617000" />
+      <workItem from="1671475131437" duration="2086000" />
+      <workItem from="1671477963162" duration="540000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -401,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671446618436</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="prepare parsing moderator jsons">
+      <created>1671447290777</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1671447290777</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,7 +440,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="make filter interactive: make priority and searchname interactive" />
     <MESSAGE value="make filter interactive: make filterTemplate interactive" />
     <MESSAGE value="fix button on filter" />
     <MESSAGE value="fix fetching user persons" />
@@ -444,6 +464,7 @@
     <MESSAGE value="move My_Requests to friends tab" />
     <MESSAGE value="ad polling interval to all lists (itemList)" />
     <MESSAGE value="add polling interval to all lists (itemList)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add polling interval to all lists (itemList)" />
+    <MESSAGE value="prepare parsing moderator jsons" />
+    <option name="LAST_COMMIT_MESSAGE" value="prepare parsing moderator jsons" />
   </component>
 </project>
