@@ -107,11 +107,16 @@ function App() {
   }
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   // обновление userId при переходе по страницам
-  useEffect(() => {
+ /* useEffect(() => {
     dispatch(updatePageId(location.pathname.split('/')[2]));
-  }, [location.pathname]);
+  }, [location.pathname]);*/
+  useEffect(() => {
+    if (!isAuth)
+      navigate('/');
+  })
 
   const isModerator = useAppSelector(state => state.authReducer.isModerator);
 
