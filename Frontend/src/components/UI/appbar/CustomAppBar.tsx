@@ -151,7 +151,7 @@ const CustomAppBar: FC = () => {
                 console.log("LOGIN RESPONSE: ERROR");
             }
             else {
-                dispatch(login_success({userId: response.user_id, accessToken: response.access_token}));
+                dispatch(login_success({userId: response.user_id, accessToken: response.access_token, refreshToken: response.refresh_token}));
             }
         });
     }

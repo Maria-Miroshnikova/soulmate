@@ -3,6 +3,9 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {filterAPI} from "../../services/filterService";
 import {LoginResponse} from "../../services/loginService";
 
+export const STORAGE_ACCESS = 'accessToken';
+export const STORAGE_REFRESH = 'refreshToken';
+
 // Этот слой отвечает только за AccessToken и за UserId!
 // UserModel подгружать отдельно!
 interface AuthState {
@@ -37,9 +40,11 @@ export const authSlice = createSlice({
             // TODO убрать после тестов
         //    state.userId = "2";
              state.userId = action.payload.userId;
+             console.log("user_id_AUTH_SLICE", action.payload.userId);
             // TODO: обработка модератора!
             state.isModerator = false;
-            localStorage.setItem('accessToken', action.payload.accessToken);
+            localStorage.setItem(STORAGE_ACCESS, action.payload.accessToken);
+            localStorage.setItem(STORAGE_REFRESH, action.payload.refreshToken);
             //console.log('token = ', action.payload.accessToken);
         },
         logout: state => {
@@ -48,7 +53,8 @@ export const authSlice = createSlice({
             state.userId = undefined;
             state.isLoading = false;
             state.isModerator = undefined;
-            localStorage.removeItem('accessToken');
+            localStorage.removeItem(STORAGE_ACCESS);
+            localStorage.removeItem(STORAGE_REFRESH);
         },
         login_failed: (state, action) => {
             state.isAuth = false;

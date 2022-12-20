@@ -25,7 +25,8 @@ export interface LoginRefresh {
 
 export interface LoginResponse {
     userId: string,
-    accessToken: string
+    accessToken: string,
+    refreshToken: string
 }
 
 export const loginAPI = createApi({

@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="make yandex oauth">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="make parsing login repsonse and dispatch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,21 +97,7 @@
       <workItem from="1671477963162" duration="2809000" />
       <workItem from="1671481718327" duration="5020000" />
       <workItem from="1671528052986" duration="2892000" />
-      <workItem from="1671535291114" duration="4456000" />
-    </task>
-    <task id="LOCAL-00005" summary="fix userProfileContent and userDataService fetch: delete password editing">
-      <created>1671003430055</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1671003430055</updated>
-    </task>
-    <task id="LOCAL-00006" summary="add beautiful StartPage">
-      <created>1671004788794</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1671004788794</updated>
+      <workItem from="1671535291114" duration="7913000" />
     </task>
     <task id="LOCAL-00007" summary="make friend button TELEGRAM linkable">
       <created>1671005577019</created>
@@ -439,7 +428,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671538125848</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="make parsing login repsonse and dispatch">
+      <created>1671539837216</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1671539837216</updated>
+    </task>
+    <task id="LOCAL-00055" summary="make parsing login repsonse and dispatch">
+      <created>1671539845538</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1671539845538</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,7 +460,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="make params for fethcing persons" />
     <MESSAGE value="---" />
     <MESSAGE value="make parsing json for analiz" />
     <MESSAGE value="raise fetching userType" />
@@ -482,6 +484,7 @@
     <MESSAGE value="fix keys problem in lists" />
     <MESSAGE value="remove auth true for tests" />
     <MESSAGE value="make yandex oauth" />
-    <option name="LAST_COMMIT_MESSAGE" value="make yandex oauth" />
+    <MESSAGE value="make parsing login repsonse and dispatch" />
+    <option name="LAST_COMMIT_MESSAGE" value="make parsing login repsonse and dispatch" />
   </component>
 </project>

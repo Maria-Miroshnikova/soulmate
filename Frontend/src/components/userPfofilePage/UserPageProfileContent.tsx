@@ -15,8 +15,8 @@ const UserPageProfileContent = () => {
     //const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
     const location = useLocation();
     const pageId = location.pathname.split('/')[2];
-   // console.log("userID: ", userId);
-   // console.log("pageID: ", pageId);
+    console.log("userID: ", userId);
+    console.log("pageID: ", pageId);
    // console.log("pageId === userID: ", userId === pageId );
     const isUserPage = userId === pageId;
 

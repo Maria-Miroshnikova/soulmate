@@ -1,4 +1,5 @@
 import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@reduxjs/toolkit/dist/query/react";
+import {STORAGE_ACCESS, STORAGE_REFRESH} from "../store/reducers/authSlice";
 
 export const BASE_URL = "http://127.0.0.1:5000";
 //export const BASE_URL = "http://localhost:3001";
@@ -7,11 +8,22 @@ export const BASE_URL = "http://127.0.0.1:5000";
 const baseQueryWithAuthToken = fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: headers => {
-        const current_token = localStorage.getItem('accessToken');
+        const current_token = localStorage.getItem(STORAGE_ACCESS);
         if (current_token) {
             headers.set('authorization', `Bearer ${current_token}`)
         }
         // TODO: а если нету токена?
+        return headers;
+    }
+})
+
+const baseQueryWithRefreshToken = fetchBaseQuery({
+    baseUrl: BASE_URL + '/refresh',
+    prepareHeaders: headers => {
+        const current_token = localStorage.getItem(STORAGE_REFRESH);
+        if (current_token) {
+            headers.set('authorization', `Bearer ${current_token}`)
+        }
         return headers;
     }
 })
@@ -24,10 +36,15 @@ export const baseQueryWithReauth: BaseQueryFn<
     let result = await baseQueryWithAuthToken(args, api, extraOptions)
     if (result.error && result.error.status === 401) {
         // try to get a new token
-        const refreshResult = await baseQueryWithAuthToken('/refresh', api, extraOptions)
+        const refreshResult = await baseQueryWithRefreshToken(args, api, extraOptions)
         if (refreshResult.data) {
             // store the new token
-            localStorage.setItem('accessToken', refreshResult.data as string)
+
+            console.log("refreshResult: ", refreshResult);
+
+          //  localStorage.setItem(STORAGE_ACCESS, refreshResult.data as string);
+          //  localStorage.setItem(STORAGE_REFRESH, refreshResult.data as string);
+
             // retry the initial query
             result = await baseQueryWithAuthToken(args, api, extraOptions)
         } else {
