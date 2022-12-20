@@ -18,7 +18,7 @@ const baseQueryWithAuthToken = fetchBaseQuery({
 })
 
 const baseQueryWithRefreshToken = fetchBaseQuery({
-    baseUrl: BASE_URL + '/refresh',
+    baseUrl: BASE_URL,
     prepareHeaders: headers => {
         const current_token = localStorage.getItem(STORAGE_REFRESH);
         if (current_token) {
@@ -33,13 +33,13 @@ export const baseQueryWithReauth: BaseQueryFn<
     unknown,
     FetchBaseQueryError
     > = async (args, api, extraOptions) => {
+    console.log("ARGS ", args);
     let result = await baseQueryWithAuthToken(args, api, extraOptions)
-    // TODO: неправильный access
+    console.log("acess error:", result);
     if (result.error && result.error.status === 401) {
         // try to get a new token
-        const refreshResult = await baseQueryWithRefreshToken(args, api, extraOptions)
-        // TODO: неправильный рефреш
-        // TODO: истекший рефреш
+        const refreshResult = await baseQueryWithRefreshToken(`/refresh`, api, extraOptions)
+        console.log("refreshResult: ", refreshResult);
         if (refreshResult.data) {
             // store the new token
 

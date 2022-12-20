@@ -25,51 +25,70 @@ def user_lookup_callback(jwt_header, jwt_payload):
 
 @jwt_manager.unauthorized_loader
 def unauthorized_callback(callback):
-    # No auth header
-    return jsonify({"unauthorized": "you haven't tokens","status code": 302})
+    print(callback)
+    return Response("{haven't access token}", status=401, mimetype='application/json')
+    # if jwt_payload['type'] == 'access':
+    #     print(jwt_header)
+    #     print(jwt_payload)
+    #     return Response("{haven't access token}", status=401, mimetype='application/json')
 
 @jwt_manager.invalid_token_loader
-def invalid_token_callback(callback):
-    # Invalid Fresh/Non-Fresh Access token in auth header
-    resp = jsonify({"invalid_token": "you have fake tokens","status code": 302})
-    unset_jwt_cookies(resp)
-    return resp
+def invalid_token_callback(jwt_header, jwt_payload):
+    if jwt_payload['type'] == 'access':
+        print(jwt_header)
+        print(jwt_payload)
+        return Response("{access token invalid}", status=401, mimetype='application/json')
 
 @jwt_manager.expired_token_loader
 def expired_token_callback(jwt_header, jwt_payload):
     # Expired auth header
     if jwt_payload['type'] == 'access':
-        resp = make_response(redirect(url_for('.refresh')))
-        unset_access_cookies(resp)
-        return resp, 302
-    elif jwt_payload['type'] == 'refresh':
-        print(jwt_header)
         print(jwt_payload)
-        # identity = jwt_payload['sub']
-        # user = User.query.filter(User.id == identity).first()
-        # access_token = user.get_access_token()
-        # refresh_token = user.get_access_token()
-        #сохранил себе refresh
-        # access_token = create_access_token(identity=identity, fresh = True)
-        response = make_response(redirect(url_for('.login')))
-        unset_jwt_cookies(response)
-        return response, 302
+        return Response(status=401)
+        # resp = make_response(redirect(url_for('.refresh')))
+        # unset_access_cookies(resp)
+        # return resp, 302
+    elif jwt_payload['type'] == 'refresh':
+        print(jwt_payload)
+        return Response("{refresh token invalid}", status=401, mimetype='application/json')
+    #     # identity = jwt_payload['sub']
+    #     # user = User.query.filter(User.id == identity).first()
+    #     # access_token = user.get_access_token()
+    #     # refresh_token = user.get_access_token()
+    #     #сохранил себе refresh
+    #     # access_token = create_access_token(identity=identity, fresh = True)
+    #     response = make_response(redirect(url_for('.login')))
+    #     unset_jwt_cookies(response)
+    #     return response, 302
 
 
 @user.route("/refresh", methods=["POST", "GET"])
 @jwt_required(refresh=True)
 def refresh():
+    refresh_token = request.headers.get('Authorization')
     identity = get_jwt_identity()
     user = User.query.filter(User.id == identity).first()
-    # unset_jwt_cookies(response)
-    refresh_token = user.get_refresh_token()
-    access_token = user.get_access_token()
+    if user:
+        users_refresh_token = "Bearer " + user.refresh_token
+        # unset_jwt_cookies(response)
+        if users_refresh_token == refresh_token:
+            print({"users_refresh_token": users_refresh_token, "refresh_token": refresh_token})
+            user_id = user.id
+            refresh_token = user.get_refresh_token()
+            access_token = user.get_access_token()
+            result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
+            return json.dumps(result, ensure_ascii=False)
+        else:
+            return Response("{refresh token invalid}", status=401, mimetype='application/json')
+    else:
+        return Response("{refresh token invalid}", status=401, mimetype='application/json')
+
     # access_token = create_access_token(identity=identity, fresh = True)
-    response = make_response(redirect(url_for('.account')))
-    set_access_cookies(response, refresh_token)
-    set_access_cookies(response, access_token)
+    # response = make_response(redirect(url_for('.account')))
+    # set_access_cookies(response, refresh_token)
+    # set_access_cookies(response, access_token)
     
-    return response
+    # return response
 
 # @user.route("/update_refresh_token", methods=["POST", "GET"])
 # def refresh():
@@ -89,6 +108,7 @@ def refresh():
 #      }
 
 @user.route('/userdatausers/', methods = ['GET'])
+@jwt_required()
 def userdatausers():
     userid = request.args.get('userId')
     user = db.session.query(User).filter(User.id == userid).first()
@@ -98,6 +118,7 @@ def userdatausers():
     return json.dumps(result, ensure_ascii=False)
 
 @user.route('/userdataitems/', methods = ['GET'])
+@jwt_required()
 def userdataitems():
     is_main = request.args.get('isMain')
     userid = request.args.get('userId')
@@ -201,6 +222,7 @@ def userdataitems():
 
 @user.route('/api/updateItemRating/', methods=['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def updateItemRating():
     #PATCH
     userid = request.json.get('userId', None)
@@ -235,6 +257,7 @@ def updateItemRating():
 
 @user.route('/api/updateItemComment/', methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def updateItemComment():
     #PATCH
     userid = request.json.get('userId', None)
@@ -270,6 +293,7 @@ def updateItemComment():
 
 @user.route('/api/addItem/', methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def addItem():
     userid = request.json.get('userId', None)
     itemId = request.json.get('itemId', None)
@@ -302,6 +326,7 @@ def addItem():
 
 @user.route('/api/removeItem/', methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def removeItem():
     #DELETE
     userid = request.json.get('userId', None)
@@ -334,6 +359,7 @@ def removeItem():
 
 @user.route("/api/acceptRequestToFriends/", methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def friends():
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
@@ -359,6 +385,7 @@ def friends():
 
 @user.route("/api/requestPersonToBeFriends/", methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def requestPersonToBeFriends():
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
@@ -377,6 +404,7 @@ def requestPersonToBeFriends():
 
 user.route("/api/closeMyRequest/", methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def removePersonFromFriends():
     #DELETE
     userid = request.json.get('userId', None)
@@ -389,6 +417,7 @@ def removePersonFromFriends():
 
 @user.route("/api/removePersonFromFriends/", methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def removePersonFromFriends():
     #DELETE
     userid = request.json.get('userId', None)
@@ -401,6 +430,7 @@ def removePersonFromFriends():
     return ''
 
 @user.route("/fetchTypeOfPersonForUser/", methods = ['GET'])
+@jwt_required()
 def fetchTypeOfPersonForUser():
     userid = request.args.get('userId')
     personId = request.args.get('personId')
@@ -420,6 +450,7 @@ def fetchTypeOfPersonForUser():
 
 @user.route("/api/visited/", methods = ['POST'])
 @cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
 def visited():
     userid = request.json.get('userId', None)
     personId = request.json.get('personId', None)
@@ -438,7 +469,10 @@ def visited():
     return ''
 
 @user.route("/countFollowers/", methods = ['GET'])
+@jwt_required()
 def requestscount():
+    access_token = request.headers.get('Authorization')
+    print(access_token)
     userid = request.args.get('userId')
     countFollowers = 0
     if userid != None:
@@ -446,6 +480,7 @@ def requestscount():
     return {"count_followers": countFollowers}
 
 @user.route("/users_peers/", methods = ['GET'])
+@jwt_required()
 def user_peers():
     userid = request.args.get('userId')
     personType = request.args.get('personType')
@@ -481,7 +516,7 @@ def user_peers():
     return json.dumps(result, ensure_ascii=False)
 
 @user.route("/login", methods = ['GET'])
-def proxy_example():
+def login():
     token = request.args.get('token')
     # access_token = 'y0_AgAAAAAJZyjrAAjl0wAAAADXO3jleHM9Na-ESAKiHDsUQJKo_b3pVEs'
     response = requests.get("https://login.yandex.ru/info", headers={'Authorization': f'OAuth {token}'})
@@ -496,8 +531,10 @@ def proxy_example():
     if found_user != None:
         user_id = found_user.id
         access_token = found_user.get_access_token()
+        print(access_token)
         refresh_token = found_user.get_refresh_token()
-        return {"access_token": access_token, "refresh_token": refresh_token, "user_id": user_id}
+        result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
+        return json.dumps(result, ensure_ascii=False)
         # response = make_response(redirect(url_for('.account')))
         # set_access_cookies(response, access_token)
         # set_refresh_cookies(response, refresh_token)
@@ -510,8 +547,10 @@ def proxy_example():
             db.session.commit()
             user_id = user.id
             access_token = user.get_access_token()
+            print(access_token)
             refresh_token = user.get_refresh_token()
-            return {"access_token": access_token, "refresh_token": refresh_token, "user_id": user_id}
+            result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
+            return json.dumps(result, ensure_ascii=False)
             # response = make_response(redirect(url_for('.account')))
             # set_access_cookies(response, access_token)
             # set_refresh_cookies(response, refresh_token)
@@ -521,12 +560,15 @@ def proxy_example():
             # json_response = response.json()
             # return json_response
         else:
-            return {"error": "add database error"}
+            result = {"access_token": "", "refresh_token": "", "user_id": ""}
+            return json.dumps(result, ensure_ascii=False)
             # flash("Ошибка при добавлении в БД", "error")
             # return redirect(url_for(".login"))
         # json_response = response.json()
         # return json_response
         # return {"access_token": access_token, "refresh_token": refresh_token}
+
+
 
 @user.route("/login_oauth/", methods = ['GET'])
 def login_oauth():
@@ -587,6 +629,12 @@ def authorize():
 #     email = profile['email']
 #     print({'username': username, 'email': email})
 #     return {'username': username, 'email': email}
+
+@user.route("/proxy-example")
+def proxy_example():
+    response = requests.get("https://login.yandex.ru/info", headers={'Authorization': 'OAuth y0_AgAAAAAJZyjrAAjmXQAAAADXRo6wqdnDgV_fTButH-939ztz6eS-Vz4'})
+    json_response = response.json()
+    return json_response
 
 # @user.route("/proxy-example")
 # def proxy_example():

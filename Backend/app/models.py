@@ -160,15 +160,16 @@ class User(db.Model):
             self.password = bcrypt.generate_password_hash(kwargs.get('password')).decode('utf-8')
         self.username = kwargs.get('username')
 
-    def get_access_token(self, expire_time=1):
-        expire_delta = timedelta(minutes=expire_time)
+    def get_access_token(self, expire_time=5):
+        expire_delta = timedelta(seconds=expire_time)
         token = create_access_token(identity=self, expires_delta=expire_delta, fresh=True)
         return token
 
-    def get_refresh_token(self, expire_time=2):
-        expire_delta = timedelta(minutes=expire_time)
+    def get_refresh_token(self, expire_time=25):
+        expire_delta = timedelta(seconds=expire_time)
         token = create_refresh_token(identity=self, expires_delta=expire_delta)
         entry = db.session.query(User).filter(User.id == self.id).update({'refresh_token': token})
+        print({"refresh_token": token})
         db.session.commit()
         return token
     
