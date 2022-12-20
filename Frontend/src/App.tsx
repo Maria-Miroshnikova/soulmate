@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import AppLayout from "./components/appLayout";
 import {Box, Typography} from "@mui/material";
 import DrawerContentLayout from "./components/drawerContentLayout";
@@ -104,11 +104,16 @@ function App() {
   }
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   // обновление userId при переходе по страницам
-  useEffect(() => {
+ /* useEffect(() => {
     dispatch(updatePageId(location.pathname.split('/')[2]));
-  }, [location.pathname]);
+  }, [location.pathname]);*/
+  useEffect(() => {
+    if (!isAuth)
+      navigate('/');
+  })
 
   const isModerator = useAppSelector(state => state.authReducer.isModerator);
 

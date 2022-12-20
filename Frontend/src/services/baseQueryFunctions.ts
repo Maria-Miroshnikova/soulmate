@@ -1,5 +1,5 @@
 import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@reduxjs/toolkit/dist/query/react";
-import {STORAGE_ACCESS, STORAGE_REFRESH} from "../store/reducers/authSlice";
+import {logout, STORAGE_ACCESS, STORAGE_REFRESH} from "../store/reducers/authSlice";
 import {LoginResponseDataJson} from "../types/response_types/LoginResponseJson";
 
 export const BASE_URL = "http://127.0.0.1:5000";
@@ -40,6 +40,7 @@ export const baseQueryWithReauth: BaseQueryFn<
         if (result.error.data === "{token invalid}") {
         
             console.log("GO AWAY: access problem");
+            api.dispatch(logout());
             return result;
        }
     }
@@ -50,6 +51,7 @@ export const baseQueryWithReauth: BaseQueryFn<
         console.log("refresh response: ", refreshResult);
         if (refreshResult.error) {
             console.log("GO AWAY: refresh problem");
+            api.dispatch(logout());
             return refreshResult;
         }
         else if (refreshResult.data) {
@@ -62,7 +64,7 @@ export const baseQueryWithReauth: BaseQueryFn<
             result = await baseQueryWithAuthToken(args, api, extraOptions)
         } else {
             // TODO: не получилось рефрешнуться
-            // api.dispath(loggedOut)
+            api.dispatch(logout());
         }
     }
     return result
