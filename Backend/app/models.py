@@ -22,30 +22,32 @@ class StatusRequests(Enum):
     follower = 'follower'
     friends = 'friends'
 
-requests = db.Table('requests',
-    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('followed_id', db.Integer, db.ForeignKey('user.id')),
+users_requests = db.Table('users_requests',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE')),
     db.Column('type', db.Enum(StatusRequests))
 )
 
 browsingHistory = db.Table('browsingHistory',
-    db.Column('viewer_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
-    db.Column('viewed_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('viewer_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
+    db.Column('viewed_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('timedate', db.Date, default=datetime.now())
 )
 
 user_book = db.Table('user_book',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('book_id', db.Integer, db.ForeignKey('book.id'), nullable=False),
     db.Column('rating', db.Integer),
-    db.Column('review', db.String(500))
+    db.Column('review', db.String(500)),
+    db.Column('verified', db.Boolean)
 )
 
 user_author = db.Table('user_author',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('author_id', db.Integer, db.ForeignKey('author.id'), nullable=False),
     db.Column('rating', db.Integer),
-    db.Column('review', db.String(500))
+    db.Column('review', db.String(500)),
+    db.Column('verified', db.Boolean)
 )
 
 book_tag = db.Table('book_tag',
@@ -54,17 +56,19 @@ book_tag = db.Table('book_tag',
 )
 
 user_film = db.Table('user_film',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('film_id', db.Integer, db.ForeignKey('film.id'), nullable=False),
     db.Column('rating', db.Integer),
-    db.Column('review', db.String(500))
+    db.Column('review', db.String(500)),
+    db.Column('verified', db.Boolean)
 )
 
 user_director = db.Table('user_director',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('director_id', db.Integer, db.ForeignKey('director.id'), nullable=False),
     db.Column('rating', db.Integer),
-    db.Column('review', db.String(500))
+    db.Column('review', db.String(500)),
+    db.Column('verified', db.Boolean)
 )
 
 film_tag = db.Table('film_tag',
@@ -73,17 +77,19 @@ film_tag = db.Table('film_tag',
 )
 
 user_game = db.Table('user_game',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('game_id', db.Integer, db.ForeignKey('game.id'), nullable=False),
     db.Column('rating', db.Integer),
-    db.Column('review', db.String(500))
+    db.Column('review', db.String(500)),
+    db.Column('verified', db.Boolean)
 )
 
 user_studio = db.Table('user_studio',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('studio_id', db.Integer, db.ForeignKey('studio.id'), nullable=False),
     db.Column('rating', db.Integer),
-    db.Column('review', db.String(500))
+    db.Column('review', db.String(500)),
+    db.Column('verified', db.Boolean)
 )
 
 game_tag = db.Table('game_tag',
@@ -92,17 +98,19 @@ game_tag = db.Table('game_tag',
 )
 
 user_song = db.Table('user_song',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('song_id', db.Integer, db.ForeignKey('song.id'), nullable=False),
     db.Column('rating', db.Integer),
-    db.Column('review', db.String(500))
+    db.Column('review', db.String(500)),
+    db.Column('verified', db.Boolean)
 )
 
 user_artist = db.Table('user_artist',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), nullable=False),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False),
     db.Column('artist_id', db.Integer, db.ForeignKey('artist.id'), nullable=False),
     db.Column('rating', db.Integer),
-    db.Column('review', db.String(500))
+    db.Column('review', db.String(500)),
+    db.Column('verified', db.Boolean)
 )
 
 song_tag = db.Table('song_tag',
@@ -117,7 +125,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     # login = db.Column(db.String(100), unique=True, nullable = False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(100), nullable = False)
+    password = db.Column(db.String(100))
     username = db.Column(db.String(100))
     date_joined = db.Column(db.Date, default=datetime.utcnow)
     age = db.Column(db.Integer)
@@ -125,27 +133,31 @@ class User(db.Model):
     # avatar = db.Column(db.Binary())
     telegram = db.Column(db.String(50))
     gender = db.Column(db.Enum(Gender))
-    followed = db.relationship('User', secondary=requests,
-                                        primaryjoin = (requests.c.follower_id == id),
-                                        secondaryjoin=(requests.c.followed_id == id),
-                                        backref='followers')
+    is_moder = db.Column(db.Boolean)
+    refresh_token = db.Column(db.String(500))
+    
+    followed = db.relationship('User', secondary=users_requests,
+                                        primaryjoin = (users_requests.c.follower_id == id),
+                                        secondaryjoin=(users_requests.c.followed_id == id),
+                                        backref='followers', passive_deletes=True)
     viewed = db.relationship('User', secondary=browsingHistory,
                                         primaryjoin = (browsingHistory.c.viewer_id == id),
                                         secondaryjoin=(browsingHistory.c.viewed_id == id),
-                                        backref='viewers')
-    books = db.relationship('Book', secondary=user_book, backref='readers')
-    films = db.relationship('Film', secondary=user_film, backref='viewers')
-    games = db.relationship('Game', secondary=user_game, backref='gamers')
-    songs = db.relationship('Song', secondary=user_song, backref='listeners')
+                                        backref='viewers', passive_deletes=True)
+    books = db.relationship('Book', secondary=user_book, backref='readers', passive_deletes=True)
+    films = db.relationship('Film', secondary=user_film, backref='viewers', passive_deletes=True)
+    games = db.relationship('Game', secondary=user_game, backref='gamers', passive_deletes=True)
+    songs = db.relationship('Song', secondary=user_song, backref='listeners', passive_deletes=True)
 
-    authors = db.relationship('Author', secondary=user_author, backref='readers')
-    directors = db.relationship('Director', secondary=user_director, backref='viewers')
-    studios = db.relationship('Studio', secondary=user_studio, backref='gamers')
-    artists = db.relationship('Artist', secondary=user_artist, backref='listeners')
+    authors = db.relationship('Author', secondary=user_author, backref='readers', passive_deletes=True)
+    directors = db.relationship('Director', secondary=user_director, backref='viewers', passive_deletes=True)
+    studios = db.relationship('Studio', secondary=user_studio, backref='gamers', passive_deletes=True)
+    artists = db.relationship('Artist', secondary=user_artist, backref='listeners', passive_deletes=True)
 
     def __init__(self, **kwargs):
         self.email = kwargs.get('email')
-        self.password = bcrypt.generate_password_hash(kwargs.get('password')).decode('utf-8')
+        if kwargs.get('passoword') != None:
+            self.password = bcrypt.generate_password_hash(kwargs.get('password')).decode('utf-8')
         self.username = kwargs.get('username')
 
     def get_access_token(self, expire_time=1):
@@ -156,6 +168,8 @@ class User(db.Model):
     def get_refresh_token(self, expire_time=2):
         expire_delta = timedelta(minutes=expire_time)
         token = create_refresh_token(identity=self, expires_delta=expire_delta)
+        entry = db.session.query(User).filter(User.id == self.id).update({'refresh_token': token})
+        db.session.commit()
         return token
     
     @classmethod
