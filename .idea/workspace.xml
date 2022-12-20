@@ -93,14 +93,7 @@
       <workItem from="1671477963162" duration="2809000" />
       <workItem from="1671481718327" duration="5020000" />
       <workItem from="1671528052986" duration="2892000" />
-      <workItem from="1671535291114" duration="11048000" />
-    </task>
-    <task id="LOCAL-00009" summary="add ErrorPage">
-      <created>1671025662592</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1671025662592</updated>
+      <workItem from="1671535291114" duration="11955000" />
     </task>
     <task id="LOCAL-00010" summary="add parsing JSON for fetchUserInfo and fetchUserItems">
       <created>1671111973661</created>
@@ -438,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671547447629</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="developing refresh base query">
+      <created>1671548029136</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1671548029136</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
