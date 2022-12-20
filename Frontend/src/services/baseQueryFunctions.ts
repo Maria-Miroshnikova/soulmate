@@ -68,3 +68,8 @@ export const baseQueryWithReauth: BaseQueryFn<
     }
     return result
 }
+
+const handleLogoutAccessProblem = () => {
+    localStorage.removeItem(STORAGE_ACCESS);
+    localStorage.removeItem(STORAGE_REFRESH);
+}

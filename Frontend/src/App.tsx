@@ -19,7 +19,7 @@ import {OptionsModel} from "./types/OptionModels";
 import AuthPage from "./components/loginPage/authPage";
 import RegistrPage from "./components/loginPage/registrPage";
 import {loginAPI} from "./services/loginService";
-import {login_success, STORAGE_ACCESS} from "./store/reducers/authSlice";
+import {login_success, logout, STORAGE_ACCESS, STORAGE_REFRESH} from "./store/reducers/authSlice";
 import ItemListLayout from "./components/userPfofilePage/lists/ItemListLayout";
 import {updatePageId} from "./store/reducers/searchContentSlice";
 import ModeratorDrawerContent from "./components/moderatorPage/ModeratorDrawerContent";
@@ -49,6 +49,13 @@ function App() {
        */
     })
   }
+
+  useEffect(() => {
+    console.log("local storage refresh changed: ", localStorage.getItem(STORAGE_REFRESH));
+    if (localStorage.getItem(STORAGE_REFRESH) === "") {
+      //dispatch(logout());
+    }
+  }, [localStorage.getItem(STORAGE_REFRESH)])
 
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(state => state.authReducer.isAuth);

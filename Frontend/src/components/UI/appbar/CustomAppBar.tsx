@@ -146,14 +146,10 @@ const CustomAppBar: FC = () => {
 
     const handleYandexLoginResponse = (token: string) => {
         login(token).unwrap().then(response => {
-            console.log("handleLogin: response", response);
             if (response.user_id === "")
             {
                 console.log("LOGIN RESPONSE: ERROR");
             }
-            /*else if (response.error) {
-                console.log("LOGIN RESPONS ACCESS: ERROR");
-            }*/
             else {
                 dispatch(login_success({userId: response.user_id, accessToken: response.access_token, refreshToken: response.refresh_token}));
             }
