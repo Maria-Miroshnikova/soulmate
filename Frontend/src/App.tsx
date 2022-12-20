@@ -52,13 +52,14 @@ function App() {
 
   const navigate = useNavigate();
 
+  /*
   useEffect(() => {
     console.log("local storage refresh changed: ", localStorage.getItem(STORAGE_REFRESH));
     if ((localStorage.getItem(STORAGE_REFRESH) === "") || (localStorage.getItem(STORAGE_REFRESH) === null)) {
       dispatch(logout());
       navigate('/');
     }
-  }, [localStorage])
+  }, [localStorage])*/
 
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(state => state.authReducer.isAuth);
@@ -107,7 +108,6 @@ function App() {
   }
 
   const location = useLocation();
-  const navigate = useNavigate();
 
   // обновление userId при переходе по страницам
  /* useEffect(() => {
@@ -116,7 +116,7 @@ function App() {
   useEffect(() => {
     if (!isAuth)
       navigate('/');
-  })
+  }, [isAuth])
 
   const isModerator = useAppSelector(state => state.authReducer.isModerator);
 
