@@ -6,7 +6,7 @@ export const href_HACK = 'https://github.com/login/oauth/authorize?client_id=1e4
 
 // вообще не работает из-за cors. Обход:
 // получение кода - по переходу href_HACK
-// получение токена - обращение к gatekeeper
+// получение токена - обращение к gatekeeper, запуск этого сервиса: cd gatekeeper, node index.js
 export const loginOauthAPI = createApi({
     reducerPath: 'loginOauthAPI',
     baseQuery: fetchBaseQuery({

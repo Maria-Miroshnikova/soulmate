@@ -6,8 +6,12 @@ import {useAppSelector} from "../../../hooks/redux";
 
 const pages = [ROUTES.pages.account, ROUTES.pages.filter];
 
-const getValueFromLocation = (pathname: string) : number => {
+const getValueFromLocation = (pathname: string) : number | boolean => {
     const page_name = pathname.split('/')[1].toLowerCase();
+    console.log("PAGE: ", page_name);
+    console.log("INDEX: ", pages.indexOf(page_name));
+    if (pages.indexOf(page_name) < 0)
+        return false;
     return pages.indexOf(page_name);
 }
 
@@ -17,18 +21,18 @@ const NavTabs = () => {
 
     const location = useLocation();
 
-    const [value, setValue] = useState<number>(getValueFromLocation(location.pathname));
+    const [value, setValue] = useState<number | boolean>(getValueFromLocation(location.pathname));
 
     useEffect(() => {
         const newValue = getValueFromLocation(location.pathname);
         handleChangeFunc(newValue);
     }, [location.pathname]);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (event: React.SyntheticEvent, newValue: number | boolean) => {
         handleChangeFunc(newValue);
     }
 
-    const handleChangeFunc = (newValue: number) => {
+    const handleChangeFunc = (newValue: number | boolean) => {
         setValue(newValue);
     }
 

@@ -26,7 +26,7 @@ const UserAccordionTemplate: FC<UserAccordionTemplateProps> = ({category, user})
     if (data.main_category.length + data.sub_category.length === 0)
         return null;
 
-        console.log("user ", user);
+  //      console.log("user ", user);
 
     const summaryText: string = (data.main_category.length.toString() + ' ' + accordionText.summary.first + ' / '
                             + data.sub_category.length.toString() + ' ' + accordionText.summary.last);

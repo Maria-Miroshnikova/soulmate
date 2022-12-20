@@ -33,7 +33,7 @@ export const filterAPI = createApi({
                     const user : UserCardJson = response.FoundUsers[i];
                     const userInfo : UserInfoJson = response.FoundUsers[i].User;
 //                    console.log("user: ", user);
-                    console.log("userInfo: ", userInfo);
+                   // console.log("userInfo: ", userInfo);
                     result.push({
                         personal_data: {
                             id: response.FoundUsers[i].User.id,

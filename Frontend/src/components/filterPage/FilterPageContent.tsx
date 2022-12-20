@@ -48,7 +48,7 @@ const FilterPageContent: FC = () => {
     const {data: userCardsRaw, error, isLoading, refetch} = filterAPI.useFetchUserCardsByFilterQuery({userId: userId!, filter: filter, priority: priority});
 
     const [userCards, setUserCards] = useState<UserCardInfo[]>([]);
-    console.log("cards:", userCardsRaw);
+ //   console.log("cards:", userCardsRaw);
 
     // --- сортировка данных
     useEffect(() => {
