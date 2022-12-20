@@ -9,7 +9,7 @@ import {login_success, logout} from "../../../store/reducers/authSlice";
 import {useLocation, useNavigate} from "react-router-dom";
 import {ROUTES} from "../../../router/routes";
 import {loginAPI} from "../../../services/loginService";
-import {href_HACK, loginOauthAPI} from "../../../services/loginOauthService";
+import {href_HACK, loginOauthAPI, Yandex_href_HACK} from "../../../services/loginOauthService";
 import axios from "axios";
 
 const CustomAppBar: FC = () => {
@@ -100,6 +100,7 @@ const CustomAppBar: FC = () => {
 
     const location = useLocation();
 
+    // через github
     useEffect(() => {
         const hadCode = location.search.search('code');
         if (hadCode === 1) {
@@ -119,6 +120,33 @@ const CustomAppBar: FC = () => {
         }
     }
 
+    const isGitAuth = false;
+    const [loginYandex] = loginOauthAPI.useLazyLogin_yandexQuery();
+
+    const handleLoginYandex = () => {
+        loginYandex();
+    }
+
+    // через yandex
+    useEffect(() => {
+        //console.log("location", location.hash);
+        const hadToken = location.hash.search('access_token');
+        if (hadToken === 1) {
+            //const params: URLSearchParams = new URLSearchParams(location.hash);
+            //console.log('params', params);
+            const token = location.hash.split('=')[1].split('&')[0];
+            const token_type = location.hash.split('=')[2].split('&')[0];
+            //console.log('ВХОД', token);
+            //console.log('ТИП', token_type);
+            login(token);
+        }
+    }, [location.hash])
+
+    /*
+    <Button color="inherit" id="login_btn" onClick={handleLoginYandex}>
+                                        {textLogin}
+                                    </Button>
+     */
     return (
         <>
         <AppBar
@@ -140,9 +168,14 @@ const CustomAppBar: FC = () => {
                                     {textLogout}
                                 </Button>
                                 :
-                                <Button color="inherit" href={href_HACK} id="login_btn">
-                                    {textLogin}
-                                </Button>
+                                (isGitAuth) ?
+                                    <Button color="inherit" href={href_HACK} id="login_btn">
+                                        {textLogin}
+                                    </Button>
+                                    :
+                                    <Button color="inherit" id="login_btn" href={Yandex_href_HACK}>
+                                        {textLogin}
+                                    </Button>
                         }
                     </Box>
                 </Box>
