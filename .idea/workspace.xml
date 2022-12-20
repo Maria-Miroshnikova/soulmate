@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="develop logout when bad access in base query">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="dont know">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,14 +94,7 @@
       <workItem from="1671477963162" duration="2809000" />
       <workItem from="1671481718327" duration="5020000" />
       <workItem from="1671528052986" duration="2892000" />
-      <workItem from="1671535291114" duration="18320000" />
-    </task>
-    <task id="LOCAL-00016" summary="make subscribers pages and tabs and buttons in all app">
-      <created>1671352688418</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1671352688418</updated>
+      <workItem from="1671535291114" duration="18629000" />
     </task>
     <task id="LOCAL-00017" summary="delete odd todos">
       <created>1671352851537</created>
@@ -437,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671553800143</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="dont know">
+      <created>1671555142251</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1671555142251</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,7 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="raise countRequests" />
     <MESSAGE value="fix transform countRequests" />
     <MESSAGE value="raise adding to visited" />
     <MESSAGE value="try fix visiting" />
@@ -480,6 +481,7 @@
     <MESSAGE value="make preAuth in app" />
     <MESSAGE value="develop logout when bad access" />
     <MESSAGE value="develop logout when bad access in base query" />
-    <option name="LAST_COMMIT_MESSAGE" value="develop logout when bad access in base query" />
+    <MESSAGE value="dont know" />
+    <option name="LAST_COMMIT_MESSAGE" value="dont know" />
   </component>
 </project>

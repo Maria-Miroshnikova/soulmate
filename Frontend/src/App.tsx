@@ -34,19 +34,17 @@ function App() {
 
   const [refresh] = refreshAPI.useLazyRefreshQuery();
 
-  /*useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem(STORAGE_ACCESS);
     if (token) {
       handleRefresh();
     }
-  }, [])*/
+  }, [])
 
   const handleRefresh = () => {
     refresh().unwrap().then(response => {
       console.log("PreAuth : ", response);
-      /*
-      if success
-       */
+      dispatch(login_success({userId: response, accessToken: localStorage.getItem(STORAGE_ACCESS)!, refreshToken: localStorage.getItem(STORAGE_REFRESH)!}));
     })
   }
 

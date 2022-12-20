@@ -40,7 +40,7 @@ export const baseQueryWithReauth: BaseQueryFn<
     if (result.error) {
         if (result.error.data === "{token invalid}") {
         
-            console.log("GO AWAY: access problem");
+            //console.log("GO AWAY: access problem");
             api.dispatch(logout());
             return result;
        }
@@ -49,9 +49,9 @@ export const baseQueryWithReauth: BaseQueryFn<
        
         // try to get a new token
         const refreshResult = await baseQueryWithRefreshToken(`/refresh`, api, extraOptions)
-        console.log("refresh response: ", refreshResult);
+        //console.log("refresh response: ", refreshResult);
         if (refreshResult.error) {
-            console.log("GO AWAY: refresh problem");
+          //  console.log("GO AWAY: refresh problem");
             api.dispatch(logout());
             return refreshResult;
         }
@@ -69,9 +69,4 @@ export const baseQueryWithReauth: BaseQueryFn<
         }
     }
     return result
-}
-
-const handleLogoutAccessProblem = () => {
-    localStorage.removeItem(STORAGE_ACCESS);
-    localStorage.removeItem(STORAGE_REFRESH);
 }
