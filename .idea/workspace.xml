@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="developing refresh base query LOGOUT + add color red to telegram field in user account page">
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/store/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,14 +96,7 @@
       <workItem from="1671477963162" duration="2809000" />
       <workItem from="1671481718327" duration="5020000" />
       <workItem from="1671528052986" duration="2892000" />
-      <workItem from="1671535291114" duration="13072000" />
-    </task>
-    <task id="LOCAL-00012" summary="resolve conflicts">
-      <created>1671196696503</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1671196696503</updated>
+      <workItem from="1671535291114" duration="15075000" />
     </task>
     <task id="LOCAL-00013" summary="fix Universal fetchOptions, sketch PersonMyRequest card">
       <created>1671200383595</created>
@@ -438,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671549384064</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="developing refresh base query LOGOUT + add color red to telegram field in user account page">
+      <created>1671549792055</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1671549792055</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

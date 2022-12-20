@@ -19,7 +19,7 @@ import {OptionsModel} from "./types/OptionModels";
 import AuthPage from "./components/loginPage/authPage";
 import RegistrPage from "./components/loginPage/registrPage";
 import {loginAPI} from "./services/loginService";
-import {login_success} from "./store/reducers/authSlice";
+import {login_success, STORAGE_ACCESS} from "./store/reducers/authSlice";
 import ItemListLayout from "./components/userPfofilePage/lists/ItemListLayout";
 import {updatePageId} from "./store/reducers/searchContentSlice";
 import ModeratorDrawerContent from "./components/moderatorPage/ModeratorDrawerContent";
@@ -28,20 +28,27 @@ import {gapi} from "gapi-script";
 import StartPage from "./components/loginPage/StartPage";
 import ErrorPage from "./components/errorPage/ErrorPage";
 import {PersonType} from "./types/PersonType";
+import {refreshAPI} from "./services/refreshService";
 
 function App() {
 
- // TODO
- // const [trigger, { isLoading, data: loginResponse, error, isSuccess }] = loginAPI.useRefreshMutation();
+  const [refresh] = refreshAPI.useLazyRefreshQuery();
 
-  // TODO: рефреш?????????
-/*  useEffect(() => {
-    const token = localStorage.getItem('accessToken');
+  /*useEffect(() => {
+    const token = localStorage.getItem(STORAGE_ACCESS);
     if (token) {
-
-      trigger.call({}, {accessToken: token});
+      handleRefresh();
     }
   }, [])*/
+
+  const handleRefresh = () => {
+    refresh().unwrap().then(response => {
+      console.log("PreAuth : ", response);
+      /*
+      if success
+       */
+    })
+  }
 
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(state => state.authReducer.isAuth);

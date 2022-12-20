@@ -45,14 +45,7 @@ export const loginAPI = createApi({
                 maxRetries: 2
             }
         }),*/
-      /*  refresh: build.mutation<LoginResponse, LoginRefresh>({
-            query: (loginRefresh) => ({
-                url: '/refresh'
-            }),
-            extraOptions: {
-                maxRetries: 2
-            }
-        }),/*
+        /*
         registration: build.mutation<LoginResponse, LoginRequest>({
             query: (loginData) => ({
                 url: '/registration',
