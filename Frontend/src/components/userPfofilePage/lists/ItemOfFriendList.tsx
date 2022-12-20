@@ -59,7 +59,7 @@ const ItemOfFriendList: FC<ItemListProps> = ({category, isMain}) => {
         :
         (
             <Box display="flex" flexDirection="column" gap={2}>
-                { items!.map(item =>  <ItemCardFriend item={item} category={category} isMain={isMain}/>) }
+                { items!.map(item =>  <ItemCardFriend item={item} category={category} isMain={isMain} key={item.id}/>) }
             </Box>)
         ;
 };

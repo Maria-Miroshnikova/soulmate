@@ -8,8 +8,8 @@ const pages = [ROUTES.pages.account, ROUTES.pages.filter];
 
 const getValueFromLocation = (pathname: string) : number | boolean => {
     const page_name = pathname.split('/')[1].toLowerCase();
-    console.log("PAGE: ", page_name);
-    console.log("INDEX: ", pages.indexOf(page_name));
+   // console.log("PAGE: ", page_name);
+   // console.log("INDEX: ", pages.indexOf(page_name));
     if (pages.indexOf(page_name) < 0)
         return false;
     return pages.indexOf(page_name);

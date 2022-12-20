@@ -15,9 +15,9 @@ const UserPageProfileContent = () => {
     //const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
     const location = useLocation();
     const pageId = location.pathname.split('/')[2];
-    console.log("userID: ", userId);
-    console.log("pageID: ", pageId);
-    console.log("pageId === userID: ", userId === pageId );
+   // console.log("userID: ", userId);
+   // console.log("pageID: ", pageId);
+   // console.log("pageId === userID: ", userId === pageId );
     const isUserPage = userId === pageId;
 
     const tabs = getProfileTabs();
@@ -32,7 +32,7 @@ const UserPageProfileContent = () => {
                 <Tabs value={false}>
                     {
                         tabs.map((tab, idx) => {
-                            return <Tab label={tab.textBotton} value={0} key={idx} onClick={(event) => handleClickOnTab(idx)}/>
+                            return <Tab label={tab.textBotton} key={idx} onClick={(event) => handleClickOnTab(idx)}/>
                     })
                     }
                 </Tabs>

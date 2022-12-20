@@ -20,7 +20,7 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAbo
 
     const userId = useAppSelector(state => state.authReducer.userId);
     const pageId = useAppSelector((state) => state.searchConentReducer.pageId);
-    console.log("id: " + pageId);
+  //  console.log("id: " + pageId);
     const isUserPage = !(userId === pageId!);
   /*  const tabs = (isContentAboutFriends) ?
         getFriendsTabs(pageId!)
@@ -49,11 +49,11 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAbo
     useEffect(() => {
         if (isLoadingCount) {
             setIsVisibleBadge(false);
-            console.log("loading response");
+  //          console.log("loading response");
         }
         else {
             setIsVisibleBadge((countResponse!.countRequests > 0));
-            console.log(countResponse);
+  //          console.log(countResponse);
         }
     }, [countResponse, isLoadingCount]);
 
@@ -61,12 +61,12 @@ const UserPageSearchContent: FC<UserPageContentProps> = ({category, isContentAbo
     return (
         <Box display="flex" flexDirection="column" width="100%" height="min-content">
             <Box  sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs>
+                <Tabs value={false}>
                     {tabs.map((tab, idx) => {
                         if (tab.isFiends && (idx === 1) && isVisibleBadge)
-                            return <Box width="100%" display="flex" justifyContent="center"><Tab label={tab.textBotton} key={idx} icon={<MyBadge/>} iconPosition={"end"} onClick={(event) => handleClickOnTab(idx)}/></Box>
+                            return <Box width="100%" display="flex" justifyContent="center" key={idx}><Tab label={tab.textBotton} key={idx} icon={<MyBadge/>} iconPosition={"end"} onClick={(event) => handleClickOnTab(idx)}/></Box>
                         else
-                            return <Box width="100%" display="flex" justifyContent="center"><Tab label={tab.textBotton} key={idx} onClick={(event) => handleClickOnTab(idx)}/></Box>
+                            return <Box width="100%" display="flex" justifyContent="center" key={idx}><Tab label={tab.textBotton} key={idx} onClick={(event) => handleClickOnTab(idx)}/></Box>
                     })}
                 </Tabs>
             </Box>

@@ -52,8 +52,8 @@ const ItemList: FC<ItemListProps> = ({category, isMain}) => {
             :
             (
                 <Box display="flex" flexDirection="column" gap={2}>
-                    { items!.map(item =>  <ItemCardBasic item={item} category={category} isMain={isMain}/>) }
-                    { opt_add!.map(item =>  <ItemCardSearch option={item} category={category} isMain={isMain}/>) }
+                    { items!.map(item =>  <ItemCardBasic item={item} category={category} isMain={isMain} key={item.id}/>) }
+                    { opt_add!.map(item =>  <ItemCardSearch option={item} category={category} isMain={isMain} key={item.id}/>) }
                 </Box>
             );
 

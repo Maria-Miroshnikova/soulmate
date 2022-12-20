@@ -9,7 +9,7 @@ import ButtonMyRequest from "../../UI/buttons/ButtonMyRequest";
 // TODO: создать для него страничку
 const PersonCardMyRequest: FC<PersonCardProps> = ({person}) => {
     return (
-        <Card>
+        <Card key={person.id}>
             <CardContent>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
                     <PersonHeader person={person}/>

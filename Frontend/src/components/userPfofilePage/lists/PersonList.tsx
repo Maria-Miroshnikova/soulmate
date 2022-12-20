@@ -18,7 +18,7 @@ interface PersonListProps {
 const PersonList: FC<PersonListProps> = ({type}) => {
 
     const userId = useAppSelector(state => state.authReducer.userId);
-    console.log("userId personList: ", userId);
+ //   console.log("userId personList: ", userId);
 
     const title = useAppSelector(state => state.searchConentReducer.title);
 
@@ -44,18 +44,18 @@ const PersonList: FC<PersonListProps> = ({type}) => {
         (
             <Box display="flex" flexDirection="column" gap={2}>
                 { (type === PersonType.FRIENDS) ?
-                    persons!.map(person =>  <PersonCardFriend person={person}/>)
+                    persons!.map(person =>  <PersonCardFriend person={person} key={person.id}/>)
                     :
                     (type === PersonType.VISITED) ?
-                        persons!.map(person =>  <PersonCardVisited person={person}/>)
+                        persons!.map(person =>  <PersonCardVisited person={person} key={person.id}/>)
                         :
                         (type === PersonType.MY_REQUEST) ?
-                            persons!.map(person =>  <PersonCardMyRequest person={person}/>)
+                            persons!.map(person =>  <PersonCardMyRequest person={person} key={person.id}/>)
                             :
                             (type === PersonType.SUBSCRIBERS) ?
-                                persons!.map(person =>  <PersonCardOldRequest person={person}/>)
+                                persons!.map(person =>  <PersonCardOldRequest person={person} key={person.id}/>)
                                 :
-                                persons!.map(person =>  <PersonCardRequest person={person}/>)
+                                persons!.map(person =>  <PersonCardRequest person={person} key={person.id}/>)
                 }
             </Box>)
         ;

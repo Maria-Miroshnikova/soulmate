@@ -71,7 +71,7 @@ const ItemCardBasic: FC<ItemCardBasicProps> = ({item, category, isMain}) => {
     }
 
     return (
-        <Card>
+        <Card key={item.id}>
             <CardContent>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
                     <Typography width="100%"> {item.title} </Typography>

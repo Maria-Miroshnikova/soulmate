@@ -38,7 +38,7 @@ const ItemCardSearch: FC<ItemCardSearchProps> = ({option, category, isMain}) => 
 
     // TODO: padding bottom изменить
     return (
-        <Card>
+        <Card key={option.id}>
             <CardContent sx={{
                 opacity: .5,
                 '& .MuiCardContent-root': {

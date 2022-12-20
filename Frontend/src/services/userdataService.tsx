@@ -171,7 +171,7 @@ export const userdataAPI = createApi({
                 const result: UserPersonalInfoModel[] = [];
                 for (var i = 0; i < response.FoundUsers.length; ++i) {
                     const user: UserInfoRequestJson = response.FoundUsers[i];
-                    console.log("user", user.User.username)
+               //     console.log("user", user.User.username)
                     result.push({
                         id: user.User.id,
                         nickname: user.User.username,

@@ -8,14 +8,14 @@ import {useAppSelector} from "../../../hooks/redux";
 import ButtonFriend from "../../UI/buttons/ButtonFriend";
 
 export interface PersonCardProps {
-    person: UserPersonalInfoModel,
+    person: UserPersonalInfoModel
     //onClick: (id: string) => void
 }
 
 const PersonCardFriend: FC<PersonCardProps> = ({person}) => {
 
     return (
-        <Card>
+        <Card  key={person.id}>
             <CardContent>
                 <Box display="flex" flexDirection="row" width="100%" alignItems="center" gap={3}>
                     <PersonHeader person={person}/>
