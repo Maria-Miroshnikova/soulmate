@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="make parsing login repsonse and dispatch">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="developing refresh base query">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageProfileContent.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,14 +93,7 @@
       <workItem from="1671477963162" duration="2809000" />
       <workItem from="1671481718327" duration="5020000" />
       <workItem from="1671528052986" duration="2892000" />
-      <workItem from="1671535291114" duration="7913000" />
-    </task>
-    <task id="LOCAL-00007" summary="make friend button TELEGRAM linkable">
-      <created>1671005577019</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1671005577019</updated>
+      <workItem from="1671535291114" duration="10734000" />
     </task>
     <task id="LOCAL-00008" summary="add bottom padding">
       <created>1671005670625</created>
@@ -442,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671539845538</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="developing refresh base query">
+      <created>1671543890091</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1671543890091</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -460,7 +456,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="---" />
     <MESSAGE value="make parsing json for analiz" />
     <MESSAGE value="raise fetching userType" />
     <MESSAGE value="fix fetch type of user" />
@@ -485,6 +480,7 @@
     <MESSAGE value="remove auth true for tests" />
     <MESSAGE value="make yandex oauth" />
     <MESSAGE value="make parsing login repsonse and dispatch" />
-    <option name="LAST_COMMIT_MESSAGE" value="make parsing login repsonse and dispatch" />
+    <MESSAGE value="developing refresh base query" />
+    <option name="LAST_COMMIT_MESSAGE" value="developing refresh base query" />
   </component>
 </project>
