@@ -135,7 +135,7 @@ export const userdataAPI = createApi({
         // TODO
         editUserPersonalInfoById: build.mutation<void, EditPersonalInfoRequest>({
             query: (arg) => ({
-                url: `/userdatausers/${arg.id}`,
+                url: `/api/editUserPersonalInfo/`,
                 body: {
                     id: arg.id,
                     nickname: arg.nickname,
