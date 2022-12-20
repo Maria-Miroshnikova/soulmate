@@ -97,7 +97,7 @@ const UserProfileContent = () => {
                                     </RadioGroup>
                                 </Box>
                                 <Box display="flex" flexDirection="row" gap={1} alignItems="center" justifyContent="flex-end">
-                                    <Typography> {textTelegram + ":"} </Typography>
+                                    <Typography color={((userInfo!.telegram === null) || (userInfo!.telegram === "")) ? "red" : "inherit"}> {textTelegram + ":"} </Typography>
                                     <TextField
                                         sx={{width: fieldSize}}
                                         name="telegram"

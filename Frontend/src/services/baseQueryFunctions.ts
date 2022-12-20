@@ -39,12 +39,14 @@ export const baseQueryWithReauth: BaseQueryFn<
     if (result.error && result.error.status === 401) {
         if (result.error.data === "{access token invalid}") {
             console.log("GO AWAY: access problem");
+            return result;
         }
         // try to get a new token
         const refreshResult = await baseQueryWithRefreshToken(`/refresh`, api, extraOptions)
         console.log("refresh response: ", refreshResult);
         if (refreshResult.error && refreshResult.error.status === 401) {
             console.log("GO AWAY: refresh problem");
+            return refreshResult;
         }
         else if (refreshResult.data) {
             // store the new token
