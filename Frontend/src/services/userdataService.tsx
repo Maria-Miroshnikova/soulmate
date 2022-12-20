@@ -153,7 +153,7 @@ export const userdataAPI = createApi({
         // TODO
         deleteUserAccount: build.mutation<void, UserByIdRequest>({
             query: (arg) => ({
-                url: `/userdatausers/${arg.userId}`,
+                url: `/api/deleteUserAccount/`,
                 method: "POST"
             }),
             invalidatesTags: ['userInfo']

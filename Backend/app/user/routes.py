@@ -572,6 +572,14 @@ def editUserPersonalInfo():
     db.session.commit()
     return ''
 
+@user.route("/api/deleteUserAccount/", methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
+def deleteUserAccount():
+    userId = request.json.get('userId', None)
+    user = db.session.query(User).filter(User.id == userId).first().delete()
+    db.session.commit()
+    return ''
 
 @user.route("/proxy-example")
 def proxy_example():

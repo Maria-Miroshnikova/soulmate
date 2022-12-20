@@ -4,4 +4,4 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 EXPOSE 5000/tcp
 EXPOSE 5000/udp
-CMD ["python3", "run.py"]
+CMD ["python3", "app.py"]
