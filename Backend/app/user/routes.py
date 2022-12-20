@@ -567,6 +567,9 @@ def editUserPersonalInfo():
     username = request.json.get('nickname', None)
     age = request.json.get('age', None)
     gender = request.json.get('gender', None)
+    print(gender)
+    if gender == 'other':
+        gender = None
     telegram = request.json.get('telegram', None)
     user = db.session.query(User).filter(User.id == userId).update({'username': username, 'age': age, 'gender': gender, 'telegram': telegram})
     db.session.commit()
@@ -576,7 +579,8 @@ def editUserPersonalInfo():
 @cross_origin(origins=['http://localhost:3000'])
 @jwt_required()
 def deleteUserAccount():
-    userId = request.json.get('userId', None)
+    userId = request.json.get('id', None)
+    print({"userId": userId})
     user = db.session.query(User).filter(User.id == userId).first().delete()
     db.session.commit()
     return ''

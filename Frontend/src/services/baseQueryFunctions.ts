@@ -11,8 +11,8 @@ const baseQueryWithAuthToken = fetchBaseQuery({
     prepareHeaders: headers => {
         const current_token = localStorage.getItem(STORAGE_ACCESS);
         if (current_token) {
-          //  headers.set('authorization', `Bearer ${current_token}`)}
-          headers.set('authorization', `Bearer kek`)}
+           headers.set('authorization', `Bearer ${current_token}`)}
+        //   headers.set('authorization', `Bearer kek`)}
         // TODO: а если нету токена?
         return headers;
     }
@@ -41,6 +41,7 @@ export const baseQueryWithReauth: BaseQueryFn<
         if (result.error.data === "{token invalid}") {
         
             console.log("GO AWAY: access problem: ", result);
+            handleLogoutAccessProblem();
             return result;
        }
     }
@@ -51,6 +52,7 @@ export const baseQueryWithReauth: BaseQueryFn<
         console.log("refresh response: ", refreshResult);
         if (refreshResult.error) {
             console.log("GO AWAY: refresh problem");
+            handleLogoutAccessProblem();
             return refreshResult;
         }
         else if (refreshResult.data) {

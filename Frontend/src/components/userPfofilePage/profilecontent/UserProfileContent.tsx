@@ -13,6 +13,7 @@ import {
 import {useAppSelector} from "../../../hooks/redux";
 import {EditPersonalInfoRequest, userdataAPI} from "../../../services/userdataService";
 import {LoginRequest} from "../../../services/loginService";
+import { useNavigate } from 'react-router-dom';
 
 const UserProfileContent = () => {
 
@@ -51,10 +52,13 @@ const UserProfileContent = () => {
 
     }
 
+    const navigate = useNavigate();
+
     // TODO сделать в конце самом
     const handleDeleteAccount = () => {
         // спросить, точно ли он этого хочет
-        //deleteAccount({userId: userId});
+        deleteAccount({userId: userId!});
+        navigate('/');
         // переброс на главную страницу, удаление из редакса
     }
 

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import AppLayout from "./components/appLayout";
 import {Box, Typography} from "@mui/material";
 import DrawerContentLayout from "./components/drawerContentLayout";
@@ -50,12 +50,15 @@ function App() {
     })
   }
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log("local storage refresh changed: ", localStorage.getItem(STORAGE_REFRESH));
-    if (localStorage.getItem(STORAGE_REFRESH) === "") {
-      //dispatch(logout());
+    if ((localStorage.getItem(STORAGE_REFRESH) === "") || (localStorage.getItem(STORAGE_REFRESH) === null)) {
+      dispatch(logout());
+      navigate('/');
     }
-  }, [localStorage.getItem(STORAGE_REFRESH)])
+  }, [localStorage])
 
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(state => state.authReducer.isAuth);
