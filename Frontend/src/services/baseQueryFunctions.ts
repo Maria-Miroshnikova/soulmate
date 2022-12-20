@@ -40,18 +40,21 @@ export const baseQueryWithReauth: BaseQueryFn<
     if (result.error) {
         if (result.error.data === "{token invalid}") {
         
+            console.log("access ERROR:", result);
             //console.log("GO AWAY: access problem");
             api.dispatch(logout());
             return result;
        }
+       console.log("access UNKNOWN ERROR:", result);
     }
     if (result.error && result.error.status === 401) {
-       
+        //console.log("access 401 ERROR:", result);
         // try to get a new token
         const refreshResult = await baseQueryWithRefreshToken(`/refresh`, api, extraOptions)
         //console.log("refresh response: ", refreshResult);
         if (refreshResult.error) {
           //  console.log("GO AWAY: refresh problem");
+          console.log("refresh ERROR:", refreshResult);
             api.dispatch(logout());
             return refreshResult;
         }
@@ -65,6 +68,7 @@ export const baseQueryWithReauth: BaseQueryFn<
             result = await baseQueryWithAuthToken(args, api, extraOptions)
         } else {
             // TODO: не получилось рефрешнуться
+            console.log("refresh unknown ERROR:", refreshResult);
             api.dispatch(logout());
         }
     }

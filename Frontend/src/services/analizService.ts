@@ -39,7 +39,7 @@ export const analizAPI = createApi({
     endpoints: (build) => ({
         fetchCommonData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
-                url: '/common',
+                url: '/common/',
                 params: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -62,7 +62,7 @@ export const analizAPI = createApi({
         }),
         fetchNewData: build.query<ItemModel[], SharedDataRequest>({
             query: (arg) => ({
-                url: '/new',
+                url: '/new/',
                 params: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -85,7 +85,7 @@ export const analizAPI = createApi({
         }),
         fetchTopData:  build.query<TopDataResponse, TopDataRequest>({
             query: (arg) => ({
-                url: '/top',
+                url: '/top/',
                 params: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
@@ -110,7 +110,7 @@ export const analizAPI = createApi({
         }),
         fetchDifferentRatingData:  build.query<DifferentRatingResponse, SharedDataRequest>({
             query: (arg) => ({
-                url: '/different',
+                url: '/different/',
                 params: {
                     userId: arg.userId,
                     category: categoryParamByCategories(arg.category),
