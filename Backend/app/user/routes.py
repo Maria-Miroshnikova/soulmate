@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, flash, url_for, Blueprint, jsonify, make_response, Response
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required
 from app.models import check_password_hash, generate_password_hash
 from app import db, bcrypt, jwt_manager, oauth_manager
 from app.user.forms import LoginForm, RegisterForm
@@ -26,18 +26,20 @@ def user_lookup_callback(jwt_header, jwt_payload):
 @jwt_manager.unauthorized_loader
 def unauthorized_callback(callback):
     print(callback)
-    return Response("{haven't access token}", status=401, mimetype='application/json')
+    return Response("{access token invalid}", status=401, mimetype='application/json')
     # if jwt_payload['type'] == 'access':
     #     print(jwt_header)
     #     print(jwt_payload)
     #     return Response("{haven't access token}", status=401, mimetype='application/json')
 
 @jwt_manager.invalid_token_loader
-def invalid_token_callback(jwt_header, jwt_payload):
-    if jwt_payload['type'] == 'access':
-        print(jwt_header)
-        print(jwt_payload)
-        return Response("{access token invalid}", status=401, mimetype='application/json')
+def invalid_token_callback(callback):
+    print(callback)
+    return Response("{token invalid}", status=401, mimetype='application/json')
+    # if jwt_payload['type'] == 'access':
+    #     print(jwt_header)
+    #     print(jwt_payload)
+    #     return Response("{access token invalid}", status=401, mimetype='application/json')
 
 @jwt_manager.expired_token_loader
 def expired_token_callback(jwt_header, jwt_payload):
@@ -66,6 +68,7 @@ def expired_token_callback(jwt_header, jwt_payload):
 @jwt_required(refresh=True)
 def refresh():
     refresh_token = request.headers.get('Authorization')
+    print({"refresh_token": refresh_token})
     identity = get_jwt_identity()
     user = User.query.filter(User.id == identity).first()
     if user:
@@ -107,9 +110,43 @@ def refresh():
 #          "upcase_name": identity.upper(),
 #      }
 
+@user.route("/login", methods = ['GET'])
+def login():
+    token = request.args.get('token')
+    response = requests.get("https://login.yandex.ru/info", headers={'Authorization': f'OAuth {token}'})
+    # print(response)
+    # json_response = response.json()
+    # return json_response
+    profile = json.loads(response.text)
+    avatar = profile['default_avatar_id']
+    username = profile['first_name']
+    email = profile['default_email']
+    found_user = User.query.filter(email==email).first()
+    if found_user != None:
+        user_id = found_user.id
+        access_token = found_user.get_access_token()
+        refresh_token = found_user.get_refresh_token()
+        result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
+        return json.dumps(result, ensure_ascii=False)
+    else:
+        user = User(username=username, email=email)
+        if user:
+            db.session.add(user)
+            db.session.commit()
+            user_id = user.id
+            access_token = user.get_access_token()
+            refresh_token = user.get_refresh_token()
+            result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
+            return json.dumps(result, ensure_ascii=False)
+        else:
+            result = {"access_token": "", "refresh_token": "", "user_id": ""}
+            return json.dumps(result, ensure_ascii=False)
+
 @user.route('/userdatausers/', methods = ['GET'])
 @jwt_required()
 def userdatausers():
+    # access_token = request.headers.get('Authorization')
+    # print({"access_token": access_token})
     userid = request.args.get('userId')
     user = db.session.query(User).filter(User.id == userid).first()
     User_schema = UserSchema()
@@ -299,7 +336,6 @@ def addItem():
     itemId = request.json.get('itemId', None)
     category = request.json.get('category', None)
     is_main = request.json.get('isMain', None)
-    print(userid, itemId, category, is_main)
     if category == "film":
         if is_main == "true":
             entry = user_film.insert().values(user_id=userid, film_id=itemId)
@@ -472,7 +508,7 @@ def visited():
 @jwt_required()
 def requestscount():
     access_token = request.headers.get('Authorization')
-    print(access_token)
+    print({"access_token": access_token})
     userid = request.args.get('userId')
     countFollowers = 0
     if userid != None:
@@ -515,60 +551,33 @@ def user_peers():
         result["FoundUsers"] = result.setdefault("FoundUsers", []) + [result_temp]
     return json.dumps(result, ensure_ascii=False)
 
-@user.route("/login", methods = ['GET'])
-def login():
-    token = request.args.get('token')
-    # access_token = 'y0_AgAAAAAJZyjrAAjl0wAAAADXO3jleHM9Na-ESAKiHDsUQJKo_b3pVEs'
-    response = requests.get("https://login.yandex.ru/info", headers={'Authorization': f'OAuth {token}'})
-    # print(response)
-    # json_response = response.json()
-    # return json_response
-    profile = json.loads(response.text)
-    avatar = profile['default_avatar_id']
-    username = profile['first_name']
-    email = profile['default_email']
-    found_user = User.query.filter(email==email).first()
-    if found_user != None:
-        user_id = found_user.id
-        access_token = found_user.get_access_token()
-        print(access_token)
-        refresh_token = found_user.get_refresh_token()
-        result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
-        return json.dumps(result, ensure_ascii=False)
-        # response = make_response(redirect(url_for('.account')))
-        # set_access_cookies(response, access_token)
-        # set_refresh_cookies(response, refresh_token)
-        # flash("Вы успешно вошли", "success")
-        # return response
-    else:
-        user = User(username=username, email=email)
-        if user:
-            db.session.add(user)
-            db.session.commit()
-            user_id = user.id
-            access_token = user.get_access_token()
-            print(access_token)
-            refresh_token = user.get_refresh_token()
-            result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
-            return json.dumps(result, ensure_ascii=False)
-            # response = make_response(redirect(url_for('.account')))
-            # set_access_cookies(response, access_token)
-            # set_refresh_cookies(response, refresh_token)
-            # # response.set_cookie('access_token_cookie', access_token, max_age=30*60)
-            # # response.set_cookie('refresh_token_cookie', refresh_token, max_age=15*24*3600)
-            # flash("Вы успешно зарегистрированы", "success")
-            # json_response = response.json()
-            # return json_response
-        else:
-            result = {"access_token": "", "refresh_token": "", "user_id": ""}
-            return json.dumps(result, ensure_ascii=False)
-            # flash("Ошибка при добавлении в БД", "error")
-            # return redirect(url_for(".login"))
-        # json_response = response.json()
-        # return json_response
-        # return {"access_token": access_token, "refresh_token": refresh_token}
+@user.route("/get_id", methods = ['GET'])
+@jwt_required()
+def get_id():
+    id = get_jwt_identity()
+    id = str(id)
+    return id
 
 
+@user.route("/api/editUserPersonalInfo/", methods = ['POST'])
+@cross_origin(origins=['http://localhost:3000'])
+@jwt_required()
+def editUserPersonalInfo():
+    userId = request.json.get('id', None)
+    username = request.json.get('nickname', None)
+    age = request.json.get('age', None)
+    gender = request.json.get('gender', None)
+    telegram = request.json.get('telegram', None)
+    user = db.session.query(User).filter(User.id == userId).update({'username': username, 'age': age, 'gender': gender, 'telegram': telegram})
+    db.session.commit()
+    return ''
+
+
+@user.route("/proxy-example")
+def proxy_example():
+    response = requests.get("https://login.yandex.ru/info", headers={'Authorization': 'OAuth y0_AgAAAAAJZyjrAAjmXQAAAADXRo6wqdnDgV_fTButH-939ztz6eS-Vz4'})
+    json_response = response.json()
+    return json_response
 
 @user.route("/login_oauth/", methods = ['GET'])
 def login_oauth():
@@ -629,12 +638,6 @@ def authorize():
 #     email = profile['email']
 #     print({'username': username, 'email': email})
 #     return {'username': username, 'email': email}
-
-@user.route("/proxy-example")
-def proxy_example():
-    response = requests.get("https://login.yandex.ru/info", headers={'Authorization': 'OAuth y0_AgAAAAAJZyjrAAjmXQAAAADXRo6wqdnDgV_fTButH-939ztz6eS-Vz4'})
-    json_response = response.json()
-    return json_response
 
 # @user.route("/proxy-example")
 # def proxy_example():
@@ -739,92 +742,34 @@ def proxy_example():
 #     email = user.email
 #     return render_template("profile.html", title="Профиль", username=username, email=email)
 
-@user.route("/who_am_i", methods=["GET"])
-@jwt_required()
-def who_am_i():
-    # We can now access our sqlalchemy User object via `current_user`.
-    return jsonify(
-        id=current_user.id,
-        username=current_user.username,
-        email=current_user.email,
-    )
+# @user.route("/who_am_i", methods=["GET"])
+# @jwt_required()
+# def who_am_i():
+#     # We can now access our sqlalchemy User object via `current_user`.
+#     return jsonify(
+#         id=current_user.id,
+#         username=current_user.username,
+#         email=current_user.email,
+#     )
 
-@user.route("/protected", methods=["GET"])
-@jwt_required()
-def protected():
-    current_user = get_jwt_identity()
-    return jsonify(logged_in_as=current_user), 200
+# @user.route("/protected", methods=["GET"])
+# @jwt_required()
+# def protected():
+#     current_user = get_jwt_identity()
+#     return jsonify(logged_in_as=current_user), 200
 
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
-@user.route("/token", methods=["POST"])
-def create_token():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    if email != "test" or password != "test":
-        return jsonify({"msg": "Bad email or password"}), 401
+# @user.route("/token", methods=["POST"])
+# def create_token():
+#     email = request.json.get("email", None)
+#     password = request.json.get("password", None)
+#     if email != "test" or password != "test":
+#         return jsonify({"msg": "Bad email or password"}), 401
 
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
-
-# @user.route("/register", methods=["POST", "GET"])
-# def register():
-#     if current_user.is_authenticated:
-#         return redirect(url_for('user.account'))
-#     else:
-#         form = RegisterForm()
-#         if form.validate_on_submit():
-#             user = User(username=form.username.data, email=form.email.data, password=form.password.data)
-#             # email, password
-#             if user:
-#                 db.session.add(user)
-#                 db.session.commit()
-#                 # token = user.get_token()
-#                 # return {'access_token': token}
-#                 flash("Вы успешно зарегистрированы", "success")
-#                 return redirect(url_for('.login'))
-#             else:
-#                 flash("Ошибка при добавлении в БД", "error")
-
-#         return render_template("register.html", title="Регистрация", form=form)
-
-@user.route('/user/<id>/')
-def user_id(id):
-    if current_user.is_authenticated: 
-        user = User.query.get(id)
-        im = User.query.get(current_user.getId())
-        a_b = db.session.query(users_requests).filter(users_requests.c.follower_id == current_user.getId(), users_requests.c.followed_id == id).first()
-        b_a = db.session.query(users_requests).filter(users_requests.c.follower_id == id, users_requests.c.followed_id == current_user.getId()).first()
-        if a_b and b_a:
-            return "Друзья"
-        elif a_b:
-            return "Заявка подана"
-        elif b_a:
-            return "Ожидает принятия заявки"
-        else:
-            return "Подать заявку?"
-    else:
-        return redirect(url_for('.login'))
+#     access_token = create_access_token(identity=email)
+#     return jsonify(access_token=access_token)
 
 # @user.after_request
 # def redirect_to_signin(response):
 #     if response.status_code == 401:
 #         return redirect(url_for('user.login') + '?next=' + request.url)
 #     return response
-
-# @user.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if current_user.is_authenticated:
-#         return redirect(url_for('.account'))
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         user = User.authenticate(email=form.email.data, password=form.password.data)
-#         if user:
-#             login_user(user, remember=form.remember.data)
-#             # token = user.get_token()
-#             next_page = request.args.get('next')
-
-#             return redirect(next_page) if next_page else redirect(url_for('.account'))
-#         else:
-#             flash('Войти не удалось. Пожалуйста, проверьте электронную почту или пароль', 'danger')
-#     return render_template("login.html", title="Авторизация", form=form)
