@@ -11,6 +11,7 @@ import {ROUTES} from "../../../router/routes";
 import {loginAPI} from "../../../services/loginService";
 import {href_HACK, loginOauthAPI, Yandex_href_HACK} from "../../../services/loginOauthService";
 import axios from "axios";
+import {LoginResponseDataJson} from "../../../types/response_types/LoginResponseJson";
 
 const CustomAppBar: FC = () => {
 
@@ -136,11 +137,24 @@ const CustomAppBar: FC = () => {
             //console.log('params', params);
             const token = location.hash.split('=')[1].split('&')[0];
             const token_type = location.hash.split('=')[2].split('&')[0];
-            //console.log('ВХОД', token);
+            console.log('ВХОД', token);
             //console.log('ТИП', token_type);
-            login(token);
+            navigate('/');
+            handleYandexLoginResponse(token);
         }
     }, [location.hash])
+
+    const handleYandexLoginResponse = (token: string) => {
+        login(token).unwrap().then(response => {
+            if (response.user_id === "")
+            {
+                console.log("LOGIN RESPONSE: ERROR");
+            }
+            else {
+                dispatch(login_success({userId: response.user_id, accessToken: response.access_token}));
+            }
+        });
+    }
 
     /*
     <Button color="inherit" id="login_btn" onClick={handleLoginYandex}>

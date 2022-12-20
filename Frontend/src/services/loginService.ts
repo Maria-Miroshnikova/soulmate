@@ -1,7 +1,12 @@
 import {BaseQueryFn, createApi, FetchArgs, FetchBaseQueryError} from "@reduxjs/toolkit/query/react";
 import {fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
-import {UserModel} from "../types/UserModels";
+import {UserModel, UserPersonalInfoModel} from "../types/UserModels";
 import {BASE_URL} from "./baseQueryFunctions";
+import {
+    LoginResponseDataJson
+} from "../types/response_types/LoginResponseJson";
+import {UserPersonsResponseJson} from "../types/response_types/UserPersonsResponseJson";
+import {UserInfoRequestJson} from "../types/response_types/userInfoJson";
 
 export interface LoginRequest {
     nickname: string,
@@ -59,7 +64,7 @@ export const loginAPI = createApi({
                 maxRetries: 2
             }
         }),*/
-        login: build.query<void, string>({
+        login: build.query<LoginResponseDataJson, string>({
             query: (arg) => ({
                 url: '/login',
                 params: {
