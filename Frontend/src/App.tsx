@@ -101,9 +101,10 @@ function App() {
   const location = useLocation();
 
   // обновление userId при переходе по страницам
- /* useEffect(() => {
+  useEffect(() => {
     dispatch(updatePageId(location.pathname.split('/')[2]));
-  }, [location.pathname]);*/
+  }, [location.pathname]);
+  
   useEffect(() => {
     if (!isAuth)
       navigate('/');

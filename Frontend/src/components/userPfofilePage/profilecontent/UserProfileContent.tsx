@@ -10,10 +10,11 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import {useAppSelector} from "../../../hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {EditPersonalInfoRequest, userdataAPI} from "../../../services/userdataService";
 import {LoginRequest} from "../../../services/loginService";
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../store/reducers/authSlice';
 
 const UserProfileContent = () => {
 
@@ -53,11 +54,13 @@ const UserProfileContent = () => {
     }
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     // TODO сделать в конце самом
     const handleDeleteAccount = () => {
         // спросить, точно ли он этого хочет
         deleteAccount({userId: userId!});
+        dispatch(logout());
         navigate('/');
         // переброс на главную страницу, удаление из редакса
     }

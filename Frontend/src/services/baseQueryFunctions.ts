@@ -11,8 +11,8 @@ const baseQueryWithAuthToken = fetchBaseQuery({
     prepareHeaders: headers => {
         const current_token = localStorage.getItem(STORAGE_ACCESS);
         if (current_token) {
-        //   headers.set('authorization', `Bearer ${current_token}`)}
-           headers.set('authorization', `Bearer kek`)}
+           headers.set('authorization', `Bearer ${current_token}`)}
+        //    headers.set('authorization', `Bearer kek`)}
         // TODO: а если нету токена?
         return headers;
     }

@@ -121,7 +121,7 @@ def login():
     avatar = profile['default_avatar_id']
     username = profile['first_name']
     email = profile['default_email']
-    found_user = User.query.filter(email==email).first()
+    found_user = db.session.query(User).filter(User.email==email).first()
     if found_user != None:
         user_id = found_user.id
         access_token = found_user.get_access_token()
@@ -500,7 +500,8 @@ def visited():
         db.session.commit()
         count_entry = db.session.query(browsingHistory).filter(browsingHistory.c.viewer_id == userid).filter(browsingHistory.c.viewed_id == personId).count()
         if count_entry > 1:
-            entry = db.session.query(browsingHistory).filter(browsingHistory.c.viewer_id == userid).filter(browsingHistory.c.viewed_id == personId).first().delete()
+            entry = db.session.query(browsingHistory).filter(browsingHistory.c.viewer_id == userid).filter(browsingHistory.c.viewed_id == personId).one()
+            db.session.delete(entry)
             db.session.commit()
     return ''
 
@@ -581,7 +582,7 @@ def editUserPersonalInfo():
 def deleteUserAccount():
     userId = request.json.get('id', None)
     print({"userId": userId})
-    user = db.session.query(User).filter(User.id == userId).first().delete()
+    user = db.session.query(User).filter(User.id == userId).delete()
     db.session.commit()
     return ''
 
