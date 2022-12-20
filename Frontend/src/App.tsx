@@ -52,15 +52,6 @@ function App() {
 
   const navigate = useNavigate();
 
-  /*
-  useEffect(() => {
-    console.log("local storage refresh changed: ", localStorage.getItem(STORAGE_REFRESH));
-    if ((localStorage.getItem(STORAGE_REFRESH) === "") || (localStorage.getItem(STORAGE_REFRESH) === null)) {
-      dispatch(logout());
-      navigate('/');
-    }
-  }, [localStorage])*/
-
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(state => state.authReducer.isAuth);
 

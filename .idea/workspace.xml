@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="develop logout when bad access">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="develop logout when bad access in base query">
       <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/baseQueryFunctions.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,14 +92,7 @@
       <workItem from="1671477963162" duration="2809000" />
       <workItem from="1671481718327" duration="5020000" />
       <workItem from="1671528052986" duration="2892000" />
-      <workItem from="1671535291114" duration="17025000" />
-    </task>
-    <task id="LOCAL-00015" summary="fix UniversalOptionsFetching with title">
-      <created>1671201517056</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1671201517056</updated>
+      <workItem from="1671535291114" duration="18320000" />
     </task>
     <task id="LOCAL-00016" summary="make subscribers pages and tabs and buttons in all app">
       <created>1671352688418</created>
@@ -439,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671552570168</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="develop logout when bad access in base query">
+      <created>1671553800143</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1671553800143</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,7 +455,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix button type in personProfileContent" />
     <MESSAGE value="raise countRequests" />
     <MESSAGE value="fix transform countRequests" />
     <MESSAGE value="raise adding to visited" />
@@ -482,6 +479,7 @@
     <MESSAGE value="developing refresh base query LOGOUT + add color red to telegram field in user account page" />
     <MESSAGE value="make preAuth in app" />
     <MESSAGE value="develop logout when bad access" />
-    <option name="LAST_COMMIT_MESSAGE" value="develop logout when bad access" />
+    <MESSAGE value="develop logout when bad access in base query" />
+    <option name="LAST_COMMIT_MESSAGE" value="develop logout when bad access in base query" />
   </component>
 </project>
