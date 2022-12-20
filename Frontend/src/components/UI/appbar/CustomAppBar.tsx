@@ -153,6 +153,9 @@ const CustomAppBar: FC = () => {
             else {
                 dispatch(login_success({userId: response.user_id, accessToken: response.access_token, refreshToken: response.refresh_token}));
             }
+        }).catch(error => {
+            console.log("-------------- ERROR login: ", error);
+            //dispatch(logout());
         });
     }
 

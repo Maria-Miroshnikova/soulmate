@@ -20,7 +20,7 @@ export interface RegistrationRequest {
 }
 
 export interface LoginRefresh {
-    accessToken: string
+    refreshToken: string
 }
 
 export interface LoginResponse {
@@ -45,16 +45,14 @@ export const loginAPI = createApi({
                 maxRetries: 2
             }
         }),*/
-       /* refresh: build.mutation<LoginResponse, LoginRefresh>({
+      /*  refresh: build.mutation<LoginResponse, LoginRefresh>({
             query: (loginRefresh) => ({
-                url: '/refresh',
-                body: loginRefresh,
-                method: 'POST'
+                url: '/refresh'
             }),
             extraOptions: {
                 maxRetries: 2
             }
-        }),
+        }),/*
         registration: build.mutation<LoginResponse, LoginRequest>({
             query: (loginData) => ({
                 url: '/registration',
