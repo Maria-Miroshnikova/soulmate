@@ -26,18 +26,20 @@ def user_lookup_callback(jwt_header, jwt_payload):
 @jwt_manager.unauthorized_loader
 def unauthorized_callback(callback):
     print(callback)
-    return Response("{haven't access token}", status=401, mimetype='application/json')
+    return Response("{access token invalid}", status=401, mimetype='application/json')
     # if jwt_payload['type'] == 'access':
     #     print(jwt_header)
     #     print(jwt_payload)
     #     return Response("{haven't access token}", status=401, mimetype='application/json')
 
 @jwt_manager.invalid_token_loader
-def invalid_token_callback(jwt_header, jwt_payload):
-    if jwt_payload['type'] == 'access':
-        print(jwt_header)
-        print(jwt_payload)
-        return Response("{access token invalid}", status=401, mimetype='application/json')
+def invalid_token_callback(callback):
+    print(callback)
+    return Response("{token invalid}", status=401, mimetype='application/json')
+    # if jwt_payload['type'] == 'access':
+    #     print(jwt_header)
+    #     print(jwt_payload)
+    #     return Response("{access token invalid}", status=401, mimetype='application/json')
 
 @jwt_manager.expired_token_loader
 def expired_token_callback(jwt_header, jwt_payload):
@@ -66,6 +68,7 @@ def expired_token_callback(jwt_header, jwt_payload):
 @jwt_required(refresh=True)
 def refresh():
     refresh_token = request.headers.get('Authorization')
+    print({"refresh_token": refresh_token})
     identity = get_jwt_identity()
     user = User.query.filter(User.id == identity).first()
     if user:
@@ -110,6 +113,8 @@ def refresh():
 @user.route('/userdatausers/', methods = ['GET'])
 @jwt_required()
 def userdatausers():
+    access_token = request.headers.get('Authorization')
+    print({"access_token": access_token})
     userid = request.args.get('userId')
     user = db.session.query(User).filter(User.id == userid).first()
     User_schema = UserSchema()
@@ -299,7 +304,6 @@ def addItem():
     itemId = request.json.get('itemId', None)
     category = request.json.get('category', None)
     is_main = request.json.get('isMain', None)
-    print(userid, itemId, category, is_main)
     if category == "film":
         if is_main == "true":
             entry = user_film.insert().values(user_id=userid, film_id=itemId)
@@ -472,7 +476,7 @@ def visited():
 @jwt_required()
 def requestscount():
     access_token = request.headers.get('Authorization')
-    print(access_token)
+    print({"access_token": access_token})
     userid = request.args.get('userId')
     countFollowers = 0
     if userid != None:
@@ -531,7 +535,6 @@ def login():
     if found_user != None:
         user_id = found_user.id
         access_token = found_user.get_access_token()
-        print(access_token)
         refresh_token = found_user.get_refresh_token()
         result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
         return json.dumps(result, ensure_ascii=False)
@@ -547,7 +550,6 @@ def login():
             db.session.commit()
             user_id = user.id
             access_token = user.get_access_token()
-            print(access_token)
             refresh_token = user.get_refresh_token()
             result = {"access_token": access_token, "refresh_token": refresh_token, "user_id": str(user_id)}
             return json.dumps(result, ensure_ascii=False)
