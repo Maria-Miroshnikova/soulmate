@@ -6,9 +6,11 @@ import {themeMain} from "../../../theme";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {gapi} from "gapi-script";
 import {login_success, logout} from "../../../store/reducers/authSlice";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {ROUTES} from "../../../router/routes";
 import {loginAPI} from "../../../services/loginService";
+import {href_HACK, loginOauthAPI} from "../../../services/loginOauthService";
+import axios from "axios";
 
 const CustomAppBar: FC = () => {
 
@@ -78,7 +80,9 @@ const CustomAppBar: FC = () => {
         console.log("LOGED OUT");
     }*/
 
+   // const [login] = loginAPI.useLazyLoginQuery();
     const [login] = loginAPI.useLazyLoginQuery();
+   // const [getAccessToken] = loginOauthAPI.useGetAccessTokenMutation();
 
     const handleClickLogButton = () => {
         if (isAuth) {
@@ -89,7 +93,29 @@ const CustomAppBar: FC = () => {
         }
         else {
             console.log("IN");
-            login().then();
+            navigate(href_HACK);
+            //login().then(response => console.log("RESPONSE: ", response));
+        }
+    }
+
+    const location = useLocation();
+
+    useEffect(() => {
+        const hadCode = location.search.search('code');
+        if (hadCode === 1) {
+            const code = location.search.split('=')[1];
+            console.log('ВХОД', code);
+            getAccessTokenFunc(code);
+        }
+    }, [location.search])
+
+    const getAccessTokenFunc = async (code: string) => {
+        const response = await axios.get('http://localhost:9999/authenticate/'+code);
+        console.log("RESPONSE: ", response.data);
+        if (response.data.error === "bad_code")
+            navigate('/');
+        else {
+            login(response.data.token);
         }
     }
 
@@ -108,13 +134,16 @@ const CustomAppBar: FC = () => {
                                 :
                                 <NavTabs />
                         }
-                        <Button color="inherit" onClick={handleClickLogButton} id="login_btn">
-                            { (isAuth) ?
-                                textLogout
+                        {
+                            (isAuth) ?
+                                <Button color="inherit" onClick={handleClickLogButton} id="login_btn">
+                                    {textLogout}
+                                </Button>
                                 :
-                                textLogin
-                            }
-                        </Button>
+                                <Button color="inherit" href={href_HACK} id="login_btn">
+                                    {textLogin}
+                                </Button>
+                        }
                     </Box>
                 </Box>
             </Toolbar>

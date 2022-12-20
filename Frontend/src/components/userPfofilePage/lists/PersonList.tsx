@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {userdataAPI} from "../../../services/userdataService";
+import {POLLING_INTERVAL_COUNT_REQUESTS, userdataAPI} from "../../../services/userdataService";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import {Box} from "@mui/material";
 import PersonCardFriend from "../personcard/PersonCardFriend";
@@ -23,7 +23,7 @@ const PersonList: FC<PersonListProps> = ({type}) => {
     const title = useAppSelector(state => state.searchConentReducer.title);
 
     const {data: persons, isLoading} = userdataAPI.useFetchUserPersonsByIdQuery({userId: userId!, personsType: type, title: title!}, {
-        // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
+         pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
     });
  //   console.log("persons ", persons);
 

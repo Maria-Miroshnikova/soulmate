@@ -36,7 +36,7 @@ const ProfileDrawerContent: FC = () => {
     }
 
     const {data: countResponse, isLoading: isLoadingCount} = userdataAPI.useFetchUserCountOfRequestsToFriendsQuery({userId: userId!}, {
-        //pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
+        pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
     });
 
     const [isVisibleBadge, setIsVisibleBadge] = useState<boolean>(false);

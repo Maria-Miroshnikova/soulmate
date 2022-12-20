@@ -12,6 +12,7 @@ import {loginAPI} from "../services/loginService";
 import {userdataAPI} from "../services/userdataService";
 import {analizAPI} from "../services/analizService";
 import {moderatorAPI} from "../services/moderatorService";
+import {loginOauthAPI} from "../services/loginOauthService";
 
 const rootReducer = combineReducers({
     optionsReducer,
@@ -24,14 +25,15 @@ const rootReducer = combineReducers({
     [filterAPI.reducerPath]: filterAPI.reducer,
     [loginAPI.reducerPath]: loginAPI.reducer,
     [userdataAPI.reducerPath]: userdataAPI.reducer,
-    [moderatorAPI.reducerPath]: moderatorAPI.reducer
+    [moderatorAPI.reducerPath]: moderatorAPI.reducer,
+    [loginOauthAPI.reducerPath]: loginOauthAPI.reducer
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(filterAPI.middleware, thunk, loginAPI.middleware, userdataAPI.middleware, analizAPI.middleware, moderatorAPI.middleware)
+            getDefaultMiddleware().concat(filterAPI.middleware, thunk, loginAPI.middleware, userdataAPI.middleware, analizAPI.middleware, moderatorAPI.middleware, loginOauthAPI.middleware)
     });
 };
 

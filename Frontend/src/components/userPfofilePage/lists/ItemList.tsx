@@ -6,7 +6,7 @@ import ItemCardFriend from "../itemcard/ItemCardFriend";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
 import ItemCardBasic from "../itemcard/ItemCardBasic";
 import ItemCardSearch from "../itemcard/ItemCardSearch";
-import {userdataAPI} from "../../../services/userdataService";
+import {POLLING_INTERVAL_COUNT_REQUESTS, userdataAPI} from "../../../services/userdataService";
 import {ItemListProps} from "./ItemListLayout";
 import {extractOptionFromOptions, OptionItemModel} from "../../../types/OptionModels";
 import {filterAPI} from "../../../services/filterService";
@@ -20,7 +20,7 @@ const ItemList: FC<ItemListProps> = ({category, isMain}) => {
     // Загрузка избранных пользователя
     const userId = useAppSelector(state => state.authReducer.userId);
     const {data: items, isLoading: isLoadingItems} = userdataAPI.useFetchUserItemsByIdQuery({userId: userId!, category: category, isMain: isMain, title: title}, {
-        // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
+         pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
     });
 
     // Загрузка опций

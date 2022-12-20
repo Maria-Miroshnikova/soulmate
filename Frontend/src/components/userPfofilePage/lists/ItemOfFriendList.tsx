@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Box} from "@mui/material";
 import ItemCardFriend from "../itemcard/ItemCardFriend";
 import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
-import {userdataAPI} from "../../../services/userdataService";
+import {POLLING_INTERVAL_COUNT_REQUESTS, userdataAPI} from "../../../services/userdataService";
 import {ItemListProps} from "./ItemListLayout";
 import {setCountFound} from "../../../store/reducers/searchContentSlice";
 import {useLocation} from "react-router-dom";
@@ -19,7 +19,7 @@ const ItemOfFriendList: FC<ItemListProps> = ({category, isMain}) => {
 
     const personId = useAppSelector(state => state.searchConentReducer.pageId);
     const {data: items, isLoading} = userdataAPI.useFetchUserItemsByIdQuery({userId: personId!, category: category, isMain: isMain, title: title}, {
-        // pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
+         pollingInterval: POLLING_INTERVAL_COUNT_REQUESTS
     });
    // console.log("friends items: ", items);
 

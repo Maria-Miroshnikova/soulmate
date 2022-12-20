@@ -59,10 +59,13 @@ export const loginAPI = createApi({
                 maxRetries: 2
             }
         }),*/
-        login: build.query<void, void>({
-            query: () => ({
-                url: '/login'
+        login: build.query<void, string>({
+            query: (arg) => ({
+                url: '/login',
+                params: {
+                    token: arg
+                }
             })
-        }),
+        })
     })
 })

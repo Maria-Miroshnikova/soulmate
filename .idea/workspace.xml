@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="start develop auth">
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="prepare parsing moderator jsons">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/UI/appbar/CustomAppBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/ProfileDrawerContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/ProfileDrawerContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageSearchContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/UserPageSearchContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/ItemOfFriendList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/PersonList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/userPfofilePage/lists/PersonList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/services/loginService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/store/reducers/authSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/store/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatekeeper/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/gatekeeper/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatekeeper/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/gatekeeper/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +44,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2IhLPaIg7xd5YMZATGUSRkwUSLT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -90,7 +100,8 @@
       <workItem from="1671451159392" duration="1485000" />
       <workItem from="1671462121796" duration="4617000" />
       <workItem from="1671475131437" duration="2086000" />
-      <workItem from="1671477963162" duration="2432000" />
+      <workItem from="1671477963162" duration="2809000" />
+      <workItem from="1671481718327" duration="4818000" />
     </task>
     <task id="LOCAL-00001" summary="add front to other branch">
       <created>1670629007239</created>
@@ -421,7 +432,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671478586542</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="fix problem with tabs subscribtions">
+      <created>1671480949605</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1671480949605</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +457,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix button on filter" />
     <MESSAGE value="fix fetching user persons" />
     <MESSAGE value="add comments form transform in alanizService" />
     <MESSAGE value="sketch json types for fetching analize" />
@@ -464,6 +481,7 @@
     <MESSAGE value="add polling interval to all lists (itemList)" />
     <MESSAGE value="prepare parsing moderator jsons" />
     <MESSAGE value="start develop auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="start develop auth" />
+    <MESSAGE value="fix problem with tabs subscribtions" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix problem with tabs subscribtions" />
   </component>
 </project>
