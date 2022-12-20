@@ -11,9 +11,7 @@ const baseQueryWithAuthToken = fetchBaseQuery({
     prepareHeaders: headers => {
         const current_token = localStorage.getItem(STORAGE_ACCESS);
         if (current_token) {
-         //   headers.set('authorization', `Bearer ${current_token}`)
-         headers.set('authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjcxNTQ5MjA1LCJqdGkiOiI3Yzk0ZWU5MC1jODMwLTQwZjYtOTA2Ny1kNzAyMzI4OTczOTgiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxLCJuYmYiOjE2NzE1NDkyMDUsImV4cCI6MTY3MTU01SIxMH0.1C1zo338LYbBBTWuk2pB1oEle-AW77uLwG-kAA6ug6w`)
-        }
+            headers.set('authorization', `Bearer ${current_token}`)}
         // TODO: а если нету токена?
         return headers;
     }
@@ -25,6 +23,7 @@ const baseQueryWithRefreshToken = fetchBaseQuery({
         const current_token = localStorage.getItem(STORAGE_REFRESH);
         if (current_token) {
             headers.set('authorization', `Bearer ${current_token}`)
+           //headers.set('authorization', `Bearer k`)
         }
         return headers;
     }
@@ -37,15 +36,19 @@ export const baseQueryWithReauth: BaseQueryFn<
     > = async (args, api, extraOptions) => {
     let result = await baseQueryWithAuthToken(args, api, extraOptions)
     console.log("access response:", result);
-    if (result.error && result.error.status === 401) {
+    if (result.error) {
         if (result.error.data === "{token invalid}") {
+        
             console.log("GO AWAY: access problem");
             return result;
-        }
+       }
+    }
+    if (result.error && result.error.status === 401) {
+       
         // try to get a new token
         const refreshResult = await baseQueryWithRefreshToken(`/refresh`, api, extraOptions)
         console.log("refresh response: ", refreshResult);
-        if (refreshResult.error && refreshResult.error.status === 401) {
+        if (refreshResult.error) {
             console.log("GO AWAY: refresh problem");
             return refreshResult;
         }
