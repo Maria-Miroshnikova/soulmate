@@ -1,5 +1,6 @@
 import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError} from "@reduxjs/toolkit/dist/query/react";
 import {STORAGE_ACCESS, STORAGE_REFRESH} from "../store/reducers/authSlice";
+import {LoginResponseDataJson} from "../types/response_types/LoginResponseJson";
 
 export const BASE_URL = "http://127.0.0.1:5000";
 //export const BASE_URL = "http://localhost:3001";
@@ -33,20 +34,20 @@ export const baseQueryWithReauth: BaseQueryFn<
     unknown,
     FetchBaseQueryError
     > = async (args, api, extraOptions) => {
-    console.log("ARGS ", args);
     let result = await baseQueryWithAuthToken(args, api, extraOptions)
-    console.log("acess error:", result);
+    console.log("access response:", result);
     if (result.error && result.error.status === 401) {
         // try to get a new token
         const refreshResult = await baseQueryWithRefreshToken(`/refresh`, api, extraOptions)
-        console.log("refreshResult: ", refreshResult);
-        if (refreshResult.data) {
+        console.log("refresh response: ", refreshResult);
+        if (refreshResult.error && refreshResult.error.status === 401) {
+            console.log("GO AWAY: refresh problem");
+        }
+        else if (refreshResult.data) {
             // store the new token
-
-            console.log("refreshResult: ", refreshResult);
-
-          //  localStorage.setItem(STORAGE_ACCESS, refreshResult.data as string);
-          //  localStorage.setItem(STORAGE_REFRESH, refreshResult.data as string);
+            const data: LoginResponseDataJson = refreshResult.data as LoginResponseDataJson;
+            localStorage.setItem(STORAGE_ACCESS, data.access_token);
+            localStorage.setItem(STORAGE_REFRESH, data.refresh_token);
 
             // retry the initial query
             result = await baseQueryWithAuthToken(args, api, extraOptions)
