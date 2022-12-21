@@ -21,7 +21,7 @@ const ButtonVisited: FC<ButtonPersonProps> = ({person}) => {
     // <Button variant="contained" onClick={handleRequest}> {textAdd} </Button>
     // TODO: пока что посещенные цепляют и друзей и т д на бэкэнде, поэтому пока не надо кнопки
     return (
-        null
+        <Button variant="contained" onClick={handleRequest}> {textAdd} </Button>
     );
 };
 
