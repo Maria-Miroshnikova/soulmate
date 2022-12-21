@@ -3,7 +3,8 @@ export interface UserInfoJson {
     id: string,
     gender: string,
     username: string,
-    age: string
+    age: string,
+    avatar: string
 }
 
 export interface UserCardJson {

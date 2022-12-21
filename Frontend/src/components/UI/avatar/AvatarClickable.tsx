@@ -23,8 +23,7 @@ const AvatarClickable: FC<AvatarProps> = ({person, onClick}) => {
         onClick = handleGoToProfile;
 
     return (
-        <Avatar onClick={(event) => onClick!(person.id)}>
-            ?
+        <Avatar onClick={(event) => onClick!(person.id)} src={person.avatar}>
         </Avatar>
     );
 };

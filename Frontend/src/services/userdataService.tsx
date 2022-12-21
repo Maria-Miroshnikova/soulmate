@@ -178,7 +178,7 @@ export const userdataAPI = createApi({
                     result.push({
                         id: user.User.id,
                         nickname: user.User.username,
-                        avatar: "",
+                        avatar: ((user.User.avatar === null) || (user.User.avatar === undefined)) ? "" : user.User.avatar,
                         age: user.User.age,
                         gender: user.User.gender,
                         telegram: user.User.telegram
