@@ -435,9 +435,11 @@ def requestPersonToBeFriends():
             entry_2 = db.session.query(users_requests).filter(users_requests.c.followed_id == userid).filter(users_requests.c.follower_id == personId).update({'type': "friends"})
             db.session.execute(entry_1)
         else:
+            check = db.session.query(users_requests).filter(users_requests.c.followed_id == personId, users_requests.c.follower_id == userid).first()
+            if check == None:
+                entry = users_requests.insert().values(followed_id=personId, follower_id=userid, type="follower")
+                db.session.execute(entry) 
             # entry = requests.insert().values(followed_id=personId, follower_id=userid)
-            entry = users_requests.insert().values(followed_id=personId, follower_id=userid, type="follower")
-            db.session.execute(entry) 
         db.session.commit()
     return ''
 

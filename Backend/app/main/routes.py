@@ -116,26 +116,60 @@ def options_game_sub():
 def userfilter():
     if request.args:
         userid = request.args.get('userid')
-        film_main = request.args.getlist('film_main')
+        film_main = request.args.get('film_main')
         is_film_main = request.args.get('is_film_main', default = None)
-        film_sub = request.args.getlist('film_sub')
+        film_sub = request.args.get('film_sub')
         is_film_sub = request.args.get('is_film_sub', default = None)
-        book_main = request.args.getlist('book_main')
+        book_main = request.args.get('book_main')
         is_book_main = request.args.get('is_book_main', default = None)
-        book_sub = request.args.getlist('book_sub')
+        book_sub = request.args.get('book_sub')
         is_book_sub = request.args.get('is_book_sub', default = None)
-        music_main = request.args.getlist('music_main')
+        music_main = request.args.get('music_main')
         is_music_main = request.args.get('is_music_main', default = None)
-        music_sub = request.args.getlist('music_sub')
+        music_sub = request.args.get('music_sub')
         is_music_sub = request.args.get('is_music_sub', default = None)
-        game_main = request.args.getlist('game_main')
+        game_main = request.args.get('game_main')
         is_game_main = request.args.get('is_game_main', default = None)
-        game_sub = request.args.getlist('game_sub')
+        game_sub = request.args.get('game_sub')
         is_game_sub = request.args.get('is_game_sub', default = None)
         name = request.args.get('name', default = None)
         id = request.args.get('id', default = None, type=int)
         priority = request.args.get('priority', default = None)
 
+        if film_main != None:
+            film_main = film_main.split(",")
+        else:
+            film_main = []
+        if film_sub != None:
+            film_sub = film_sub.split(",")
+        else:
+            film_sub = []
+        if book_main != None:
+            book_main = book_main.split(",")
+        else:
+            book_main = []
+        if book_sub != None:
+            book_sub = book_sub.split(",")
+        else:
+            book_sub = []
+        if game_main != None:
+            game_main = game_main.split(",")
+        else:
+            game_main = []
+        if game_sub != None:
+            game_sub = game_sub.split(",")
+        else:
+            game_sub = []
+        if music_main != None:
+            music_main = music_main.split(",")
+        else:
+            music_main = []
+        if music_sub != None:
+            music_sub = music_sub.split(",")
+        else:
+            music_sub = []
+
+        print({"film_main": film_main})
         found_user_films = []
         found_user_directors = []
         found_user_books = []
@@ -182,10 +216,9 @@ def userfilter():
         # found_users = db.session.query(User).filter(user_film.c.user_id == User.id).filter(user_film.c.film_id == Film.id).filter(user_book.c.user_id == User.id).filter(user_book.c.book_id == Book.id).filter(user_game.c.user_id == User.id).filter(user_game.c.game_id == Game.id).filter(user_song.c.user_id == User.id).filter(user_song.c.song_id == Song.id).filter(or_(False, *[Film.id.like(id_film) for id_film in film_main]) | or_(False, *[Film.director_id.like(id_director) for id_director in film_sub]) | or_(False, *[Book.id.like(id_book) for id_book in book_main]) | or_(False, *[Book.author_id.like(id_author) for id_author in book_sub]) | or_(False, *[Game.id.like(id_game) for id_game in game_main]) | or_(False, *[Game.studio_id.like(id_studio) for id_studio in game_sub]) | or_(False, *[Song.id.like(id_song) for id_song in music_main]) | or_(False, *[Song.artist_id.like(id_artist) for id_artist in music_sub]) | or_(False, *[Film.id.like(film.id) for film in found_user_films]) | or_(False, *[Film.director_id.like(director.id) for director in found_user_directors]) | or_(False, *[Book.id.like(book.id) for book in found_user_books]) | or_(False, *[Book.author_id.like(author.id) for author in found_user_authors]) | or_(False, *[Game.id.like(game.id) for game in found_user_games]) | or_(False, *[Game.studio_id.like(studio.id) for studio in found_user_studios]) | or_(False, *[Song.id.like(song.id) for song in found_user_songs]) | or_(False, *[Song.artist_id.like(artist.id) for artist in found_user_artists])).filter(User.id != userid).all()
 
         if name == None:
-            found_users = db.session.query(User).filter(user_film.c.user_id == User.id).filter(user_film.c.film_id == Film.id).filter(user_book.c.user_id == User.id).filter(user_book.c.book_id == Book.id).filter(user_game.c.user_id == User.id).filter(user_game.c.game_id == Game.id).filter(user_song.c.user_id == User.id).filter(user_song.c.song_id == Song.id).filter(or_(False, *[Film.id.like(id_film) for id_film in film_main]) | or_(False, *[Director.id.like(id_director) for id_director in film_sub]) | or_(False, *[Book.id.like(id_book) for id_book in book_main]) | or_(False, *[Author.id.like(id_author) for id_author in book_sub]) | or_(False, *[Game.id.like(id_game) for id_game in game_main]) | or_(False, *[Studio.id.like(id_studio) for id_studio in game_sub]) | or_(False, *[Song.id.like(id_song) for id_song in music_main]) | or_(False, *[Artist.id.like(id_artist) for id_artist in music_sub]) | or_(False, *[Film.id.like(film.id) for film in found_user_films]) | or_(False, *[Director.id.like(director.id) for director in found_user_directors]) | or_(False, *[Book.id.like(book.id) for book in found_user_books]) | or_(False, *[Author.id.like(author.id) for author in found_user_authors]) | or_(False, *[Game.id.like(game.id) for game in found_user_games]) | or_(False, *[Studio.id.like(studio.id) for studio in found_user_studios]) | or_(False, *[Song.id.like(song.id) for song in found_user_songs]) | or_(False, *[Artist.id.like(artist.id) for artist in found_user_artists])).filter(User.id != userid).all()
+            found_users = db.session.query(User).filter(user_film.c.user_id == User.id).filter(user_film.c.film_id == Film.id).filter(user_book.c.user_id == User.id).filter(user_book.c.book_id == Book.id).filter(user_game.c.user_id == User.id).filter(user_game.c.game_id == Game.id).filter(user_song.c.user_id == User.id).filter(user_song.c.song_id == Song.id).filter(user_director.c.user_id == User.id).filter(user_director.c.director_id == Director.id).filter(user_author.c.user_id == User.id).filter(user_author.c.author_id == Author.id).filter(user_studio.c.user_id == User.id).filter(user_studio.c.studio_id == Studio.id).filter(user_artist.c.user_id == User.id).filter(user_artist.c.artist_id == Artist.id).filter(or_(False, *[Film.id.like(id_film) for id_film in film_main]) | or_(False, *[Director.id.like(id_director) for id_director in film_sub]) | or_(False, *[Book.id.like(id_book) for id_book in book_main]) | or_(False, *[Author.id.like(id_author) for id_author in book_sub]) | or_(False, *[Game.id.like(id_game) for id_game in game_main]) | or_(False, *[Studio.id.like(id_studio) for id_studio in game_sub]) | or_(False, *[Song.id.like(id_song) for id_song in music_main]) | or_(False, *[Artist.id.like(id_artist) for id_artist in music_sub]) | or_(False, *[Film.id.like(film.id) for film in found_user_films]) | or_(False, *[Director.id.like(director.id) for director in found_user_directors]) | or_(False, *[Book.id.like(book.id) for book in found_user_books]) | or_(False, *[Author.id.like(author.id) for author in found_user_authors]) | or_(False, *[Game.id.like(game.id) for game in found_user_games]) | or_(False, *[Studio.id.like(studio.id) for studio in found_user_studios]) | or_(False, *[Song.id.like(song.id) for song in found_user_songs]) | or_(False, *[Artist.id.like(artist.id) for artist in found_user_artists])).filter(User.id != userid).all()
         else:
-            found_users = db.session.query(User).filter(user_film.c.user_id == User.id).filter(user_film.c.film_id == Film.id).filter(user_book.c.user_id == User.id).filter(user_book.c.book_id == Book.id).filter(user_game.c.user_id == User.id).filter(user_game.c.game_id == Game.id).filter(user_song.c.user_id == User.id).filter(user_song.c.song_id == Song.id).filter(or_(False, *[Film.id.like(id_film) for id_film in film_main]) | or_(False, *[Director.id.like(id_director) for id_director in film_sub]) | or_(False, *[Book.id.like(id_book) for id_book in book_main]) | or_(False, *[Author.id.like(id_author) for id_author in book_sub]) | or_(False, *[Game.id.like(id_game) for id_game in game_main]) | or_(False, *[Studio.id.like(id_studio) for id_studio in game_sub]) | or_(False, *[Song.id.like(id_song) for id_song in music_main]) | or_(False, *[Artist.id.like(id_artist) for id_artist in music_sub]) | or_(False, *[Film.id.like(film.id) for film in found_user_films]) | or_(False, *[Director.id.like(director.id) for director in found_user_directors]) | or_(False, *[Book.id.like(book.id) for book in found_user_books]) | or_(False, *[Author.id.like(author.id) for author in found_user_authors]) | or_(False, *[Game.id.like(game.id) for game in found_user_games]) | or_(False, *[Studio.id.like(studio.id) for studio in found_user_studios]) | or_(False, *[Song.id.like(song.id) for song in found_user_songs]) | or_(False, *[Artist.id.like(artist.id) for artist in found_user_artists])).filter(User.id != userid).filter(User.username.contains(name)).all()
-
+            found_users = db.session.query(User).filter(user_film.c.user_id == User.id).filter(user_film.c.film_id == Film.id).filter(user_book.c.user_id == User.id).filter(user_book.c.book_id == Book.id).filter(user_game.c.user_id == User.id).filter(user_game.c.game_id == Game.id).filter(user_song.c.user_id == User.id).filter(user_song.c.song_id == Song.id).filter(user_director.c.user_id == User.id).filter(user_director.c.director_id == Director.id).filter(user_author.c.user_id == User.id).filter(user_author.c.author_id == Author.id).filter(user_studio.c.user_id == User.id).filter(user_studio.c.studio_id == Studio.id).filter(user_artist.c.user_id == User.id).filter(user_artist.c.artist_id == Artist.id).filter(or_(False, *[Film.id.like(id_film) for id_film in film_main]) | or_(False, *[Director.id.like(id_director) for id_director in film_sub]) | or_(False, *[Book.id.like(id_book) for id_book in book_main]) | or_(False, *[Author.id.like(id_author) for id_author in book_sub]) | or_(False, *[Game.id.like(id_game) for id_game in game_main]) | or_(False, *[Studio.id.like(id_studio) for id_studio in game_sub]) | or_(False, *[Song.id.like(id_song) for id_song in music_main]) | or_(False, *[Artist.id.like(id_artist) for id_artist in music_sub]) | or_(False, *[Film.id.like(film.id) for film in found_user_films]) | or_(False, *[Director.id.like(director.id) for director in found_user_directors]) | or_(False, *[Book.id.like(book.id) for book in found_user_books]) | or_(False, *[Author.id.like(author.id) for author in found_user_authors]) | or_(False, *[Game.id.like(game.id) for game in found_user_games]) | or_(False, *[Studio.id.like(studio.id) for studio in found_user_studios]) | or_(False, *[Song.id.like(song.id) for song in found_user_songs]) | or_(False, *[Artist.id.like(artist.id) for artist in found_user_artists])).filter(User.id != userid).filter(User.username.contains(name)).all()
         # found_users_by_film = db.session.query(User).filter(user_film.c.user_id == User.id).filter(user_film.c.film_id == Film.id).filter(or_(False, *[Film.id.like(id_film) for id_film in film_main]) | or_(False, *[Film.director_id.like(id_director) for id_director in film_sub])).all()
 
         # found_users_by_book = db.session.query(User).filter(user_book.c.user_id == User.id).filter(user_book.c.book_id == Book.id).filter(or_(False, *[Book.id.like(id_book) for id_book in book_main]) | or_(False, *[Book.author_id.like(id_author) for id_author in book_sub])).all()
@@ -250,7 +283,6 @@ def userfilter():
                  result_temp["Artist"] = result_temp.setdefault("Artist", []) + [artist["id"]]
             
             result["FoundUsers"] = result.setdefault("FoundUsers", []) + [result_temp]
-
 
         return json.dumps(result, ensure_ascii=False)
 

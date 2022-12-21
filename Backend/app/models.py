@@ -17,6 +17,7 @@ def load_user(user_id):
 class Gender(str, Enum):
     male = 'male'
     female = 'female'
+    other = 'other'
 
 class StatusRequests(Enum):
     follower = 'follower'
@@ -161,6 +162,7 @@ class User(db.Model):
         if kwargs.get('avatar') != None:
             self.avatar = kwargs.get('avatar')
         self.username = kwargs.get('username')
+        self.gender = "other"
 
     def get_access_token(self, expire_time=5):
         expire_delta = timedelta(minutes=expire_time)
