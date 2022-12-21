@@ -130,7 +130,7 @@ class User(db.Model):
     date_joined = db.Column(db.Date, default=datetime.utcnow)
     age = db.Column(db.Integer)
     birthday = db.Column(db.Date)
-    # avatar = db.Column(db.Binary())
+    avatar = db.Column(db.String(100))
     telegram = db.Column(db.String(50))
     gender = db.Column(db.Enum(Gender))
     is_moder = db.Column(db.Boolean)
@@ -158,6 +158,8 @@ class User(db.Model):
         self.email = kwargs.get('email')
         if kwargs.get('passoword') != None:
             self.password = bcrypt.generate_password_hash(kwargs.get('password')).decode('utf-8')
+        if kwargs.get('avatar') != None:
+            self.avatar = kwargs.get('avatar')
         self.username = kwargs.get('username')
 
     def get_access_token(self, expire_time=5):
