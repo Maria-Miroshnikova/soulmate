@@ -5,7 +5,7 @@ import {themeMain} from "../../theme";
 
 const ErrorPage = () => {
 
-    const textTitle = "Ошбика: неверный url";
+    const textTitle = "ЗАГРУЗКА или неверный url";
     const textSubtitle = "вернуться на начальную страницу";
 
     return (

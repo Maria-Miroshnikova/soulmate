@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import AppLayout from "./components/appLayout";
 import {Box, Typography} from "@mui/material";
@@ -34,11 +34,16 @@ function App() {
 
   const [refresh] = refreshAPI.useLazyRefreshQuery();
 
+  const [hasTryRefresh, setHasTryRefresh] = useState<boolean>(false);
+
   useEffect(() => {
     const token = localStorage.getItem(STORAGE_ACCESS);
     if (token) {
       handleRefresh();
     }
+    else
+      navigate('/');
+    setHasTryRefresh(true);
   }, [])
 
   const handleRefresh = () => {
@@ -104,7 +109,7 @@ function App() {
   }, [location.pathname]);
   
   useEffect(() => {
-    if (!isAuth)
+    if (!isAuth && hasTryRefresh)
       navigate('/');
   }, [isAuth])
 
