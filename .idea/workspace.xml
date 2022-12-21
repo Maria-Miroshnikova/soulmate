@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="merge">
-      <change beforePath="$PROJECT_DIR$/Frontend/README.md" beforeDir="false" />
+    <list default="true" id="2985ca70-e245-4444-86d0-f32f799b533b" name="Changes" comment="change readme">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,21 +39,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programming/webstorm/univercity_project/client&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\Programming\\webstorm\\soulmate_off_repo\\soulmate\\Frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Programming/webstorm/soulmate_off_repo/soulmate",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "D:\\Programming\\webstorm\\soulmate_off_repo\\soulmate\\Frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programming\webstorm\soulmate_off_repo\soulmate" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/Frontend/package.json" />
@@ -93,27 +99,6 @@
       <workItem from="1671481718327" duration="5020000" />
       <workItem from="1671528052986" duration="2892000" />
       <workItem from="1671535291114" duration="18629000" />
-    </task>
-    <task id="LOCAL-00017" summary="delete odd todos">
-      <created>1671352851537</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1671352851537</updated>
-    </task>
-    <task id="LOCAL-00018" summary="raise local priority sort">
-      <created>1671353219874</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1671353219874</updated>
-    </task>
-    <task id="LOCAL-00019" summary="make filter interactive: make priority and searchname interactive">
-      <created>1671356340735</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1671356340735</updated>
     </task>
     <task id="LOCAL-00020" summary="make filter interactive: make filterTemplate interactive">
       <created>1671357445445</created>
@@ -437,7 +422,28 @@
       <option name="project" value="LOCAL" />
       <updated>1671555142251</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="add README">
+      <created>1671665582120</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1671665582120</updated>
+    </task>
+    <task id="LOCAL-00067" summary="add api_documentation">
+      <created>1671665634679</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1671665634679</updated>
+    </task>
+    <task id="LOCAL-00068" summary="change readme">
+      <created>1671665875431</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1671665875431</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,9 +461,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix transform countRequests" />
-    <MESSAGE value="raise adding to visited" />
-    <MESSAGE value="try fix visiting" />
     <MESSAGE value="fix friends parsing problem" />
     <MESSAGE value="delete todos" />
     <MESSAGE value="make button for telegram disabled if telegram === null" />
@@ -480,6 +483,9 @@
     <MESSAGE value="develop logout when bad access" />
     <MESSAGE value="develop logout when bad access in base query" />
     <MESSAGE value="dont know" />
-    <option name="LAST_COMMIT_MESSAGE" value="dont know" />
+    <MESSAGE value="add README" />
+    <MESSAGE value="add api_documentation" />
+    <MESSAGE value="change readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="change readme" />
   </component>
 </project>
