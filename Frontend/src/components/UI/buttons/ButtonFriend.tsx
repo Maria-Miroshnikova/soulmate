@@ -20,6 +20,10 @@ const ButtonFriend: FC<ButtonPersonProps> = ({person}) => {
         removeFriend({personId: person.id, userId: userId!});
     }
 
+    /*
+    // кнопка с переходом по ссылке
+    <Button variant="contained" href={person.telegram}> {textTelegram} </Button>
+     */
     return (
         <Box display="flex" flexDirection="row" gap={1}>
             <Button variant="contained" onClick={handleDelete} > {textDelete} </Button>
@@ -27,7 +31,7 @@ const ButtonFriend: FC<ButtonPersonProps> = ({person}) => {
                 ((person.telegram === undefined) || (person.telegram === null) || (person.telegram === "")) ?
                     <Button variant="contained" disabled> {textNoTelegram} </Button>
                     :
-                    <Button variant="contained" href={person.telegram}> {textTelegram} </Button>
+                    <Button variant="contained" href={person.telegram}> {person.telegram} </Button>
             }
         </Box>
     );
