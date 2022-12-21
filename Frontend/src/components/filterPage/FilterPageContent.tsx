@@ -76,6 +76,15 @@ const FilterPageContent: FC = () => {
 
     // TODO: сделать красивый loader
     // TODO: сделать pagination в запросе
+
+    /*<Box alignSelf="center" marginTop={2}>
+                    {
+                        (isLoading) ?
+                            null
+                            :
+                            <Pagination count={countPages} page={pageNumber} onChange={handleChangePage}/>
+                    }
+                </Box>*/
     return (
         <Box height="min-content" width="100%">
             <SearchNameDrawer countFound={userCards.length}/>
@@ -85,14 +94,7 @@ const FilterPageContent: FC = () => {
                         <Typography> идет загрузка </Typography>
                         :
                         userCards.map((user) => <UserCard user={user} key={user.personal_data.id}/>)}
-                <Box alignSelf="center" marginTop={2}>
-                    {
-                        (isLoading) ?
-                            null
-                            :
-                            <Pagination count={countPages} page={pageNumber} onChange={handleChangePage}/>
-                    }
-                </Box>
+
             </Box>
         </Box>
     );
