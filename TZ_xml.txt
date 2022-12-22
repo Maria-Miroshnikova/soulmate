@@ -244,6 +244,22 @@
       <PROPERTY>ONE TO MANY</PROPERTY>
     </RELATIONSHIPS>
   </DATA>
+  <ROLES>
+    <ROLE title="USER">
+	  <RESPONSIBILITY>Use filter page</RESPONSIBILITY>
+	  <RESPONSIBILITY>See other user personal info</RESPONSIBILITY>
+	  <RESPONSIBILITY>See other user favourites</RESPONSIBILITY>
+	  <RESPONSIBILITY>See analysis of other user favourites</RESPONSIBILITY>
+	  <RESPONSIBILITY>Edit favourites</RESPONSIBILITY>
+	  <RESPONSIBILITY>Edit personal info</RESPONSIBILITY>
+	  <RESPONSIBILITY>Edit rating and comments to favourites</RESPONSIBILITY>
+	  <RESPONSIBILITY>Edit connection with other people (follow/unfollow)</RESPONSIBILITY>
+    </ROLE>
+    <ROLE title="MODERATOR">
+	  <RESPONSIBILITY>See new comments</RESPONSIBILITY>
+	  <RESPONSIBILITY>Accept/deny comment</RESPONSIBILITY>
+    </ROLE>
+  </ROLES>
   <TECHSPEC>
     <TYPE>Web-development</TYPE>
     <DEVTOOLS>
