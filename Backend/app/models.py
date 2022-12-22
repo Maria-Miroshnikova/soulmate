@@ -145,6 +145,7 @@ class User(db.Model):
                                         primaryjoin = (browsingHistory.c.viewer_id == id),
                                         secondaryjoin=(browsingHistory.c.viewed_id == id),
                                         backref='viewers', passive_deletes=True)
+    
     books = db.relationship('Book', secondary=user_book, backref='readers', passive_deletes=True)
     films = db.relationship('Film', secondary=user_film, backref='viewers', passive_deletes=True)
     games = db.relationship('Game', secondary=user_game, backref='gamers', passive_deletes=True)
