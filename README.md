@@ -28,7 +28,7 @@ Soulmate.
 социальные сети
 
 # ДАННЫЕ
-(в диаграмме ER_diagram)
+(в диаграмме ER_diagram, TZ_xml.txt)
 
 # UI
 (скриншоты в папке screens)

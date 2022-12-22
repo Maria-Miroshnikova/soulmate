@@ -1,0 +1,258 @@
+<ISSPECS>
+  <DESCRIPTION>
+    <TITLE>Soulmate.</TITLE>
+    <SUBJ>Социальная сеть для поиска друзей по интересам</SUBJ>
+  </DESCRIPTION>
+  <DATA>
+    <ENTITY ent_id="user_requests">
+      <PROPERTY>follower_id</PROPERTY>
+      <PROPERTY>followed_id</PROPERTY>
+      <PROPERTY>type</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="browsignhistory">
+      <PROPERTY>viewer_id</PROPERTY>
+      <PROPERTY>viewed_id</PROPERTY>
+      <PROPERTY>timedate</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user">
+      <PROPERTY>email</PROPERTY>
+      <PROPERTY>password</PROPERTY>
+      <PROPERTY>username</PROPERTY>
+      <PROPERTY>date_joined</PROPERTY>
+      <PROPERTY>age</PROPERTY>
+      <PROPERTY>birthday</PROPERTY>
+      <PROPERTY>avatar</PROPERTY>
+      <PROPERTY>telegram</PROPERTY>
+      <PROPERTY>gender</PROPERTY>
+      <PROPERTY>is_moder</PROPERTY>
+      <PROPERTY>refresh_token</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user_artist">
+      <PROPERTY>user_id</PROPERTY>
+      <PROPERTY>artist_id</PROPERTY>
+      <PROPERTY>rating</PROPERTY>
+      <PROPERTY>review</PROPERTY>
+      <PROPERTY>verified</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user_song">
+      <PROPERTY>user_id</PROPERTY>
+      <PROPERTY>song_id</PROPERTY>
+      <PROPERTY>rating</PROPERTY>
+      <PROPERTY>review</PROPERTY>
+      <PROPERTY>verified</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user_studio">
+      <PROPERTY>user_id</PROPERTY>
+      <PROPERTY>studio_id</PROPERTY>
+      <PROPERTY>rating</PROPERTY>
+      <PROPERTY>review</PROPERTY>
+      <PROPERTY>verified</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user_game">
+      <PROPERTY>user_id</PROPERTY>
+      <PROPERTY>game_id</PROPERTY>
+      <PROPERTY>rating</PROPERTY>
+      <PROPERTY>review</PROPERTY>
+      <PROPERTY>verified</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user_author">
+      <PROPERTY>user_id</PROPERTY>
+      <PROPERTY>author_id</PROPERTY>
+      <PROPERTY>rating</PROPERTY>
+      <PROPERTY>review</PROPERTY>
+      <PROPERTY>verified</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user_book">
+      <PROPERTY>user_id</PROPERTY>
+      <PROPERTY>book_id</PROPERTY>
+      <PROPERTY>rating</PROPERTY>
+      <PROPERTY>review</PROPERTY>
+      <PROPERTY>verified</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user_film">
+      <PROPERTY>user_id</PROPERTY>
+      <PROPERTY>film_id</PROPERTY>
+      <PROPERTY>rating</PROPERTY>
+      <PROPERTY>review</PROPERTY>
+      <PROPERTY>verified</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="user_director">
+      <PROPERTY>user_id</PROPERTY>
+      <PROPERTY>director_id</PROPERTY>
+      <PROPERTY>rating</PROPERTY>
+      <PROPERTY>review</PROPERTY>
+      <PROPERTY>verified</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="artist">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>title</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="song">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>title</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="book">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>title</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="author">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>title</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="song">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>title</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="film">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>title</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="director">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>title</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="boor">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>title</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="point_property">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>id_point</PROPERTY>
+      <PROPERTY>id_property</PROPERTY>
+      <PROPERTY>value</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="song_tag">
+      <PROPERTY>song_id</PROPERTY>
+      <PROPERTY>tag_id</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="name_song_tag">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>name</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="game_tag">
+      <PROPERTY>song_id</PROPERTY>
+      <PROPERTY>tag_id</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="name_game_tag">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>name</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="book_tag">
+      <PROPERTY>song_id</PROPERTY>
+      <PROPERTY>tag_id</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="name_book_tag">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>name</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="film_tag">
+      <PROPERTY>song_id</PROPERTY>
+      <PROPERTY>tag_id</PROPERTY>
+    </ENTITY>
+    <ENTITY ent_id="name_film_tag">
+      <PROPERTY>id</PROPERTY>
+      <PROPERTY>name</PROPERTY>
+    </ENTITY>
+    <RELATIONSHIPS ent_ids = "artist song">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "studio game">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "author book">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "director film">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "song song_tag">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "book book_tag">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "game game_tag">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "film film_tag">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "name_song_tag song_tag">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    <RELATIONSHIPS ent_ids = "name_game_tag game_tag">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    <RELATIONSHIPS ent_ids = "name_book_tag book_tag">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    <RELATIONSHIPS ent_ids = "name_film_tag film_tag">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "artist user_artist">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "song user_song">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "studio user_studio">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "game user_game">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "author user_author">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "book user_book">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "film user_film">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "director user_director">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "artist user_artist">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_artist">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_song">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_studio">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_game">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_book">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_author">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_film">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_director">
+      <PROPERTY>MANY TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user user_requests">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+    <RELATIONSHIPS ent_ids = "user browsinghistory">
+      <PROPERTY>ONE TO MANY</PROPERTY>
+    </RELATIONSHIPS>
+  </DATA>
+  <TECHSPEC>
+    <TYPE>Web-development</TYPE>
+    <DEVTOOLS>
+      <DEV>Flask</DEV>
+      <DEV>Python SQLAlchemy</DEV>
+    </DEVTOOLS>
+    <DBMS>
+      <TITLE>MySQL</TITLE>
+      <REASONING>Удобное взаимодействие с входными данными.</REASONING>
+    </DBMS>
+  </TECHSPEC>
+</ISSPECS>
